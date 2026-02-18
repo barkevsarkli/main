@@ -10,7 +10,6 @@ A progressive exploration of neural network architectures built entirely from sc
 | **v2** | MNIST | 3-layer (2 hidden) | Backprop + SGD | Multi-activation experimentation (even/odd neuron split) |
 | **v3** | MNIST | 3-layer (2 hidden) | Backprop + SGD | Scaled hidden layers (128 neurons), configurable epochs |
 | **v4** | CIFAR-10 | 4-layer (3 hidden) | Backprop + SGD | Color image support (32x32 RGB) |
-| **v5** | MNIST | Spatial 3D bio-network | Hebbian learning + Evolution | Biologically-inspired neurons with neurogenesis |
 
 ## Datasets
 
