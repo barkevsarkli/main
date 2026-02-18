@@ -8,12 +8,12 @@ echo "Compilation successful. Running program..."
 
 activations=("relu" "tanh" "sigmoid")
 
-seed=90   # starting seed (matches your current srand(50))
+seed=90
 
 while true; do
     echo "=== Starting 9-combo cycle with seed: $seed ==="
 
     ./main tanh relu $seed
 
-    seed=$((seed + 8))   # increment seed after every 9 runs
+    seed=$((seed + 8))
 done

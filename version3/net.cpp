@@ -35,7 +35,6 @@ Neuron::Neuron(unsigned short number_of_inputs, unsigned short number_of_neurons
     bias_gradients = new float[number_of_neurons];
     d_inputs = new float[number_of_inputs];
 
-    // Use Kaiming/He uniform initialization (PyTorch default)
     std::cout << "Using Kaiming Uniform initialization (PyTorch default)" << std::endl;
     initialize_parameters_random(weights, number_of_inputs, number_of_neurons);
 
@@ -73,7 +72,6 @@ void Neuron::forward(const float *inputs)
         if (outputs[i] > 20.0f) outputs[i] = 20.0f;
         if (outputs[i] < -20.0f) outputs[i] = -20.0f;
 
-        // even numbers use activation_function_type1, odd numbers use activation_function_type2
         if ((i % 2) == 0)
         {
             if (activation_function_type1 == "relu") {
@@ -92,7 +90,6 @@ void Neuron::forward(const float *inputs)
             }
             else if (activation_function_type1 == "sigmoid")
             {
-                // Numerically stable sigmoid
                 if (outputs[i] >= 0) {
                     float z = exp(-outputs[i]);
                     outputs[i] = 1.0f / (1.0f + z);
@@ -164,7 +161,6 @@ void Neuron::backward(const float *d_values)
     {
         float activation_derivative;
         
-        // even numbers use activation_function_type1, odd numbers use activation_function_type2
         if ((i % 2) == 0) 
         {
             if (activation_function_type1 == "relu")
@@ -182,7 +178,7 @@ void Neuron::backward(const float *d_values)
             else
                 activation_derivative = (outputs[i] > 0) ? 1.0f : 0.0f;
         }
-        else  // (i % 2) == 1
+        else
         {
             if (activation_function_type2 == "relu") {
                 activation_derivative = (outputs[i] > 0) ? 1.0f : 0.0f;
@@ -204,7 +200,6 @@ void Neuron::backward(const float *d_values)
         
         float d_output = d_values[i] * activation_derivative;
         
-        // Gradient clipping to prevent exploding gradients
         if (d_output > 10.0f) d_output = 10.0f;
         if (d_output < -10.0f) d_output = -10.0f;
         

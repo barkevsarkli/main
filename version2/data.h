@@ -47,4 +47,4 @@ public:
 // Helper function
 uint32_t read_big_endian_integer(std::ifstream &file);
 
-#endif // DATA_H
+#endif

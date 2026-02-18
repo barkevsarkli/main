@@ -35,7 +35,6 @@ Neuron::Neuron(unsigned short number_of_inputs, unsigned short number_of_neurons
     bias_gradients = new float[number_of_neurons];
     d_inputs = new float[number_of_inputs];
 
-    // Use Kaiming/He uniform initialization (PyTorch default)
     std::cout << "Using Kaiming Uniform initialization (PyTorch default)" << std::endl;
     initialize_parameters_random(weights, number_of_inputs, number_of_neurons);
 
@@ -92,7 +91,6 @@ void Neuron::forward(const float *inputs)
             }
             else if (activation_function_type1 == "sigmoid")
             {
-                // Numerically stable sigmoid
                 if (outputs[i] >= 0) {
                     float z = exp(-outputs[i]);
                     outputs[i] = 1.0f / (1.0f + z);

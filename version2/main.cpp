@@ -28,11 +28,11 @@ int main(int argc, char** argv)
 
     float learning_rate = LEARNING_RATE;
     if (activation_type1 == "sigmoid" || activation_type2 == "sigmoid") {
-        learning_rate = 0.01f;  // Same as ReLU but with clipping protection
+        learning_rate = 0.01f;
         std::cout << "Using learning rate for sigmoid: " << learning_rate << std::endl;
     }
     else if (activation_type1 == "tanh" || activation_type2 == "tanh") {
-        learning_rate = 0.01f;  // Same as ReLU
+        learning_rate = 0.01f;
         std::cout << "Using learning rate for tanh: " << learning_rate << std::endl;
     }
 
@@ -82,7 +82,6 @@ int main(int argc, char** argv)
             {
                 float error = predictions[j] - current_image.one_hot_encoded_label[j];
                 
-                // Check for NaN in predictions
                 if (std::isnan(predictions[j])) {
                     std::cerr << "NaN detected in prediction at epoch " << epoch + 1 << ", sample " << i << std::endl;
                     return 1;
@@ -91,23 +90,17 @@ int main(int argc, char** argv)
                 loss += error * error;
                 d_loss[j] = 2 * error;
 
-                // --- CORRECTED ACCURACY ---
-                // Find the index (label) with the highest prediction value
                 if (predictions[j] > max_output) 
                 {
                     max_output = predictions[j];
                     predicted_label = j;
                 }
-                // --- END CORRECTION ---
             }
 
-            // --- CORRECTED ACCURACY ---
-            // Compare the predicted label to the true label
             if (predicted_label == current_image.label)
             {
                 correct_train_predictions++;
             }
-            // --- END CORRECTION ---
 
             total_loss += loss / OUTPUT_SIZE;
 

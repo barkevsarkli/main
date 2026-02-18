@@ -117,8 +117,6 @@ void Data::split_data(float test_size)
 
 void Data::normalize_data()
 {
-    //if (!flags[2])
-        //throw std::runtime_error("normalize_data() | Data is not splited");
     for (uint32_t i = 0; i < this->train_size; i++)
         for (uint32_t j = 0; j < 28 * 28; j++)
             images_train[i].normalized_pixels[j] = images_train[i].pixels[j] / 255.0f;
@@ -158,25 +156,25 @@ void Data::display_image(const Image& image, const std::string& filename)
     const int filesize = 14 + 40 + row_padded * height;
 
     unsigned char bmpfileheader[14] = {
-        'B','M',  // Signature
-        0,0,0,0,  // File size
-        0,0,      // Reserved
-        0,0,      // Reserved
-        54,0,0,0  // Pixel data offset
+        'B','M',
+        0,0,0,0,
+        0,0,
+        0,0,
+        54,0,0,0
     };
 
     unsigned char bmpinfoheader[40] = {
-        40,0,0,0,     // Header size
-        0,0,0,0,      // Width
-        0,0,0,0,      // Height
-        1,0,          // Planes
-        24,0,         // Bits per pixel
-        0,0,0,0,      // Compression
-        0,0,0,0,      // Image size
-        0,0,0,0,      // X pixels per meter
-        0,0,0,0,      // Y pixels per meter
-        0,0,0,0,      // Total colors
-        0,0,0,0       // Important colors
+        40,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        1,0,
+        24,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0
     };
 
     bmpfileheader[2] = (unsigned char)(filesize);
@@ -206,14 +204,12 @@ void Data::display_image(const Image& image, const std::string& filename)
         int idx = 0;
         for (int x = 0; x < width; x++) {
             uint8_t pixel = image.pixels[y * width + x];
-            row[idx++] = pixel; // Blue
-            row[idx++] = pixel; // Green
-            row[idx++] = pixel; // Red
+            row[idx++] = pixel;
+            row[idx++] = pixel;
+            row[idx++] = pixel;
         }
         while (idx < row_padded) row[idx++] = 0;
         file.write(reinterpret_cast<char*>(row), row_padded);
     }
     file.close();
 }
-
-//kafayı yersin

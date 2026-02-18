@@ -74,7 +74,6 @@ void CIFAR_DATA::get_image_batch(Image *images, const std::string filename, unsi
 
 void CIFAR_DATA::load_train_images_raw(void)
 {
-    // Ensure trailing slash is handled in main or here
     get_image_batch(train_images_raw, train_foldername + "data_batch_1.bin", 0);
     get_image_batch(train_images_raw, train_foldername + "data_batch_2.bin", 10000);
     get_image_batch(train_images_raw, train_foldername + "data_batch_3.bin", 20000);

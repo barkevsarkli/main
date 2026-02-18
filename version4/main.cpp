@@ -35,16 +35,14 @@ int main(int argc, char** argv)
 
     std::cout << "Initializing CIFAR-10 Data Loader..." << std::endl;
     
-    // Ensure these paths are correct for your system
     CIFAR_DATA data("/Users/khaos/Desktop/main-main/CIFAR10/train_images/", 
                     "/Users/khaos/Desktop/main-main/CIFAR10/test_images/test_batch.bin");
 
     data.print_stats();
 
-    // --- INITIALIZE 3 HIDDEN LAYERS ---
     Neuron hidden_layer1(INPUT_SIZE, HIDDEN_SIZE, activation_type1, activation_type2);
     Neuron hidden_layer2(HIDDEN_SIZE, HIDDEN_SIZE, activation_type1, activation_type2);
-    Neuron hidden_layer3(HIDDEN_SIZE, HIDDEN_SIZE, activation_type1, activation_type2); // Fixed: Missing semicolon
+    Neuron hidden_layer3(HIDDEN_SIZE, HIDDEN_SIZE, activation_type1, activation_type2);
     Neuron output_layer(HIDDEN_SIZE, OUTPUT_SIZE, activation_type1, activation_type2);
 
     std::cout << "Training started (" << epochs << " epochs)" << std::endl;
@@ -61,10 +59,9 @@ int main(int argc, char** argv)
             float *current_target = &data.train_labels_encoded[i * OUTPUT_SIZE];
             int true_label = (int)data.train_labels[i];
 
-            // --- FORWARD PASS (3 LAYERS) ---
             hidden_layer1.forward(current_input);
             hidden_layer2.forward(hidden_layer1.get_outputs());
-            hidden_layer3.forward(hidden_layer2.get_outputs()); // Fixed: Missing closing parenthesis
+            hidden_layer3.forward(hidden_layer2.get_outputs());
             output_layer.forward(hidden_layer3.get_outputs());
 
             const float *predictions = output_layer.get_outputs();
@@ -94,18 +91,14 @@ int main(int argc, char** argv)
             total_loss += loss / OUTPUT_SIZE;
 
             output_layer.backward(d_loss.data());
-            // 2. HL3 -> HL2
             hidden_layer3.backward(output_layer.get_d_inputs());
-            // 3. HL2 -> HL1
             hidden_layer2.backward(hidden_layer3.get_d_inputs());
-            // 4. HL1 -> Input (gradients usually ignored here unless visualizing features)
             hidden_layer1.backward(hidden_layer2.get_d_inputs());
 
-            // --- UPDATE WEIGHTS ---
             hidden_layer1.update(learning_rate);
             hidden_layer2.update(learning_rate);
             hidden_layer3.update(learning_rate);
-            output_layer.update(learning_rate); // Fixed: Indentation
+            output_layer.update(learning_rate);
         }
 
         float train_accuracy = (float)correct_train_predictions / train_size * 100.0f;
@@ -127,7 +120,6 @@ int main(int argc, char** argv)
        float *current_input = &data.test_images_flat[i * INPUT_SIZE];
        int true_label = (int)data.test_labels[i];
 
-       // --- TEST FORWARD PASS ---
        hidden_layer1.forward(current_input);
        hidden_layer2.forward(hidden_layer1.get_outputs());
        hidden_layer3.forward(hidden_layer2.get_outputs());
