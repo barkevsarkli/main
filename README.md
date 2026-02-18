@@ -111,40 +111,6 @@ Adapts the network for color image classification with a deeper architecture.
 
 ---
 
-### Version 5 -- Biologically-Inspired Neural Network
-
-A complete paradigm shift from traditional backpropagation to a bio-inspired simulation.
-
-- **Architecture**: Spatially-positioned neurons in 3D space (input at z=0, output at z=20, hidden in between)
-- **Initial Config**: 784 inputs, 10 outputs, 50 hidden neurons
-- **Training**: Hebbian learning + evolutionary mutation (no backpropagation)
-- **Files**: `main.cpp`, `BioNetwork.cpp`, `BioNetwork.h`, `BioNeuron.cpp`, `BioNeuron.h`, `data.cpp`, `data.h`
-
-**This version is a fundamentally different approach:**
-
-| Feature | v1-v4 (Traditional) | v5 (Biological) |
-|---------|---------------------|------------------|
-| Learning | Backpropagation | Hebbian + Mutation |
-| Topology | Fixed layers | Dynamic (neurogenesis) |
-| Neurons | Abstract (weight matrix) | Spatial entities with (x, y, z) |
-| Connectivity | Fully connected layers | Sparse + Shortcut connections |
-| Processing | Single forward pass | Multi-tick temporal simulation |
-| Adaptation | Gradient descent | Energy distribution + Evolution |
-
-**Core biological concepts**:
-
-- **BioNeuron**: Each neuron has a 3D position, energy level, voltage potential, bias, and activation type. Neurons can be mobile or immobile (input/output are anchored).
-- **Synapse**: Weighted directional connections between neurons, supporting backup/restore for evolutionary rollback.
-- **Spatial Topology**: Input neurons form a 28x28 retinal grid at z=0. Output neurons are arranged along the x-axis at z=20. Hidden neurons are placed randomly in between.
-- **Shortcut Connections**: Direct input-to-output pathways (similar to ResNet skip connections).
-- **Hebbian Learning**: "Neurons that fire together wire together" -- active neurons strengthen their connections proportional to output and error signal.
-- **Neurogenesis**: When the network stagnates (no improvement for 20 generations), a new hidden neuron is spawned and wired into the network.
-- **Mutation**: Random perturbation of weights (20% chance, +/-2.0 range) and biases (20% chance, +/-1.5 range) to explore the solution space.
-- **Tick-based Processing**: Instead of a single forward pass, the network runs multiple "ticks" allowing signals to propagate through the spatial graph.
-- **Physical Drift**: Hidden neurons can physically move toward connection targets.
-
----
-
 ## Building and Running
 
 ### Version 1
@@ -173,13 +139,6 @@ g++ -Wall -Wextra -O2 -o main main.cpp net.cpp data.cpp
 cd version4
 g++ -Wall -Wextra -O2 -o main main.cpp net.cpp cifar_data.cpp
 ./main tanh leaky_relu 42 10
-```
-
-### Version 5
-```bash
-cd version5
-g++ -Wall -Wextra -O2 -o MnistBrain main.cpp BioNetwork.cpp BioNeuron.cpp data.cpp
-./MnistBrain
 ```
 
 ## Evolution Summary
@@ -238,15 +197,8 @@ main-main/
 │   └── results_*.csv
 │
 ├── version4/                    # CIFAR-10 support
-│   ├── main.cpp
-│   ├── net.cpp / net.h
-│   ├── cifar_data.cpp / cifar_data.h
-│   ├── run.sh
-│   └── cifar_results_*.csv
-│
-└── version5/                    # Bio-inspired network
     ├── main.cpp
-    ├── BioNetwork.cpp / BioNetwork.h
-    ├── BioNeuron.cpp / BioNeuron.h
-    └── data.cpp / data.h
-```
+    ├── net.cpp / net.h
+    ├── cifar_data.cpp / cifar_data.h
+    ├── run.sh
+    └── cifar_results_*.csv
