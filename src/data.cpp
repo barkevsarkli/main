@@ -111,6 +111,8 @@ void Data::split_data(float test_size)
     std::cout << "Data split successfully" << std::endl;
     std::cout << "Train size: " << this->train_size << std::endl;
     std::cout << "Test size: " << this->number_of_images - this->train_size << std::endl;
+
+    delete[] images;
 }
 
 void Data::normalize_data()
