@@ -150,6 +150,76 @@ void Neuron::forward(const float *inputs)
         counter = 0;
 }
 
-void Neuron::backward(const float *d_values) {}
+void Neuron::backward(const float *d_values)
+{
+    for (unsigned short i = 0; i < number_of_inputs; i++)
+        d_inputs[i] = 0.0f;
 
-void Neuron::update(float learning_rate) {}
+    for (unsigned short i = 0; i < number_of_neurons; i++)
+    {
+        float activation_derivative;
+
+        // even numbers use activation_function_type1, odd numbers use activation_function_type2
+        if ((i % 2) == 0)
+        {
+            if (activation_function_type1 == "relu")
+                activation_derivative = (outputs[i] > 0) ? 1.0f : 0.0f;
+
+            else if (activation_function_type1 == "leaky_relu")
+                activation_derivative = (outputs[i] > 0) ? 1.0f : 0.1;
+
+            else if (activation_function_type1 == "tanh")
+                activation_derivative = 1.0f - outputs[i] * outputs[i];
+
+            else if (activation_function_type1 == "sigmoid")
+                activation_derivative = outputs[i] * (1.0f - outputs[i]);
+
+            else
+                activation_derivative = (outputs[i] > 0) ? 1.0f : 0.0f;
+        }
+        else  // (i % 2) == 1
+        {
+            if (activation_function_type2 == "relu") {
+                activation_derivative = (outputs[i] > 0) ? 1.0f : 0.0f;
+            }
+
+            else if (activation_function_type2 == "leaky_relu")
+                activation_derivative = (outputs[i] > 0) ? 1.0f : 0.1;
+
+            else if (activation_function_type2 == "tanh") {
+                activation_derivative = 1.0f - outputs[i] * outputs[i];
+            }
+            else if (activation_function_type2 == "sigmoid") {
+                activation_derivative = outputs[i] * (1.0f - outputs[i]);
+            }
+            else {
+                activation_derivative = (outputs[i] > 0) ? 1.0f : 0.0f;
+            }
+        }
+
+        float d_output = d_values[i] * activation_derivative;
+
+        bias_gradients[i] += d_output;
+
+        for (unsigned short j = 0; j < number_of_inputs; j++)
+        {
+            weight_gradients[i * number_of_inputs + j] += inputs[j] * d_output;
+            d_inputs[j] += weights[i * number_of_inputs + j] * d_output;
+        }
+    }
+}
+
+void Neuron::update(float learning_rate)
+{
+    for (unsigned int i = 0; i < (unsigned int) number_of_inputs * number_of_neurons; i++)
+        weights[i] -= learning_rate * weight_gradients[i];
+
+    for (unsigned short i = 0; i < number_of_neurons; i++)
+        biases[i] -= learning_rate * bias_gradients[i];
+
+    for (unsigned int i = 0; i < (unsigned int)number_of_inputs * number_of_neurons; i++)
+        weight_gradients[i] = 0.0f;
+
+    for (unsigned short i = 0; i < number_of_neurons; i++)
+        bias_gradients[i] = 0.0f;
+}
