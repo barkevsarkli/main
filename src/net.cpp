@@ -69,6 +69,9 @@ void Neuron::forward(const float *inputs)
         for (unsigned short j = 0; j < number_of_inputs; ++j)
             outputs[i] += inputs[j] * weights[i * number_of_inputs + j];
 
+        if (outputs[i] > 20.0f) outputs[i] = 20.0f;
+        if (outputs[i] < -20.0f) outputs[i] = -20.0f;
+
         // even numbers use activation_function_type1, odd numbers use activation_function_type2
         if ((i % 2) == 0)
         {
@@ -198,6 +201,10 @@ void Neuron::backward(const float *d_values)
         }
 
         float d_output = d_values[i] * activation_derivative;
+
+        // Gradient clipping to prevent exploding gradients
+        if (d_output > 10.0f) d_output = 10.0f;
+        if (d_output < -10.0f) d_output = -10.0f;
 
         bias_gradients[i] += d_output;
 
