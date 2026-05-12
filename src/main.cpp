@@ -12,16 +12,32 @@
 #define LEARNING_RATE 0.01f
 #define EPOCHS 10
 
-int main()
+int main(int argc, char** argv)
 {
-    std::srand(42);
+    if (argc < 4) {
+        std::cerr << "Usage: " << argv[0]
+                << " <func1> <func2> <seed>" << std::endl;
+        return 1;
+    }
+
+    std::srand(std::stoi(argv[3]));
+
+    std::string activation_type1 = argv[1];
+    std::string activation_type2 = argv[2];
+
+    float learning_rate = LEARNING_RATE;
+
+    std::cout << "main() | Using activation functions: " << activation_type1 << " and " << activation_type2 << std::endl;
+    std::cout << "main() | Hidden layer size: " << HIDDEN_SIZE << ", Learning rate: " << learning_rate << ", Epochs: " << EPOCHS << std::endl;
 
     Data train_images_data("./data/train-images/train-images-idx3-ubyte",
                            "./data/train-images/train-labels-idx1-ubyte", 0.2);
 
-    Neuron hidden_layer1(INPUT_SIZE, HIDDEN_SIZE, "relu", "relu");
-    Neuron hidden_layer2(HIDDEN_SIZE, HIDDEN_SIZE, "relu", "relu");
-    Neuron output_layer(HIDDEN_SIZE, OUTPUT_SIZE, "relu", "relu");
+    Neuron hidden_layer1(INPUT_SIZE, HIDDEN_SIZE, activation_type1, activation_type2);
+    Neuron hidden_layer2(HIDDEN_SIZE, HIDDEN_SIZE, activation_type1, activation_type2);
+    Neuron output_layer(HIDDEN_SIZE, OUTPUT_SIZE, activation_type1, activation_type2);
+
+    std::cout << "main() | Using the same initials for all runs." << std::endl;
 
     for (unsigned short epoch = 0; epoch < EPOCHS; epoch++)
     {
@@ -52,9 +68,9 @@ int main()
             hidden_layer2.backward(output_layer.get_d_inputs());
             hidden_layer1.backward(hidden_layer2.get_d_inputs());
 
-            hidden_layer1.update(LEARNING_RATE);
-            hidden_layer2.update(LEARNING_RATE);
-            output_layer.update(LEARNING_RATE);
+            hidden_layer1.update(learning_rate);
+            hidden_layer2.update(learning_rate);
+            output_layer.update(learning_rate);
         }
 
         std::cout << "Epoch " << epoch + 1 << "/" << EPOCHS
