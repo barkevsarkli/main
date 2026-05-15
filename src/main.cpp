@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
@@ -26,9 +27,27 @@ int main(int argc, char** argv)
     std::string activation_type2 = argv[2];
 
     float learning_rate = LEARNING_RATE;
+    if (activation_type1 == "sigmoid" || activation_type2 == "sigmoid") {
+        learning_rate = 0.01f;
+        std::cout << "Using learning rate for sigmoid: " << learning_rate << std::endl;
+    }
+    else if (activation_type1 == "tanh" || activation_type2 == "tanh") {
+        learning_rate = 0.01f;
+        std::cout << "Using learning rate for tanh: " << learning_rate << std::endl;
+    }
+
+    std::string filename = "results_" + activation_type1 + "_" + activation_type2 + "_" + std::to_string(HIDDEN_SIZE) + ".csv";
+
+    std::ofstream out_file(filename, std::ios::app);
+    if (!out_file.is_open())
+    {
+        std::cerr << "main() | Failed to open output file." << std::endl;
+        return 1;
+    }
 
     std::cout << "main() | Using activation functions: " << activation_type1 << " and " << activation_type2 << std::endl;
-    std::cout << "main() | Hidden layer size: " << HIDDEN_SIZE << ", Learning rate: " << learning_rate << ", Epochs: " << EPOCHS << std::endl;
+    std::cout << "main() | Hidden layer size: " << HIDDEN_SIZE << ", Actual learning rate: " << learning_rate << ", Epochs: " << EPOCHS << std::endl;
+    out_file << argv[3] << "," << activation_type1 << "," << activation_type2 << ",";
 
     Data train_images_data("./data/train-images/train-images-idx3-ubyte",
                            "./data/train-images/train-labels-idx1-ubyte", 0.2);
@@ -42,6 +61,7 @@ int main(int argc, char** argv)
     for (unsigned short epoch = 0; epoch < EPOCHS; epoch++)
     {
         float total_loss = 0;
+        unsigned short correct_train_predictions = 0;
 
         for (unsigned short i = 0; i < train_images_data.get_train_size(); i++)
         {
@@ -55,11 +75,31 @@ int main(int argc, char** argv)
             float loss = 0;
             std::vector<float> d_loss(OUTPUT_SIZE);
 
+            int predicted_label = 0;
+            float max_output = -1.0f;
+
             for (unsigned short j = 0; j < OUTPUT_SIZE; j++)
             {
                 float error = predictions[j] - current_image.one_hot_encoded_label[j];
+
+                if (std::isnan(predictions[j])) {
+                    std::cerr << "NaN detected in prediction at epoch " << epoch + 1 << ", sample " << i << std::endl;
+                    return 1;
+                }
+
                 loss += error * error;
                 d_loss[j] = 2 * error;
+
+                if (predictions[j] > max_output)
+                {
+                    max_output = predictions[j];
+                    predicted_label = j;
+                }
+            }
+
+            if (predicted_label == current_image.label)
+            {
+                correct_train_predictions++;
             }
 
             total_loss += loss / OUTPUT_SIZE;
@@ -73,9 +113,16 @@ int main(int argc, char** argv)
             output_layer.update(learning_rate);
         }
 
+        float train_accuracy = (float)correct_train_predictions / train_images_data.get_train_size() * 100.0f;
+        float average_loss = total_loss / train_images_data.get_train_size();
+
         std::cout << "Epoch " << epoch + 1 << "/" << EPOCHS
-                  << ", Loss: " << total_loss / train_images_data.get_train_size() << std::endl;
+                  << ", Average Loss: " << average_loss << ", Accuracy: " << train_accuracy << "%" << std::endl;
+
+        out_file << average_loss <<", ";
     }
 
-    return 0;
+   out_file.close();
+
+   return 0;
 }
