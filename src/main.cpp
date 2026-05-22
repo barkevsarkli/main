@@ -114,6 +114,7 @@ int main(int argc, char** argv)
         }
 
         float train_accuracy = (float)correct_train_predictions / train_images_data.get_train_size() * 100.0f;
+
         float average_loss = total_loss / train_images_data.get_train_size();
 
         std::cout << "Epoch " << epoch + 1 << "/" << EPOCHS
@@ -121,6 +122,44 @@ int main(int argc, char** argv)
 
         out_file << average_loss <<", ";
     }
+
+   std::cout << "main() | Training finished" << std::endl;
+   std::cout << "main() | Starting Evaluation on Test Set" << std::endl;
+
+   unsigned short correct_predictions = 0;
+
+   for (unsigned short i = 0; i < train_images_data.get_test_size(); i++)
+   {
+       Image current_image = train_images_data.get_test_images()[i];
+
+       hidden_layer1.forward(current_image.normalized_pixels);
+       hidden_layer2.forward(hidden_layer1.get_outputs());
+       output_layer.forward(hidden_layer2.get_outputs());
+
+       const float *predictions = output_layer.get_outputs();
+       int predicted_label = 0;
+       float max_output = -1.0f;
+
+       for (unsigned short j = 0; j < OUTPUT_SIZE; j++)
+       {
+           if (predictions[j] > max_output)
+           {
+               max_output = predictions[j];
+               predicted_label = j;
+           }
+       }
+
+       if (predicted_label == current_image.label)
+           correct_predictions++;
+   }
+
+   float accuracy = (float)correct_predictions / train_images_data.get_test_size() * 100.0f;
+
+   std::cout << "Test Set Accuracy: " << accuracy << "%" << std::endl;
+   std::cout << "Correctly predicted " << correct_predictions << " out of "
+             << train_images_data.get_test_size() << " images." << std::endl;
+
+   out_file << accuracy << std::endl;
 
    out_file.close();
 
