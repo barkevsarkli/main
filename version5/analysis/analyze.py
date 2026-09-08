@@ -472,10 +472,80 @@ def robustness_table(per_width_lr):
                      + " | ".join(fmt(scores[w].get(k, {}).get("nocollapse")) for w in widths) + " |")
     return "\n".join(lines), scores
 
+# ---------------------------------------------------------------- per-dataset sections
+def width_sections(per_width, widths, ds, tag, sec):
+    """Per-width tables and figures plus the crossover block, for one dataset.
+
+    `ds` is the dataset name shown in headings, `tag` a figure-filename suffix ("" for
+    MNIST, so its figure names are unchanged), `sec` the section number to use.  MNIST
+    and CIFAR-10 go through this same code, so a difference between the two reports is a
+    difference in the data and never in how it was reduced.
+    """
+    md = []
+    cross = {p: {} for p in CROSS_PAIRS}
+    for w in widths:
+        g = per_width[w]
+        order = order_for(g)
+        nseeds = sorted({len(v) for v in g.values()})
+        nlabel = str(nseeds[0]) if len(nseeds) == 1 else f"{min(nseeds)}–{max(nseeds)}"
+        md += [f"## {sec}.{w} {ds}, {w} hidden neurons, cross-entropy ({nlabel} seeds per config)", "",
+               summary_table(g, order), "",
+               "Paired comparisons (hybrid minus each homogeneous parent, same seeds):", "",
+               paired_table(g, PAIRS), ""]
+        strip_box(g, order, "test_acc", f"{ds}, {w} hidden, CE: test accuracy per configuration",
+                  f"fig_acc_{w}{tag}.png", "test accuracy (%)")
+        strip_box(g, order, "test_f1", f"{ds}, {w} hidden, CE: test macro-F1 per configuration",
+                  f"fig_f1_{w}{tag}.png", "test macro-F1 (%)")
+        paired_delta_plot(g, PAIRS, "test_acc", f"Paired differences, {w} hidden, CE — accuracy",
+                          f"fig_paired_acc_{w}{tag}.png")
+        paired_delta_plot(g, PAIRS, "test_f1", f"Paired differences, {w} hidden, CE — macro-F1",
+                          f"fig_paired_f1_{w}{tag}.png")
+        learning_curves(g, order, f"Validation accuracy per epoch, {w} hidden, CE", f"fig_curves_{w}{tag}.png")
+        md += [f"![](figures/fig_acc_{w}{tag}.png)", f"![](figures/fig_f1_{w}{tag}.png)",
+               f"![](figures/fig_paired_acc_{w}{tag}.png)", f"![](figures/fig_paired_f1_{w}{tag}.png)",
+               f"![](figures/fig_curves_{w}{tag}.png)", ""]
+        for (hyb, base) in CROSS_PAIRS:
+            if hyb in g and base in g:
+                cross[(hyb, base)][w] = {"acc": paired(g[hyb], g[base], "test_acc"),
+                                         "f1": paired(g[hyb], g[base], "test_f1")}
+    return md, cross
+
+
+def crossover_sections(cross, per_width, widths, ds, tag, sec):
+    md = [f"## {sec}. {ds} crossover: paired hybrid − parent against width", "",
+          "One row per comparison and width. Δ is the paired mean difference in points "
+          "(positive = the hybrid is ahead), CI is the 95% bootstrap interval.", ""]
+    for metric, label in (("acc", "accuracy"), ("f1", "macro-F1")):
+        md += [f"**{label}**", "",
+               "| comparison | width | n | Δ | 95% CI | wins | paired t p | Wilcoxon p |",
+               "|---|---|---|---|---|---|---|---|"]
+        for (hyb, base) in CROSS_PAIRS:
+            for w in widths:
+                c = cross[(hyb, base)].get(w)
+                if not c: continue
+                p = c[metric]
+                md.append(f"| {hyb} − {base} | {w} | {p['n']} | {p['mean']:+.2f} | "
+                          f"[{p['ci'][0]:+.2f}, {p['ci'][1]:+.2f}] | {p['wins']}/{p['n']} | "
+                          f"{fmt_p(p.get('t_p'))} | {fmt_p(p.get('w_p'))} |")
+        md.append("")
+    if widths:
+        crossover_plot({k: {w: v[w]["acc"] for w in v} for k, v in cross.items()}, widths, "acc",
+                       f"{ds}: hybrid − parent against hidden width (test accuracy, 95% bootstrap CI)",
+                       f"fig_crossover{tag}.png", "paired Δ test accuracy (points)")
+        crossover_plot({k: {w: v[w]["f1"] for w in v} for k, v in cross.items()}, widths, "f1",
+                       f"{ds}: hybrid − parent against hidden width (test macro-F1, 95% bootstrap CI)",
+                       f"fig_crossover_f1{tag}.png", "paired Δ test macro-F1 (points)")
+        width_acc_plot(per_width, widths, f"fig_width_acc{tag}.png")
+        md += [f"![](figures/fig_crossover{tag}.png)", f"![](figures/fig_crossover_f1{tag}.png)",
+               f"![](figures/fig_width_acc{tag}.png)", ""]
+    return md
+
+
 # ---------------------------------------------------------------- main
 def main():
     md = ["# version5 results (extended sweep): hybrid activations across width, learning rate and layout", ""]
-    md += ["Protocol: MLP 784→H→H→10, batch-size-1 SGD, 10 epochs, fixed 45k/5k/10k train/val/test split "
+    md += ["Protocol: MLP D→H→H→10 (D = 784 on MNIST, 3072 on CIFAR-10), batch-size-1 SGD, 10 epochs, "
+           "fixed 45k/5k/10k train/val/test split "
            "shared by all runs, per-epoch shuffling, He/Kaiming-uniform init. Hidden layers carry per-neuron activation "
            "masks; the output layer is uniform (linear+softmax with cross-entropy, or sigmoid with MSE). Learning rate "
            "chosen per configuration on validation accuracy using calibration seeds (101–103) that are disjoint "
@@ -486,10 +556,13 @@ def main():
     calibs = discover("calib")
     lrsweeps = discover("lrsweep")
     layouts = discover("layout")
+    c10_mains = discover("c10_main")
+    c10_calibs = discover("c10_calib")
 
     superseded = [(w, f, s) for w, (f, s) in mains.items() if s]
     md += ["## 0. Files used", "", "| stage | width | file | superseded |", "|---|---|---|---|"]
-    for label, d in (("main", mains), ("calib", calibs), ("lrsweep", lrsweeps), ("layout", layouts)):
+    for label, d in (("main", mains), ("calib", calibs), ("lrsweep", lrsweeps), ("layout", layouts),
+                     ("main (CIFAR-10)", c10_mains), ("calib (CIFAR-10)", c10_calibs)):
         for w, (f, s) in d.items():
             md.append(f"| {label} | {w} | `{f}` | {('`' + s + '`') if s else '—'} |")
     md.append("")
@@ -500,6 +573,10 @@ def main():
     main_rows = {w: load(f) for w, (f, _) in mains.items()}
     widths = [w for w in sorted(main_rows) if main_rows[w]]
     per_width = {w: by_cfg(main_rows[w]) for w in widths}
+
+    c10_rows = {w: load(f) for w, (f, _) in c10_mains.items()}
+    c10_widths = [w for w in sorted(c10_rows) if c10_rows[w]]
+    c10_per_width = {w: by_cfg(c10_rows[w]) for w in c10_widths}
 
     # ---- run inventory (config x width -> n)
     md += ["## 1. Run inventory (evaluation runs, config × width → n)", "",
@@ -521,59 +598,56 @@ def main():
         md.append(f"| {f.split('_')[0]} | `{f}` | {len(rows)} |")
     md.append("")
 
-    # ---- per-width sections
-    cross = {p: {} for p in CROSS_PAIRS}
-    for w in widths:
-        g = per_width[w]
-        order = order_for(g)
-        nseeds = sorted({len(v) for v in g.values()})
-        nlabel = str(nseeds[0]) if len(nseeds) == 1 else f"{min(nseeds)}–{max(nseeds)}"
-        md += [f"## 2.{w} MNIST, {w} hidden neurons, cross-entropy ({nlabel} seeds per config)", "",
-               summary_table(g, order), "",
-               "Paired comparisons (hybrid minus each homogeneous parent, same seeds):", "",
-               paired_table(g, PAIRS), ""]
-        strip_box(g, order, "test_acc", f"MNIST, {w} hidden, CE: test accuracy per configuration",
-                  f"fig_acc_{w}.png", "test accuracy (%)")
-        strip_box(g, order, "test_f1", f"MNIST, {w} hidden, CE: test macro-F1 per configuration",
-                  f"fig_f1_{w}.png", "test macro-F1 (%)")
-        paired_delta_plot(g, PAIRS, "test_acc", f"Paired differences, {w} hidden, CE — accuracy", f"fig_paired_acc_{w}.png")
-        paired_delta_plot(g, PAIRS, "test_f1", f"Paired differences, {w} hidden, CE — macro-F1", f"fig_paired_f1_{w}.png")
-        learning_curves(g, order, f"Validation accuracy per epoch, {w} hidden, CE", f"fig_curves_{w}.png")
-        md += [f"![](figures/fig_acc_{w}.png)", f"![](figures/fig_f1_{w}.png)",
-               f"![](figures/fig_paired_acc_{w}.png)", f"![](figures/fig_paired_f1_{w}.png)",
-               f"![](figures/fig_curves_{w}.png)", ""]
-        for (hyb, base) in CROSS_PAIRS:
-            if hyb in g and base in g:
-                cross[(hyb, base)][w] = {"acc": paired(g[hyb], g[base], "test_acc"),
-                                         "f1": paired(g[hyb], g[base], "test_f1")}
+    # ---- per-width sections (MNIST, then CIFAR-10 through the same code path)
+    block, cross = width_sections(per_width, widths, "MNIST", "", 2)
+    md += block
+    md += crossover_sections(cross, per_width, widths, "MNIST", "", 3)
 
-    # ---- crossover
-    md += ["## 3. Crossover: paired hybrid − parent against width", "",
-           "One row per comparison and width. Δ is the paired mean difference in points "
-           "(positive = the hybrid is ahead), CI is the 95% bootstrap interval.", ""]
-    for metric, label in (("acc", "accuracy"), ("f1", "macro-F1")):
-        md += [f"**{label}**", "",
-               "| comparison | width | n | Δ | 95% CI | wins | paired t p | Wilcoxon p |",
-               "|---|---|---|---|---|---|---|---|"]
-        for (hyb, base) in CROSS_PAIRS:
-            for w in widths:
-                c = cross[(hyb, base)].get(w)
-                if not c: continue
-                p = c[metric]
-                md.append(f"| {hyb} − {base} | {w} | {p['n']} | {p['mean']:+.2f} | "
-                          f"[{p['ci'][0]:+.2f}, {p['ci'][1]:+.2f}] | {p['wins']}/{p['n']} | "
-                          f"{fmt_p(p.get('t_p'))} | {fmt_p(p.get('w_p'))} |")
+    if c10_widths:
+        md += [f"## 3c. CIFAR-10 replication", "",
+               "The same protocol on a harder dataset: 3072 inputs instead of 784, the official "
+               "10 000-image test batch instead of a slice of the training file, and only the 5 000 "
+               "validation images drawn out of the 50 000 training images by the same fixed "
+               "`SPLIT_SEED`. Learning rates are calibrated separately for CIFAR-10 "
+               "(`results/best_lr_c10.json`) because they do not transfer between datasets. "
+               "Absolute accuracy is far below a convolutional network's — an MLP on raw pixels is "
+               "not a competitive CIFAR-10 model — which does not affect the paired within-dataset "
+               "comparisons this report is built on.", "",
+               "| config | " + " | ".join(f"W={w}" for w in c10_widths) + " |",
+               "|---|" + "---|" * len(c10_widths)]
+        for k in CFG_ORDER:
+            cells = [str(len(c10_per_width[w].get(k, []))) if c10_per_width[w].get(k) else "–"
+                     for w in c10_widths]
+            if all(c == "–" for c in cells): continue
+            md.append(f"| {k} | " + " | ".join(cells) + " |")
         md.append("")
-    if widths:
-        crossover_plot({k: {w: v[w]["acc"] for w in v} for k, v in cross.items()}, widths, "acc",
-                       "Hybrid − parent against hidden width (test accuracy, 95% bootstrap CI)",
-                       "fig_crossover.png", "paired Δ test accuracy (points)")
-        crossover_plot({k: {w: v[w]["f1"] for w in v} for k, v in cross.items()}, widths, "f1",
-                       "Hybrid − parent against hidden width (test macro-F1, 95% bootstrap CI)",
-                       "fig_crossover_f1.png", "paired Δ test macro-F1 (points)")
-        width_acc_plot(per_width, widths, "fig_width_acc.png")
-        md += ["![](figures/fig_crossover.png)", "![](figures/fig_crossover_f1.png)",
-               "![](figures/fig_width_acc.png)", ""]
+        block, c10_cross = width_sections(c10_per_width, c10_widths, "CIFAR-10", "_c10", 3.1)
+        md += block
+        md += crossover_sections(c10_cross, c10_per_width, c10_widths, "CIFAR-10", "_c10", 3.2)
+
+        # ---- the article's central comparison: does the crossover replicate?
+        md += ["## 3.3 Does the crossover replicate across datasets?", "",
+               "Paired Δ in test accuracy points at each width, MNIST beside CIFAR-10. A crossover "
+               "that is a property of hybrid activation rather than of MNIST should change sign at "
+               "a similar width in both columns.", ""]
+        shared = [w for w in widths if w in c10_widths]
+        for (hyb, base) in CROSS_PAIRS:
+            rows_ = []
+            for w in shared:
+                a = cross[(hyb, base)].get(w)
+                b = c10_cross[(hyb, base)].get(w)
+                if not a or not b: continue
+                rows_.append((w, a["acc"], b["acc"]))
+            if not rows_: continue
+            md += [f"**{hyb} − {base}**", "",
+                   "| width | MNIST Δ | MNIST wins | CIFAR-10 Δ | CIFAR-10 wins | same sign |",
+                   "|---|---|---|---|---|---|"]
+            for w, a, b in rows_:
+                same = "yes" if (a["mean"] > 0) == (b["mean"] > 0) else "**no**"
+                md.append(f"| {w} | {a['mean']:+.2f} [{a['ci'][0]:+.2f}, {a['ci'][1]:+.2f}] | "
+                          f"{a['wins']}/{a['n']} | {b['mean']:+.2f} [{b['ci'][0]:+.2f}, {b['ci'][1]:+.2f}] | "
+                          f"{b['wins']}/{b['n']} | {same} |")
+            md.append("")
 
     # ---- LR robustness (stage C)
     md += ["## 4. Learning-rate robustness (seed-replicated, evaluation seeds)", ""]
@@ -610,26 +684,44 @@ def main():
                f"(shown as lo–hi, number of grid points, decades spanned):", "", tbl, ""]
 
     # ---- calibration LR grids
-    md += ["## 5. Calibration LR grids (validation accuracy, mean over calibration seeds 101–103)", ""]
+    md += ["## 5. Calibration LR grids (validation accuracy, mean over calibration seeds)", ""]
     for w, (f, _) in calibs.items():
         rows = load(f)
         if not rows: continue
         md += [f"**{w} hidden, CE — `{f}`**", "", lr_mean_table(rows, CFG_ORDER), ""]
         lr_curves(rows, f"LR calibration, {w} hidden, CE", f"fig_calib_{w}.png", CFG_ORDER)
         md += [f"![](figures/fig_calib_{w}.png)", ""]
-    best_lr_path = os.path.join(RES, "best_lr.json")
-    if os.path.exists(best_lr_path):
-        best = json.load(open(best_lr_path))
+    for w, (f, _) in c10_calibs.items():
+        rows = load(f)
+        if not rows: continue
+        md += [f"**CIFAR-10, {w} hidden, CE — `{f}`**", "", lr_mean_table(rows, CFG_ORDER), ""]
+        lr_curves(rows, f"LR calibration, CIFAR-10, {w} hidden, CE", f"fig_calib_{w}_c10.png", CFG_ORDER)
+        md += [f"![](figures/fig_calib_{w}_c10.png)", ""]
+
+    def selected_lr_table(path, caption):
+        if not os.path.exists(path):
+            return []
+        best = json.load(open(path))
         ws = sorted({int(k.split("/")[4]) for k in best if k.endswith("/ce")})
-        md += ["**Selected learning rate per config and width (cross-entropy), from `results/best_lr.json`**", "",
-               "| config | " + " | ".join(f"W={w}" for w in ws) + " |", "|---|" + "---|" * len(ws)]
+        if not ws:
+            return []
+        out = [caption, "", "| config | " + " | ".join(f"W={w}" for w in ws) + " |",
+               "|---|" + "---|" * len(ws)]
         for k in CFG_ORDER:
             a1, a2, r = (k.split("+")[0], k.split("+")[1], 0.5) if "+" in k else (k, k, 0.0)
             cells = [f"{best[f'{a1}/{a2}/{r:g}/interleave/{w}/ce']:g}"
                      if f"{a1}/{a2}/{r:g}/interleave/{w}/ce" in best else "–" for w in ws]
             if all(c == "–" for c in cells): continue
-            md.append(f"| {k} | " + " | ".join(cells) + " |")
-        md.append("")
+            out.append(f"| {k} | " + " | ".join(cells) + " |")
+        out.append("")
+        return out
+
+    md += selected_lr_table(os.path.join(RES, "best_lr.json"),
+                            "**Selected learning rate per config and width (cross-entropy), "
+                            "from `results/best_lr.json`**")
+    md += selected_lr_table(os.path.join(RES, "best_lr_c10.json"),
+                            "**Selected learning rate per config and width, CIFAR-10 "
+                            "(cross-entropy), from `results/best_lr_c10.json`**")
 
     # ---- layout / ratio
     md += ["## 6. Layout and ratio", ""]
