@@ -11,6 +11,8 @@ Stages
 Examples
   make_jobs.py --stage calib   --hidden 64  --seeds 101,102,103 --lrs 0.001,0.003,0.01,0.03 \
                --configs all  --out results/calib_64.csv
+  make_jobs.py --stage main    --hidden 64  --seeds 1-20 --configs core --dataset cifar10 \
+               --lr-json results/best_lr_c10.json --out results/c10_main_64.csv
   make_jobs.py --stage main    --hidden 64  --seeds 1-20 --configs all \
                --lr-json results/best_lr.json --out results/main_64.csv
   make_jobs.py --stage lrsweep --hidden 128 --seeds 1-10 --lrs 0.001,0.003,0.01,0.03,0.1 \
@@ -21,7 +23,9 @@ Examples
 --configs accepts a named set (all, core, mse) or a comma list of config names
 (homogeneous: relu tanh leaky_relu sigmoid; hybrid: tanh+relu tanh+leaky_relu sigmoid+relu).
 --seeds accepts a comma list, an a-b range, or a mix ("1-10,101").
---loss defaults to ce, --epochs to 10, --data to "..".
+--loss defaults to ce, --epochs to 10, --data to "..", --dataset to mnist.
+CIFAR-10 runs must use their own --lr-json and --out: the best_lr key format carries no
+dataset field, so sharing results/best_lr.json would overwrite the MNIST learning rates.
 """
 import sys, json, argparse
 
@@ -86,9 +90,11 @@ def key(act1, act2, ratio, hidden, loss, layout="interleave"):
     return f"{act1}/{act2}/{ratio:g}/{layout}/{hidden}/{loss}"
 
 
-def cmd(act1, act2, ratio, hidden, seed, lr, loss, out, layout="interleave", epochs=10, data=".."):
+def cmd(act1, act2, ratio, hidden, seed, lr, loss, out, layout="interleave", epochs=10, data="..",
+        dataset="mnist"):
     return (f"./main --act1 {act1} --act2 {act2} --ratio {ratio:g} --layout {layout} --hidden {hidden} "
-            f"--seed {seed} --epochs {epochs} --lr {lr:g} --loss {loss} --quiet --data {data} --out {out}")
+            f"--seed {seed} --epochs {epochs} --lr {lr:g} --loss {loss} --dataset {dataset} "
+            f"--quiet --data {data} --out {out}")
 
 
 def main():
@@ -103,6 +109,7 @@ def main():
     ap.add_argument("--loss", default="ce", choices=("ce", "mse"))
     ap.add_argument("--epochs", type=int, default=10)
     ap.add_argument("--data", default="..")
+    ap.add_argument("--dataset", default="mnist", choices=("mnist", "cifar10"))
     a = ap.parse_args()
 
     seeds = parse_seeds(a.seeds)
@@ -119,7 +126,7 @@ def main():
 
     def emit(a1, a2, r, sd, lr, layout="interleave"):
         print(cmd(a1, a2, r, a.hidden, sd, lr, a.loss, a.out,
-                  layout=layout, epochs=a.epochs, data=a.data))
+                  layout=layout, epochs=a.epochs, data=a.data, dataset=a.dataset))
 
     if a.stage in ("calib", "lrsweep"):
         lrs = parse_lrs(a.lrs)

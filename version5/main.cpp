@@ -1,4 +1,4 @@
-// version5 -- hybrid-activation MLP experiment runner (MNIST)
+// version5 -- hybrid-activation MLP experiment runner (MNIST and CIFAR-10)
 //
 // Differences from v2/v3 (see README):
 //   * per-neuron activation masks (ratio + layout) instead of a hardcoded even/odd split
@@ -8,14 +8,21 @@
 //   * fixed, seed-independent train/val/test split (45k/5k/10k) shared by every run
 //   * per-epoch shuffling of the training order (seeded)
 //   * accuracy, macro-F1 and confusion matrix on validation (every epoch) and test (end)
-//   * learning rate, hidden size, epochs, loss, data path all on the CLI
+//   * learning rate, hidden size, epochs, loss, dataset, data path all on the CLI
 //   * std::mt19937 instead of rand() so seeds mean the same thing on every platform
 //
 // Usage:
 //   ./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 12
-//     --seed 50 --epochs 10 --lr 0.01 --loss ce --data ../ --out results.csv
+//     --seed 50 --epochs 10 --lr 0.01 --loss ce --dataset mnist --data ../ --out results.csv
 //
 // ratio is the fraction of hidden neurons that use act2.  ratio 0 -> homogeneous act1.
+//
+// --dataset selects mnist (784 inputs, 10 classes) or cifar10 (3072 inputs, 10 classes).
+// Both have 10 classes, so the output layer, confusion matrix, macro-F1 and the CSV
+// schema are identical; only the input width differs.  The split differs in provenance:
+// MNIST has no separate test file in this repo, so its 10k test set is a fixed slice of
+// the 60k training file, while CIFAR-10 uses the official test_batch.bin and takes only
+// the 5k validation set out of the 50k training batches.
 
 #include <iostream>
 #include <fstream>
@@ -28,10 +35,10 @@
 #include <algorithm>
 #include <random>
 #include <map>
-#include "data.h"
+#include <memory>
+#include "dataset.h"
 #include "net.h"
 
-#define INPUT_SIZE 784
 #define OUTPUT_SIZE 10
 #define SPLIT_SEED 12345u   // fixed permutation for the train/val/test split
 #define N_TEST 10000
@@ -44,6 +51,7 @@ struct Metrics {
 
 struct Args {
     std::string act1 = "relu", act2 = "relu", layout = "interleave", loss = "ce";
+    std::string dataset = "mnist";
     std::string data = "../", out = "results.csv";
     float ratio = 0.0f, lr = 0.01f;
     int hidden = 12, seed = 50, epochs = 10;
@@ -68,12 +76,14 @@ static Args parse_args(int argc, char** argv)
         else if (k == "--epochs") a.epochs = std::stoi(need("--epochs"));
         else if (k == "--lr")     a.lr     = std::stof(need("--lr"));
         else if (k == "--loss")   a.loss   = need("--loss");
+        else if (k == "--dataset") a.dataset = need("--dataset");
         else if (k == "--data")   a.data   = need("--data");
         else if (k == "--out")    a.out    = need("--out");
         else if (k == "--quiet")  a.quiet  = true;
         else { std::cerr << "unknown argument: " << k << "\n"; exit(1); }
     }
     if (a.loss != "ce" && a.loss != "mse") { std::cerr << "--loss must be ce or mse\n"; exit(1); }
+    if (a.dataset != "mnist" && a.dataset != "cifar10") { std::cerr << "--dataset must be mnist or cifar10\n"; exit(1); }
     return a;
 }
 
@@ -86,13 +96,13 @@ static int predict(std::vector<Layer>& net, const float* x)
     return (int)(std::max_element(o, o + OUTPUT_SIZE) - o);
 }
 
-static Metrics evaluate(std::vector<Layer>& net, Image* imgs, const std::vector<uint32_t>& idx)
+static Metrics evaluate(std::vector<Layer>& net, const Dataset& ds, const std::vector<uint32_t>& idx)
 {
     Metrics m;
     int correct = 0;
     for (uint32_t i : idx) {
-        int p = predict(net, imgs[i].normalized_pixels);
-        int t = imgs[i].label;
+        int p = predict(net, ds.input(i));
+        int t = ds.label(i);
         m.confusion[t][p]++;
         if (p == t) ++correct;
     }
@@ -123,21 +133,38 @@ int main(int argc, char** argv)
     auto t0 = std::chrono::steady_clock::now();
 
     // --- data ------------------------------------------------------------
-    std::string img_path = a.data + "/train-images-idx3-ubyte/train-images-idx3-ubyte";
-    std::string lbl_path = a.data + "/train-labels-idx1-ubyte/train-labels-idx1-ubyte";
     if (a.quiet) std::cout.setstate(std::ios::failbit);         // silence loader chatter
-    Data data(img_path, lbl_path, 0.0f);                           // everything in "train"
-    if (a.quiet) std::cout.clear();
-    Image* imgs = data.get_train_images();
-    uint32_t N = data.get_train_size();
+    std::unique_ptr<Dataset> ds;
+    std::vector<uint32_t> test_idx, val_idx, train_idx;
 
-    // Fixed split: same permutation for every run, independent of --seed.
-    std::vector<uint32_t> perm(N);
-    std::iota(perm.begin(), perm.end(), 0u);
-    { std::mt19937 split_rng(SPLIT_SEED); std::shuffle(perm.begin(), perm.end(), split_rng); }
-    std::vector<uint32_t> test_idx (perm.begin(),                 perm.begin() + N_TEST);
-    std::vector<uint32_t> val_idx  (perm.begin() + N_TEST,        perm.begin() + N_TEST + N_VAL);
-    std::vector<uint32_t> train_idx(perm.begin() + N_TEST + N_VAL, perm.end());
+    if (a.dataset == "mnist") {
+        std::string img_path = a.data + "/train-images-idx3-ubyte/train-images-idx3-ubyte";
+        std::string lbl_path = a.data + "/train-labels-idx1-ubyte/train-labels-idx1-ubyte";
+        ds.reset(new MnistDataset(img_path, lbl_path));         // everything in "train"
+
+        // Fixed split: same permutation for every run, independent of --seed.
+        uint32_t N = ds->size();
+        std::vector<uint32_t> perm(N);
+        std::iota(perm.begin(), perm.end(), 0u);
+        { std::mt19937 split_rng(SPLIT_SEED); std::shuffle(perm.begin(), perm.end(), split_rng); }
+        test_idx .assign(perm.begin(),                  perm.begin() + N_TEST);
+        val_idx  .assign(perm.begin() + N_TEST,         perm.begin() + N_TEST + N_VAL);
+        train_idx.assign(perm.begin() + N_TEST + N_VAL, perm.end());
+    } else {
+        ds.reset(new Cifar10Dataset(a.data));
+
+        // CIFAR-10 ships its own test set, so only train/val is drawn by permutation.
+        // Same fixed SPLIT_SEED, so the split is identical for every run and every seed.
+        std::vector<uint32_t> perm(CIFAR10_N_TRAIN);
+        std::iota(perm.begin(), perm.end(), 0u);
+        { std::mt19937 split_rng(SPLIT_SEED); std::shuffle(perm.begin(), perm.end(), split_rng); }
+        val_idx  .assign(perm.begin(),         perm.begin() + N_VAL);
+        train_idx.assign(perm.begin() + N_VAL, perm.end());
+        test_idx.resize(CIFAR10_N_TEST);
+        std::iota(test_idx.begin(), test_idx.end(), CIFAR10_N_TRAIN);   // the official test batch
+    }
+    if (a.quiet) std::cout.clear();
+    const int input_size = ds->input_size();
 
     // --- network ---------------------------------------------------------
     std::mt19937 rng(a.seed);
@@ -148,13 +175,13 @@ int main(int argc, char** argv)
 
     std::vector<Layer> net;
     net.reserve(3);
-    net.emplace_back(INPUT_SIZE, a.hidden, mask1, rng);
+    net.emplace_back(input_size, a.hidden, mask1, rng);
     net.emplace_back(a.hidden,  a.hidden, mask2, rng);
     net.emplace_back(a.hidden,  OUTPUT_SIZE, mask_out, rng);
 
     std::map<Act,int> count;
     for (Act x : mask1) count[x]++;
-    std::cout << "version5 | " << a.act1 << "/" << a.act2 << " ratio=" << a.ratio << " layout=" << a.layout
+    std::cout << "version5 | " << a.dataset << " | " << a.act1 << "/" << a.act2 << " ratio=" << a.ratio << " layout=" << a.layout
               << " hidden=" << a.hidden << " seed=" << a.seed << " lr=" << a.lr << " epochs=" << a.epochs
               << " loss=" << a.loss << " | layer-1 mask:";
     for (auto& kv : count) std::cout << " " << act_to_string(kv.first) << "=" << kv.second;
@@ -170,21 +197,21 @@ int main(int argc, char** argv)
         double total_loss = 0; int correct = 0;
 
         for (uint32_t i : train_idx) {
-            const Image& im = imgs[i];
-            int p = predict(net, im.normalized_pixels);
+            const uint8_t label = ds->label(i);
+            int p = predict(net, ds->input(i));
             const float* o = net.back().outputs();
-            if (p == im.label) ++correct;
+            if (p == label) ++correct;
 
             if (a.loss == "ce") {
                 float mx = *std::max_element(o, o + OUTPUT_SIZE), Z = 0;
                 float prob[OUTPUT_SIZE];
                 for (int j = 0; j < OUTPUT_SIZE; ++j) { prob[j] = std::exp(o[j] - mx); Z += prob[j]; }
-                for (int j = 0; j < OUTPUT_SIZE; ++j) { prob[j] /= Z; d_loss[j] = prob[j] - im.one_hot_encoded_label[j]; }
-                total_loss += -std::log(std::max(prob[im.label], 1e-12f));
+                for (int j = 0; j < OUTPUT_SIZE; ++j) { prob[j] /= Z; d_loss[j] = prob[j] - (j == label ? 1.0f : 0.0f); }
+                total_loss += -std::log(std::max(prob[label], 1e-12f));
             } else {
                 float l = 0;
                 for (int j = 0; j < OUTPUT_SIZE; ++j) {
-                    float e = o[j] - im.one_hot_encoded_label[j];
+                    float e = o[j] - (j == label ? 1.0f : 0.0f);
                     l += e * e; d_loss[j] = 2 * e;
                 }
                 total_loss += l / OUTPUT_SIZE;
@@ -197,7 +224,7 @@ int main(int argc, char** argv)
         }
 
         float tr_acc = 100.0f * correct / train_idx.size();
-        Metrics v = evaluate(net, imgs, val_idx);
+        Metrics v = evaluate(net, *ds, val_idx);
         epoch_loss.push_back(total_loss / train_idx.size());
         epoch_train_acc.push_back(tr_acc);
         epoch_val_acc.push_back(v.accuracy);
@@ -207,8 +234,8 @@ int main(int argc, char** argv)
     }
 
     // --- final evaluation --------------------------------------------------
-    Metrics val  = evaluate(net, imgs, val_idx);
-    Metrics test = evaluate(net, imgs, test_idx);
+    Metrics val  = evaluate(net, *ds, val_idx);
+    Metrics test = evaluate(net, *ds, test_idx);
     int best_ep = epoch_val_acc.empty() ? 0 :
         (int)(std::max_element(epoch_val_acc.begin(), epoch_val_acc.end()) - epoch_val_acc.begin()) + 1;
     float best_val = epoch_val_acc.empty() ? 0.0f : *std::max_element(epoch_val_acc.begin(), epoch_val_acc.end());

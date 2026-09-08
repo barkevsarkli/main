@@ -1,11 +1,20 @@
 #!/usr/bin/env python3
 """Pick the best learning rate per config from a calibration CSV (by mean val_acc)
-and merge it into results/best_lr.json.   Usage: select_lr.py results/calib_12.csv [more.csv ...]"""
+and merge it into a best-lr json.
+Usage: select_lr.py [--out results/best_lr.json] results/calib_12.csv [more.csv ...]
+
+The key format carries no dataset field, so CIFAR-10 calibration must be written to its
+own file (--out results/best_lr_c10.json) or it would overwrite the MNIST rates."""
 import sys, csv, json, os, collections, statistics
 
+argv = sys.argv[1:]
 out_path = "results/best_lr.json"
+if argv and argv[0] == "--out":
+    out_path = argv[1]
+    argv = argv[2:]
+
 best = json.load(open(out_path)) if os.path.exists(out_path) else {}
-for path in sys.argv[1:]:
+for path in argv:
     groups = collections.defaultdict(list)
     with open(path) as f:
         for row in csv.DictReader(f):

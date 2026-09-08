@@ -4,3 +4,5 @@ __pycache__/
 version5/main
 version5/main.prebuild.bak
 version5/_to_delete/
+version5/cifar10_check
+version5/*.bmp

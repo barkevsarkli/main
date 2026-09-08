@@ -19,7 +19,9 @@ LAYOUT_VARIANTS = [(c, l, r) for c in ("tanh+relu", "tanh+leaky_relu")
                    for l, r in (("interleave", 0.5), ("block", 0.5), ("random", 0.5),
                                 ("interleave", 0.25), ("interleave", 0.75))]
 CAL = [101, 102, 103]
+CAL2 = [101, 102]
 GRID4 = [0.001, 0.003, 0.01, 0.03]
+GRID3 = [0.001, 0.003, 0.01]
 
 # file -> (kind, configs, seeds, lrs or None)
 EXPECT = {
@@ -33,8 +35,8 @@ EXPECT = {
     "main_32.csv":       ("main",  ALL,  range(1, 31),    None),
     "main_64.csv":       ("main",  ALL,  range(1, 21),    None),
     "main_128_v2.csv":   ("main",  ALL,  range(1, 21),    None),
-    "main_256.csv":      ("main",  CORE, range(1, 11),    None),
-    "main_512.csv":      ("main",  CORE, range(1, 6),     None),
+    "main_256.csv":      ("main",  CORE, range(1, 21),    None),
+    "main_512.csv":      ("main",  CORE, range(1, 21),    None),
     "calib_512.csv":     ("calib", CORE, [101, 102],      [0.001, 0.003, 0.01]),   # lr 0.03 dropped by design
     "mse_128.csv":       ("main",  MSE3, range(1, 11),    None),
     "lrsweep_12.csv":    ("calib", CORE, range(1, 11),    [0.001, 0.003, 0.01, 0.03, 0.1, 0.3]),
@@ -42,6 +44,21 @@ EXPECT = {
     "lrsweep_128.csv":   ("calib", CORE, range(1, 11),    [0.001, 0.003, 0.01, 0.03, 0.1]),
     "layout_128.csv":    ("layout", LAYOUT_VARIANTS, range(1, 11), None),
     "layout_256.csv":    ("layout", LAYOUT_VARIANTS, range(1, 7),  None),
+
+    # CIFAR-10 replication.  Same protocol, same core config set, n = 20 at every width.
+    # Calibration is trimmed to 3 rates x 2 seeds at 256/512, as it was for MNIST at 512.
+    "c10_calib_12.csv":  ("calib", CORE, CAL,          GRID4),
+    "c10_calib_32.csv":  ("calib", CORE, CAL,          GRID4),
+    "c10_calib_64.csv":  ("calib", CORE, CAL,          GRID4),
+    "c10_calib_128.csv": ("calib", CORE, CAL,          GRID4),
+    "c10_calib_256.csv": ("calib", CORE, CAL2,         GRID3),
+    "c10_calib_512.csv": ("calib", CORE, CAL2,         GRID3),
+    "c10_main_12.csv":   ("main",  CORE, range(1, 21), None),
+    "c10_main_32.csv":   ("main",  CORE, range(1, 21), None),
+    "c10_main_64.csv":   ("main",  CORE, range(1, 21), None),
+    "c10_main_128.csv":  ("main",  CORE, range(1, 21), None),
+    "c10_main_256.csv":  ("main",  CORE, range(1, 21), None),
+    "c10_main_512.csv":  ("main",  CORE, range(1, 21), None),
 }
 
 # Stages dropped from the plan when the machine turned out to be 2.6x slower than the
