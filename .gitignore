@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.pyc
+version5/main
+version5/main.prebuild.bak
+version5/_to_delete/

@@ -1,0 +1,11 @@
+[10:19:50] sweep/jobs_calib128.txt: 10 of 10 pending; running up to 10 with 2 workers
+[10:24:00] remaining: 0
+relu/relu/0/interleave/128/ce                 best lr=0.003   0.003:97.64  0.01:97.62
+tanh/tanh/0/interleave/128/ce                 best lr=0.01    0.003:97.18  0.01:98.02
+leaky_relu/leaky_relu/0/interleave/128/ce     best lr=0.003   0.003:97.56  0.01:96.94
+tanh/relu/0.5/interleave/128/ce               best lr=0.01    0.003:97.66  0.01:97.98
+tanh/leaky_relu/0.5/interleave/128/ce         best lr=0.01    0.003:97.36  0.01:97.64
+wrote results/best_lr.json
+[10:24:01] sweep/jobs_main128.txt: 30 of 30 pending; running up to 30 with 2 workers
+[10:36:19] remaining: 0
+[10:36:19] 128-hidden pipeline DONE

@@ -1,0 +1,321 @@
+#!/usr/bin/env python3
+"""Statistical analysis of the version5 hybrid-activation sweeps.
+
+Reads results/*.csv, writes results/summary.md and results/figures/*.png.
+
+Statistics (all paired by seed, since every config was trained with the same seeds
+and the same fixed train/val/test split):
+  * mean / sd / median of test accuracy and macro-F1 per config
+  * paired difference hybrid - parent, with a 95% bootstrap CI (10k resamples),
+    a paired t-test and a Wilcoxon signed-rank test (scipy when available),
+    plus the number of seeds on which the hybrid wins
+  * learning-rate sensitivity from the calibration sweeps
+
+Runs with numpy + matplotlib only; scipy is optional (p-values are skipped without it).
+"""
+import csv, json, os, sys, collections
+import numpy as np
+import matplotlib, matplotlib.ticker
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+try:
+    from scipy import stats
+except ImportError:  # p-values become "n/a"
+    stats = None
+
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+RES = os.path.join(ROOT, "results")
+FIG = os.path.join(RES, "figures")
+os.makedirs(FIG, exist_ok=True)
+rng = np.random.default_rng(0)
+
+# ---------------------------------------------------------------- palette (dataviz reference instance, light mode)
+SURFACE = "#fcfcfb"; INK = "#0b0b0b"; INK2 = "#52514e"; GRID = "#e6e5e1"
+COLOR = {  # fixed hue per configuration, never cycled
+    "tanh+relu":        "#2a78d6",  # blue    - the main hybrid
+    "relu":             "#eb6834",  # orange
+    "tanh":             "#1baf7a",  # aqua
+    "leaky_relu":       "#eda100",  # yellow
+    "sigmoid":          "#e87ba4",  # magenta
+    "sigmoid+relu":     "#008300",  # green
+    "tanh+leaky_relu":  "#4a3aa7",  # violet
+}
+plt.rcParams.update({
+    "figure.facecolor": SURFACE, "axes.facecolor": SURFACE, "savefig.facecolor": SURFACE,
+    "axes.edgecolor": GRID, "axes.labelcolor": INK2, "xtick.color": INK2, "ytick.color": INK2,
+    "text.color": INK, "axes.grid": True, "grid.color": GRID, "grid.linewidth": 0.6,
+    "axes.spines.top": False, "axes.spines.right": False, "font.size": 10, "axes.titlesize": 11,
+    "axes.titleweight": "semibold", "axes.titlelocation": "left",
+})
+
+# ---------------------------------------------------------------- loading
+def cfg_name(r):
+    ratio = float(r["ratio"])
+    if ratio == 0: return r["act1"]
+    if ratio == 1: return r["act2"]
+    return f'{r["act1"]}+{r["act2"]}'
+
+def load(name):
+    path = os.path.join(RES, name)
+    rows = []
+    if not os.path.exists(path):
+        return rows
+    with open(path) as f:
+        for r in csv.DictReader(f):
+            if r["seed"] == "seed" or r.get("status") != "ok" or not r.get("test_confusion"):
+                continue
+            if r["test_confusion"].count("|") != 99:
+                continue                      # truncated row
+            r["cfg"] = cfg_name(r)
+            for k in ("test_acc", "test_f1", "val_acc", "val_f1", "train_acc", "lr", "ratio"):
+                r[k] = float(r[k])
+            r["seed"] = int(r["seed"]); r["hidden"] = int(r["hidden"])
+            r["epoch_val_acc"] = [float(x) for x in r["epoch_val_acc"].split("|")]
+            r["epoch_loss"] = [float(x) for x in r["epoch_loss"].split("|")]
+            rows.append(r)
+    # de-duplicate (a run re-executed after an interrupted chunk): keep the first
+    seen, out = set(), []
+    for r in rows:
+        k = (r["seed"], r["cfg"], r["layout"], r["ratio"], r["hidden"], r["lr"], r["loss"])
+        if k not in seen:
+            seen.add(k); out.append(r)
+    return out
+
+def by_cfg(rows, key="cfg"):
+    g = collections.OrderedDict()
+    for r in rows:
+        g.setdefault(r[key], []).append(r)
+    return g
+
+# ---------------------------------------------------------------- statistics
+def boot_ci(d, n=10000):
+    d = np.asarray(d)
+    m = rng.choice(d, size=(n, len(d)), replace=True).mean(axis=1)
+    return np.percentile(m, 2.5), np.percentile(m, 97.5)
+
+def paired(hyb, base, metric):
+    """hyb/base: lists of rows.  Returns dict with paired-by-seed statistics."""
+    hb = {r["seed"]: r[metric] for r in hyb}
+    bb = {r["seed"]: r[metric] for r in base}
+    seeds = sorted(set(hb) & set(bb))
+    d = np.array([hb[s] - bb[s] for s in seeds])
+    out = dict(n=len(d), mean=d.mean(), sd=d.std(ddof=1) if len(d) > 1 else 0.0,
+               ci=boot_ci(d), wins=int((d > 0).sum()), ties=int((d == 0).sum()), d=d)
+    if stats is not None and len(d) > 1:
+        out["t_p"] = stats.ttest_rel([hb[s] for s in seeds], [bb[s] for s in seeds]).pvalue
+        try:
+            out["w_p"] = stats.wilcoxon(d).pvalue if np.any(d != 0) else 1.0
+        except ValueError:
+            out["w_p"] = float("nan")
+    return out
+
+def fmt_p(x):
+    return "n/a" if x is None or (isinstance(x, float) and np.isnan(x)) else (f"{x:.3f}" if x >= 0.001 else f"{x:.1e}")
+
+def summary_table(groups, order=None):
+    lines = ["| config | lr | n | test acc mean ± sd | median | test macro-F1 mean ± sd | val acc mean |",
+             "|---|---|---|---|---|---|---|"]
+    for k in (order or groups):
+        g = groups.get(k)
+        if not g: continue
+        acc = np.array([r["test_acc"] for r in g]); f1 = np.array([r["test_f1"] for r in g])
+        va = np.array([r["val_acc"] for r in g])
+        lines.append(f"| {k} | {g[0]['lr']:g} | {len(g)} | {acc.mean():.2f} ± {acc.std(ddof=1):.2f} | {np.median(acc):.2f} "
+                     f"| {f1.mean():.2f} ± {f1.std(ddof=1):.2f} | {va.mean():.2f} |")
+    return "\n".join(lines)
+
+def paired_table(groups, pairs):
+    lines = ["| comparison | metric | n | mean Δ (hybrid − parent) | 95% bootstrap CI | hybrid wins | paired t p | Wilcoxon p |",
+             "|---|---|---|---|---|---|---|---|"]
+    for hyb, base in pairs:
+        if hyb not in groups or base not in groups: continue
+        for metric, label in (("test_acc", "accuracy"), ("test_f1", "macro-F1")):
+            p = paired(groups[hyb], groups[base], metric)
+            lines.append(f"| {hyb} vs {base} | {label} | {p['n']} | {p['mean']:+.2f} | [{p['ci'][0]:+.2f}, {p['ci'][1]:+.2f}] "
+                         f"| {p['wins']}/{p['n']} | {fmt_p(p.get('t_p'))} | {fmt_p(p.get('w_p'))} |")
+    return "\n".join(lines)
+
+# ---------------------------------------------------------------- figures
+def strip_box(groups, order, metric, title, fname, ylabel):
+    fig, ax = plt.subplots(figsize=(8.4, 3.9))
+    ymax_all = max(max(r[metric] for r in groups[k]) for k in order if k in groups)
+    ymin_all = min(min(r[metric] for r in groups[k]) for k in order if k in groups)
+    pad = (ymax_all - ymin_all) * 0.06
+    for i, k in enumerate(order):
+        if k not in groups: continue
+        v = np.array([r[metric] for r in groups[k]])
+        c = COLOR.get(k, INK2)
+        ax.boxplot(v, positions=[i], widths=0.5, showfliers=False, patch_artist=True,
+                   boxprops=dict(facecolor="none", edgecolor=c, linewidth=1.2),
+                   medianprops=dict(color=c, linewidth=2), whiskerprops=dict(color=c, linewidth=1),
+                   capprops=dict(color=c, linewidth=1))
+        jitter = rng.uniform(-0.16, 0.16, len(v))
+        ax.scatter(i + jitter, v, s=16, color=c, alpha=0.55, edgecolor=SURFACE, linewidth=0.6, zorder=3)
+        ax.text(i, v.max() + pad * 0.4, f"mean {v.mean():.2f}", ha="center", va="bottom", fontsize=8, color=INK2)
+    ax.set_ylim(top=ymax_all + pad * 2.4)
+    ax.set_xticks(range(len(order))); ax.set_xticklabels([k.replace("+", "\n+ ") for k in order], fontsize=9)
+    ax.set_ylabel(ylabel); ax.set_title(title); ax.grid(axis="x", visible=False)
+    fig.tight_layout(); fig.savefig(os.path.join(FIG, fname), dpi=160); plt.close(fig)
+
+def paired_delta_plot(groups, pairs, metric, title, fname):
+    fig, ax = plt.subplots(figsize=(7.2, 0.9 + 0.75 * len(pairs)))
+    labels = []
+    for i, (hyb, base) in enumerate(pairs):
+        if hyb not in groups or base not in groups: continue
+        p = paired(groups[hyb], groups[base], metric)
+        c = COLOR.get(hyb, INK2)
+        ax.scatter(p["d"], np.full(len(p["d"]), i) + rng.uniform(-0.12, 0.12, len(p["d"])),
+                   s=16, color=c, alpha=0.5, edgecolor=SURFACE, linewidth=0.6, zorder=3)
+        ax.plot(p["ci"], [i, i], color=c, linewidth=2.2, zorder=4, solid_capstyle="round")
+        ax.scatter([p["mean"]], [i], s=70, color=c, edgecolor=SURFACE, linewidth=1.2, zorder=5)
+        ax.text(max(p["ci"][1], p["d"].max()) + 0.15, i, f"{p['mean']:+.2f}  [{p['ci'][0]:+.2f}, {p['ci'][1]:+.2f}]",
+                va="center", fontsize=8, color=INK2)
+        labels.append(f"{hyb}\nvs {base}")
+    ax.axvline(0, color=INK2, linewidth=1, linestyle="--")
+    ax.set_yticks(range(len(labels))); ax.set_yticklabels(labels, fontsize=8.5)
+    ax.invert_yaxis(); ax.set_xlabel(f"paired difference in test {metric.replace('test_', '').replace('_', ' ')} (points), one dot = one seed")
+    ax.set_title(title); ax.grid(axis="y", visible=False)
+    xmax = ax.get_xlim()[1]; ax.set_xlim(right=xmax + 1.6)
+    fig.tight_layout(); fig.savefig(os.path.join(FIG, fname), dpi=160); plt.close(fig)
+
+def spread_labels(ax, labels, min_gap_frac=0.045):
+    """labels: list of (x, y, text, color).  Pushes y positions apart (in axis fraction) so text does not collide."""
+    if not labels: return
+    lo, hi = ax.get_ylim(); span = hi - lo
+    order_ = sorted(range(len(labels)), key=lambda i: labels[i][1])
+    ys = [labels[i][1] for i in order_]
+    gap = min_gap_frac * span
+    for j in range(1, len(ys)):
+        if ys[j] - ys[j - 1] < gap: ys[j] = ys[j - 1] + gap
+    for j in range(len(ys) - 2, -1, -1):          # keep inside the axis by pushing back down
+        if ys[j] > hi - gap: ys[j] = min(ys[j], ys[j + 1] - gap)
+    for j, i in enumerate(order_):
+        x, _, t, c = labels[i]
+        ax.text(x, ys[j], t, fontsize=8, color=c, va="center")
+
+def lr_curves(rows, title, fname, order):
+    fig, ax = plt.subplots(figsize=(7.6, 4.0))
+    g = by_cfg(rows); labels = []
+    for k in order:
+        if k not in g: continue
+        per_lr = collections.defaultdict(list)
+        for r in g[k]: per_lr[r["lr"]].append(r["val_acc"])
+        lrs = sorted(per_lr); m = [np.mean(per_lr[l]) for l in lrs]
+        c = COLOR.get(k, INK2)
+        ax.plot(lrs, m, marker="o", markersize=5, linewidth=2, color=c, label=k, markeredgecolor=SURFACE)
+        labels.append((lrs[-1] * 1.12, m[-1], k, c))
+    spread_labels(ax, labels)
+    all_lrs = sorted({r["lr"] for r in rows})
+    ax.set_xscale("log"); ax.set_xticks(all_lrs); ax.set_xticklabels([f"{l:g}" for l in all_lrs])
+    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter()); ax.set_xlabel("learning rate"); ax.set_ylabel("validation accuracy (%), mean of 3 seeds")
+    ax.set_title(title); ax.legend(frameon=False, fontsize=8, ncol=2, loc="lower left")
+    ax.set_xlim(right=ax.get_xlim()[1] * 2.2)
+    fig.tight_layout(); fig.savefig(os.path.join(FIG, fname), dpi=160); plt.close(fig)
+
+def learning_curves(groups, order, title, fname):
+    fig, ax = plt.subplots(figsize=(7.6, 4.0)); labels = []
+    for k in order:
+        if k not in groups: continue
+        m = np.array([r["epoch_val_acc"] for r in groups[k]])
+        mean, sd = m.mean(0), m.std(0, ddof=1) if len(m) > 1 else np.zeros(m.shape[1])
+        x = np.arange(1, m.shape[1] + 1); c = COLOR.get(k, INK2)
+        ax.plot(x, mean, color=c, linewidth=2, label=k)
+        ax.fill_between(x, mean - sd, mean + sd, color=c, alpha=0.12, linewidth=0)
+        labels.append((x[-1] + 0.15, mean[-1], k, c))
+    spread_labels(ax, labels)
+    ax.set_xlabel("epoch"); ax.set_ylabel("validation accuracy (%), mean ± sd over seeds")
+    ax.set_title(title); ax.legend(frameon=False, fontsize=8, loc="lower right")
+    ax.set_xlim(right=ax.get_xlim()[1] + 1.8)
+    fig.tight_layout(); fig.savefig(os.path.join(FIG, fname), dpi=160); plt.close(fig)
+
+# ---------------------------------------------------------------- main
+def main():
+    main12 = load("main_12.csv"); main128 = load("main_128.csv"); layout = load("layout_12.csv")
+    mse = load("mse_12.csv"); calib12 = load("calib_12.csv"); calibmse = load("calib_mse.csv"); calib128 = load("calib_128.csv")
+    md = ["# version5 results: hybrid activations under a corrected protocol", ""]
+    md += ["Protocol: MLP 784→H→H→10, batch-size-1 SGD, 10 epochs, fixed 45k/5k/10k train/val/test split "
+           "shared by all runs, per-epoch shuffling, He/Kaiming-uniform init. Hidden layers carry per-neuron activation "
+           "masks; the output layer is uniform (linear+softmax with cross-entropy, or sigmoid with MSE). Learning rate "
+           "chosen per configuration on validation accuracy using three calibration seeds (101–103) that are disjoint "
+           "from the evaluation seeds. All comparisons are paired by seed. Bootstrap CIs use 10,000 resamples.", ""]
+
+    # ---- 12 hidden, CE
+    order12 = ["relu", "tanh", "leaky_relu", "sigmoid", "tanh+relu", "tanh+leaky_relu", "sigmoid+relu"]
+    g12 = by_cfg(main12)
+    md += ["## 1. MNIST, 12 hidden neurons, cross-entropy (20 seeds per config)", "", summary_table(g12, order12), ""]
+    pairs12 = [("tanh+relu", "relu"), ("tanh+relu", "tanh"), ("tanh+leaky_relu", "leaky_relu"), ("tanh+leaky_relu", "tanh"),
+               ("sigmoid+relu", "relu"), ("sigmoid+relu", "sigmoid")]
+    md += ["Paired comparisons (hybrid minus each homogeneous parent, same seeds):", "", paired_table(g12, pairs12), ""]
+    strip_box(g12, order12, "test_acc", "MNIST, 12 hidden, CE: test accuracy per configuration (20 seeds)",
+              "fig1_acc_12.png", "test accuracy (%)")
+    strip_box(g12, order12, "test_f1", "MNIST, 12 hidden, CE: test macro-F1 per configuration (20 seeds)",
+              "fig1_f1_12.png", "test macro-F1 (%)")
+    paired_delta_plot(g12, pairs12, "test_acc", "Paired differences, 12 hidden, CE — accuracy", "fig2_paired_acc_12.png")
+    paired_delta_plot(g12, pairs12, "test_f1", "Paired differences, 12 hidden, CE — macro-F1", "fig2_paired_f1_12.png")
+    learning_curves(g12, order12, "Validation accuracy per epoch, 12 hidden, CE", "fig5_curves_12.png")
+    md += ["![](figures/fig1_acc_12.png)", "![](figures/fig1_f1_12.png)", "![](figures/fig2_paired_acc_12.png)",
+           "![](figures/fig2_paired_f1_12.png)", "![](figures/fig5_curves_12.png)", ""]
+
+    # ---- LR sensitivity
+    md += ["## 2. Learning-rate sensitivity (calibration sweeps, validation accuracy, mean of 3 seeds)", ""]
+    for name, rows in (("12 hidden, CE", calib12), ("12 hidden, MSE + sigmoid output", calibmse), ("128 hidden, CE", calib128)):
+        g = by_cfg(rows)
+        lrs = sorted({r["lr"] for r in rows})
+        lines = ["| config | " + " | ".join(f"lr={l:g}" for l in lrs) + " |", "|---|" + "---|" * len(lrs)]
+        for k in order12:
+            if k not in g: continue
+            per = collections.defaultdict(list)
+            for r in g[k]: per[r["lr"]].append(r["val_acc"])
+            lines.append(f"| {k} | " + " | ".join(f"{np.mean(per[l]):.2f}" if l in per else "–" for l in lrs) + " |")
+        md += [f"**{name}**", "", *lines, ""]
+    lr_curves(calib12, "LR sensitivity, 12 hidden, CE", "fig3_lr_12_ce.png", order12)
+    lr_curves(calibmse, "LR sensitivity, 12 hidden, MSE + sigmoid output", "fig3_lr_12_mse.png", order12)
+    md += ["![](figures/fig3_lr_12_ce.png)", "![](figures/fig3_lr_12_mse.png)", ""]
+
+    # ---- layout / ratio
+    md += ["## 3. Does the layout or ratio matter? (tanh+relu, 12 hidden, CE, 20 seeds, lr fixed to the tanh+relu calibration)", ""]
+    lay = collections.OrderedDict()
+    for r in layout: lay.setdefault(f'{r["layout"]} ratio={r["ratio"]:g}', []).append(r)
+    if "tanh+relu" in g12: lay["interleave ratio=0.5 (main sweep)"] = g12["tanh+relu"]
+    lines = ["| variant | lr | n | test acc mean ± sd | test macro-F1 mean ± sd | Δ acc vs relu (paired) | Δ acc vs tanh (paired) |", "|---|---|---|---|---|---|---|"]
+    for k, g in lay.items():
+        acc = np.array([r["test_acc"] for r in g]); f1 = np.array([r["test_f1"] for r in g])
+        dr = paired(g, g12.get("relu", []), "test_acc"); dt = paired(g, g12.get("tanh", []), "test_acc")
+        lines.append(f"| {k} | {g[0]['lr']:g} | {len(g)} | {acc.mean():.2f} ± {acc.std(ddof=1):.2f} | {f1.mean():.2f} ± {f1.std(ddof=1):.2f} "
+                     f"| {dr['mean']:+.2f} [{dr['ci'][0]:+.2f}, {dr['ci'][1]:+.2f}] | {dt['mean']:+.2f} [{dt['ci'][0]:+.2f}, {dt['ci'][1]:+.2f}] |")
+    md += [*lines, "", "Note: the layout variants reuse the lr calibrated for interleave/0.5, so ratio 0.25/0.75 were not separately tuned.", ""]
+
+    # ---- MSE replication
+    gm = by_cfg(mse)
+    md += ["## 4. Replication under the original loss (MSE, uniform sigmoid output, 12 hidden, 20 seeds)", "",
+           summary_table(gm, ["relu", "tanh", "tanh+relu"]), "",
+           paired_table(gm, [("tanh+relu", "relu"), ("tanh+relu", "tanh")]), ""]
+    strip_box(gm, ["relu", "tanh", "tanh+relu"], "test_acc", "MNIST, 12 hidden, MSE: test accuracy (20 seeds)",
+              "fig4_acc_12_mse.png", "test accuracy (%)")
+    md += ["![](figures/fig4_acc_12_mse.png)", ""]
+
+    # ---- 128 hidden
+    order128 = ["relu", "tanh", "leaky_relu", "tanh+relu", "tanh+leaky_relu"]
+    g128 = by_cfg(main128)
+    pairs128 = [("tanh+relu", "relu"), ("tanh+relu", "tanh"), ("tanh+leaky_relu", "leaky_relu"), ("tanh+leaky_relu", "tanh")]
+    md += ["## 5. MNIST, 128 hidden neurons, cross-entropy (6 seeds per config)", "", summary_table(g128, order128), "",
+           paired_table(g128, pairs128), ""]
+    strip_box(g128, order128, "test_acc", "MNIST, 128 hidden, CE: test accuracy (6 seeds)", "fig6_acc_128.png", "test accuracy (%)")
+    strip_box(g128, order128, "test_f1", "MNIST, 128 hidden, CE: test macro-F1 (6 seeds)", "fig6_f1_128.png", "test macro-F1 (%)")
+    paired_delta_plot(g128, pairs128, "test_acc", "Paired differences, 128 hidden, CE — accuracy", "fig7_paired_acc_128.png")
+    learning_curves(g128, order128, "Validation accuracy per epoch, 128 hidden, CE", "fig8_curves_128.png")
+    md += ["![](figures/fig6_acc_128.png)", "![](figures/fig6_f1_128.png)", "![](figures/fig7_paired_acc_128.png)",
+           "![](figures/fig8_curves_128.png)", ""]
+
+    # ---- run counts
+    md += ["## Run inventory", "", "| file | ok runs |", "|---|---|"]
+    for n, rows in (("main_12.csv", main12), ("layout_12.csv", layout), ("mse_12.csv", mse), ("main_128.csv", main128),
+                    ("calib_12.csv", calib12), ("calib_mse.csv", calibmse), ("calib_128.csv", calib128)):
+        md.append(f"| {n} | {len(rows)} |")
+    with open(os.path.join(RES, "summary.md"), "w") as f:
+        f.write("\n".join(md) + "\n")
+    print("\n".join(md))
+
+if __name__ == "__main__":
+    main()

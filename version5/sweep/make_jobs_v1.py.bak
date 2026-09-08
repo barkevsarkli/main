@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+"""Emit one shell command per line for a named sweep stage.
+
+Stages
+  calib12   LR grid for every 12-hidden config (3 calibration seeds, val-selected)
+  main12    20 paired seeds per 12-hidden config at its best LR
+  layout12  tanh/relu variants: block / random layouts, ratios 0.25 / 0.75
+  calibmse  small LR grid for the MSE-loss replication of the original v2 comparison
+  mse12     20 seeds, MSE loss, relu / tanh / tanh+relu
+  calib128  LR grid {0.003, 0.01} for 128-hidden configs (1 seed)
+  main128   6 paired seeds per 128-hidden config
+
+Usage: make_jobs.py <stage> [--lr-json best_lr.json] [--data ..] [--epochs 10]
+"""
+import sys, json, argparse
+
+CONFIGS_12 = [  # (act1, act2, ratio)
+    ("relu", "relu", 0.0), ("tanh", "tanh", 0.0), ("leaky_relu", "leaky_relu", 0.0), ("sigmoid", "sigmoid", 0.0),
+    ("tanh", "relu", 0.5), ("tanh", "leaky_relu", 0.5), ("sigmoid", "relu", 0.5),
+]
+CONFIGS_128 = [
+    ("relu", "relu", 0.0), ("tanh", "tanh", 0.0), ("leaky_relu", "leaky_relu", 0.0),
+    ("tanh", "relu", 0.5), ("tanh", "leaky_relu", 0.5),
+]
+CONFIGS_MSE = [("relu", "relu", 0.0), ("tanh", "tanh", 0.0), ("tanh", "relu", 0.5)]
+
+CALIB_SEEDS = [101, 102, 103]
+MAIN_SEEDS_12 = list(range(1, 21))
+MAIN_SEEDS_128 = list(range(1, 7))
+
+def key(act1, act2, ratio, hidden, loss, layout="interleave"):
+    return f"{act1}/{act2}/{ratio:g}/{layout}/{hidden}/{loss}"
+
+def cmd(act1, act2, ratio, hidden, seed, lr, loss, out, layout="interleave", epochs=10, data=".."):
+    return (f"./main --act1 {act1} --act2 {act2} --ratio {ratio:g} --layout {layout} --hidden {hidden} "
+            f"--seed {seed} --epochs {epochs} --lr {lr:g} --loss {loss} --quiet --data {data} --out {out}")
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("stage")
+    ap.add_argument("--lr-json", default="results/best_lr.json")
+    ap.add_argument("--data", default="..")
+    ap.add_argument("--epochs", type=int, default=10)
+    a = ap.parse_args()
+    best = {}
+    try:
+        best = json.load(open(a.lr_json))
+    except FileNotFoundError:
+        pass
+    def lr_for(k):
+        if k not in best:
+            sys.exit(f"no calibrated LR for {k} in {a.lr_json}; run the calibration stage first")
+        return best[k]
+
+    s = a.stage
+    if s == "calib12":
+        for a1, a2, r in CONFIGS_12:
+            for lr in (0.001, 0.003, 0.01, 0.03, 0.1):
+                for sd in CALIB_SEEDS:
+                    print(cmd(a1, a2, r, 12, sd, lr, "ce", "results/calib_12.csv", epochs=a.epochs, data=a.data))
+    elif s == "main12":
+        for a1, a2, r in CONFIGS_12:
+            lr = lr_for(key(a1, a2, r, 12, "ce"))
+            for sd in MAIN_SEEDS_12:
+                print(cmd(a1, a2, r, 12, sd, lr, "ce", "results/main_12.csv", epochs=a.epochs, data=a.data))
+    elif s == "layout12":
+        lr = lr_for(key("tanh", "relu", 0.5, 12, "ce"))
+        variants = [("block", 0.5), ("random", 0.5), ("interleave", 0.25), ("interleave", 0.75)]
+        for layout, r in variants:
+            for sd in MAIN_SEEDS_12:
+                print(cmd("tanh", "relu", r, 12, sd, lr, "ce", "results/layout_12.csv", layout=layout, epochs=a.epochs, data=a.data))
+    elif s == "calibmse":
+        for a1, a2, r in CONFIGS_MSE:
+            for lr in (0.003, 0.01, 0.03):
+                for sd in CALIB_SEEDS:
+                    print(cmd(a1, a2, r, 12, sd, lr, "mse", "results/calib_mse.csv", epochs=a.epochs, data=a.data))
+    elif s == "mse12":
+        for a1, a2, r in CONFIGS_MSE:
+            lr = lr_for(key(a1, a2, r, 12, "mse"))
+            for sd in MAIN_SEEDS_12:
+                print(cmd(a1, a2, r, 12, sd, lr, "mse", "results/mse_12.csv", epochs=a.epochs, data=a.data))
+    elif s == "calib128":
+        for a1, a2, r in CONFIGS_128:
+            for lr in (0.003, 0.01):
+                print(cmd(a1, a2, r, 128, 101, lr, "ce", "results/calib_128.csv", epochs=a.epochs, data=a.data))
+    elif s == "main128":
+        for a1, a2, r in CONFIGS_128:
+            lr = lr_for(key(a1, a2, r, 128, "ce"))
+            for sd in MAIN_SEEDS_128:
+                print(cmd(a1, a2, r, 128, sd, lr, "ce", "results/main_128.csv", epochs=a.epochs, data=a.data))
+    else:
+        sys.exit(f"unknown stage {s}")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,17 @@
+{
+ "relu/relu/0/interleave/12/ce": 0.003,
+ "tanh/tanh/0/interleave/12/ce": 0.003,
+ "leaky_relu/leaky_relu/0/interleave/12/ce": 0.003,
+ "sigmoid/sigmoid/0/interleave/12/ce": 0.01,
+ "tanh/relu/0.5/interleave/12/ce": 0.001,
+ "tanh/leaky_relu/0.5/interleave/12/ce": 0.003,
+ "sigmoid/relu/0.5/interleave/12/ce": 0.003,
+ "relu/relu/0/interleave/12/mse": 0.003,
+ "tanh/tanh/0/interleave/12/mse": 0.01,
+ "tanh/relu/0.5/interleave/12/mse": 0.01,
+ "relu/relu/0/interleave/128/ce": 0.003,
+ "tanh/tanh/0/interleave/128/ce": 0.01,
+ "leaky_relu/leaky_relu/0/interleave/128/ce": 0.003,
+ "tanh/relu/0.5/interleave/128/ce": 0.01,
+ "tanh/leaky_relu/0.5/interleave/128/ce": 0.01
+}

@@ -1,0 +1,709 @@
+====================================================================
+[2026-09-04 14:19:05] STEP 0 — build + timing
+====================================================================
+machine   : Apple M1 (4 P-cores + 4 E-cores), 8 GB RAM, macOS 26.2 (25C56), arm64
+compiler  : Apple clang 17.0.0
+build     : clang++ -std=c++17 -O3 -mcpu=native -o main main.cpp net.cpp data.cpp  (exit 0)
+smoke     : w12 seed1 1ep -> test_acc=89.72 test_f1=89.5853 val_acc=89.68 (1.30 s)  OK
+peak RSS  : 474 MB / process (transient during data split); ~237 MB steady
+workers P : 8  (hw.physicalcpu=8; measured 8x w128 1-epoch jobs: P=4 23.9s, P=6 25.7s, P=8 17.9s
+            -> P=8 best, effective parallel speedup 5.05x over serial)
+stage                                           W  jobs   s/job  serial h  wall h
+----------------------------------------------------------------------------------
+A calib  w12  (7 cfg x 4 lr x 3 seed)          12    84     7.3      0.17    0.03
+A calib  w32  (7 cfg x 4 lr x 3 seed)          32    84    20.4      0.48    0.09
+A calib  w64  (7 cfg x 4 lr x 3 seed)          64    84    43.7      1.02    0.20
+A calib  w128 (7 cfg x 4 lr x 3 seed)         128    84    91.0      2.12    0.42
+A calib  w256 (5 cfg x 4 lr x 3 seed)         256    60   201.6      3.36    0.67
+A calib  w512 (5 cfg x 4 lr x 2 seed)         512    40   511.4      5.68    1.13
+B main   w32  (7 cfg x 30 seed)                32   210    20.4      1.19    0.24
+B main   w64  (7 cfg x 20 seed)                64   140    43.7      1.70    0.34
+B main   w12  top-up (7 cfg x 10 seed)         12    70     7.3      0.14    0.03
+B main   w128 top-up (5cfg x14 + 2cfg x20)    128   110    91.0      2.78    0.55
+B main   w256 (5 cfg x 10 seed)               256    50   201.6      2.80    0.55
+B main   w512 (5 cfg x 5 seed)                512    25   511.4      3.55    0.70
+C lrsweep w12 (5 cfg x 6 lr x 10 seed)         12   300     7.3      0.61    0.12
+C lrsweep w64 (5 cfg x 5 lr x 10 seed)         64   250    43.7      3.04    0.60
+C lrsweep w128 (5 cfg x 5 lr x 10 seed)       128   250    91.0      6.32    1.25
+D layout w128 (10 cfg x 10 seed)              128   100    91.0      2.53    0.50
+D layout w256 (10 cfg x 6 seed)               256    60   201.6      3.36    0.67
+E calib_mse w128 (3 cfg x 3 lr x 3 seed)      128    27    91.0      0.68    0.14
+E mse    w128 (3 cfg x 10 seed)               128    30    91.0      0.76    0.15
+----------------------------------------------------------------------------------
+TOTAL                                              2058             42.30    8.38
+
+total wall-clock @ speedup 5.05x : 8.38 h
+conservative     @ speedup 4.5x  : 9.40 h   (thermal throttling margin)
+without width 512 (A+B)          : 6.55 h @5.05x, 7.35 h @4.5x
+[2026-09-04 14:21:10] STAGE A-calib-12..256 start | jobs=396 pending=396 workers=8
+[14:21:10] sweep/jobs_stageA.txt:      396 of      396 pending; running up to 64 with 8 workers
+xargs: command line cannot be assembled, too long
+[14:21:10] remaining: 396
+[2026-09-04 14:21:11] STAGE A-calib-12..256 ABORT: no progress in a full chunk (396 still pending) -- check for failing jobs
+[2026-09-04 14:22:06] FIX: sweep/run_chunk.sh xargs -I{} substituted the job line twice (~330 B) which exceeds the BSD xargs 255-byte -I limit ('command line cannot be assembled, too long'); job line is now passed as an argument and eval'd. No training semantics changed. Backup: sweep/run_chunk_v1.sh.bak
+[2026-09-04 14:22:07] STAGE A-calib-12..256 start | jobs=396 pending=396 workers=8
+[14:22:07] sweep/jobs_stageA.txt:      396 of      396 pending; running up to 64 with 8 workers
+[14:24:52] remaining: 332
+[2026-09-04 14:24:52] STAGE A-calib-12..256 | done 64/396  remaining 332  elapsed 2m45s  ETA 0h14m
+[14:24:53] sweep/jobs_stageA.txt:      332 of      396 pending; running up to 64 with 8 workers
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 101 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 102 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 103 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 101 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 102 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 103 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 101 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 102 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 103 --epochs 10 --lr 0.03 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 103 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 101 --epochs 10 --lr 0.03 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 32 --seed 103 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 32 --seed 101 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 32 --seed 102 --epochs 10 --lr 0.03 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 32 --seed 102 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/calib_32.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 32 --seed 101 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/calib_32.csv
+
+[2026-09-04 14:31:27] PROTOCOL FINDING — the stored CSVs and this machine do not share the train/val/test split
+  Rerunning main_12.csv seed=1 relu/relu lr=0.003 locally does NOT reproduce the stored row:
+    stored : test_acc=93.78 test_f1=93.7373 val_acc=93.52 epoch1_loss=0.557661
+    local  : test_acc=93.42 test_f1=93.2960 val_acc=93.22 epoch1_loss=0.548755
+  Not a compiler effect: -O0, -O2, -O3, -O3 -mcpu=native and -ffp-contract=off all give epoch1_loss=0.548755.
+  Decisive test — per-class counts of the test set (row sums of test_confusion):
+    stored : [1004,1099,955,1029,983,918,990,1035,1011,976]
+    local  : [963,1164,969,1033,994,869,991,1045,982,990]
+  All stored rows (main_12.csv and main_128.csv) share ONE split; this machine produces another.
+  Cause: main.cpp builds the fixed split with std::shuffle(perm, mt19937(SPLIT_SEED)). std::shuffle is not
+  specified to yield the same permutation across standard-library implementations. The stored data came from
+  _to_delete/main_linux_binary (ELF aarch64, GNU/Linux, libstdc++); this machine uses libc++. Same seed,
+  different permutation, therefore a different 45k/5k/10k split and different weight init.
+  CONSEQUENCE: old and new rows must not be mixed inside one file or one paired comparison.
+    - main_12.csv is NOT extended to seeds 21-30; results/main_12_v2.csv gets seeds 1-30, all re-run here.
+    - main_128.csv is NOT extended to seeds 7-20; results/main_128_v2.csv gets seeds 1-20, all re-run here.
+    - every pre-existing CSV stays untouched as the historical record.
+  No training semantics changed; this is a build/platform property of the existing code.
+  Canonical binary for the whole extended sweep: clang++ -std=c++17 -O3 -mcpu=native
+    sha256=160c6e4bf3fd32cd301c88e5c33d8b5b4ed7d75d4e69add276f204bee41f9a21
+  Local determinism verified: the same job run twice gives byte-identical CSV rows (bar the wall-clock column).
+  Partial calibration CSVs written before the rebuild were deleted so the whole dataset comes from this binary.
+[2026-09-04 14:32:17] ===== EXTENDED SWEEP START (workers=8) =====
+[2026-09-04 14:32:18] STAGE A-calib-12/32/64 start | jobs=252 pending=252 workers=8
+[14:32:18] sweep/jobs_stageA1.txt:      252 of      252 pending; running up to 96 with 8 workers
+[14:37:38] remaining: 156
+[2026-09-04 14:37:38] STAGE A-calib-12/32/64 | done 96/252  remaining 156  elapsed 5m20s  ETA 0h08m
+[14:37:39] sweep/jobs_stageA1.txt:      156 of      252 pending; running up to 96 with 8 workers
+[15:01:41] remaining: 60
+[2026-09-04 15:01:42] STAGE A-calib-12/32/64 | done 192/252  remaining 60  elapsed 29m24s  ETA 0h09m
+[15:01:42] sweep/jobs_stageA1.txt:       60 of      252 pending; running up to 96 with 8 workers
+[15:27:29] remaining: 0
+[2026-09-04 15:27:30] STAGE A-calib-12/32/64 | done 252/252  remaining 0  elapsed 55m12s  ETA 0h00m
+[2026-09-04 15:27:30] STAGE A-calib-12/32/64 COMPLETE | 252 jobs run in 0h55m12s
+[2026-09-04 15:27:30] STAGE A-calib-128 start | jobs=84 pending=84 workers=8
+[15:27:30] sweep/jobs_calib_128v2.txt:       84 of       84 pending; running up to 48 with 8 workers
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 128 --seed 101 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/calib_128_v2.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 128 --seed 103 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/calib_128_v2.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 128 --seed 103 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/calib_128_v2.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 128 --seed 101 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/calib_128_v2.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 128 --seed 102 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/calib_128_v2.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 128 --seed 102 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/calib_128_v2.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 128 --seed 102 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/calib_128_v2.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 128 --seed 101 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/calib_128_v2.csv
+
+[revised plan] sustained throughput measured at 1.81x over the Step-0 serial timings
+  (stage A-12/32/64: 252 jobs, nominal 6001 s serial, actual 3312 s wall)
+  single-process w128 epoch has degraded 11.28 s -> 15.9 s under sustained all-core load;
+  P=8 re-benchmarked and still best (12.3 vs 9.7 jobs/min at P=4/6).
+  Full original plan at this rate = 24 h, so scope is cut along the prompt's priority order.
+
+stage                                     W  jobs  wall h  disposition
+------------------------------------------------------------------------------------------------
+B main  12 v2  (7cfg x 30 seed)          12   210    0.24  keep  P1 crossover W=12
+B main  32      (7cfg x 30 seed)         32   210    0.66  keep  P1 crossover W=32
+B main  64      (7cfg x 20 seed)         64   140    0.94  keep  P1 crossover W=64
+C lrsweep 12    (5cfg x 6lr x 10)        12   300    0.34  keep  P2 LR robustness W=12
+A calib 128 v2  (7cfg x 4lr x 3)        128    84    1.17  keep  needed for B-128
+B main  128 v2  (7cfg x 20 seed)        128   140    1.96  keep  P1+P3 crossover W=128, 20 seeds
+A calib 256     (5cfg x 4lr x 3)        256    60    1.86  keep  needed for B-256
+B main  256     (5cfg x 6 seed)         256    30    0.93  keep  P1, seeds cut 10->6
+C lrsweep 128   (5cfg x 5lr x 10)       128   250    3.49  keep  P2 LR robustness W=128
+D layout 128    (10cfg x 10 seed)       128   100    1.40  if budget allows  P4
+E mse 128       (calib 27 + main 30)    128    57    0.80  if budget allows  P6
+------------------------------------------------------------------------------------------------
+C lrsweep 64    (5cfg x 5lr x 10)        64   250    1.68  CUT  not in the priority list
+D layout 256    (10cfg x 6 seed)        256    60    1.86  CUT  priority list names layout at 128 only
+A calib 512     (5cfg x 4lr x 2)        512    40    3.14  CUT  width 512 is optional, dropped first
+B main  512     (5cfg x 5 seed)         512    25    1.96  CUT  width 512 is optional, dropped first
+------------------------------------------------------------------------------------------------
+kept, priorities 1-3                                11.58 h
+kept, incl. optional P4+P6                          13.77 h
+already spent (stage A-12/32/64)                     0.92 h
+TOTAL priorities 1-3                                12.50 h
+TOTAL if P4+P6 also fit                             14.69 h
+dropped                                              8.63 h
+
+[2026-09-04 15:34:55] SCOPE REVISION — throughput is 2.6x below the Step-0 projection
+  Stage A-12/32/64 (252 jobs, nominal 6001 s serial) took 3312 s wall = 1.81x speed-up, not 5.05x.
+  Re-measured after that stage, with the machine otherwise idle: one width-128 epoch now costs
+  15.9 s against 11.28 s at 14:09, i.e. the single-process baseline itself has degraded ~41%
+  under sustained all-core load (thermal; the machine is 28 days up with 5.8 GB already swapped
+  out by other applications, and our workers show RSS 167 MB against a ~237 MB data set, so
+  pages are being evicted). P was re-benchmarked under these conditions and P=8 is still best
+  (12.3 jobs/min vs 9.7 at P=4 and P=6), so the worker count is not the problem.
+  Full plan at the realized rate = 24 h. Cut along the prompt's priority order, from the bottom:
+    DROPPED  width 512 (calibration + main)          ~5.1 h   -- optional, dropped first
+    DROPPED  layout/ratio at 256                     ~1.9 h   -- priority list names layout at 128 only
+    DROPPED  LR robustness at width 64               ~1.7 h   -- not in the priority list
+    REDUCED  main at 256 from 10 seeds to 6                    -- prompt allows 256/512 seed cuts, floor 5
+    OPTIONAL layout at 128 (P4), MSE at 128 (P6)              -- run only if the 13 h budget allows
+  Kept in full: the crossover at widths 12/32/64/128 with the planned seeds, width 256 at 6 seeds,
+  and the seed-replicated LR-robustness sweeps at widths 12 and 128 with 10 seeds.
+  Projected total: 12.5 h for priorities 1-3, 14.7 h if the two optional stages also fit.
+[2026-09-04 15:35:00] ===== EXTENDED SWEEP (revised scope) RESUME | workers=8 budget=13h elapsed=1.05h =====
+[2026-09-04 15:35:01] --- select_lr on calib_12_v2 / calib_32 / calib_64 ---
+relu/relu/0/interleave/12/ce                  best lr=0.003   0.001:93.85  0.003:93.89  0.01:93.61  0.03:74.23
+tanh/tanh/0/interleave/12/ce                  best lr=0.003   0.001:93.95  0.003:94.03  0.01:93.07  0.03:91.65
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.003   0.001:93.57  0.003:94.37  0.01:93.78  0.03:93.27
+sigmoid/sigmoid/0/interleave/12/ce            best lr=0.01    0.001:88.20  0.003:91.99  0.01:93.02  0.03:92.61
+tanh/relu/0.5/interleave/12/ce                best lr=0.003   0.001:93.33  0.003:93.55  0.01:92.79  0.03:89.47
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.003   0.001:93.31  0.003:93.63  0.01:93.00  0.03:91.79
+sigmoid/relu/0.5/interleave/12/ce             best lr=0.01    0.001:90.45  0.003:92.03  0.01:92.83  0.03:92.39
+relu/relu/0/interleave/32/ce                  best lr=0.003   0.001:95.99  0.003:96.39  0.01:95.55  0.03:93.77
+tanh/tanh/0/interleave/32/ce                  best lr=0.003   0.001:95.95  0.003:96.12  0.01:95.66  0.03:94.30
+leaky_relu/leaky_relu/0/interleave/32/ce      best lr=0.003   0.001:95.90  0.003:96.19  0.01:96.15  0.03:95.24
+sigmoid/sigmoid/0/interleave/32/ce            best lr=0.01    0.001:90.42  0.003:94.78  0.01:96.01  0.03:96.00
+tanh/relu/0.5/interleave/32/ce                best lr=0.003   0.001:96.03  0.003:96.31  0.01:96.03  0.03:94.98
+tanh/leaky_relu/0.5/interleave/32/ce          best lr=0.003   0.001:95.89  0.003:96.52  0.01:96.14  0.03:95.03
+sigmoid/relu/0.5/interleave/32/ce             best lr=0.01    0.001:94.53  0.003:94.96  0.01:95.31  0.03:95.11
+relu/relu/0/interleave/64/ce                  best lr=0.003   0.001:96.65  0.003:97.11  0.01:97.08  0.03:94.97
+tanh/tanh/0/interleave/64/ce                  best lr=0.003   0.001:96.59  0.003:97.24  0.01:97.10  0.03:95.11
+leaky_relu/leaky_relu/0/interleave/64/ce      best lr=0.003   0.001:96.51  0.003:97.17  0.01:96.79  0.03:95.83
+sigmoid/sigmoid/0/interleave/64/ce            best lr=0.03    0.001:90.99  0.003:95.19  0.01:97.04  0.03:97.17
+tanh/relu/0.5/interleave/64/ce                best lr=0.01    0.001:96.52  0.003:97.35  0.01:97.43  0.03:96.08
+tanh/leaky_relu/0.5/interleave/64/ce          best lr=0.01    0.001:96.48  0.003:97.15  0.01:97.25  0.03:95.70
+sigmoid/relu/0.5/interleave/64/ce             best lr=0.003   0.001:96.07  0.003:96.61  0.01:96.28  0.03:96.13
+wrote results/best_lr.json
+[2026-09-04 15:35:03] STAGE B-main-12v2 start | jobs=210 pending=210 workers=8
+[15:35:04] sweep/jobs_main_12v2.txt:      210 of      210 pending; running up to 96 with 8 workers
+[15:42:36] remaining: 114
+[2026-09-04 15:42:37] STAGE B-main-12v2 | done 96/210  remaining 114  elapsed 7m34s  ETA 0h08m
+[15:42:38] sweep/jobs_main_12v2.txt:      114 of      210 pending; running up to 96 with 8 workers
+[15:47:44] remaining: 18
+[2026-09-04 15:47:45] STAGE B-main-12v2 | done 192/210  remaining 18  elapsed 12m42s  ETA 0h01m
+[15:47:45] sweep/jobs_main_12v2.txt:       18 of      210 pending; running up to 96 with 8 workers
+[15:48:16] remaining: 0
+[2026-09-04 15:48:16] STAGE B-main-12v2 | done 210/210  remaining 0  elapsed 13m13s  ETA 0h00m
+[2026-09-04 15:48:17] STAGE B-main-12v2 COMPLETE | 210 jobs run in 0h13m14s
+[2026-09-04 15:48:17] STAGE B-main-32 start | jobs=210 pending=210 workers=8
+[15:48:17] sweep/jobs_main_32.txt:      210 of      210 pending; running up to 96 with 8 workers
+[15:53:30] remaining: 114
+[2026-09-04 15:53:31] STAGE B-main-32 | done 96/210  remaining 114  elapsed 5m14s  ETA 0h06m
+[15:53:31] sweep/jobs_main_32.txt:      114 of      210 pending; running up to 96 with 8 workers
+[15:58:52] remaining: 18
+[2026-09-04 15:58:53] STAGE B-main-32 | done 192/210  remaining 18  elapsed 10m36s  ETA 0h00m
+[15:58:53] sweep/jobs_main_32.txt:       18 of      210 pending; running up to 96 with 8 workers
+[16:00:05] remaining: 0
+[2026-09-04 16:00:05] STAGE B-main-32 | done 210/210  remaining 0  elapsed 11m48s  ETA 0h00m
+[2026-09-04 16:00:06] STAGE B-main-32 COMPLETE | 210 jobs run in 0h11m49s
+[2026-09-04 16:00:06] STAGE B-main-64 start | jobs=140 pending=140 workers=8
+[16:00:06] sweep/jobs_main_64.txt:      140 of      140 pending; running up to 64 with 8 workers
+
+[2026-09-04 16:01:00] THROUGHPUT RE-MEASURED per stage
+  A-calib-12/32/64 (mixed)    252 jobs  nominal serial    6001s  wall   3312s  speed-up  1.81x
+  B-main-12v2                 210 jobs  nominal serial    1541s  wall    794s  speed-up  1.94x
+  B-main-32                   210 jobs  nominal serial    4284s  wall    709s  speed-up  6.04x
+  -> width 12 parallelises badly (1.9x): a 7 s job pays a 0.6 s data load and 8 concurrent
+     47 MB MNIST loads thrash the page cache. Widths >= 32 amortise that: 6.0x at width 32.
+     The 1.81x used for the scope cut was the width-12-dominated mixed stage and is pessimistic.
+[16:07:03] remaining: 76
+[2026-09-04 16:07:03] STAGE B-main-64 | done 64/140  remaining 76  elapsed 6m57s  ETA 0h08m
+[16:07:03] sweep/jobs_main_64.txt:       76 of      140 pending; running up to 64 with 8 workers
+[16:13:53] remaining: 12
+[2026-09-04 16:13:53] STAGE B-main-64 | done 128/140  remaining 12  elapsed 13m47s  ETA 0h01m
+[16:13:53] sweep/jobs_main_64.txt:       12 of      140 pending; running up to 64 with 8 workers
+[16:15:24] remaining: 0
+[2026-09-04 16:15:25] STAGE B-main-64 | done 140/140  remaining 0  elapsed 15m19s  ETA 0h00m
+[2026-09-04 16:15:25] STAGE B-main-64 COMPLETE | 140 jobs run in 0h15m19s
+[2026-09-04 16:15:25] STAGE C-lrsweep-12 start | jobs=300 pending=300 workers=8
+[16:15:26] sweep/jobs_lrsweep_12.txt:      300 of      300 pending; running up to 96 with 8 workers
+
+[2026-09-04 16:16:00] SCOPE RESTORED — widths >= 32 run at ~6x, not 1.81x
+  measured: B-main-32 6.04x (210 jobs, 709 s), B-main-64 6.66x (140 jobs, 919 s)
+  Everything expensive in the plan is width >= 64, so the earlier cut was over-conservative.
+
+stage                                           W  jobs  wall h
+----------------------------------------------------------------
+C lrsweep 12 (remaining, priority 2)           12   300    0.32
+A calib 128                                   128    84    0.35
+B main 128 v2                                 128   140    0.59
+A calib 256                                   256    60    0.56
+B main 256 seeds 1-6                          256    30    0.28
+C lrsweep 128                                 128   250    1.05
+----------------------------------------------------------------
+B main 256 seeds 7-10 (restore 10 seeds)      256    20    0.19
+C lrsweep 64 (restore)                         64   250    0.46
+D layout 128                                  128   100    0.42
+D layout 256 (restore)                        256    60    0.56
+E calib mse 128 + mse 128                     128    57    0.24
+A calib 512 (restore)                         512    40    1.03
+B main 512 (restore)                          512    25    0.65
+----------------------------------------------------------------
+elapsed so far                                             1.72
+remaining, priorities 1-3                                  3.16
+restored stages                                            3.54
+PROJECTED TOTAL                                            8.42  (budget 12 h)
+
+  The running script finishes priorities 1-3 plus layout-128 and MSE-128 under its own budget
+  guard; a follow-up script sweep/run_restored.sh then adds 256 seeds 7-10, LR robustness at 64,
+  layout at 256 and width 512. The running script is not edited in place (bash reads incrementally).
+[16:18:05] remaining: 204
+[2026-09-04 16:18:06] STAGE C-lrsweep-12 | done 96/300  remaining 204  elapsed 2m41s  ETA 0h05m
+[16:18:06] sweep/jobs_lrsweep_12.txt:      204 of      300 pending; running up to 96 with 8 workers
+[16:20:35] remaining: 108
+[2026-09-04 16:20:36] STAGE C-lrsweep-12 | done 192/300  remaining 108  elapsed 5m11s  ETA 0h02m
+[16:20:36] sweep/jobs_lrsweep_12.txt:      108 of      300 pending; running up to 96 with 8 workers
+[16:23:07] remaining: 12
+[2026-09-04 16:23:07] STAGE C-lrsweep-12 | done 288/300  remaining 12  elapsed 7m42s  ETA 0h00m
+[16:23:07] sweep/jobs_lrsweep_12.txt:       12 of      300 pending; running up to 96 with 8 workers
+[16:23:27] remaining: 0
+[2026-09-04 16:23:28] STAGE C-lrsweep-12 | done 300/300  remaining 0  elapsed 8m03s  ETA 0h00m
+[2026-09-04 16:23:28] STAGE C-lrsweep-12 COMPLETE | 300 jobs run in 0h08m03s
+[2026-09-04 16:23:28] STAGE A-calib-128 start | jobs=84 pending=44 workers=8
+[16:23:28] sweep/jobs_calib_128v2.txt:       44 of       84 pending; running up to 48 with 8 workers
+[16:33:45] remaining: 0
+[2026-09-04 16:33:45] STAGE A-calib-128 | done 44/44  remaining 0  elapsed 10m17s  ETA 0h00m
+[2026-09-04 16:33:45] STAGE A-calib-128 COMPLETE | 44 jobs run in 0h10m17s
+relu/relu/0/interleave/128/ce                 best lr=0.003   0.001:96.97  0.003:97.69  0.01:97.41  0.03:95.07
+tanh/tanh/0/interleave/128/ce                 best lr=0.01    0.001:96.45  0.003:97.49  0.01:97.67  0.03:93.87
+leaky_relu/leaky_relu/0/interleave/128/ce     best lr=0.003   0.001:96.83  0.003:97.57  0.01:97.43  0.03:95.29
+sigmoid/sigmoid/0/interleave/128/ce           best lr=0.03    0.001:90.93  0.003:95.00  0.01:96.79  0.03:97.32
+tanh/relu/0.5/interleave/128/ce               best lr=0.01    0.001:96.77  0.003:97.55  0.01:97.72  0.03:96.59
+tanh/leaky_relu/0.5/interleave/128/ce         best lr=0.01    0.001:96.63  0.003:97.33  0.01:97.63  0.03:95.67
+sigmoid/relu/0.5/interleave/128/ce            best lr=0.003   0.001:96.49  0.003:97.13  0.01:97.13  0.03:96.99
+wrote results/best_lr.json
+[2026-09-04 16:33:46] STAGE B-main-128v2 start | jobs=140 pending=140 workers=8
+[16:33:46] sweep/jobs_main_128v2.txt:      140 of      140 pending; running up to 48 with 8 workers
+[16:44:08] remaining: 92
+[2026-09-04 16:44:08] STAGE B-main-128v2 | done 48/140  remaining 92  elapsed 10m22s  ETA 0h19m
+[16:44:08] sweep/jobs_main_128v2.txt:       92 of      140 pending; running up to 48 with 8 workers
+[2026-09-04 16:55:13] OOM — the OS killed the sweep during B-main-128v2 (95/140 rows written, resumed cleanly). Cause: 8 workers each peak at 474 MB while Data::split_data holds both the source and the split copies, i.e. 3.8 GB at once on an 8 GB machine that already had 4.3 GB swapped out by other applications. Restarting with P=5 (2.4 GB peak); the P benchmark showed P=4 only ~21% behind P=8, so the throughput cost is small and the budget has margin.
+[2026-09-04 16:55:13] ===== EXTENDED SWEEP (revised scope) RESUME | workers=5 budget=13h elapsed=2.38h =====
+[2026-09-04 16:55:13] --- select_lr on calib_12_v2 / calib_32 / calib_64 ---
+relu/relu/0/interleave/12/ce                  best lr=0.003   0.001:93.85  0.003:93.89  0.01:93.61  0.03:74.23
+tanh/tanh/0/interleave/12/ce                  best lr=0.003   0.001:93.95  0.003:94.03  0.01:93.07  0.03:91.65
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.003   0.001:93.57  0.003:94.37  0.01:93.78  0.03:93.27
+sigmoid/sigmoid/0/interleave/12/ce            best lr=0.01    0.001:88.20  0.003:91.99  0.01:93.02  0.03:92.61
+tanh/relu/0.5/interleave/12/ce                best lr=0.003   0.001:93.33  0.003:93.55  0.01:92.79  0.03:89.47
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.003   0.001:93.31  0.003:93.63  0.01:93.00  0.03:91.79
+sigmoid/relu/0.5/interleave/12/ce             best lr=0.01    0.001:90.45  0.003:92.03  0.01:92.83  0.03:92.39
+relu/relu/0/interleave/32/ce                  best lr=0.003   0.001:95.99  0.003:96.39  0.01:95.55  0.03:93.77
+tanh/tanh/0/interleave/32/ce                  best lr=0.003   0.001:95.95  0.003:96.12  0.01:95.66  0.03:94.30
+leaky_relu/leaky_relu/0/interleave/32/ce      best lr=0.003   0.001:95.90  0.003:96.19  0.01:96.15  0.03:95.24
+sigmoid/sigmoid/0/interleave/32/ce            best lr=0.01    0.001:90.42  0.003:94.78  0.01:96.01  0.03:96.00
+tanh/relu/0.5/interleave/32/ce                best lr=0.003   0.001:96.03  0.003:96.31  0.01:96.03  0.03:94.98
+tanh/leaky_relu/0.5/interleave/32/ce          best lr=0.003   0.001:95.89  0.003:96.52  0.01:96.14  0.03:95.03
+sigmoid/relu/0.5/interleave/32/ce             best lr=0.01    0.001:94.53  0.003:94.96  0.01:95.31  0.03:95.11
+relu/relu/0/interleave/64/ce                  best lr=0.003   0.001:96.65  0.003:97.11  0.01:97.08  0.03:94.97
+tanh/tanh/0/interleave/64/ce                  best lr=0.003   0.001:96.59  0.003:97.24  0.01:97.10  0.03:95.11
+leaky_relu/leaky_relu/0/interleave/64/ce      best lr=0.003   0.001:96.51  0.003:97.17  0.01:96.79  0.03:95.83
+sigmoid/sigmoid/0/interleave/64/ce            best lr=0.03    0.001:90.99  0.003:95.19  0.01:97.04  0.03:97.17
+tanh/relu/0.5/interleave/64/ce                best lr=0.01    0.001:96.52  0.003:97.35  0.01:97.43  0.03:96.08
+tanh/leaky_relu/0.5/interleave/64/ce          best lr=0.01    0.001:96.48  0.003:97.15  0.01:97.25  0.03:95.70
+sigmoid/relu/0.5/interleave/64/ce             best lr=0.003   0.001:96.07  0.003:96.61  0.01:96.28  0.03:96.13
+wrote results/best_lr.json
+[2026-09-04 16:55:14] STAGE B-main-12v2 start | jobs=210 pending=0 workers=5
+[2026-09-04 16:55:14] STAGE B-main-12v2 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 16:55:14] STAGE B-main-32 start | jobs=210 pending=0 workers=5
+[2026-09-04 16:55:14] STAGE B-main-32 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 16:55:14] STAGE B-main-64 start | jobs=140 pending=0 workers=5
+[2026-09-04 16:55:15] STAGE B-main-64 COMPLETE | 0 jobs run in 0h00m01s
+[2026-09-04 16:55:15] STAGE C-lrsweep-12 start | jobs=300 pending=0 workers=5
+[2026-09-04 16:55:15] STAGE C-lrsweep-12 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 16:55:15] STAGE A-calib-128 start | jobs=84 pending=0 workers=5
+[2026-09-04 16:55:15] STAGE A-calib-128 COMPLETE | 0 jobs run in 0h00m00s
+relu/relu/0/interleave/128/ce                 best lr=0.003   0.001:96.97  0.003:97.69  0.01:97.41  0.03:95.07
+tanh/tanh/0/interleave/128/ce                 best lr=0.01    0.001:96.45  0.003:97.49  0.01:97.67  0.03:93.87
+leaky_relu/leaky_relu/0/interleave/128/ce     best lr=0.003   0.001:96.83  0.003:97.57  0.01:97.43  0.03:95.29
+sigmoid/sigmoid/0/interleave/128/ce           best lr=0.03    0.001:90.93  0.003:95.00  0.01:96.79  0.03:97.32
+tanh/relu/0.5/interleave/128/ce               best lr=0.01    0.001:96.77  0.003:97.55  0.01:97.72  0.03:96.59
+tanh/leaky_relu/0.5/interleave/128/ce         best lr=0.01    0.001:96.63  0.003:97.33  0.01:97.63  0.03:95.67
+sigmoid/relu/0.5/interleave/128/ce            best lr=0.003   0.001:96.49  0.003:97.13  0.01:97.13  0.03:96.99
+wrote results/best_lr.json
+[2026-09-04 16:55:16] STAGE B-main-128v2 start | jobs=140 pending=45 workers=5
+[16:55:16] sweep/jobs_main_128v2.txt:       45 of      140 pending; running up to 48 with 5 workers
+[17:09:02] remaining: 0
+[2026-09-04 17:09:02] STAGE B-main-128v2 | done 45/45  remaining 0  elapsed 13m46s  ETA 0h00m
+[2026-09-04 17:09:03] STAGE B-main-128v2 COMPLETE | 45 jobs run in 0h13m47s
+[2026-09-04 17:09:03] STAGE A-calib-256 start | jobs=60 pending=60 workers=5
+[17:09:03] sweep/jobs_calib_256.txt:       60 of       60 pending; running up to 24 with 5 workers
+[17:26:37] remaining: 36
+[2026-09-04 17:26:38] STAGE A-calib-256 | done 24/60  remaining 36  elapsed 17m35s  ETA 0h26m
+[17:26:38] sweep/jobs_calib_256.txt:       36 of       60 pending; running up to 24 with 5 workers
+
+[2026-09-04 17:35:55] MEMORY FIX — the OS killed the sweep a second time (P=5, during A-calib-256)
+  Cause: Data::split_data allocated images_train and copied 60000 Image structs while the source
+  array was still alive, peaking at 474 MB per process. main.cpp always calls Data(..., 0.0f), so
+  train_size == number_of_images and that copy is pure waste.
+  Fix (data.cpp, memory only): when train_size == number_of_images, hand the loaded array over by
+  pointer (images_train = images; images = nullptr) instead of copying it. Same bytes, no arithmetic
+  touched. Peak RSS 474 MB -> 238 MB per process.
+  Bit-identical proof required by the ground rules, against rows this machine had already written:
+    W=12  seed=1 tanh+relu lr=0.003 : identical in all 22 CSV fields
+    W=12  seed=2 tanh+relu lr=0.003 : identical in all 22 CSV fields
+    W=128 seed=1 tanh+relu lr=0.01  : identical in all 22 CSV fields
+  (all fields compared except 'seconds', which is wall-clock). Backup: data_v1.cpp.bak
+  New binary sha256=a521d8ed1237729274f93c0a3f996c9c6fa0a245c2e14f68f854d6bcf0195c1e ; resuming at P=6.
+[2026-09-04 17:35:55] ===== EXTENDED SWEEP (revised scope) RESUME | workers=6 budget=13h elapsed=3.06h =====
+[2026-09-04 17:35:55] --- select_lr on calib_12_v2 / calib_32 / calib_64 ---
+relu/relu/0/interleave/12/ce                  best lr=0.003   0.001:93.85  0.003:93.89  0.01:93.61  0.03:74.23
+tanh/tanh/0/interleave/12/ce                  best lr=0.003   0.001:93.95  0.003:94.03  0.01:93.07  0.03:91.65
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.003   0.001:93.57  0.003:94.37  0.01:93.78  0.03:93.27
+sigmoid/sigmoid/0/interleave/12/ce            best lr=0.01    0.001:88.20  0.003:91.99  0.01:93.02  0.03:92.61
+tanh/relu/0.5/interleave/12/ce                best lr=0.003   0.001:93.33  0.003:93.55  0.01:92.79  0.03:89.47
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.003   0.001:93.31  0.003:93.63  0.01:93.00  0.03:91.79
+sigmoid/relu/0.5/interleave/12/ce             best lr=0.01    0.001:90.45  0.003:92.03  0.01:92.83  0.03:92.39
+relu/relu/0/interleave/32/ce                  best lr=0.003   0.001:95.99  0.003:96.39  0.01:95.55  0.03:93.77
+tanh/tanh/0/interleave/32/ce                  best lr=0.003   0.001:95.95  0.003:96.12  0.01:95.66  0.03:94.30
+leaky_relu/leaky_relu/0/interleave/32/ce      best lr=0.003   0.001:95.90  0.003:96.19  0.01:96.15  0.03:95.24
+sigmoid/sigmoid/0/interleave/32/ce            best lr=0.01    0.001:90.42  0.003:94.78  0.01:96.01  0.03:96.00
+tanh/relu/0.5/interleave/32/ce                best lr=0.003   0.001:96.03  0.003:96.31  0.01:96.03  0.03:94.98
+tanh/leaky_relu/0.5/interleave/32/ce          best lr=0.003   0.001:95.89  0.003:96.52  0.01:96.14  0.03:95.03
+sigmoid/relu/0.5/interleave/32/ce             best lr=0.01    0.001:94.53  0.003:94.96  0.01:95.31  0.03:95.11
+relu/relu/0/interleave/64/ce                  best lr=0.003   0.001:96.65  0.003:97.11  0.01:97.08  0.03:94.97
+tanh/tanh/0/interleave/64/ce                  best lr=0.003   0.001:96.59  0.003:97.24  0.01:97.10  0.03:95.11
+leaky_relu/leaky_relu/0/interleave/64/ce      best lr=0.003   0.001:96.51  0.003:97.17  0.01:96.79  0.03:95.83
+sigmoid/sigmoid/0/interleave/64/ce            best lr=0.03    0.001:90.99  0.003:95.19  0.01:97.04  0.03:97.17
+tanh/relu/0.5/interleave/64/ce                best lr=0.01    0.001:96.52  0.003:97.35  0.01:97.43  0.03:96.08
+tanh/leaky_relu/0.5/interleave/64/ce          best lr=0.01    0.001:96.48  0.003:97.15  0.01:97.25  0.03:95.70
+sigmoid/relu/0.5/interleave/64/ce             best lr=0.003   0.001:96.07  0.003:96.61  0.01:96.28  0.03:96.13
+wrote results/best_lr.json
+[2026-09-04 17:35:56] STAGE B-main-12v2 start | jobs=210 pending=0 workers=6
+[2026-09-04 17:35:56] STAGE B-main-12v2 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:35:56] STAGE B-main-32 start | jobs=210 pending=0 workers=6
+[2026-09-04 17:35:56] STAGE B-main-32 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:35:56] STAGE B-main-64 start | jobs=140 pending=0 workers=6
+[2026-09-04 17:35:56] STAGE B-main-64 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:35:57] STAGE C-lrsweep-12 start | jobs=300 pending=0 workers=6
+[2026-09-04 17:35:57] STAGE C-lrsweep-12 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:35:57] STAGE A-calib-128 start | jobs=84 pending=0 workers=6
+[2026-09-04 17:35:57] STAGE A-calib-128 COMPLETE | 0 jobs run in 0h00m00s
+relu/relu/0/interleave/128/ce                 best lr=0.003   0.001:96.97  0.003:97.69  0.01:97.41  0.03:95.07
+tanh/tanh/0/interleave/128/ce                 best lr=0.01    0.001:96.45  0.003:97.49  0.01:97.67  0.03:93.87
+leaky_relu/leaky_relu/0/interleave/128/ce     best lr=0.003   0.001:96.83  0.003:97.57  0.01:97.43  0.03:95.29
+sigmoid/sigmoid/0/interleave/128/ce           best lr=0.03    0.001:90.93  0.003:95.00  0.01:96.79  0.03:97.32
+tanh/relu/0.5/interleave/128/ce               best lr=0.01    0.001:96.77  0.003:97.55  0.01:97.72  0.03:96.59
+tanh/leaky_relu/0.5/interleave/128/ce         best lr=0.01    0.001:96.63  0.003:97.33  0.01:97.63  0.03:95.67
+sigmoid/relu/0.5/interleave/128/ce            best lr=0.003   0.001:96.49  0.003:97.13  0.01:97.13  0.03:96.99
+wrote results/best_lr.json
+[2026-09-04 17:35:58] STAGE B-main-128v2 start | jobs=140 pending=0 workers=6
+[2026-09-04 17:35:58] STAGE B-main-128v2 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:35:58] STAGE A-calib-256 start | jobs=60 pending=31 workers=6
+[17:35:59] sweep/jobs_calib_256.txt:       31 of       60 pending; running up to 24 with 6 workers
+[2026-09-04 17:47:17] Third OOM kill, at P=6 with the halved footprint. No single large consumer: swap is 4.5 GB of 5.1 GB used and free swap is 600 MB, so the machine is chronically constrained and a 6x238 MB working set tips it over. Dropping to P=4 (950 MB). Remaining critical work is A-calib-256 (19 jobs), B-main-256 and C-lrsweep-128; width 512 will be dropped if the budget runs short.
+[2026-09-04 17:47:17] ===== EXTENDED SWEEP (revised scope) RESUME | workers=4 budget=13h elapsed=3.25h =====
+[2026-09-04 17:47:17] --- select_lr on calib_12_v2 / calib_32 / calib_64 ---
+relu/relu/0/interleave/12/ce                  best lr=0.003   0.001:93.85  0.003:93.89  0.01:93.61  0.03:74.23
+tanh/tanh/0/interleave/12/ce                  best lr=0.003   0.001:93.95  0.003:94.03  0.01:93.07  0.03:91.65
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.003   0.001:93.57  0.003:94.37  0.01:93.78  0.03:93.27
+sigmoid/sigmoid/0/interleave/12/ce            best lr=0.01    0.001:88.20  0.003:91.99  0.01:93.02  0.03:92.61
+tanh/relu/0.5/interleave/12/ce                best lr=0.003   0.001:93.33  0.003:93.55  0.01:92.79  0.03:89.47
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.003   0.001:93.31  0.003:93.63  0.01:93.00  0.03:91.79
+sigmoid/relu/0.5/interleave/12/ce             best lr=0.01    0.001:90.45  0.003:92.03  0.01:92.83  0.03:92.39
+relu/relu/0/interleave/32/ce                  best lr=0.003   0.001:95.99  0.003:96.39  0.01:95.55  0.03:93.77
+tanh/tanh/0/interleave/32/ce                  best lr=0.003   0.001:95.95  0.003:96.12  0.01:95.66  0.03:94.30
+leaky_relu/leaky_relu/0/interleave/32/ce      best lr=0.003   0.001:95.90  0.003:96.19  0.01:96.15  0.03:95.24
+sigmoid/sigmoid/0/interleave/32/ce            best lr=0.01    0.001:90.42  0.003:94.78  0.01:96.01  0.03:96.00
+tanh/relu/0.5/interleave/32/ce                best lr=0.003   0.001:96.03  0.003:96.31  0.01:96.03  0.03:94.98
+tanh/leaky_relu/0.5/interleave/32/ce          best lr=0.003   0.001:95.89  0.003:96.52  0.01:96.14  0.03:95.03
+sigmoid/relu/0.5/interleave/32/ce             best lr=0.01    0.001:94.53  0.003:94.96  0.01:95.31  0.03:95.11
+relu/relu/0/interleave/64/ce                  best lr=0.003   0.001:96.65  0.003:97.11  0.01:97.08  0.03:94.97
+tanh/tanh/0/interleave/64/ce                  best lr=0.003   0.001:96.59  0.003:97.24  0.01:97.10  0.03:95.11
+leaky_relu/leaky_relu/0/interleave/64/ce      best lr=0.003   0.001:96.51  0.003:97.17  0.01:96.79  0.03:95.83
+sigmoid/sigmoid/0/interleave/64/ce            best lr=0.03    0.001:90.99  0.003:95.19  0.01:97.04  0.03:97.17
+tanh/relu/0.5/interleave/64/ce                best lr=0.01    0.001:96.52  0.003:97.35  0.01:97.43  0.03:96.08
+tanh/leaky_relu/0.5/interleave/64/ce          best lr=0.01    0.001:96.48  0.003:97.15  0.01:97.25  0.03:95.70
+sigmoid/relu/0.5/interleave/64/ce             best lr=0.003   0.001:96.07  0.003:96.61  0.01:96.28  0.03:96.13
+wrote results/best_lr.json
+[2026-09-04 17:47:18] STAGE B-main-12v2 start | jobs=210 pending=0 workers=4
+[2026-09-04 17:47:18] STAGE B-main-12v2 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:47:18] STAGE B-main-32 start | jobs=210 pending=0 workers=4
+[2026-09-04 17:47:18] STAGE B-main-32 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:47:18] STAGE B-main-64 start | jobs=140 pending=0 workers=4
+[2026-09-04 17:47:18] STAGE B-main-64 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:47:19] STAGE C-lrsweep-12 start | jobs=300 pending=0 workers=4
+[2026-09-04 17:47:19] STAGE C-lrsweep-12 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:47:19] STAGE A-calib-128 start | jobs=84 pending=0 workers=4
+[2026-09-04 17:47:19] STAGE A-calib-128 COMPLETE | 0 jobs run in 0h00m00s
+relu/relu/0/interleave/128/ce                 best lr=0.003   0.001:96.97  0.003:97.69  0.01:97.41  0.03:95.07
+tanh/tanh/0/interleave/128/ce                 best lr=0.01    0.001:96.45  0.003:97.49  0.01:97.67  0.03:93.87
+leaky_relu/leaky_relu/0/interleave/128/ce     best lr=0.003   0.001:96.83  0.003:97.57  0.01:97.43  0.03:95.29
+sigmoid/sigmoid/0/interleave/128/ce           best lr=0.03    0.001:90.93  0.003:95.00  0.01:96.79  0.03:97.32
+tanh/relu/0.5/interleave/128/ce               best lr=0.01    0.001:96.77  0.003:97.55  0.01:97.72  0.03:96.59
+tanh/leaky_relu/0.5/interleave/128/ce         best lr=0.01    0.001:96.63  0.003:97.33  0.01:97.63  0.03:95.67
+sigmoid/relu/0.5/interleave/128/ce            best lr=0.003   0.001:96.49  0.003:97.13  0.01:97.13  0.03:96.99
+wrote results/best_lr.json
+[2026-09-04 17:47:20] STAGE B-main-128v2 start | jobs=140 pending=0 workers=4
+[2026-09-04 17:47:20] STAGE B-main-128v2 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 17:47:20] STAGE A-calib-256 start | jobs=60 pending=19 workers=4
+[17:47:20] sweep/jobs_calib_256.txt:       19 of       60 pending; running up to 24 with 4 workers
+[18:04:02] remaining: 0
+[2026-09-04 18:04:03] STAGE A-calib-256 | done 19/19  remaining 0  elapsed 16m43s  ETA 0h00m
+[2026-09-04 18:04:03] STAGE A-calib-256 COMPLETE | 19 jobs run in 0h16m43s
+relu/relu/0/interleave/256/ce                 best lr=0.003   0.001:97.17  0.003:97.90  0.01:97.58  0.03:95.41
+tanh/tanh/0/interleave/256/ce                 best lr=0.01    0.001:96.27  0.003:97.31  0.01:97.84  0.03:91.09
+leaky_relu/leaky_relu/0/interleave/256/ce     best lr=0.01    0.001:97.07  0.003:97.48  0.01:97.69  0.03:77.90
+tanh/relu/0.5/interleave/256/ce               best lr=0.01    0.001:96.92  0.003:97.61  0.01:97.95  0.03:95.57
+tanh/leaky_relu/0.5/interleave/256/ce         best lr=0.01    0.001:96.71  0.003:97.36  0.01:97.76  0.03:75.65
+wrote results/best_lr.json
+[2026-09-04 18:04:03] STAGE B-main-256 start | jobs=30 pending=30 workers=4
+[18:04:03] sweep/jobs_main_256.txt:       30 of       30 pending; running up to 24 with 4 workers
+[18:40:46] remaining: 6
+[2026-09-04 18:40:47] STAGE B-main-256 | done 24/30  remaining 6  elapsed 36m44s  ETA 0h09m
+[18:40:49] sweep/jobs_main_256.txt:        6 of       30 pending; running up to 24 with 4 workers
+[18:47:37] remaining: 0
+[2026-09-04 18:47:38] STAGE B-main-256 | done 30/30  remaining 0  elapsed 43m35s  ETA 0h00m
+[2026-09-04 18:47:38] STAGE B-main-256 COMPLETE | 30 jobs run in 0h43m35s
+[2026-09-04 18:47:38] STAGE C-lrsweep-128 start | jobs=250 pending=250 workers=4
+[18:47:39] sweep/jobs_lrsweep_128.txt:      250 of      250 pending; running up to 48 with 4 workers
+[19:04:59] remaining: 202
+[2026-09-04 19:04:59] STAGE C-lrsweep-128 | done 48/250  remaining 202  elapsed 17m21s  ETA 1h13m
+[19:05:00] sweep/jobs_lrsweep_128.txt:      202 of      250 pending; running up to 48 with 4 workers
+[19:23:32] remaining: 154
+[2026-09-04 19:23:32] STAGE C-lrsweep-128 | done 96/250  remaining 154  elapsed 35m54s  ETA 0h57m
+[19:23:32] sweep/jobs_lrsweep_128.txt:      154 of      250 pending; running up to 48 with 4 workers
+[19:40:33] remaining: 106
+[2026-09-04 19:40:33] STAGE C-lrsweep-128 | done 144/250  remaining 106  elapsed 52m55s  ETA 0h38m
+[19:40:33] sweep/jobs_lrsweep_128.txt:      106 of      250 pending; running up to 48 with 4 workers
+[19:58:13] remaining: 58
+[2026-09-04 19:58:14] STAGE C-lrsweep-128 | done 192/250  remaining 58  elapsed 70m36s  ETA 0h21m
+[19:58:14] sweep/jobs_lrsweep_128.txt:       58 of      250 pending; running up to 48 with 4 workers
+[20:15:54] remaining: 10
+[2026-09-04 20:15:54] STAGE C-lrsweep-128 | done 240/250  remaining 10  elapsed 88m16s  ETA 0h03m
+[20:15:55] sweep/jobs_lrsweep_128.txt:       10 of      250 pending; running up to 48 with 4 workers
+[20:20:23] remaining: 0
+[2026-09-04 20:20:24] STAGE C-lrsweep-128 | done 250/250  remaining 0  elapsed 92m46s  ETA 0h00m
+[2026-09-04 20:20:24] STAGE C-lrsweep-128 COMPLETE | 250 jobs run in 1h32m46s
+[2026-09-04 20:20:24] ===== PRIORITY 1-3 COMPLETE | elapsed 5.80h =====
+[2026-09-04 20:20:25] budget check: 7.20h left, stage D-layout-128 needs ~1.4h -> running
+[2026-09-04 20:20:25] STAGE D-layout-128 start | jobs=100 pending=100 workers=4
+[20:20:25] sweep/jobs_layout_128.txt:      100 of      100 pending; running up to 48 with 4 workers
+[20:38:45] remaining: 52
+[2026-09-04 20:38:46] STAGE D-layout-128 | done 48/100  remaining 52  elapsed 18m21s  ETA 0h19m
+[20:38:46] sweep/jobs_layout_128.txt:       52 of      100 pending; running up to 48 with 4 workers
+[20:56:44] remaining: 4
+[2026-09-04 20:56:44] STAGE D-layout-128 | done 96/100  remaining 4  elapsed 36m19s  ETA 0h01m
+[20:56:45] sweep/jobs_layout_128.txt:        4 of      100 pending; running up to 48 with 4 workers
+[20:58:12] remaining: 0
+[2026-09-04 20:58:12] STAGE D-layout-128 | done 100/100  remaining 0  elapsed 37m47s  ETA 0h00m
+[2026-09-04 20:58:12] STAGE D-layout-128 COMPLETE | 100 jobs run in 0h37m47s
+[2026-09-04 20:58:13] budget check: 6.57h left, stage E-calib-mse-128 needs ~0.4h -> running
+[2026-09-04 20:58:13] STAGE E-calib-mse-128 start | jobs=27 pending=27 workers=4
+[20:58:13] sweep/jobs_calib_mse_128.txt:       27 of       27 pending; running up to 27 with 4 workers
+[21:08:43] remaining: 0
+[2026-09-04 21:08:43] STAGE E-calib-mse-128 | done 27/27  remaining 0  elapsed 10m30s  ETA 0h00m
+[2026-09-04 21:08:43] STAGE E-calib-mse-128 COMPLETE | 27 jobs run in 0h10m30s
+relu/relu/0/interleave/128/mse                best lr=0.01    0.003:97.03  0.01:97.62  0.03:97.46
+tanh/tanh/0/interleave/128/mse                best lr=0.03    0.003:96.27  0.01:97.13  0.03:97.17
+tanh/relu/0.5/interleave/128/mse              best lr=0.01    0.003:96.85  0.01:97.51  0.03:97.41
+wrote results/best_lr.json
+[2026-09-04 21:08:44] budget check: 6.39h left, stage E-mse-128 needs ~0.45h -> running
+[2026-09-04 21:08:44] STAGE E-mse-128 start | jobs=30 pending=30 workers=4
+[21:08:44] sweep/jobs_mse_128.txt:       30 of       30 pending; running up to 30 with 4 workers
+[21:20:29] remaining: 0
+[2026-09-04 21:20:29] STAGE E-mse-128 | done 30/30  remaining 0  elapsed 11m45s  ETA 0h00m
+[2026-09-04 21:20:29] STAGE E-mse-128 COMPLETE | 30 jobs run in 0h11m45s
+[2026-09-04 21:20:29] ===== EXTENDED SWEEP COMPLETE | elapsed 6.80h =====
+[2026-09-04 21:54:29] chain_restored.sh deadlocked: its 'pgrep -f sweep/run_all_extended.sh' matched a separate watcher process whose own command line contained that same literal string, so it never saw the master exit. Master actually finished 21:20:29; 33 min idle. Starting restored stages directly.
+[2026-09-04 21:54:29] ===== RESTORED STAGES START | elapsed 7.37h budget 12h =====
+[2026-09-04 21:54:30] budget: 4.63h left, B-main-256-topup needs ~0.25h -> running
+[2026-09-04 21:54:30] STAGE B-main-256-topup start | jobs=50 pending=20 workers=4
+[21:54:30] sweep/jobs_main_256.txt:       20 of       50 pending; running up to 24 with 4 workers
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/main_256.csv
+[2026-09-04 21:57:23] ===== RESTORED STAGES (reordered: 256 -> 512 -> lrsweep64) | elapsed 7.42h =====
+[2026-09-04 21:57:24] STAGE B-main-256-topup start | jobs=50 pending=20 workers=4
+[21:57:24] sweep/jobs_main_256.txt:       20 of       50 pending; running up to 24 with 4 workers
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 tanh --ratio 0 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 leaky_relu --act2 leaky_relu --ratio 0 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 leaky_relu --ratio 0.5 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 leaky_relu --ratio 0.5 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 leaky_relu --ratio 0.5 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 leaky_relu --ratio 0.5 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 leaky_relu --ratio 0.5 --layout interleave --hidden 256 --seed 8 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 leaky_relu --ratio 0.5 --layout interleave --hidden 256 --seed 7 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 leaky_relu --ratio 0.5 --layout interleave --hidden 256 --seed 9 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+FAILED: ./main --act1 tanh --act2 leaky_relu --ratio 0.5 --layout interleave --hidden 256 --seed 10 --epochs 10 --lr 0.01 --loss ce --quiet --data .. --out results/main_256.csv
+[2026-09-04 21:59:26] Restarted restored stages cleanly at P=4 after an orphaned run_chunk from the previous invocation left 8 workers running instead of 4 (killing the parent script does not kill its already-spawned xargs children). No duplicate rows resulted: main_256 had 30 ok rows, 30 unique. Queue order on request: 256 main top-up -> 256 layout -> 512 calibration -> 512 main -> 64 LR sweep (only the last is budget-gated).
+[2026-09-04 21:59:26] ===== RESTORED STAGES (reordered: 256 -> 512 -> lrsweep64) | elapsed 7.45h =====
+[2026-09-04 21:59:26] STAGE B-main-256-topup start | jobs=50 pending=20 workers=4
+[21:59:26] sweep/jobs_main_256.txt:       20 of       50 pending; running up to 24 with 4 workers
+[22:17:33] remaining: 0
+[2026-09-04 22:17:34] STAGE B-main-256-topup | done 20/20  remaining 0  elapsed 18m08s  ETA 0h00m
+[2026-09-04 22:17:34] STAGE B-main-256-topup COMPLETE | 20 jobs run in 0h18m08s
+[2026-09-04 22:17:34] STAGE D-layout-256 start | jobs=60 pending=60 workers=4
+[22:17:35] sweep/jobs_layout_256.txt:       60 of       60 pending; running up to 24 with 4 workers
+[22:38:08] remaining: 36
+[2026-09-04 22:38:08] STAGE D-layout-256 | done 24/60  remaining 36  elapsed 20m34s  ETA 0h30m
+[22:38:09] sweep/jobs_layout_256.txt:       36 of       60 pending; running up to 24 with 4 workers
+[2026-09-04 22:53:50] Fourth OOM kill, during D-layout-256 at P=4 (40/60 rows written, 0 duplicates). Contributing factor: analysis/analyze.py + make_report.py (numpy/matplotlib over every CSV) were run concurrently with the 4 workers. Resuming at P=3; no further analysis will be run while workers are live.
+[2026-09-04 22:53:50] ===== RESTORED STAGES (reordered: 256 -> 512 -> lrsweep64) | elapsed 8.36h =====
+[2026-09-04 22:53:50] STAGE B-main-256-topup start | jobs=50 pending=0 workers=3
+[2026-09-04 22:53:50] STAGE B-main-256-topup COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 22:53:51] STAGE D-layout-256 start | jobs=60 pending=20 workers=3
+[22:53:51] sweep/jobs_layout_256.txt:       20 of       60 pending; running up to 24 with 3 workers
+[2026-09-04 23:13:30] Fifth OOM kill, at P=3 with no analysis running (layout_256 reached 55/60). Root cause is not the worker count: swap is 4.87 GB of a 6.14 GB swapfile with only ~6.7 GB free on disk, so macOS cannot grow swap, and no single application is large (max RSS 353 MB). Any sustained demand trips the watchdog. Dropping to P=2 (2 x 238 MB = 476 MB).
+[2026-09-04 23:13:30] ===== RESTORED STAGES (reordered: 256 -> 512 -> lrsweep64) | elapsed 8.69h =====
+[2026-09-04 23:13:31] STAGE B-main-256-topup start | jobs=50 pending=0 workers=2
+[2026-09-04 23:13:31] STAGE B-main-256-topup COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-04 23:13:31] STAGE D-layout-256 start | jobs=60 pending=5 workers=2
+[23:13:32] sweep/jobs_layout_256.txt:        5 of       60 pending; running up to 24 with 2 workers
+[23:23:26] remaining: 0
+[2026-09-04 23:23:27] STAGE D-layout-256 | done 5/5  remaining 0  elapsed 9m56s  ETA 0h00m
+[2026-09-04 23:23:27] STAGE D-layout-256 COMPLETE | 5 jobs run in 0h09m56s
+[2026-09-04 23:23:27] STAGE A-calib-512 start | jobs=40 pending=40 workers=2
+[23:23:28] sweep/jobs_calib_512.txt:       40 of       40 pending; running up to 16 with 2 workers
+[00:32:10] remaining: 24
+[2026-09-05 00:32:10] STAGE A-calib-512 | done 16/40  remaining 24  elapsed 68m43s  ETA 1h43m
+[00:32:10] sweep/jobs_calib_512.txt:       24 of       40 pending; running up to 16 with 2 workers
+[2026-09-05 00:45:35] Sixth OOM kill (P=2, calib_512 at 18/40). P=2 still makes real progress between kills (18 jobs in ~80 min) and is 2.3x faster than P=1 for the remaining width-512 work, so staying at P=2 and restarting on each kill. Trimmed the 512 calibration grid to {0.001,0.003,0.01}: the 4 completed lr=0.03 runs are already divergent and cannot win selection for any config, so the 6 pending 0.03 runs were dropped (saves ~27 min). The 0.03 column at 512 is therefore partially populated (4/10) and is reported as such.
+[2026-09-05 00:45:35] ===== RESTORED STAGES (reordered: 256 -> 512 -> lrsweep64) | elapsed 10.22h =====
+[2026-09-05 00:45:36] STAGE B-main-256-topup start | jobs=50 pending=0 workers=2
+[2026-09-05 00:45:36] STAGE B-main-256-topup COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-05 00:45:36] STAGE D-layout-256 start | jobs=60 pending=0 workers=2
+[2026-09-05 00:45:36] STAGE D-layout-256 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-05 00:45:37] STAGE A-calib-512 start | jobs=30 pending=16 workers=2
+[00:45:37] sweep/jobs_calib_512.txt:       16 of       30 pending; running up to 16 with 2 workers
+[01:53:15] remaining: 0
+[2026-09-05 01:53:15] STAGE A-calib-512 | done 16/16  remaining 0  elapsed 67m38s  ETA 0h00m
+[2026-09-05 01:53:15] STAGE A-calib-512 COMPLETE | 16 jobs run in 1h07m38s
+relu/relu/0/interleave/512/ce                 best lr=0.01    0.001:97.39  0.003:97.96  0.01:98.10  0.03:96.21
+tanh/tanh/0/interleave/512/ce                 best lr=0.01    0.001:95.84  0.003:97.24  0.01:97.61  0.03:84.91
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.003   0.001:97.23  0.003:97.67  0.01:97.67
+tanh/relu/0.5/interleave/512/ce               best lr=0.01    0.001:97.22  0.003:97.69  0.01:97.85
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.003   0.001:96.96  0.003:97.73  0.01:97.14
+wrote results/best_lr.json
+[2026-09-05 01:53:16] STAGE B-main-512 start | jobs=25 pending=25 workers=2
+[01:53:16] sweep/jobs_main_512.txt:       25 of       25 pending; running up to 16 with 2 workers
+[03:02:12] remaining: 9
+[2026-09-05 03:02:12] STAGE B-main-512 | done 16/25  remaining 9  elapsed 68m56s  ETA 0h38m
+[03:02:13] sweep/jobs_main_512.txt:        9 of       25 pending; running up to 16 with 2 workers
+[2026-09-05 03:24:49] Seventh OOM kill (P=2, main_512 at 11/25). Restarting; 14 runs left.
+[2026-09-05 03:24:49] ===== RESTORED STAGES (reordered: 256 -> 512 -> lrsweep64) | elapsed 12.88h =====
+[2026-09-05 03:24:49] STAGE B-main-256-topup start | jobs=50 pending=0 workers=2
+[2026-09-05 03:24:50] STAGE B-main-256-topup COMPLETE | 0 jobs run in 0h00m01s
+[2026-09-05 03:24:50] STAGE D-layout-256 start | jobs=60 pending=0 workers=2
+[2026-09-05 03:24:50] STAGE D-layout-256 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-05 03:24:50] STAGE A-calib-512 start | jobs=30 pending=0 workers=2
+[2026-09-05 03:24:50] STAGE A-calib-512 COMPLETE | 0 jobs run in 0h00m00s
+relu/relu/0/interleave/512/ce                 best lr=0.01    0.001:97.39  0.003:97.96  0.01:98.10  0.03:96.21
+tanh/tanh/0/interleave/512/ce                 best lr=0.01    0.001:95.84  0.003:97.24  0.01:97.61  0.03:84.91
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.003   0.001:97.23  0.003:97.67  0.01:97.67
+tanh/relu/0.5/interleave/512/ce               best lr=0.01    0.001:97.22  0.003:97.69  0.01:97.85
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.003   0.001:96.96  0.003:97.73  0.01:97.14
+wrote results/best_lr.json
+[2026-09-05 03:24:51] STAGE B-main-512 start | jobs=25 pending=5 workers=2
+[03:24:51] sweep/jobs_main_512.txt:        5 of       25 pending; running up to 16 with 2 workers
+[03:50:29] remaining: 0
+[2026-09-05 03:50:29] STAGE B-main-512 | done 5/5  remaining 0  elapsed 25m38s  ETA 0h00m
+[2026-09-05 03:50:29] STAGE B-main-512 COMPLETE | 5 jobs run in 0h25m38s
+[2026-09-05 03:50:30] budget: 0.70h left, C-lrsweep-64 needs ~0.6h -> running
+[2026-09-05 03:50:30] STAGE C-lrsweep-64 start | jobs=250 pending=250 workers=2
+[03:50:30] sweep/jobs_lrsweep_64.txt:      250 of      250 pending; running up to 64 with 2 workers
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 1 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 2 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+[2026-09-05 03:51:07] Width 512 complete (25/25). Paused C-lrsweep-64 (optional, past budget) to generate the final analysis on an idle machine; will resume it afterwards.
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 3 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 4 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 5 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 6 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 8 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 7 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 10 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 9 --epochs 10 --lr 0.001 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 2 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+FAILED: ./main --act1 relu --act2 relu --ratio 0 --layout interleave --hidden 64 --seed 1 --epochs 10 --lr 0.003 --loss ce --quiet --data .. --out results/lrsweep_64.csv
+[2026-09-05 03:53:33] Final report generated with all six widths (12,32,64,128,256,512). Resuming the optional C-lrsweep-64 stage.
+[2026-09-05 03:53:33] ===== RESTORED STAGES (reordered: 256 -> 512 -> lrsweep64) | elapsed 13.35h =====
+[2026-09-05 03:53:33] STAGE B-main-256-topup start | jobs=50 pending=0 workers=2
+[2026-09-05 03:53:33] STAGE B-main-256-topup COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-05 03:53:34] STAGE D-layout-256 start | jobs=60 pending=0 workers=2
+[2026-09-05 03:53:34] STAGE D-layout-256 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-05 03:53:34] STAGE A-calib-512 start | jobs=30 pending=0 workers=2
+[2026-09-05 03:53:34] STAGE A-calib-512 COMPLETE | 0 jobs run in 0h00m00s
+relu/relu/0/interleave/512/ce                 best lr=0.01    0.001:97.39  0.003:97.96  0.01:98.10  0.03:96.21
+tanh/tanh/0/interleave/512/ce                 best lr=0.01    0.001:95.84  0.003:97.24  0.01:97.61  0.03:84.91
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.003   0.001:97.23  0.003:97.67  0.01:97.67
+tanh/relu/0.5/interleave/512/ce               best lr=0.01    0.001:97.22  0.003:97.69  0.01:97.85
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.003   0.001:96.96  0.003:97.73  0.01:97.14
+wrote results/best_lr.json
+[2026-09-05 03:53:35] STAGE B-main-512 start | jobs=25 pending=0 workers=2
+[2026-09-05 03:53:35] STAGE B-main-512 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-05 03:53:35] budget: 0.64h left, C-lrsweep-64 needs ~0.6h -> running
+[2026-09-05 03:53:35] STAGE C-lrsweep-64 start | jobs=250 pending=250 workers=2
+[03:53:36] sweep/jobs_lrsweep_64.txt:      250 of      250 pending; running up to 64 with 2 workers
+[2026-09-05 04:07:03] Eighth OOM kill (P=2, C-lrsweep-64). This is the only outstanding stage and it is optional; restarting at P=1 to maximise the chance it completes unattended. All reported results are already final.
+[2026-09-05 04:07:03] ===== RESTORED STAGES (reordered: 256 -> 512 -> lrsweep64) | elapsed 13.58h =====
+[2026-09-05 04:07:04] STAGE B-main-256-topup start | jobs=50 pending=0 workers=1
+[2026-09-05 04:07:04] STAGE B-main-256-topup COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-05 04:07:04] STAGE D-layout-256 start | jobs=60 pending=0 workers=1
+[2026-09-05 04:07:04] STAGE D-layout-256 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-05 04:07:04] STAGE A-calib-512 start | jobs=30 pending=0 workers=1
+[2026-09-05 04:07:05] STAGE A-calib-512 COMPLETE | 0 jobs run in 0h00m01s
+relu/relu/0/interleave/512/ce                 best lr=0.01    0.001:97.39  0.003:97.96  0.01:98.10  0.03:96.21
+tanh/tanh/0/interleave/512/ce                 best lr=0.01    0.001:95.84  0.003:97.24  0.01:97.61  0.03:84.91
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.003   0.001:97.23  0.003:97.67  0.01:97.67
+tanh/relu/0.5/interleave/512/ce               best lr=0.01    0.001:97.22  0.003:97.69  0.01:97.85
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.003   0.001:96.96  0.003:97.73  0.01:97.14
+wrote results/best_lr.json
+[2026-09-05 04:07:05] STAGE B-main-512 start | jobs=25 pending=0 workers=1
+[2026-09-05 04:07:05] STAGE B-main-512 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-05 04:07:06] budget: 0.42h left, C-lrsweep-64 needs ~0.6h -> SKIPPED (budget)
+[2026-09-05 04:07:06] ===== RESTORED STAGES COMPLETE | elapsed 13.58h =====
+[2026-09-05 09:23:18] C-lrsweep-64 resumed on request (214 of 250 pending), bypassing the budget guard. P=2.
+[2026-09-05 09:23:18] STAGE C-lrsweep-64 start | jobs=250 pending=214 workers=2
+[09:23:19] sweep/jobs_lrsweep_64.txt:      214 of      250 pending; running up to 48 with 2 workers
+[09:41:32] remaining: 166
+[2026-09-05 09:41:32] STAGE C-lrsweep-64 | done 48/214  remaining 166  elapsed 18m14s  ETA 1h03m
+[09:41:33] sweep/jobs_lrsweep_64.txt:      166 of      250 pending; running up to 48 with 2 workers
+[09:58:27] remaining: 118
+[2026-09-05 09:58:27] STAGE C-lrsweep-64 | done 96/214  remaining 118  elapsed 35m09s  ETA 0h43m
+[09:58:28] sweep/jobs_lrsweep_64.txt:      118 of      250 pending; running up to 48 with 2 workers
+[2026-09-05 09:59:02] Ninth OOM kill (P=2, C-lrsweep-64). Memory is tighter than overnight (31% free vs 44%). Dropping straight to P=1.
+[2026-09-05 09:59:03] STAGE C-lrsweep-64 start | jobs=250 pending=118 workers=1
+[09:59:03] sweep/jobs_lrsweep_64.txt:      118 of      250 pending; running up to 48 with 1 workers
+[2026-09-05 10:29:26] Tenth OOM kill, now at P=1 (single 238 MB worker) — the concurrency floor. lrsweep_64 at 172/250. Progress continues between kills (~40 jobs per 30 min), so restarting rather than reducing further.
+[2026-09-05 10:29:26] STAGE C-lrsweep-64 start | jobs=250 pending=78 workers=1
+[10:29:27] sweep/jobs_lrsweep_64.txt:       78 of      250 pending; running up to 48 with 1 workers
+[11:04:36] remaining: 30
+[2026-09-05 11:04:36] STAGE C-lrsweep-64 | done 48/78  remaining 30  elapsed 35m10s  ETA 0h21m
+[11:04:37] sweep/jobs_lrsweep_64.txt:       30 of      250 pending; running up to 48 with 1 workers
+[12:39:33] remaining: 0
+[2026-09-05 12:39:34] STAGE C-lrsweep-64 | done 78/78  remaining 0  elapsed 130m08s  ETA 0h00m
+[2026-09-05 12:39:34] STAGE C-lrsweep-64 COMPLETE | 78 jobs run in 2h10m08s
+[2026-09-05 12:40:35] C-lrsweep-64 COMPLETE 250/250. Report regenerated: all three LR-robustness widths (12, 64, 128) complete, sanity checks pass with no problems. FINAL.

@@ -1,0 +1,113 @@
+==========================================================================================
+P1. Pooled (stratified by width) paired tests -- hybrid minus parent, test accuracy
+  tanh+relu        - tanh        widths [32, 64, 128, 256]     n= 80 meanΔ=+0.128 CI[+0.07,+0.18] wins=55/80 sign p=0.0006 perm p=0.0000
+  tanh+relu        - relu        widths [64, 128, 256]         n= 50 meanΔ=+0.087 CI[+0.01,+0.16] wins=33/50 sign p=0.0328 perm p=0.0283
+  tanh+relu        - relu        widths [12, 32]               n= 60 meanΔ=-0.376 CI[-0.50,-0.26] wins=11/60 sign p=0.0000 perm p=0.0000
+  tanh+leaky_relu  - leaky_relu  widths [64, 128, 256]         n= 50 meanΔ=+0.054 CI[-0.03,+0.13] wins=31/50 sign p=0.0854 perm p=0.2237
+  tanh+leaky_relu  - tanh        widths [12, 32, 64, 128, 256] n=110 meanΔ=+0.060 CI[-0.01,+0.12] wins=72/110 sign p=0.0010 perm p=0.0754
+  tanh+relu        - tanh        widths [12, 32, 64, 128, 256] n=110 meanΔ=+0.046 CI[-0.02,+0.11] wins=65/110 sign p=0.0428 perm p=0.1999
+
+==========================================================================================
+P2. Seed-to-seed standard deviation of test accuracy (is the hybrid more or less variable?)
+  width             relu             tanh       leaky_relu        tanh+relu  tanh+leaky_relu          sigmoid     sigmoid+relu
+     12            0.489            0.266            0.448            0.470            0.373            0.357            0.557
+     32            0.257            0.246            0.315            0.201            0.256            0.243            0.585
+     64            0.205            0.120            0.228            0.228            0.216            0.160            0.250
+    128            0.143            0.150            0.128            0.185            0.359            0.318            0.178
+    256            0.308            0.145            0.208            0.159            0.252                -                -
+
+==========================================================================================
+P3. Generalisation gap: mean(train_acc - test_acc) at final epoch
+  width             relu             tanh       leaky_relu        tanh+relu  tanh+leaky_relu          sigmoid     sigmoid+relu
+     12             1.04             1.39             1.09             1.40             1.24             1.22             1.18
+     32             1.39             1.80             1.40             1.66             1.60             1.54             1.41
+     64             1.63             1.73             1.48             1.85             1.85             1.88             1.33
+    128             1.55             1.98             1.52             1.78             1.81             1.77             1.52
+    256             1.66             1.84             1.52             1.54             1.63                -                -
+
+==========================================================================================
+P4. Matched-learning-rate comparison at width 128 (lrsweep_128, 10 seeds, SAME lr for all configs)
+  lr=0.001  final val: relu= 97.09 tanh= 96.43 leaky_relu= 96.91 tanh+relu= 96.87 tanh+leaky_relu= 96.74 | Δ(tr-relu)=-0.22 wins 0/10 p=0.002; Δ(tr-tanh)=+0.44 wins 10/10 p=0.002
+  lr=0.003  final val: relu= 97.56 tanh= 97.32 leaky_relu= 97.49 tanh+relu= 97.62 tanh+leaky_relu= 97.55 | Δ(tr-relu)=+0.06 wins 5/10 p=0.727; Δ(tr-tanh)=+0.29 wins 10/10 p=0.002
+  lr=0.01   final val: relu= 97.50 tanh= 97.53 leaky_relu= 97.38 tanh+relu= 97.67 tanh+leaky_relu= 97.62 | Δ(tr-relu)=+0.17 wins 7/10 p=0.344; Δ(tr-tanh)=+0.14 wins 5/10 p=1.000
+  lr=0.03   final val: relu= 95.90 tanh= 94.87 leaky_relu= 94.85 tanh+relu= 96.47 tanh+leaky_relu= 95.57 | Δ(tr-relu)=+0.57 wins 9/10 p=0.021; Δ(tr-tanh)=+1.59 wins 10/10 p=0.002
+  lr=0.1    final val: relu= 11.83 tanh= 43.20 leaky_relu= 84.74 tanh+relu= 30.16 tanh+leaky_relu= 84.41
+  -- same at width 12 (lrsweep_12):
+  lr=0.001  final val: relu= 93.87 tanh= 93.63 leaky_relu= 93.67 tanh+relu= 93.08 tanh+leaky_relu= 93.28
+  lr=0.003  final val: relu= 93.90 tanh= 93.52 leaky_relu= 93.81 tanh+relu= 93.35 tanh+leaky_relu= 93.54
+  lr=0.01   final val: relu= 93.05 tanh= 92.62 leaky_relu= 92.99 tanh+relu= 92.86 tanh+leaky_relu= 93.04
+  lr=0.03   final val: relu= 84.92 tanh= 91.04 leaky_relu= 92.75 tanh+relu= 89.31 tanh+leaky_relu= 91.84
+  lr=0.1    final val: relu= 11.28 tanh= 78.72 leaky_relu= 80.48 tanh+relu= 76.32 tanh+leaky_relu= 76.33
+  lr=0.3    final val: relu= 10.18 tanh= 33.39 leaky_relu= 82.12 tanh+relu= 35.97 tanh+leaky_relu= 73.96
+
+==========================================================================================
+P5. Convergence speed at MATCHED lr (lrsweep_128, lr=0.003 and 0.01): mean val acc after epoch 1, 2, 3, 10
+  lr=0.003  relu             ep1= 94.10 ep2= 95.58 ep3= 96.47 ep10= 97.56  epochs-to-97%=4.8
+  lr=0.003  tanh             ep1= 92.92 ep2= 94.72 ep3= 95.72 ep10= 97.32  epochs-to-97%=7.2
+  lr=0.003  leaky_relu       ep1= 93.77 ep2= 95.34 ep3= 96.31 ep10= 97.49  epochs-to-97%=5.7
+  lr=0.003  tanh+relu        ep1= 93.78 ep2= 95.43 ep3= 96.34 ep10= 97.62  epochs-to-97%=5.1
+  lr=0.003  tanh+leaky_relu  ep1= 93.53 ep2= 95.25 ep3= 96.17 ep10= 97.55  epochs-to-97%=5.7
+  lr=0.01   relu             ep1= 95.04 ep2= 96.10 ep3= 96.77 ep10= 97.50  epochs-to-97%=4.0
+  lr=0.01   tanh             ep1= 94.66 ep2= 95.86 ep3= 96.32 ep10= 97.53  epochs-to-97%=5.4
+  lr=0.01   leaky_relu       ep1= 95.29 ep2= 96.04 ep3= 96.59 ep10= 97.38  epochs-to-97%=4.9
+  lr=0.01   tanh+relu        ep1= 95.38 ep2= 96.24 ep3= 96.74 ep10= 97.67  epochs-to-97%=3.9
+  lr=0.01   tanh+leaky_relu  ep1= 95.20 ep2= 96.11 ep3= 96.57 ep10= 97.62  epochs-to-97%=4.4
+
+==========================================================================================
+P6. Per-class F1 difference tanh+relu - relu, pooled over widths 64/128/256 (mean over seeds, points)
+  digit:           0      1      2      3      4      5      6      7      8      9
+  width  64:   +0.01  +0.12  -0.22  -0.05  +0.12  +0.10  -0.06  +0.12  -0.10  +0.20
+  width 128:   +0.10  -0.03  +0.19  +0.15  +0.07  +0.13  +0.10  +0.17  +0.07  -0.14
+  width 256:   +0.09  +0.07  +0.38  +0.15  +0.47  +0.14  +0.17  +0.18  +0.08  +0.55
+  pooled:      +0.06  +0.05  +0.06  +0.07  +0.17  +0.12  +0.05  +0.15  +0.01  +0.13   (sign-test p per digit: 0.48 0.25 0.06 0.48 0.32 0.20 0.15 0.06 0.89 0.48)
+
+==========================================================================================
+P7. Hybrid relative to its two parents: below both / between / above both (test acc means)
+  W= 12 tanh+relu         93.15 vs parents [ 93.32, 93.72] -> BELOW both
+  W= 12 tanh+leaky_relu   93.38 vs parents [ 93.32, 93.74] -> between
+  W= 12 sigmoid+relu      92.56 vs parents [ 93.09, 93.72] -> BELOW both
+  W= 32 tanh+relu         96.27 vs parents [ 96.19, 96.45] -> between
+  W= 32 tanh+leaky_relu   96.26 vs parents [ 96.19, 96.37] -> between
+  W= 32 sigmoid+relu      95.01 vs parents [ 95.89, 96.45] -> BELOW both
+  W= 64 tanh+relu         97.22 vs parents [ 97.11, 97.19] -> ABOVE both
+  W= 64 tanh+leaky_relu   97.16 vs parents [ 97.11, 97.17] -> between
+  W= 64 sigmoid+relu      96.50 vs parents [ 96.96, 97.19] -> BELOW both
+  W=128 tanh+relu         97.83 vs parents [ 97.70, 97.75] -> ABOVE both
+  W=128 tanh+leaky_relu   97.71 vs parents [ 97.60, 97.70] -> ABOVE both
+  W=128 sigmoid+relu      97.20 vs parents [ 97.43, 97.75] -> BELOW both
+  W=256 tanh+relu         98.14 vs parents [ 97.84, 97.92] -> ABOVE both
+  W=256 tanh+leaky_relu   97.95 vs parents [ 97.84, 97.89] -> ABOVE both
+
+==========================================================================================
+P8. Layout / ratio at width 128 (layout_128.csv, 10 seeds) vs interleave 0.5
+  tanh+relu        block      ratio=0.5   mean= 97.87 sd=0.09  Δ vs interleave0.5=-0.01 wins=4/10
+  tanh+relu        interleave ratio=0.25  mean= 97.82 sd=0.11  Δ vs interleave0.5=-0.06 wins=3/10
+  tanh+relu        interleave ratio=0.5   mean= 97.88 sd=0.15  Δ vs interleave0.5=+0.00 wins=0/10
+  tanh+relu        interleave ratio=0.75  mean= 97.76 sd=0.27  Δ vs interleave0.5=-0.12 wins=4/10
+  tanh+relu        random     ratio=0.5   mean= 97.77 sd=0.24  Δ vs interleave0.5=-0.11 wins=2/10
+  tanh+leaky_relu  block      ratio=0.5   mean= 97.78 sd=0.17  Δ vs interleave0.5=+0.03 wins=6/10
+  tanh+leaky_relu  interleave ratio=0.25  mean= 97.72 sd=0.11  Δ vs interleave0.5=-0.03 wins=4/10
+  tanh+leaky_relu  interleave ratio=0.5   mean= 97.75 sd=0.11  Δ vs interleave0.5=+0.00 wins=0/10
+  tanh+leaky_relu  interleave ratio=0.75  mean= 97.60 sd=0.14  Δ vs interleave0.5=-0.15 wins=2/10
+  tanh+leaky_relu  random     ratio=0.5   mean= 97.85 sd=0.16  Δ vs interleave0.5=+0.10 wins=7/10
+
+==========================================================================================
+P9. Calibrated LR vs width (from best_lr.json)
+  relu             W12=0.003  W32=0.003  W64=0.003  W128=0.003  W256=0.003 
+  tanh             W12=0.003  W32=0.003  W64=0.003  W128=0.01   W256=0.01  
+  leaky_relu       W12=0.003  W32=0.003  W64=0.003  W128=0.003  W256=0.01  
+  tanh+relu        W12=0.003  W32=0.003  W64=0.01   W128=0.01   W256=0.01  
+  tanh+leaky_relu  W12=0.003  W32=0.003  W64=0.01   W128=0.01   W256=0.01  
+
+==========================================================================================
+P10. Degradation at aggressive lr=0.03 relative to each config's own best lr (mean val acc, lrsweep)
+  W=12 relu             best=93.90@0.003  at0.03=84.92 (drop 8.99)  at0.1=11.28 (drop 82.62)
+  W=12 tanh             best=93.63@0.001  at0.03=91.04 (drop 2.60)  at0.1=78.72 (drop 14.91)
+  W=12 leaky_relu       best=93.81@0.003  at0.03=92.75 (drop 1.05)  at0.1=80.48 (drop 13.32)
+  W=12 tanh+relu        best=93.35@0.003  at0.03=89.31 (drop 4.04)  at0.1=76.32 (drop 17.04)
+  W=12 tanh+leaky_relu  best=93.54@0.003  at0.03=91.84 (drop 1.70)  at0.1=76.33 (drop 17.21)
+  W=128 relu             best=97.56@0.003  at0.03=95.90 (drop 1.66)  at0.1=11.83 (drop 85.74)
+  W=128 tanh             best=97.53@0.01  at0.03=94.87 (drop 2.66)  at0.1=43.20 (drop 54.33)
+  W=128 leaky_relu       best=97.49@0.003  at0.03=94.85 (drop 2.64)  at0.1=84.74 (drop 12.75)
+  W=128 tanh+relu        best=97.67@0.01  at0.03=96.47 (drop 1.20)  at0.1=30.16 (drop 67.51)
+  W=128 tanh+leaky_relu  best=97.62@0.01  at0.03=95.57 (drop 2.05)  at0.1=84.41 (drop 13.21)
