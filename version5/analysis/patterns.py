@@ -1,20 +1,32 @@
 #!/usr/bin/env python3
 """Pattern mining for the article: goes beyond summary_extended.md.
-numpy + pandas only (no scipy): p-values via exact sign test / permutation."""
-import pandas as pd, numpy as np, math, itertools, collections
+numpy + pandas only (no scipy): p-values via exact sign test / permutation.
+
+The evaluation grid is read at BALANCED_N seeds for every width and both datasets, matching
+analysis/analyze.py, so pooled tests weight each width equally instead of counting whichever
+width happened to be run longest."""
+import os, pandas as pd, numpy as np, math, itertools, collections
 rng = np.random.default_rng(0)
-def load(fn):
+BALANCED_N = 20
+def load(fn, cap=True):
     df = pd.read_csv(f"results/{fn}", dtype=str)
     df = df[(df.seed != "seed") & (df.status == "ok")].copy()
     for c in ["seed","hidden"]: df[c] = df[c].astype(int)
+    if cap:
+        df = df[df.seed <= BALANCED_N]
     for c in ["ratio","lr","test_acc","test_f1","val_acc","val_f1","train_acc"]: df[c] = df[c].astype(float)
     df["cfg"] = np.where(df.ratio == 0, df.act1, df.act1 + "+" + df.act2)
     df["ep_val"] = df.epoch_val_acc.apply(lambda s: [float(x) for x in s.split("|")])
     df["ep_loss"] = df.epoch_loss.apply(lambda s: [float(x) for x in s.split("|")])
     df["conf"] = df.test_confusion.apply(lambda s: np.array([int(x) for x in s.split("|")]).reshape(10,10))
     return df.drop_duplicates(["seed","cfg","layout","ratio","hidden","lr","loss"])
-main = {12:"main_12_v2.csv",32:"main_32.csv",64:"main_64.csv",128:"main_128_v2.csv",256:"main_256.csv"}
+main = {12:"main_12_v2.csv",32:"main_32.csv",64:"main_64.csv",128:"main_128_v2.csv",
+        256:"main_256.csv",512:"main_512.csv"}
 M = {w: load(f) for w,f in main.items()}
+# CIFAR-10 replication; widths appear here only once their stage has finished.
+c10 = {w: f"c10_main_{w}.csv" for w in (12,32,64,128,256,512)}
+C = {w: load(f) for w,f in c10.items() if os.path.exists(f"results/{f}")}
+WM = sorted(M); WC = sorted(C)
 def paired_d(df, a, b, col="test_acc"):
     x = df[df.cfg==a].set_index("seed")[col]; y = df[df.cfg==b].set_index("seed")[col]
     s = x.index.intersection(y.index); return (x[s]-y[s]).values
@@ -27,24 +39,32 @@ def perm_p(d, n=20000):  # paired permutation test on the mean
 def ci(d): 
     b = rng.choice(d, size=(10000,len(d))).mean(1); return np.percentile(b,[2.5,97.5])
 
-print("="*90); print("P1. Pooled (stratified by width) paired tests -- hybrid minus parent, test accuracy")
-for a,b,ws in [("tanh+relu","tanh",[32,64,128,256]),("tanh+relu","relu",[64,128,256]),("tanh+relu","relu",[12,32]),
-               ("tanh+leaky_relu","leaky_relu",[64,128,256]),("tanh+leaky_relu","tanh",[12,32,64,128,256]),
-               ("tanh+relu","tanh",[12,32,64,128,256])]:
-    d = np.concatenate([paired_d(M[w],a,b) for w in ws])
+print("="*90); print(f"P1. Pooled (stratified by width) paired tests -- hybrid minus parent, test accuracy (n={BALANCED_N}/width)")
+def pooled(D, a, b, ws, tag):
+    ws = [w for w in ws if w in D]
+    if not ws: return
+    d = np.concatenate([paired_d(D[w],a,b) for w in ws])
     lo,hi = ci(d)
-    print(f"  {a:16s} - {b:11s} widths {str(ws):22s} n={len(d):3d} meanΔ={d.mean():+.3f} CI[{lo:+.2f},{hi:+.2f}] wins={int((d>0).sum())}/{len(d)} sign p={sign_p(d):.4f} perm p={perm_p(d):.4f}")
+    print(f"  {tag:9s} {a:16s} - {b:11s} widths {str(ws):26s} n={len(d):3d} meanΔ={d.mean():+.3f} "
+          f"CI[{lo:+.2f},{hi:+.2f}] wins={int((d>0).sum())}/{len(d)} sign p={sign_p(d):.4f} perm p={perm_p(d):.4f}")
+POOLS = [("tanh+relu","tanh",[32,64,128,256,512]), ("tanh+relu","relu",[64,128,256,512]),
+         ("tanh+relu","relu",[12,32]), ("tanh+leaky_relu","leaky_relu",[64,128,256,512]),
+         ("tanh+leaky_relu","tanh",[12,32,64,128,256,512]), ("tanh+relu","tanh",[12,32,64,128,256,512])]
+for a,b,ws in POOLS: pooled(M, a, b, ws, "MNIST")
+if C:
+    print("  -- CIFAR-10, same pools over the widths finished so far:")
+    for a,b,ws in POOLS: pooled(C, a, b, ws, "CIFAR-10")
 
 print("\n"+"="*90); print("P2. Seed-to-seed standard deviation of test accuracy (is the hybrid more or less variable?)")
 cfgs = ["relu","tanh","leaky_relu","tanh+relu","tanh+leaky_relu","sigmoid","sigmoid+relu"]
 print("  width " + " ".join(f"{c:>16s}" for c in cfgs))
-for w,df in M.items():
-    print(f"  {w:5d} " + " ".join(f"{df[df.cfg==c].test_acc.std(ddof=1):16.3f}" if (df.cfg==c).any() else f"{'-':>16s}" for c in cfgs))
+for w,df in list(M.items()) + [(f"c10-{w}", d) for w,d in C.items()]:
+    print(f"  {str(w):>5s} " + " ".join(f"{df[df.cfg==c].test_acc.std(ddof=1):16.3f}" if (df.cfg==c).any() else f"{'-':>16s}" for c in cfgs))
 
 print("\n"+"="*90); print("P3. Generalisation gap: mean(train_acc - test_acc) at final epoch")
 print("  width " + " ".join(f"{c:>16s}" for c in cfgs))
-for w,df in M.items():
-    print(f"  {w:5d} " + " ".join(f"{(df[df.cfg==c].train_acc-df[df.cfg==c].test_acc).mean():16.2f}" if (df.cfg==c).any() else f"{'-':>16s}" for c in cfgs))
+for w,df in list(M.items()) + [(f"c10-{w}", d) for w,d in C.items()]:
+    print(f"  {str(w):>5s} " + " ".join(f"{(df[df.cfg==c].train_acc-df[df.cfg==c].test_acc).mean():16.2f}" if (df.cfg==c).any() else f"{'-':>16s}" for c in cfgs))
 
 print("\n"+"="*90); print("P4. Matched-learning-rate comparison at width 128 (lrsweep_128, 10 seeds, SAME lr for all configs)")
 L = load("lrsweep_128.csv")
@@ -74,7 +94,7 @@ def per_class_f1(conf):
     p = np.where(tp+fp>0, tp/np.maximum(tp+fp,1), 0); r = np.where(tp+fn>0, tp/np.maximum(tp+fn,1), 0)
     return np.where(p+r>0, 2*p*r/np.maximum(p+r,1e-9), 0)*100
 acc = collections.defaultdict(list)
-for w in [64,128,256]:
+for w in [w for w in (64,128,256,512) if w in M]:
     df = M[w]; A = df[df.cfg=="tanh+relu"].set_index("seed"); B = df[df.cfg=="relu"].set_index("seed")
     for s in A.index.intersection(B.index): acc[w].append(per_class_f1(A.loc[s,"conf"]) - per_class_f1(B.loc[s,"conf"]))
 allw = np.concatenate([np.array(v) for v in acc.values()])
@@ -83,12 +103,12 @@ for w,v in acc.items(): print(f"  width {w:3d}:  " + " ".join(f"{x:+6.2f}" for x
 print("  pooled:     " + " ".join(f"{x:+6.2f}" for x in allw.mean(0)) + "   (sign-test p per digit: " + " ".join(f"{sign_p(allw[:,d]):.2f}" for d in range(10)) + ")")
 
 print("\n"+"="*90); print("P7. Hybrid relative to its two parents: below both / between / above both (test acc means)")
-for w,df in M.items():
+for w,df in list(M.items()) + [(f"c10-{w}", d) for w,d in C.items()]:
     m = df.groupby("cfg").test_acc.mean()
     for hyb,p1,p2 in [("tanh+relu","relu","tanh"),("tanh+leaky_relu","leaky_relu","tanh"),("sigmoid+relu","relu","sigmoid")]:
         if hyb not in m: continue
         lo,hi = sorted([m[p1],m[p2]]); pos = "BELOW both" if m[hyb]<lo else ("ABOVE both" if m[hyb]>hi else "between")
-        print(f"  W={w:3d} {hyb:16s} {m[hyb]:6.2f} vs parents [{lo:6.2f},{hi:6.2f}] -> {pos}")
+        print(f"  W={str(w):>8s} {hyb:16s} {m[hyb]:6.2f} vs parents [{lo:6.2f},{hi:6.2f}] -> {pos}")
 
 print("\n"+"="*90); print("P8. Layout / ratio at width 128 (layout_128.csv, 10 seeds) vs interleave 0.5")
 Lay = load("layout_128.csv")
@@ -99,10 +119,14 @@ for pair in ["tanh+relu","tanh+leaky_relu"]:
         print(f"  {pair:16s} {lay:10s} ratio={r:<5g} mean={x.mean():6.2f} sd={x.std(ddof=1):.2f}  Δ vs interleave0.5={d.mean():+.2f} wins={int((d>0).sum())}/{len(d)}")
 
 print("\n"+"="*90); print("P9. Calibrated LR vs width (from best_lr.json)")
-import json; bl = json.load(open("results/best_lr.json"))
-for c in ["relu","tanh","leaky_relu","tanh+relu","tanh+leaky_relu"]:
-    a1,a2,r = (c,c,0) if "+" not in c else (c.split("+")[0], c.split("+")[1], 0.5)
-    print(f"  {c:16s} " + " ".join(f"W{w}={bl.get(f'{a1}/{a2}/{r:g}/interleave/{w}/ce','-'):<6}" for w in [12,32,64,128,256]))
+import json
+for tag, path in (("MNIST", "results/best_lr.json"), ("CIFAR-10", "results/best_lr_c10.json")):
+    if not os.path.exists(path): continue
+    bl = json.load(open(path))
+    print(f"  -- {tag} ({path})")
+    for c in ["relu","tanh","leaky_relu","tanh+relu","tanh+leaky_relu"]:
+        a1,a2,r = (c,c,0) if "+" not in c else (c.split("+")[0], c.split("+")[1], 0.5)
+        print(f"    {c:16s} " + " ".join(f"W{w}={bl.get(f'{a1}/{a2}/{r:g}/interleave/{w}/ce','-'):<8}" for w in [12,32,64,128,256,512]))
 
 print("\n"+"="*90); print("P10. Degradation at aggressive lr=0.03 relative to each config's own best lr (mean val acc, lrsweep)")
 for name,Lx in [("W=12",L12),("W=128",L)]:
