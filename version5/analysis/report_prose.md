@@ -5,20 +5,32 @@ macOS 26.2 (build 25C56), arm64.
 **Compiler and build** — Apple clang 17.0.0.
 
 ```
-clang++ -std=c++17 -O3 -mcpu=native -o main main.cpp net.cpp data.cpp
+clang++ -std=c++17 -O3 -mcpu=native -o main main.cpp net.cpp data.cpp cifar10_data.cpp
 ```
 
-`-mcpu=native` compiles cleanly on this machine and was used for every run in the extended sweep.
-The binary was built once and never rebuilt during the sweep;
-`sha256 = 160c6e4bf3fd32cd301c88e5c33d8b5b4ed7d75d4e69add276f204bee41f9a21`.
-No source file was modified: `main.cpp`, `net.cpp`, `net.h`, `data.cpp` and `data.h` are byte-for-byte
-as they were, so init, batch-size-1 SGD, per-epoch shuffling, the fixed 45k/5k/10k split,
-`SPLIT_SEED 12345`, the gradient clip, `LEAKY_SLOPE 0.1` and both loss definitions are untouched.
+`-mcpu=native` compiles cleanly on this machine and was used for every run.
 
-**Workers** — `P = 8`, chosen by measurement rather than by core count alone. Eight width-128
-single-epoch jobs took 23.9 s at `P = 4`, 25.7 s at `P = 6` and 17.9 s at `P = 8`, i.e. a 5.05×
-speed-up over the 90.4 s the same eight jobs cost serially. The four efficiency cores are slower
-than the performance cores but still add throughput, so all eight were used.
+A note on binary identity, since the previous edition of this report claimed the binary was "built
+once and never rebuilt" and quoted `sha256 = 160c6e4b…`. That claim was already stale when written:
+the `Data::split_data` memory fix in the previous sweep required a rebuild after that line was
+composed. Mach-O binaries also carry an `LC_UUID` that changes on every link, so two builds of
+identical sources never share a hash and the hash proves nothing either way. **Numeric reproduction
+is the check that means something**, and it was run rather than assumed: `analysis/compare_rows.py`
+re-ran three finished jobs (`main_256.csv` seed 1 `relu` and `tanh+relu`, `main_512.csv` seed 1
+`relu`) and compared **all 22 CSV fields** against the stored rows. They matched exactly — once with
+the rebuilt original sources, and again after the CIFAR-10 refactor described below.
+
+`net.cpp`, `net.h`, `data.cpp` and `data.h` are byte-for-byte as they were, so init, batch-size-1
+SGD, per-epoch shuffling, the fixed 45k/5k/10k split, `SPLIT_SEED 12345`, the gradient clip,
+`LEAKY_SLOPE 0.1` and both loss definitions are untouched. `main.cpp` gained a `--dataset` flag and
+a runtime input width in place of `#define INPUT_SIZE 784`; the bit-identity check above is what
+licenses treating the pre-existing MNIST rows and the new ones as one experiment.
+
+**Workers** — `P = 6` for this sweep. The previous pass measured a 5.05× speed-up at `P = 8` on a
+width-128 benchmark but was forced down to `P = 4` by seven low-memory kills, realising only 3.03×
+overall. `P = 6` held for the whole of this run with no kills: width-256 jobs took 248 s against
+202 s solo, an effective 4.9×. Workers sat at roughly 137 MB (MNIST) and 147 MB (CIFAR-10), against
+the 238 MB the previous sweep needed, so memory never became the binding constraint.
 
 **Single-process timings** (`--epochs 1` and `--epochs 3`, difference divided by two, machine
 otherwise idle). "Per epoch" covers the 45 000 training samples plus the 5 000-sample validation
@@ -95,10 +107,12 @@ that even that difference is noise or the reused learning rate rather than a rea
 the tanh units sit does not matter, and neither does the mix ratio between 0.25 and 0.75.
 
 @@deviations
-Nothing in the experimental protocol was changed: `main.cpp`, `net.cpp`, `net.h` and `data.h` are
-untouched, so initialisation, batch-size-1 SGD, per-epoch shuffling, the 45k/5k/10k split,
-`SPLIT_SEED 12345`, the gradient clip, `LEAKY_SLOPE 0.1` and both loss definitions are exactly as
-they were. Every pre-existing CSV in `results/` is unmodified. The changes and departures were:
+Items 1–5 belong to the extended MNIST sweep of 4–5 September; items 6–9 to the balancing and
+CIFAR-10 pass of 9 September. Across both, the learning problem itself was never altered:
+`net.cpp`, `net.h`, `data.cpp` and `data.h` are byte-for-byte unchanged, so initialisation,
+batch-size-1 SGD, per-epoch shuffling, the 45k/5k/10k split, `SPLIT_SEED 12345`, the gradient clip,
+`LEAKY_SLOPE 0.1` and both loss definitions are exactly as they were. No pre-existing CSV row was
+edited or deleted. The changes and departures were:
 
 **1. `sweep/run_chunk.sh` could not run a single job on macOS.** `xargs -I{}` substituted the
 ~164-byte job line twice into the command string, and BSD xargs caps a `-I`-constructed argument at
@@ -148,6 +162,47 @@ came in at 1.81×, implying 24 h, and scope was cut. That 1.81× turned out to b
 cache; widths 32 and 64 then measured 6.04× and 6.66×, so the cut was reversed and the full plan
 restored. The lesson for the log: per-stage throughput at this width range varies by more than 3×,
 and a single short benchmark does not predict it.
+
+**6. The CIFAR-10 learning-rate grid was clipped, and the first calibration had to be thrown away.**
+The MNIST grid (`0.001 … 0.03`) was used for the first CIFAR-10 calibration at width 12, and all
+five configurations selected `0.001` — the bottom rate. That is a boundary selection, not an
+optimum: CIFAR-10 presents 3072 inputs against MNIST's 784, and the useful step is roughly four
+times smaller. Extending the grid to `0.0001` and `0.0003` showed `relu` and `tanh` peaking at
+`0.0003` while `leaky_relu`, `tanh+relu` and `tanh+leaky_relu` peak at `0.001`. The consequence had
+the clipped grid been used: `relu` would have run at `0.001` and lost 0.45 validation points
+(38.36 against 38.81) while `tanh+relu`, whose optimum genuinely is `0.001`, lost nothing. The
+effects under study are +0.02 to +0.35 points, so the clipped grid would have manufactured a hybrid
+advantage several times the size of the real effect — the same "one learning rate favours whichever
+function tolerates it" confound that version5 exists to remove. `sweep/select_lr.py` now reports any
+selection sitting on the edge of the tested grid and exits 2, and the driver treats that as fatal
+rather than starting an evaluation grid on unusable rates. No evaluation runs were wasted: the fault
+was caught before `c10_main_12.csv` was created, and the 60 already-completed calibration runs were
+reused.
+
+**7. Every width is reported at n = 20, though widths 12 and 32 hold 30 seeds.** The width axis is
+the central figure, so it has to compare like with like; pooled tests over unequal cells silently
+weight whichever width was run longest. `BALANCED_N = 20` in `analysis/analyze.py` and
+`analysis/patterns.py` caps both datasets. The surplus seeds are kept, not deleted, and section 3x
+shows widths 12 and 32 at both counts. The cap costs almost nothing — the paired differences move by
+at most 0.10 points between n = 20 and n = 30, and no comparison changes sign or significance.
+
+**8. Two conclusions from the first-look and extended sweeps did not survive the extra seeds.** At
+width 512, `tanh+relu` − `relu` was +0.12 on 5 seeds; on 20 seeds it is +0.02 [−0.07, +0.12], 11/20,
+p = 0.663. The hybrid's advantage over ReLU at the widest layer was five seeds of noise, so
+"`tanh+relu` is the best configuration at every width ≥ 64" now needs qualifying — at 512 it ties
+`relu`. Separately, `tanh+leaky_relu` − `leaky_relu` was reported at +0.30 (p = 0.007) from width
+128 alone; pooled across widths ≥ 64 at n = 20 it is +0.04, 46/80, p = 0.18, indistinguishable from
+zero. Both numbers are corrected rather than quietly dropped, since the earlier claims are in
+`ARTICLE_MATERIAL.md` and in the first-look `results/summary.md`.
+
+**9. CIFAR-10's test set has a different provenance from MNIST's.** MNIST has no separate test file
+in this repository, so its 10 000-image test set is a fixed slice of the 60 000-image training file.
+CIFAR-10 ships its own `test_batch.bin`, which is used as the test set; only the 5 000 validation
+images are drawn out of the 50 000 training images, by the same fixed `SPLIT_SEED`. Both datasets
+therefore run at 45k/5k/10k, but the CIFAR-10 test set is the dataset's real held-out split and the
+MNIST one is not. This favours neither configuration over another — every config sees the same
+split — but it means absolute accuracies are not comparable across the two datasets, only the paired
+within-dataset differences are.
 
 @@sanity
 All checks pass. Full machine-generated output is reproduced below.
