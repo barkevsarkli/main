@@ -38,7 +38,14 @@ topup(){   # topup <label> <jobs file> <chunk>
 c10(){     # c10 <width> <calib chunk> <main chunk>
   local W=$1 CHUNK_C=$2 CHUNK_M=$3
   bash sweep/run_stage.sh "c10calib$W" "sweep/jobs_c10_calib_$W.txt" "$P" "$CHUNK_C" || return 1
-  python3 sweep/select_lr.py --out results/best_lr_c10.json "results/c10_calib_$W.csv" | tee -a "$LOG" || return 1
+  # select_lr.py exits 2 when a chosen rate sits on the edge of the tested grid.  That is a
+  # clipped calibration, not a calibrated one, so stop rather than spend the evaluation grid
+  # on it -- widen --lrs for this width and re-run.
+  set -o pipefail
+  python3 sweep/select_lr.py --out results/best_lr_c10.json "results/c10_calib_$W.csv" | tee -a "$LOG"
+  local rc=$?
+  set +o pipefail
+  [ "$rc" -eq 0 ] || { say "calibration at width $W is not usable (select_lr exit $rc)"; return 1; }
   python3 sweep/make_jobs.py --stage main --dataset cifar10 --hidden "$W" --seeds 1-20 \
       --configs core --lr-json results/best_lr_c10.json --out "results/c10_main_$W.csv" \
       > "sweep/jobs_c10_main_$W.txt" || return 1

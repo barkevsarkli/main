@@ -21,7 +21,10 @@ LAYOUT_VARIANTS = [(c, l, r) for c in ("tanh+relu", "tanh+leaky_relu")
 CAL = [101, 102, 103]
 CAL2 = [101, 102]
 GRID4 = [0.001, 0.003, 0.01, 0.03]
-GRID3 = [0.001, 0.003, 0.01]
+# CIFAR-10 needs a smaller step than MNIST (3072 inputs against 784): on the MNIST grid every
+# config clipped to its bottom rate, so the grid is shifted down by two decades here.
+C10_GRID6 = [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03]
+C10_GRID4 = [0.0001, 0.0003, 0.001, 0.003]
 
 # file -> (kind, configs, seeds, lrs or None)
 EXPECT = {
@@ -47,12 +50,12 @@ EXPECT = {
 
     # CIFAR-10 replication.  Same protocol, same core config set, n = 20 at every width.
     # Calibration is trimmed to 3 rates x 2 seeds at 256/512, as it was for MNIST at 512.
-    "c10_calib_12.csv":  ("calib", CORE, CAL,          GRID4),
-    "c10_calib_32.csv":  ("calib", CORE, CAL,          GRID4),
-    "c10_calib_64.csv":  ("calib", CORE, CAL,          GRID4),
-    "c10_calib_128.csv": ("calib", CORE, CAL,          GRID4),
-    "c10_calib_256.csv": ("calib", CORE, CAL2,         GRID3),
-    "c10_calib_512.csv": ("calib", CORE, CAL2,         GRID3),
+    "c10_calib_12.csv":  ("calib", CORE, CAL,          C10_GRID6),
+    "c10_calib_32.csv":  ("calib", CORE, CAL,          C10_GRID6),
+    "c10_calib_64.csv":  ("calib", CORE, CAL,          C10_GRID6),
+    "c10_calib_128.csv": ("calib", CORE, CAL,          C10_GRID6),
+    "c10_calib_256.csv": ("calib", CORE, CAL2,         C10_GRID4),
+    "c10_calib_512.csv": ("calib", CORE, CAL2,         C10_GRID4),
     "c10_main_12.csv":   ("main",  CORE, range(1, 21), None),
     "c10_main_32.csv":   ("main",  CORE, range(1, 21), None),
     "c10_main_64.csv":   ("main",  CORE, range(1, 21), None),
