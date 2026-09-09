@@ -44,6 +44,12 @@ FIG = os.path.join(RES, "figures")
 os.makedirs(FIG, exist_ok=True)
 rng = np.random.default_rng(0)
 
+# The evaluation grid is reported at one seed count for every width, so the width axis is a
+# like-for-like comparison and the pooled tests carry equal weight per cell.  Widths 12 and 32
+# hold 30 seeds on disk from an earlier pass; those extra seeds are kept and reported
+# separately (section 2x) rather than deleted or silently mixed in.
+BALANCED_N = 20
+
 COLLAPSE_ACC = 50.0     # final validation accuracy below this counts as a collapsed run
 WITHIN_PTS = 1.0        # robustness score: stay within this many points of the config's best
 
@@ -570,16 +576,22 @@ def main():
         md += ["Where both `main_<W>.csv` and `main_<W>_v2.csv` exist the `_v2` file is used and the older one ignored: "
                + ", ".join(f"W={w} uses `{f}`, ignores `{s}`" for w, f, s in superseded) + ".", ""]
 
-    main_rows = {w: load(f) for w, (f, _) in mains.items()}
+    main_rows_all = {w: load(f) for w, (f, _) in mains.items()}
+    main_rows = {w: [r for r in rows if r["seed"] <= BALANCED_N] for w, rows in main_rows_all.items()}
     widths = [w for w in sorted(main_rows) if main_rows[w]]
     per_width = {w: by_cfg(main_rows[w]) for w in widths}
+    over_n = {w: sorted({r["seed"] for r in rows}) for w, rows in main_rows_all.items()
+              if max((r["seed"] for r in rows), default=0) > BALANCED_N}
 
-    c10_rows = {w: load(f) for w, (f, _) in c10_mains.items()}
+    c10_rows = {w: [r for r in load(f) if r["seed"] <= BALANCED_N] for w, (f, _) in c10_mains.items()}
     c10_widths = [w for w in sorted(c10_rows) if c10_rows[w]]
     c10_per_width = {w: by_cfg(c10_rows[w]) for w in c10_widths}
 
     # ---- run inventory (config x width -> n)
-    md += ["## 1. Run inventory (evaluation runs, config × width → n)", "",
+    md += [f"## 1. Run inventory (evaluation runs, config × width → n)", "",
+           f"Every width is reported at the same seed count, n = {BALANCED_N} (seeds 1–{BALANCED_N}), "
+           "so the width axis compares like with like.", ""]
+    md += [
            "| config | " + " | ".join(f"W={w}" for w in widths) + " |", "|---|" + "---|" * len(widths)]
     for k in CFG_ORDER:
         cells = [str(len(per_width[w].get(k, []))) if per_width[w].get(k) else "–" for w in widths]
@@ -647,6 +659,30 @@ def main():
                 md.append(f"| {w} | {a['mean']:+.2f} [{a['ci'][0]:+.2f}, {a['ci'][1]:+.2f}] | "
                           f"{a['wins']}/{a['n']} | {b['mean']:+.2f} [{b['ci'][0]:+.2f}, {b['ci'][1]:+.2f}] | "
                           f"{b['wins']}/{b['n']} | {same} |")
+            md.append("")
+
+    # ---- widths that hold more seeds than the balanced grid uses
+    if over_n:
+        md += ["## 3x. Widths with more seeds than the balanced grid reports", "",
+               f"The tables above cap every width at n = {BALANCED_N} so the width axis is "
+               "like-for-like. Widths 12 and 32 were run to 30 seeds in an earlier pass and those "
+               "runs are kept. Below, each such width is shown at its full seed count next to the "
+               f"capped n = {BALANCED_N}. A paired difference that moves materially between the two "
+               "is a warning that the cell is noise-limited, not a reason to prefer either number.", ""]
+        for w, seeds in sorted(over_n.items()):
+            gf = by_cfg(main_rows_all[w])
+            gc = per_width[w]
+            md += [f"**MNIST, width {w} — n = {len(seeds)} (full) against n = {BALANCED_N} (reported)**", "",
+                   f"| comparison | Δ at n={BALANCED_N} | Δ at n={len(seeds)} | wins (full) | t p (full) |",
+                   "|---|---|---|---|---|"]
+            for (hyb, base) in CROSS_PAIRS:
+                if hyb not in gf or base not in gf:
+                    continue
+                a = paired(gc[hyb], gc[base], "test_acc")
+                b = paired(gf[hyb], gf[base], "test_acc")
+                md.append(f"| {hyb} − {base} | {a['mean']:+.2f} [{a['ci'][0]:+.2f}, {a['ci'][1]:+.2f}] | "
+                          f"{b['mean']:+.2f} [{b['ci'][0]:+.2f}, {b['ci'][1]:+.2f}] | "
+                          f"{b['wins']}/{b['n']} | {fmt_p(b.get('t_p'))} |")
             md.append("")
 
     # ---- LR robustness (stage C)
