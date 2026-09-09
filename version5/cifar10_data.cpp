@@ -2,6 +2,11 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
+#include <cstring>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
 
 Cifar10Data::Cifar10Data(const std::string& dir)
 {
@@ -9,53 +14,71 @@ Cifar10Data::Cifar10Data(const std::string& dir)
         lut[b] = b / 255.0f;
     scratch.resize(CIFAR10_PIXELS);
 
-    n_images = CIFAR10_N_TRAIN + CIFAR10_N_TEST;
-    pixels.resize((size_t)n_images * CIFAR10_PIXELS);
-    labels.resize(n_images);
+    for (int b = 1; b <= 5; ++b)
+        map_batch(dir + "/CIFAR10/train_images/data_batch_" + std::to_string(b) + ".bin",
+                  CIFAR10_PER_BATCH, b - 1);
+    map_batch(dir + "/CIFAR10/test_images/test_batch.bin", CIFAR10_N_TEST, 5);
 
-    // [0, 50000) -- the five training batches, in file order.
-    for (int b = 1; b <= 5; ++b) {
-        std::string path = dir + "/CIFAR10/train_images/data_batch_" + std::to_string(b) + ".bin";
-        load_batch(path, 10000u, (uint32_t)(b - 1) * 10000u);
-    }
-    // [50000, 60000) -- the official test batch.
-    load_batch(dir + "/CIFAR10/test_images/test_batch.bin", CIFAR10_N_TEST, CIFAR10_N_TRAIN);
+    validate_labels();
 
-    std::cout << "CIFAR-10 loaded successfully" << std::endl;
+    std::cout << "CIFAR-10 mapped successfully" << std::endl;
     std::cout << "Train batches: " << CIFAR10_N_TRAIN << std::endl;
     std::cout << "Test batch: " << CIFAR10_N_TEST << std::endl;
 }
 
-void Cifar10Data::load_batch(const std::string& path, uint32_t expected_records, uint32_t offset)
+Cifar10Data::~Cifar10Data()
 {
-    std::ifstream file(path, std::ios::binary);
-    if (!file.is_open())
-        throw std::runtime_error("load_batch() | Failed to open file: " + path);
+    for (auto& m : maps)
+        if (m.base) munmap(const_cast<uint8_t*>(m.base), m.len);
+}
+
+void Cifar10Data::map_batch(const std::string& path, uint32_t expected_records, int slot)
+{
+    int fd = open(path.c_str(), O_RDONLY);
+    if (fd < 0)
+        throw std::runtime_error("map_batch() | Failed to open file: " + path);
+
+    struct stat st{};
+    if (fstat(fd, &st) != 0) {
+        close(fd);
+        throw std::runtime_error("map_batch() | fstat failed on " + path);
+    }
 
     // A CIFAR-10 batch is a headerless run of fixed-size records, so the file length is
     // the only integrity check available before reading.
-    file.seekg(0, std::ios::end);
-    std::streamoff bytes = file.tellg();
-    file.seekg(0, std::ios::beg);
-    if (bytes != (std::streamoff)expected_records * CIFAR10_RECORD)
-        throw std::runtime_error("load_batch() | " + path + " is " + std::to_string(bytes) +
-                                 " bytes, expected " + std::to_string((size_t)expected_records * CIFAR10_RECORD));
-
-    for (uint32_t i = 0; i < expected_records; ++i) {
-        int lab = file.get();
-        if (lab < 0 || lab > 9)
-            throw std::runtime_error("load_batch() | " + path + " record " + std::to_string(i) +
-                                     " has label " + std::to_string(lab));
-        labels[offset + i] = (uint8_t)lab;
-        file.read(reinterpret_cast<char*>(&pixels[(size_t)(offset + i) * CIFAR10_PIXELS]), CIFAR10_PIXELS);
+    const size_t want = (size_t)expected_records * CIFAR10_RECORD;
+    if ((size_t)st.st_size != want) {
+        close(fd);
+        throw std::runtime_error("map_batch() | " + path + " is " + std::to_string((long long)st.st_size) +
+                                 " bytes, expected " + std::to_string(want));
     }
-    if (!file)
-        throw std::runtime_error("load_batch() | short read on " + path);
+
+    void* p = mmap(nullptr, want, PROT_READ, MAP_SHARED, fd, 0);
+    close(fd);                      // the mapping keeps its own reference to the file
+    if (p == MAP_FAILED)
+        throw std::runtime_error("map_batch() | mmap failed on " + path);
+
+    // Sequential passes over a shuffled index order, so tell the kernel not to bother
+    // with read-ahead heuristics tuned for streaming.
+    madvise(p, want, MADV_RANDOM);
+
+    maps[slot].base = static_cast<const uint8_t*>(p);
+    maps[slot].len  = want;
+}
+
+void Cifar10Data::validate_labels() const
+{
+    for (uint32_t i = 0; i < size(); ++i) {
+        const uint8_t l = label(i);
+        if (l > 9)
+            throw std::runtime_error("validate_labels() | image " + std::to_string(i) +
+                                     " has label " + std::to_string((int)l));
+    }
 }
 
 const float* Cifar10Data::normalized(uint32_t i) const
 {
-    const uint8_t* p = &pixels[(size_t)i * CIFAR10_PIXELS];
+    const uint8_t* p = raw(i);
     float* d = scratch.data();
     for (uint32_t j = 0; j < CIFAR10_PIXELS; ++j)
         d[j] = lut[p[j]];
