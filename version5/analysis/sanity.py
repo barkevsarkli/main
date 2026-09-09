@@ -24,7 +24,11 @@ GRID4 = [0.001, 0.003, 0.01, 0.03]
 # CIFAR-10 needs a smaller step than MNIST (3072 inputs against 784): on the MNIST grid every
 # config clipped to its bottom rate, so the grid is shifted down by two decades here.
 C10_GRID6 = [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03]
-C10_GRID4 = [0.0001, 0.0003, 0.001, 0.003]
+# Width 256 first ran 0.0001-0.003 and leaky_relu chose the top rate, so 0.01 was added; the
+# 0.0001 runs are kept.  Width 512 uses the shifted window from the start: 0.0001 was the worst
+# rate by 6-9 points at every width tested, so it is not repeated there.
+C10_GRID256 = [0.0001, 0.0003, 0.001, 0.003, 0.01]
+C10_GRID512 = [0.0003, 0.001, 0.003, 0.01]
 
 # file -> (kind, configs, seeds, lrs or None)
 EXPECT = {
@@ -54,8 +58,8 @@ EXPECT = {
     "c10_calib_32.csv":  ("calib", CORE, CAL,          C10_GRID6),
     "c10_calib_64.csv":  ("calib", CORE, CAL,          C10_GRID6),
     "c10_calib_128.csv": ("calib", CORE, CAL,          C10_GRID6),
-    "c10_calib_256.csv": ("calib", CORE, CAL2,         C10_GRID4),
-    "c10_calib_512.csv": ("calib", CORE, CAL2,         C10_GRID4),
+    "c10_calib_256.csv": ("calib", CORE, CAL2,         C10_GRID256),
+    "c10_calib_512.csv": ("calib", CORE, CAL2,         C10_GRID512),
     "c10_main_12.csv":   ("main",  CORE, range(1, 21), None),
     "c10_main_32.csv":   ("main",  CORE, range(1, 21), None),
     "c10_main_64.csv":   ("main",  CORE, range(1, 21), None),

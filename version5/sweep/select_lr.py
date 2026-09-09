@@ -38,10 +38,12 @@ for path in argv:
             edge = f"   <-- AT GRID {'LOW' if lr == grid[0] else 'HIGH'} EDGE, extend the grid"
             edges.append((k, lr, "low" if lr == grid[0] else "high"))
         print(f"{k:45s} best lr={lr:<8g}  " + "  ".join(f"{l:g}:{m:.2f}" for l, m in sorted(d.items())) + edge)
-json.dump(best, open(out_path, "w"), indent=1)
-print("wrote", out_path)
-if edges:
+if not edges:
+    json.dump(best, open(out_path, "w"), indent=1)
+    print("wrote", out_path)
+else:
     print(f"\nWARNING: {len(edges)} of {len(best)} selections sit on the edge of the tested grid.")
+    print(f"{out_path} was NOT written, so no downstream stage can pick up these rates.")
     for k, lr, side in edges:
         print(f"  {k}  ->  {lr:g} ({side} edge)")
     print("A boundary selection is not a calibrated learning rate: the optimum may lie outside\n"
