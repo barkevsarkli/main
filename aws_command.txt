@@ -1,0 +1,215 @@
+===============================================================================
+ version5 — AWS tam tarama runbook'u
+ c8g.48xlarge (Graviton4, ARM64, 192 vCPU, 384 GB) / Ubuntu 24.04
+===============================================================================
+
+ KAPSAM      7 konfigürasyon x 6 genişlik x 30 tohum x 2 veri seti
+             40 epoch + en iyi doğrulama epoch'unda erken durdurma
+             kalibrasyon: 8 öğrenme oranı x 6 tohum (2 değil)
+
+ MALİYET     6.552 koşu, ~2.470 çekirdek-saat
+             c8g.48xlarge on-demand  ~15.1 saat   ~$116
+             c8g.48xlarge spot       ~15.1 saat    ~$39   <- önerilen
+             c7g.16xlarge (64 vCPU)  ~42.9 saat   ~$100
+             (+-%30 belirsizlik: Graviton4 çekirdek hızı M1'e yakın ama ölçülmedi)
+
+ NOT         Maliyetin %57'si kalibrasyon. Bütçe sıkışırsa kalibrasyonu 40
+             yerine 20 epoch'ta koşmak toplamı ~%25 düşürür; öğrenme oranı
+             sıralaması yakınsamadan önce oturuyor. Değerlendirme her hâlükârda
+             40 epoch kalır.
+
+-------------------------------------------------------------------------------
+ KOD DURUMU — hepsi hazır, commit f367c2b
+-------------------------------------------------------------------------------
+ Aşağıdakiler yapıldı ve Mac'te test edildi:
+
+   1. Deterministik Fisher-Yates (rng_util.h) — std::shuffle'ın dört kullanımı
+      da değişti. Artık sonuç her platformda aynı.
+   2. Erken durdurma — en iyi doğrulama epoch'unun ağırlıklarıyla test.
+      Ölçüldü: 5 epoch'ta 210 koşunun 80'inde zirve son epoch değil.
+   3. train_acc_clean — bitmiş modelde, sabit 10.000 görüntülük alt kümede.
+      Maliyet +%19.
+   4. mnist_data.{h,cpp} — MNIST de mmap. 60.000 görüntüde sıfır fark
+      (mnist_equiv_check ile kanıtlandı).
+   5. sweep/run_aws.sh — iki veri seti, altı genişlik, yedi konfigürasyon.
+      (Eski run_all_extended.sh MNIST'e özgü ve bütçe kapılı, KULLANMA.)
+
+ Ayrıca düzeltildi: run_chunk.sh artık xargs'a satır numarası veriyor. BSD
+ xargs -I 255 bayt sınırı yüzünden uzun --out yolunda her yığın sessizce
+ ölüyordu.
+
+-------------------------------------------------------------------------------
+ 0) INSTANCE
+-------------------------------------------------------------------------------
+ AMI            Ubuntu Server 24.04 LTS (ARM64)
+ Instance       c8g.48xlarge   (192 vCPU / 384 GB)
+ Disk           60 GB gp3      (repo 172 MB + sonuçlar ~200 MB, bolca yer)
+ Güvenlik       yalnız 22/tcp, kendi IP'ne kısıtlı
+ Spot           "Persistent" + "Stop" davranışı seç; kesilirse tmux'taki iş
+                pending.py ile kaldığı yerden devam eder
+
+ ! Region: eu-central-1 (Frankfurt) Türkiye'den en düşük gecikmeli.
+
+-------------------------------------------------------------------------------
+ 1) ARAÇLAR
+-------------------------------------------------------------------------------
+sudo apt update && sudo apt install -y build-essential git python3 python3-pip tmux htop
+pip3 install --break-system-packages numpy scipy pandas matplotlib
+
+nproc                        # 192 görmelisin
+uname -m                     # aarch64 görmelisin  (x86_64 ise -mcpu yerine -march kullan)
+free -g | head -2            # ~370 GB available
+
+-------------------------------------------------------------------------------
+ 2) KODU VE VERİYİ GETİR
+-------------------------------------------------------------------------------
+ Veri setleri repoda izleniyor (CIFAR10/ 176 MB, MNIST 45 MB), o yüzden ayrı
+ scp GEREKMİYOR. Klon her şeyi getirir.
+
+git clone <repo-url> article
+cd article/version5
+
+ Repo private ise, Mac'te bir GitHub PAT üret ve:
+   git clone https://<KULLANICI>:<PAT>@github.com/<KULLANICI>/<REPO>.git article
+
+ PAT istemiyorsan Mac'ten doğrudan gönder (Mac'te, ayrı terminalde):
+   rsync -az --exclude '.git' ~/Desktop/article/ ubuntu@<PUBLIC_IP>:~/article/
+
+-------------------------------------------------------------------------------
+ 3) DERLE
+-------------------------------------------------------------------------------
+ dataset.h header-only — dataset.cpp diye bir dosya YOK.
+ data.cpp da artık kullanılmıyor (mnist_data.cpp onun yerine geçti).
+
+g++ -O3 -mcpu=native -std=c++17 -o main \
+    main.cpp net.cpp cifar10_data.cpp mnist_data.cpp
+
+ x86 instance seçtiysen: -mcpu=native yerine -march=native
+
+ Doğrulama araçları:
+g++ -O2 -mcpu=native -std=c++17 -o cifar10_check cifar10_check.cpp cifar10_data.cpp
+
+-------------------------------------------------------------------------------
+ 4) KOŞMADAN ÖNCE DOĞRULAMA  (atlarsan 14 saati çöpe atma riski var)
+-------------------------------------------------------------------------------
+ 4a) Veri bütünlüğü — kayıt adımı, sınıf dengesi, bölünme belirlenimciliği
+./cifar10_check ..
+     Beklenen: "all checks passed", her sınıfta tam 6000 görüntü.
+
+ 4b) Platform belirlenimciliği — Fisher-Yates düzeltmesinin ASIL testi
+     Mac'te üretilmiş referans repoda: reference/determinism_mac.csv
+     (4 koşu: MNIST relu / tanh+relu / sigmoid, ve CIFAR-10 random layout)
+
+rm -f /tmp/det_linux.csv
+./main --act1 relu    --act2 relu --ratio 0   --layout interleave --hidden 12 --seed 1 \
+       --epochs 2 --lr 0.003 --loss ce --dataset mnist   --quiet --data .. --out /tmp/det_linux.csv
+./main --act1 tanh    --act2 relu --ratio 0.5 --layout interleave --hidden 12 --seed 1 \
+       --epochs 2 --lr 0.003 --loss ce --dataset mnist   --quiet --data .. --out /tmp/det_linux.csv
+./main --act1 sigmoid --act2 sigmoid --ratio 0 --layout interleave --hidden 12 --seed 1 \
+       --epochs 2 --lr 0.03  --loss ce --dataset mnist   --quiet --data .. --out /tmp/det_linux.csv
+./main --act1 tanh    --act2 relu --ratio 0.5 --layout random     --hidden 32 --seed 7 \
+       --epochs 2 --lr 0.001 --loss ce --dataset cifar10 --quiet --data .. --out /tmp/det_linux.csv
+
+python3 analysis/compare_rows.py /tmp/det_linux.csv reference/determinism_mac.csv
+
+     Beklenen: "identical in all ... fields" x4, "0 mismatched".
+     Mac'teki değerler: 92.24 / 91.48 / 90.97 (MNIST), 38.66 (CIFAR-10).
+
+     ! DEĞİLSE DUR. Fisher-Yates çalışmıyor demektir; iki platformun verisi
+       yine karıştırılamaz ve AWS koşusunun tek anlamı kalmaz.
+
+ 4c) Hız ölçümü — P'yi tahminle değil ölçerek seç, ve maliyeti erken gör
+python3 sweep/make_jobs.py --stage calib --dataset cifar10 --hidden 128 \
+        --seeds 201-232 --lrs 0.001 --configs core --epochs 40 \
+        --out /tmp/bench.csv > /tmp/bench_jobs.txt
+
+     for P in 96 144 190; do
+       rm -f /tmp/bench.csv
+       echo "P=$P"; time bash sweep/run_chunk.sh /tmp/bench_jobs.txt 32 $P
+     done
+
+     32 koşu / gecen sure = kosu basina duvar suresi. Tahminimiz P=190'da
+     CIFAR-10 W=128 icin ~0.5 dk/kosu. Iki katindan fazlaysa toplam maliyet de
+     iki katina cikacak demektir; instance'i orada kapat, kaybin birkac dolar.
+
+     Olcum tohumlari 201+ secildi: degerlendirme (1-30) ve kalibrasyon (101-106)
+     tohumlarina dokunmaz, sonuclara karismaz.
+
+-------------------------------------------------------------------------------
+ 5) TARAMAYI BAŞLAT
+-------------------------------------------------------------------------------
+tmux new -s sweep
+
+     # tmux içinde:
+     cd ~/article/version5
+     P=190 EPOCHS=40 bash sweep/run_aws.sh
+
+     # Ayrılmak:  Ctrl+B sonra D
+     # Geri dönmek: tmux attach -t sweep
+
+ Sıra: iki veri seti, artan genişlik (12 -> 512). En pahalı hücre en sonda,
+ böylece bütçeyi/spot kesintisini erken kaybetmezsin.
+
+-------------------------------------------------------------------------------
+ 6) İZLEME
+-------------------------------------------------------------------------------
+ Ayrı bir SSH oturumunda:
+
+watch -n 60 'tail -3 ~/article/version5/results_aws/sweep.log; \
+             echo; ls ~/article/version5/results_aws/*.csv | wc -l'
+
+htop                          # 190 işçi ~%100 CPU'da olmalı
+free -g                       # swap KULLANILMAMALI; kullanılıyorsa P'yi düşür
+
+ Kalan iş sayısı:
+python3 sweep/pending.py < sweep/jobs_<asama>.txt | wc -l
+
+ ! Kesinti olursa: aynı komutu tekrar çalıştır. pending.py biten koşuları
+   atlar, hiçbir iş tekrarlanmaz, yarım satırlar reddedilir.
+
+-------------------------------------------------------------------------------
+ 7) BİTİNCE — ÖNCE DOĞRULA, SONRA İNDİR
+-------------------------------------------------------------------------------
+export V5_RESULTS=~/article/version5/results_aws
+V5_GRID=aws python3 analysis/sanity.py    # 0 eksik / 0 fazla / 0 kopya
+python3 analysis/analyze.py               # summary_extended.md + figures/
+python3 analysis/patterns.py > $V5_RESULTS/patterns.txt
+
+ Mac'te (kendi terminalinde):
+   scp -i ~/.ssh/<key>.pem -r ubuntu@<PUBLIC_IP>:~/article/version5/results_aws \
+       ~/Desktop/article/version5/
+
+ ! Sonuçlar inene ve sanity.py geçene kadar instance'ı TERMINATE ETME.
+
+-------------------------------------------------------------------------------
+ 7b) KOŞU SIRASINDA YEDEK  (spot kullanıyorsan şart)
+-------------------------------------------------------------------------------
+ Mac'te ayrı bir terminalde, saatte bir sonuçları çeker:
+
+   while true; do
+     rsync -az -e "ssh -i ~/.ssh/<key>.pem" \
+       ubuntu@<PUBLIC_IP>:~/article/version5/results_aws/ \
+       ~/Desktop/article/version5/results_aws/
+     sleep 3600
+   done
+
+ Spot kesilse bile o ana kadarki her koşu elinde kalır; instance geri gelince
+ aynı komut kaldığı yerden devam eder.
+
+-------------------------------------------------------------------------------
+ 8) INSTANCE'I KAPAT
+-------------------------------------------------------------------------------
+ Sonuçlar Mac'te ve doğrulandıysa:
+   AWS Console -> Instances -> Terminate
+ Spot kullandıysan request'i de iptal et, yoksa yeniden başlatır.
+
+===============================================================================
+ SIK YAPILAN HATALAR
+===============================================================================
+ * dataset.cpp veya data.cpp derleme satırında  -> ikisi de kullanılmıyor
+ * run_all_extended.sh çalıştırılmış            -> eski MNIST sürücüsü, kullanma
+ * -march=native ARM'de                         -> aarch64'te derlenmez
+ * V5_RESULTS ayarlanmadan sanity/analyze      -> yanlış dizine bakar
+ * V5_GRID=aws unutulmus                       -> eski izgarayi bekler, hata verir
+ * P çekirdek sayısından büyük                  -> bağlam değiştirme kaybı
+ * sanity.py çalıştırılmadan terminate edilmiş  -> eksik hücre fark edilmez
