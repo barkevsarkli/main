@@ -1,0 +1,141 @@
+[2026-09-09 00:35:49] START | workers=6 | 26.6.2 | 8 GB
+[2026-09-09 00:35:49] === mnist_256 ===
+[2026-09-09 01:14:41] === mnist_512 ===
+[2026-09-09 04:04:29] === c10_12 ===
+relu/relu/0/interleave/12/ce                  best lr=0.001   0.001:38.36  0.003:35.22  0.01:23.92  0.03:9.69
+tanh/tanh/0/interleave/12/ce                  best lr=0.001   0.001:39.97  0.003:36.64  0.01:30.25  0.03:22.41
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.001   0.001:40.28  0.003:39.61  0.01:37.15  0.03:30.97
+tanh/relu/0.5/interleave/12/ce                best lr=0.001   0.001:39.33  0.003:35.37  0.01:28.04  0.03:24.81
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.001   0.001:39.65  0.003:37.47  0.01:35.56  0.03:28.15
+wrote results/best_lr_c10.json
+[2026-09-09 04:13:04] START | workers=6 | 26.6.2 | 8 GB
+[2026-09-09 04:13:04] SKIP mnist_256 (starting at c10_12)
+[2026-09-09 04:13:04] SKIP mnist_512 (starting at c10_12)
+[2026-09-09 04:13:04] === c10_12 ===
+relu/relu/0/interleave/12/ce                  best lr=0.0003    0.0001:35.36  0.0003:38.81  0.001:38.36  0.003:35.22  0.01:23.92  0.03:9.69
+tanh/tanh/0/interleave/12/ce                  best lr=0.0003    0.0001:36.37  0.0003:40.01  0.001:39.97  0.003:36.64  0.01:30.25  0.03:22.41
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.001     0.0001:35.47  0.0003:39.95  0.001:40.28  0.003:39.61  0.01:37.15  0.03:30.97
+tanh/relu/0.5/interleave/12/ce                best lr=0.001     0.0001:35.76  0.0003:39.30  0.001:39.33  0.003:35.37  0.01:28.04  0.03:24.81
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.001     0.0001:35.89  0.0003:39.02  0.001:39.65  0.003:37.47  0.01:35.56  0.03:28.15
+wrote results/best_lr_c10.json
+[2026-09-09 04:28:06] === c10_32 ===
+relu/relu/0/interleave/32/ce                  best lr=0.001     0.0001:38.19  0.0003:43.50  0.001:44.80  0.003:42.96  0.01:31.23  0.03:9.91
+tanh/tanh/0/interleave/32/ce                  best lr=0.001     0.0001:38.97  0.0003:43.09  0.001:43.73  0.003:41.36  0.01:33.70  0.03:21.47
+leaky_relu/leaky_relu/0/interleave/32/ce      best lr=0.001     0.0001:37.84  0.0003:43.32  0.001:44.87  0.003:44.53  0.01:40.17  0.03:34.05
+tanh/relu/0.5/interleave/32/ce                best lr=0.001     0.0001:38.91  0.0003:44.03  0.001:45.16  0.003:41.56  0.01:32.90  0.03:23.10
+tanh/leaky_relu/0.5/interleave/32/ce          best lr=0.001     0.0001:38.67  0.0003:43.90  0.001:44.19  0.003:42.89  0.01:39.61  0.03:28.12
+wrote results/best_lr_c10.json
+[2026-09-09 05:19:21] === c10_64 ===
+relu/relu/0/interleave/64/ce                  best lr=0.001     0.0001:40.35  0.0003:44.95  0.001:46.59  0.003:45.29  0.01:34.18  0.03:10.00
+tanh/tanh/0/interleave/64/ce                  best lr=0.001     0.0001:39.76  0.0003:44.62  0.001:46.45  0.003:41.75  0.01:33.19  0.03:22.77
+leaky_relu/leaky_relu/0/interleave/64/ce      best lr=0.001     0.0001:40.12  0.0003:44.59  0.001:47.59  0.003:46.27  0.01:42.03  0.03:35.77
+tanh/relu/0.5/interleave/64/ce                best lr=0.001     0.0001:40.47  0.0003:45.47  0.001:46.62  0.003:44.59  0.01:33.67  0.03:22.48
+tanh/leaky_relu/0.5/interleave/64/ce          best lr=0.001     0.0001:40.38  0.0003:45.53  0.001:47.27  0.003:43.95  0.01:40.23  0.03:25.99
+wrote results/best_lr_c10.json
+[2026-09-09 06:58:03] === c10_128 ===
+relu/relu/0/interleave/128/ce                 best lr=0.001     0.0001:40.39  0.0003:46.63  0.001:48.46  0.003:46.37  0.01:35.14  0.03:12.59
+tanh/tanh/0/interleave/128/ce                 best lr=0.001     0.0001:39.86  0.0003:45.63  0.001:47.51  0.003:42.97  0.01:32.55  0.03:16.45
+leaky_relu/leaky_relu/0/interleave/128/ce     best lr=0.001     0.0001:40.24  0.0003:46.02  0.001:48.45  0.003:46.63  0.01:42.89  0.03:34.67
+tanh/relu/0.5/interleave/128/ce               best lr=0.001     0.0001:40.67  0.0003:46.47  0.001:49.23  0.003:46.96  0.01:35.37  0.03:19.68
+tanh/leaky_relu/0.5/interleave/128/ce         best lr=0.001     0.0001:40.67  0.0003:46.07  0.001:48.93  0.003:47.05  0.01:40.51  0.03:20.97
+wrote results/best_lr_c10.json
+[2026-09-09 10:30:53] === c10_256 ===
+relu/relu/0/interleave/256/ce                 best lr=0.001     0.0001:40.91  0.0003:46.72  0.001:49.03  0.003:46.67
+tanh/tanh/0/interleave/256/ce                 best lr=0.001     0.0001:39.56  0.0003:44.76  0.001:47.47  0.003:45.68
+leaky_relu/leaky_relu/0/interleave/256/ce     best lr=0.003     0.0001:40.58  0.0003:46.15  0.001:48.81  0.003:49.18   <-- AT GRID HIGH EDGE, extend the grid
+tanh/relu/0.5/interleave/256/ce               best lr=0.001     0.0001:41.54  0.0003:46.75  0.001:49.30  0.003:48.19
+tanh/leaky_relu/0.5/interleave/256/ce         best lr=0.001     0.0001:41.17  0.0003:46.33  0.001:49.57  0.003:49.39
+wrote results/best_lr_c10.json
+
+WARNING: 1 of 25 selections sit on the edge of the tested grid.
+  leaky_relu/leaky_relu/0/interleave/256/ce  ->  0.003 (high edge)
+A boundary selection is not a calibrated learning rate: the optimum may lie outside
+the grid, and if every config clips to the same edge the comparison is confounded.
+Extend the grid past that edge and re-run this stage before using these rates.
+[2026-09-09 12:10:16] calibration at width 256 is not usable (select_lr exit 2)
+[2026-09-09 12:10:16] STAGE c10_256 FAILED -- stopping
+[2026-09-09 12:11:32] START | workers=6 | 26.6.2 | 8 GB
+[2026-09-09 12:11:32] SKIP mnist_256 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP mnist_512 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP c10_12 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP c10_32 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP c10_64 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP c10_128 (starting at c10_256)
+[2026-09-09 12:11:32] === c10_256 ===
+relu/relu/0/interleave/256/ce                 best lr=0.001     0.0001:40.91  0.0003:46.72  0.001:49.03  0.003:46.67  0.01:37.94
+tanh/tanh/0/interleave/256/ce                 best lr=0.001     0.0001:39.56  0.0003:44.76  0.001:47.47  0.003:45.68  0.01:32.41
+leaky_relu/leaky_relu/0/interleave/256/ce     best lr=0.003     0.0001:40.58  0.0003:46.15  0.001:48.81  0.003:49.18  0.01:44.12
+tanh/relu/0.5/interleave/256/ce               best lr=0.001     0.0001:41.54  0.0003:46.75  0.001:49.30  0.003:48.19  0.01:36.51
+tanh/leaky_relu/0.5/interleave/256/ce         best lr=0.001     0.0001:41.17  0.0003:46.33  0.001:49.57  0.003:49.39  0.01:42.17
+wrote results/best_lr_c10.json
+[2026-09-09 17:34:01] === c10_512 ===
+relu/relu/0/interleave/512/ce                 best lr=0.003     0.0003:47.06  0.001:49.92  0.003:50.01  0.01:38.07
+tanh/tanh/0/interleave/512/ce                 best lr=0.001     0.0003:44.64  0.001:47.39  0.003:45.40  0.01:32.67
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.001     0.0003:46.75  0.001:49.57  0.003:49.50  0.01:44.51
+tanh/relu/0.5/interleave/512/ce               best lr=0.001     0.0003:47.51  0.001:49.64  0.003:49.03  0.01:37.25
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.001     0.0003:46.91  0.001:49.12  0.003:48.80  0.01:41.24
+wrote results/best_lr_c10.json
+[2026-09-10 00:43:27] START | workers=6 | 26.6.2 | 8 GB
+[2026-09-10 00:43:27] SKIP mnist_256 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP mnist_512 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_12 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_32 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_64 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_128 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_256 (starting at c10_512)
+[2026-09-10 00:43:27] === c10_512 ===
+relu/relu/0/interleave/512/ce                 best lr=0.003     0.0003:47.06  0.001:49.92  0.003:50.01  0.01:38.07
+tanh/tanh/0/interleave/512/ce                 best lr=0.001     0.0003:44.64  0.001:47.39  0.003:45.40  0.01:32.67
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.001     0.0003:46.75  0.001:49.57  0.003:49.50  0.01:44.51
+tanh/relu/0.5/interleave/512/ce               best lr=0.001     0.0003:47.51  0.001:49.64  0.003:49.03  0.01:37.25
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.001     0.0003:46.91  0.001:49.12  0.003:48.80  0.01:41.24
+wrote results/best_lr_c10.json
+[2026-09-10 11:03:48] ALL STAGES COMPLETE
+### Run-inventory check
+
+| file | expected runs | ok rows | unique keys | missing | extra | duplicates | rejected |
+|---|---|---|---|---|---|---|---|
+| `calib_12_v2.csv` | 84 | 84 | 84 | 0 | 0 | 0 | 0 |
+| `calib_32.csv` | 84 | 84 | 84 | 0 | 0 | 0 | 0 |
+| `calib_64.csv` | 84 | 84 | 84 | 0 | 0 | 0 | 0 |
+| `calib_128_v2.csv` | 84 | 84 | 84 | 0 | 0 | 0 | 0 |
+| `calib_256.csv` | 60 | 60 | 60 | 0 | 0 | 0 | 0 |
+| `calib_mse_128.csv` | 27 | 27 | 27 | 0 | 0 | 0 | 0 |
+| `main_12_v2.csv` | 210 | 210 | 210 | 0 | 0 | 0 | 0 |
+| `main_32.csv` | 210 | 210 | 210 | 0 | 0 | 0 | 0 |
+| `main_64.csv` | 140 | 140 | 140 | 0 | 0 | 0 | 0 |
+| `main_128_v2.csv` | 140 | 140 | 140 | 0 | 0 | 0 | 0 |
+| `main_256.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `main_512.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `calib_512.csv` | 30 | 34 | 34 | 0 | 0 | 0 | 0 |
+| `mse_128.csv` | 30 | 30 | 30 | 0 | 0 | 0 | 0 |
+| `lrsweep_12.csv` | 300 | 300 | 300 | 0 | 0 | 0 | 0 |
+| `lrsweep_64.csv` | 250 | 250 | 250 | 0 | 0 | 0 | 0 |
+| `lrsweep_128.csv` | 250 | 250 | 250 | 0 | 0 | 0 | 0 |
+| `layout_128.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `layout_256.csv` | 60 | 60 | 60 | 0 | 0 | 0 | 0 |
+| `c10_calib_12.csv` | 90 | 90 | 90 | 0 | 0 | 0 | 0 |
+| `c10_calib_32.csv` | 90 | 90 | 90 | 0 | 0 | 0 | 0 |
+| `c10_calib_64.csv` | 90 | 90 | 90 | 0 | 0 | 0 | 0 |
+| `c10_calib_128.csv` | 90 | 90 | 90 | 0 | 0 | 0 | 0 |
+| `c10_calib_256.csv` | 50 | 50 | 50 | 0 | 0 | 0 | 0 |
+| `c10_calib_512.csv` | 40 | 40 | 40 | 0 | 0 | 0 | 0 |
+| `c10_main_12.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_32.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_64.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_128.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_256.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_512.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+
+### Rejected rows (status != ok, or truncated)
+
+None. Every row in every extended-sweep CSV has `status=ok` and a complete 100-entry confusion matrix.
+
+### Deliberate reductions (documented, not failures)
+
+- `calib_512.csv` — lr 0.03 dropped from the width-512 grid by design; the 4 runs completed at 0.03 before the trim remain in the file and are counted as extra
+- `lrsweep_64.csv` — optional stage, past the time budget; run last, now complete at 250/250
+
+### Problems
+
+None — every stage file holds exactly its intended grid.

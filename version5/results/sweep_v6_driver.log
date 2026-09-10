@@ -1,0 +1,229 @@
+[2026-09-09 00:35:49] START | workers=6 | 26.6.2 | 8 GB
+[2026-09-09 00:35:49] === mnist_256 ===
+[2026-09-09 00:35:49] STAGE main256topup start | jobs=50 pending=50 workers=6
+[2026-09-09 01:00:48] STAGE main256topup | done 32/50  remaining 18  elapsed 24m59s  ETA 0h14m
+[2026-09-09 01:14:41] STAGE main256topup | done 50/50  remaining 0  elapsed 38m52s  ETA 0h00m
+[2026-09-09 01:14:41] STAGE main256topup COMPLETE | 50 jobs run in 0h38m52s
+[2026-09-09 01:14:41] === mnist_512 ===
+[2026-09-09 01:14:41] STAGE main512topup start | jobs=75 pending=75 workers=6
+[2026-09-09 01:49:05] STAGE main512topup | done 16/75  remaining 59  elapsed 34m24s  ETA 2h06m
+[2026-09-09 02:25:31] STAGE main512topup | done 32/75  remaining 43  elapsed 70m50s  ETA 1h35m
+[2026-09-09 03:05:12] STAGE main512topup | done 48/75  remaining 27  elapsed 110m31s  ETA 1h02m
+[2026-09-09 03:40:59] STAGE main512topup | done 64/75  remaining 11  elapsed 146m18s  ETA 0h25m
+[2026-09-09 04:04:29] STAGE main512topup | done 75/75  remaining 0  elapsed 169m48s  ETA 0h00m
+[2026-09-09 04:04:29] STAGE main512topup COMPLETE | 75 jobs run in 2h49m48s
+[2026-09-09 04:04:29] === c10_12 ===
+[2026-09-09 04:04:29] STAGE c10calib12 start | jobs=60 pending=60 workers=6
+[2026-09-09 04:11:23] STAGE c10calib12 | done 60/60  remaining 0  elapsed 6m54s  ETA 0h00m
+[2026-09-09 04:11:23] STAGE c10calib12 COMPLETE | 60 jobs run in 0h06m54s
+relu/relu/0/interleave/12/ce                  best lr=0.001   0.001:38.36  0.003:35.22  0.01:23.92  0.03:9.69
+tanh/tanh/0/interleave/12/ce                  best lr=0.001   0.001:39.97  0.003:36.64  0.01:30.25  0.03:22.41
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.001   0.001:40.28  0.003:39.61  0.01:37.15  0.03:30.97
+tanh/relu/0.5/interleave/12/ce                best lr=0.001   0.001:39.33  0.003:35.37  0.01:28.04  0.03:24.81
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.001   0.001:39.65  0.003:37.47  0.01:35.56  0.03:28.15
+wrote results/best_lr_c10.json
+[2026-09-09 04:11:24] STAGE c10main12 start | jobs=100 pending=100 workers=6
+[2026-09-09 04:13:04] START | workers=6 | 26.6.2 | 8 GB
+[2026-09-09 04:13:04] SKIP mnist_256 (starting at c10_12)
+[2026-09-09 04:13:04] SKIP mnist_512 (starting at c10_12)
+[2026-09-09 04:13:04] === c10_12 ===
+[2026-09-09 04:13:04] STAGE c10calib12 start | jobs=90 pending=30 workers=6
+[2026-09-09 04:16:44] STAGE c10calib12 | done 30/30  remaining 0  elapsed 3m40s  ETA 0h00m
+[2026-09-09 04:16:45] STAGE c10calib12 COMPLETE | 30 jobs run in 0h03m41s
+relu/relu/0/interleave/12/ce                  best lr=0.0003    0.0001:35.36  0.0003:38.81  0.001:38.36  0.003:35.22  0.01:23.92  0.03:9.69
+tanh/tanh/0/interleave/12/ce                  best lr=0.0003    0.0001:36.37  0.0003:40.01  0.001:39.97  0.003:36.64  0.01:30.25  0.03:22.41
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.001     0.0001:35.47  0.0003:39.95  0.001:40.28  0.003:39.61  0.01:37.15  0.03:30.97
+tanh/relu/0.5/interleave/12/ce                best lr=0.001     0.0001:35.76  0.0003:39.30  0.001:39.33  0.003:35.37  0.01:28.04  0.03:24.81
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.001     0.0001:35.89  0.0003:39.02  0.001:39.65  0.003:37.47  0.01:35.56  0.03:28.15
+wrote results/best_lr_c10.json
+[2026-09-09 04:16:45] STAGE c10main12 start | jobs=100 pending=100 workers=6
+[2026-09-09 04:22:22] STAGE c10main12 | done 50/100  remaining 50  elapsed 5m37s  ETA 0h05m
+[2026-09-09 04:28:06] STAGE c10main12 | done 100/100  remaining 0  elapsed 11m21s  ETA 0h00m
+[2026-09-09 04:28:06] STAGE c10main12 COMPLETE | 100 jobs run in 0h11m21s
+[2026-09-09 04:28:06] === c10_32 ===
+[2026-09-09 04:28:06] STAGE c10calib32 start | jobs=90 pending=90 workers=6
+[2026-09-09 04:44:05] STAGE c10calib32 | done 60/90  remaining 30  elapsed 15m59s  ETA 0h07m
+[2026-09-09 04:51:39] STAGE c10calib32 | done 90/90  remaining 0  elapsed 23m33s  ETA 0h00m
+[2026-09-09 04:51:39] STAGE c10calib32 COMPLETE | 90 jobs run in 0h23m33s
+relu/relu/0/interleave/32/ce                  best lr=0.001     0.0001:38.19  0.0003:43.50  0.001:44.80  0.003:42.96  0.01:31.23  0.03:9.91
+tanh/tanh/0/interleave/32/ce                  best lr=0.001     0.0001:38.97  0.0003:43.09  0.001:43.73  0.003:41.36  0.01:33.70  0.03:21.47
+leaky_relu/leaky_relu/0/interleave/32/ce      best lr=0.001     0.0001:37.84  0.0003:43.32  0.001:44.87  0.003:44.53  0.01:40.17  0.03:34.05
+tanh/relu/0.5/interleave/32/ce                best lr=0.001     0.0001:38.91  0.0003:44.03  0.001:45.16  0.003:41.56  0.01:32.90  0.03:23.10
+tanh/leaky_relu/0.5/interleave/32/ce          best lr=0.001     0.0001:38.67  0.0003:43.90  0.001:44.19  0.003:42.89  0.01:39.61  0.03:28.12
+wrote results/best_lr_c10.json
+[2026-09-09 04:51:39] STAGE c10main32 start | jobs=100 pending=100 workers=6
+[2026-09-09 05:05:13] STAGE c10main32 | done 50/100  remaining 50  elapsed 13m34s  ETA 0h13m
+[2026-09-09 05:19:21] STAGE c10main32 | done 100/100  remaining 0  elapsed 27m42s  ETA 0h00m
+[2026-09-09 05:19:21] STAGE c10main32 COMPLETE | 100 jobs run in 0h27m42s
+[2026-09-09 05:19:21] === c10_64 ===
+[2026-09-09 05:19:22] STAGE c10calib64 start | jobs=90 pending=90 workers=6
+[2026-09-09 05:49:15] STAGE c10calib64 | done 60/90  remaining 30  elapsed 29m53s  ETA 0h14m
+[2026-09-09 06:04:28] STAGE c10calib64 | done 90/90  remaining 0  elapsed 45m06s  ETA 0h00m
+[2026-09-09 06:04:28] STAGE c10calib64 COMPLETE | 90 jobs run in 0h45m06s
+relu/relu/0/interleave/64/ce                  best lr=0.001     0.0001:40.35  0.0003:44.95  0.001:46.59  0.003:45.29  0.01:34.18  0.03:10.00
+tanh/tanh/0/interleave/64/ce                  best lr=0.001     0.0001:39.76  0.0003:44.62  0.001:46.45  0.003:41.75  0.01:33.19  0.03:22.77
+leaky_relu/leaky_relu/0/interleave/64/ce      best lr=0.001     0.0001:40.12  0.0003:44.59  0.001:47.59  0.003:46.27  0.01:42.03  0.03:35.77
+tanh/relu/0.5/interleave/64/ce                best lr=0.001     0.0001:40.47  0.0003:45.47  0.001:46.62  0.003:44.59  0.01:33.67  0.03:22.48
+tanh/leaky_relu/0.5/interleave/64/ce          best lr=0.001     0.0001:40.38  0.0003:45.53  0.001:47.27  0.003:43.95  0.01:40.23  0.03:25.99
+wrote results/best_lr_c10.json
+[2026-09-09 06:04:29] STAGE c10main64 start | jobs=100 pending=100 workers=6
+[2026-09-09 06:31:08] STAGE c10main64 | done 50/100  remaining 50  elapsed 26m39s  ETA 0h26m
+[2026-09-09 06:58:03] STAGE c10main64 | done 100/100  remaining 0  elapsed 53m34s  ETA 0h00m
+[2026-09-09 06:58:03] STAGE c10main64 COMPLETE | 100 jobs run in 0h53m34s
+[2026-09-09 06:58:03] === c10_128 ===
+[2026-09-09 06:58:04] STAGE c10calib128 start | jobs=90 pending=90 workers=6
+[2026-09-09 07:28:13] STAGE c10calib128 | done 30/90  remaining 60  elapsed 30m09s  ETA 1h00m
+[2026-09-09 07:58:29] STAGE c10calib128 | done 60/90  remaining 30  elapsed 60m25s  ETA 0h30m
+[2026-09-09 08:28:57] STAGE c10calib128 | done 90/90  remaining 0  elapsed 90m53s  ETA 0h00m
+[2026-09-09 08:28:57] STAGE c10calib128 COMPLETE | 90 jobs run in 1h30m53s
+relu/relu/0/interleave/128/ce                 best lr=0.001     0.0001:40.39  0.0003:46.63  0.001:48.46  0.003:46.37  0.01:35.14  0.03:12.59
+tanh/tanh/0/interleave/128/ce                 best lr=0.001     0.0001:39.86  0.0003:45.63  0.001:47.51  0.003:42.97  0.01:32.55  0.03:16.45
+leaky_relu/leaky_relu/0/interleave/128/ce     best lr=0.001     0.0001:40.24  0.0003:46.02  0.001:48.45  0.003:46.63  0.01:42.89  0.03:34.67
+tanh/relu/0.5/interleave/128/ce               best lr=0.001     0.0001:40.67  0.0003:46.47  0.001:49.23  0.003:46.96  0.01:35.37  0.03:19.68
+tanh/leaky_relu/0.5/interleave/128/ce         best lr=0.001     0.0001:40.67  0.0003:46.07  0.001:48.93  0.003:47.05  0.01:40.51  0.03:20.97
+wrote results/best_lr_c10.json
+[2026-09-09 08:28:58] STAGE c10main128 start | jobs=100 pending=100 workers=6
+[2026-09-09 08:59:25] STAGE c10main128 | done 25/100  remaining 75  elapsed 30m27s  ETA 1h31m
+[2026-09-09 09:30:14] STAGE c10main128 | done 50/100  remaining 50  elapsed 61m16s  ETA 1h01m
+[2026-09-09 10:00:33] STAGE c10main128 | done 75/100  remaining 25  elapsed 91m35s  ETA 0h30m
+[2026-09-09 10:30:53] STAGE c10main128 | done 100/100  remaining 0  elapsed 121m55s  ETA 0h00m
+[2026-09-09 10:30:53] STAGE c10main128 COMPLETE | 100 jobs run in 2h01m55s
+[2026-09-09 10:30:53] === c10_256 ===
+[2026-09-09 10:30:53] STAGE c10calib256 start | jobs=40 pending=40 workers=6
+[2026-09-09 11:09:35] STAGE c10calib256 | done 15/40  remaining 25  elapsed 38m42s  ETA 1h04m
+[2026-09-09 11:46:05] STAGE c10calib256 | done 30/40  remaining 10  elapsed 75m12s  ETA 0h25m
+[2026-09-09 12:10:16] STAGE c10calib256 | done 40/40  remaining 0  elapsed 99m23s  ETA 0h00m
+[2026-09-09 12:10:16] STAGE c10calib256 COMPLETE | 40 jobs run in 1h39m23s
+relu/relu/0/interleave/256/ce                 best lr=0.001     0.0001:40.91  0.0003:46.72  0.001:49.03  0.003:46.67
+tanh/tanh/0/interleave/256/ce                 best lr=0.001     0.0001:39.56  0.0003:44.76  0.001:47.47  0.003:45.68
+leaky_relu/leaky_relu/0/interleave/256/ce     best lr=0.003     0.0001:40.58  0.0003:46.15  0.001:48.81  0.003:49.18   <-- AT GRID HIGH EDGE, extend the grid
+tanh/relu/0.5/interleave/256/ce               best lr=0.001     0.0001:41.54  0.0003:46.75  0.001:49.30  0.003:48.19
+tanh/leaky_relu/0.5/interleave/256/ce         best lr=0.001     0.0001:41.17  0.0003:46.33  0.001:49.57  0.003:49.39
+wrote results/best_lr_c10.json
+
+WARNING: 1 of 25 selections sit on the edge of the tested grid.
+  leaky_relu/leaky_relu/0/interleave/256/ce  ->  0.003 (high edge)
+A boundary selection is not a calibrated learning rate: the optimum may lie outside
+the grid, and if every config clips to the same edge the comparison is confounded.
+Extend the grid past that edge and re-run this stage before using these rates.
+[2026-09-09 12:10:16] calibration at width 256 is not usable (select_lr exit 2)
+[2026-09-09 12:10:16] STAGE c10_256 FAILED -- stopping
+[2026-09-09 12:11:32] START | workers=6 | 26.6.2 | 8 GB
+[2026-09-09 12:11:32] SKIP mnist_256 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP mnist_512 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP c10_12 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP c10_32 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP c10_64 (starting at c10_256)
+[2026-09-09 12:11:32] SKIP c10_128 (starting at c10_256)
+[2026-09-09 12:11:32] === c10_256 ===
+[2026-09-09 12:11:32] STAGE c10calib256 start | jobs=50 pending=10 workers=6
+[2026-09-09 12:36:48] STAGE c10calib256 | done 10/10  remaining 0  elapsed 25m16s  ETA 0h00m
+[2026-09-09 12:36:48] STAGE c10calib256 COMPLETE | 10 jobs run in 0h25m16s
+relu/relu/0/interleave/256/ce                 best lr=0.001     0.0001:40.91  0.0003:46.72  0.001:49.03  0.003:46.67  0.01:37.94
+tanh/tanh/0/interleave/256/ce                 best lr=0.001     0.0001:39.56  0.0003:44.76  0.001:47.47  0.003:45.68  0.01:32.41
+leaky_relu/leaky_relu/0/interleave/256/ce     best lr=0.003     0.0001:40.58  0.0003:46.15  0.001:48.81  0.003:49.18  0.01:44.12
+tanh/relu/0.5/interleave/256/ce               best lr=0.001     0.0001:41.54  0.0003:46.75  0.001:49.30  0.003:48.19  0.01:36.51
+tanh/leaky_relu/0.5/interleave/256/ce         best lr=0.001     0.0001:41.17  0.0003:46.33  0.001:49.57  0.003:49.39  0.01:42.17
+wrote results/best_lr_c10.json
+[2026-09-09 12:36:49] STAGE c10main256 start | jobs=100 pending=100 workers=6
+[2026-09-09 13:31:30] STAGE c10main256 | done 20/100  remaining 80  elapsed 54m41s  ETA 3h38m
+[2026-09-09 14:37:21] STAGE c10main256 | done 40/100  remaining 60  elapsed 120m32s  ETA 3h00m
+[2026-09-09 15:42:56] STAGE c10main256 | done 60/100  remaining 40  elapsed 186m07s  ETA 2h04m
+[2026-09-09 16:40:33] STAGE c10main256 | done 80/100  remaining 20  elapsed 243m44s  ETA 1h00m
+[2026-09-09 17:34:01] STAGE c10main256 | done 100/100  remaining 0  elapsed 297m12s  ETA 0h00m
+[2026-09-09 17:34:01] STAGE c10main256 COMPLETE | 100 jobs run in 4h57m12s
+[2026-09-09 17:34:01] === c10_512 ===
+[2026-09-09 17:34:01] STAGE c10calib512 start | jobs=40 pending=40 workers=6
+[2026-09-09 19:17:23] STAGE c10calib512 | done 15/40  remaining 25  elapsed 103m22s  ETA 2h52m
+[2026-09-09 21:22:41] STAGE c10calib512 | done 30/40  remaining 10  elapsed 228m40s  ETA 1h16m
+[2026-09-10 00:20:16] STAGE c10calib512 | done 40/40  remaining 0  elapsed 406m15s  ETA 0h00m
+[2026-09-10 00:20:16] STAGE c10calib512 COMPLETE | 40 jobs run in 6h46m15s
+relu/relu/0/interleave/512/ce                 best lr=0.003     0.0003:47.06  0.001:49.92  0.003:50.01  0.01:38.07
+tanh/tanh/0/interleave/512/ce                 best lr=0.001     0.0003:44.64  0.001:47.39  0.003:45.40  0.01:32.67
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.001     0.0003:46.75  0.001:49.57  0.003:49.50  0.01:44.51
+tanh/relu/0.5/interleave/512/ce               best lr=0.001     0.0003:47.51  0.001:49.64  0.003:49.03  0.01:37.25
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.001     0.0003:46.91  0.001:49.12  0.003:48.80  0.01:41.24
+wrote results/best_lr_c10.json
+[2026-09-10 00:20:16] STAGE c10main512 start | jobs=100 pending=100 workers=6
+[2026-09-10 00:43:27] START | workers=6 | 26.6.2 | 8 GB
+[2026-09-10 00:43:27] SKIP mnist_256 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP mnist_512 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_12 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_32 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_64 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_128 (starting at c10_512)
+[2026-09-10 00:43:27] SKIP c10_256 (starting at c10_512)
+[2026-09-10 00:43:27] === c10_512 ===
+[2026-09-10 00:43:27] STAGE c10calib512 start | jobs=40 pending=0 workers=6
+[2026-09-10 00:43:28] STAGE c10calib512 COMPLETE | 0 jobs run in 0h00m01s
+relu/relu/0/interleave/512/ce                 best lr=0.003     0.0003:47.06  0.001:49.92  0.003:50.01  0.01:38.07
+tanh/tanh/0/interleave/512/ce                 best lr=0.001     0.0003:44.64  0.001:47.39  0.003:45.40  0.01:32.67
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.001     0.0003:46.75  0.001:49.57  0.003:49.50  0.01:44.51
+tanh/relu/0.5/interleave/512/ce               best lr=0.001     0.0003:47.51  0.001:49.64  0.003:49.03  0.01:37.25
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.001     0.0003:46.91  0.001:49.12  0.003:48.80  0.01:41.24
+wrote results/best_lr_c10.json
+[2026-09-10 00:43:28] STAGE c10main512 start | jobs=100 pending=100 workers=6
+[2026-09-10 01:45:53] STAGE c10main512 | done 10/100  remaining 90  elapsed 62m25s  ETA 9h21m
+[2026-09-10 02:48:11] STAGE c10main512 | done 20/100  remaining 80  elapsed 124m43s  ETA 8h18m
+[2026-09-10 03:54:05] STAGE c10main512 | done 30/100  remaining 70  elapsed 190m37s  ETA 7h24m
+[2026-09-10 04:56:39] STAGE c10main512 | done 40/100  remaining 60  elapsed 253m11s  ETA 6h19m
+[2026-09-10 05:57:05] STAGE c10main512 | done 50/100  remaining 50  elapsed 313m37s  ETA 5h13m
+[2026-09-10 06:57:51] STAGE c10main512 | done 60/100  remaining 40  elapsed 374m23s  ETA 4h09m
+[2026-09-10 07:59:31] STAGE c10main512 | done 70/100  remaining 30  elapsed 436m03s  ETA 3h06m
+[2026-09-10 09:00:41] STAGE c10main512 | done 80/100  remaining 20  elapsed 497m13s  ETA 2h04m
+[2026-09-10 10:02:07] STAGE c10main512 | done 90/100  remaining 10  elapsed 558m39s  ETA 1h02m
+[2026-09-10 11:03:48] STAGE c10main512 | done 100/100  remaining 0  elapsed 620m20s  ETA 0h00m
+[2026-09-10 11:03:48] STAGE c10main512 COMPLETE | 100 jobs run in 10h20m20s
+[2026-09-10 11:03:48] ALL STAGES COMPLETE
+### Run-inventory check
+
+| file | expected runs | ok rows | unique keys | missing | extra | duplicates | rejected |
+|---|---|---|---|---|---|---|---|
+| `calib_12_v2.csv` | 84 | 84 | 84 | 0 | 0 | 0 | 0 |
+| `calib_32.csv` | 84 | 84 | 84 | 0 | 0 | 0 | 0 |
+| `calib_64.csv` | 84 | 84 | 84 | 0 | 0 | 0 | 0 |
+| `calib_128_v2.csv` | 84 | 84 | 84 | 0 | 0 | 0 | 0 |
+| `calib_256.csv` | 60 | 60 | 60 | 0 | 0 | 0 | 0 |
+| `calib_mse_128.csv` | 27 | 27 | 27 | 0 | 0 | 0 | 0 |
+| `main_12_v2.csv` | 210 | 210 | 210 | 0 | 0 | 0 | 0 |
+| `main_32.csv` | 210 | 210 | 210 | 0 | 0 | 0 | 0 |
+| `main_64.csv` | 140 | 140 | 140 | 0 | 0 | 0 | 0 |
+| `main_128_v2.csv` | 140 | 140 | 140 | 0 | 0 | 0 | 0 |
+| `main_256.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `main_512.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `calib_512.csv` | 30 | 34 | 34 | 0 | 0 | 0 | 0 |
+| `mse_128.csv` | 30 | 30 | 30 | 0 | 0 | 0 | 0 |
+| `lrsweep_12.csv` | 300 | 300 | 300 | 0 | 0 | 0 | 0 |
+| `lrsweep_64.csv` | 250 | 250 | 250 | 0 | 0 | 0 | 0 |
+| `lrsweep_128.csv` | 250 | 250 | 250 | 0 | 0 | 0 | 0 |
+| `layout_128.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `layout_256.csv` | 60 | 60 | 60 | 0 | 0 | 0 | 0 |
+| `c10_calib_12.csv` | 90 | 90 | 90 | 0 | 0 | 0 | 0 |
+| `c10_calib_32.csv` | 90 | 90 | 90 | 0 | 0 | 0 | 0 |
+| `c10_calib_64.csv` | 90 | 90 | 90 | 0 | 0 | 0 | 0 |
+| `c10_calib_128.csv` | 90 | 90 | 90 | 0 | 0 | 0 | 0 |
+| `c10_calib_256.csv` | 50 | 50 | 50 | 0 | 0 | 0 | 0 |
+| `c10_calib_512.csv` | 40 | 40 | 40 | 0 | 0 | 0 | 0 |
+| `c10_main_12.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_32.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_64.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_128.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_256.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+| `c10_main_512.csv` | 100 | 100 | 100 | 0 | 0 | 0 | 0 |
+
+### Rejected rows (status != ok, or truncated)
+
+None. Every row in every extended-sweep CSV has `status=ok` and a complete 100-entry confusion matrix.
+
+### Deliberate reductions (documented, not failures)
+
+- `calib_512.csv` — lr 0.03 dropped from the width-512 grid by design; the 4 runs completed at 0.03 before the trim remain in the file and are counted as extra
+- `lrsweep_64.csv` — optional stage, past the time budget; run last, now complete at 250/250
+
+### Problems
+
+None — every stage file holds exactly its intended grid.
+[2026-09-10 11:05:20] STAGE c10lrcheck256 start | jobs=20 pending=20 workers=6
+[2026-09-10 11:53:29] STAGE c10lrcheck256 | done 20/20  remaining 0  elapsed 48m09s  ETA 0h00m
+[2026-09-10 11:53:29] STAGE c10lrcheck256 COMPLETE | 20 jobs run in 0h48m09s
+[2026-09-10 11:53:29] STAGE c10lrcheck512 start | jobs=20 pending=20 workers=6
