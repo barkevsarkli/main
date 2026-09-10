@@ -1,4 +1,5 @@
 #include "net.h"
+#include "rng_util.h"
 #include <cmath>
 #include <stdexcept>
 #include <algorithm>
@@ -118,7 +119,7 @@ std::vector<Act> make_mask(int n, Act act1, Act act2, float ratio,
         for (int i = n - n2; i < n; ++i) m[i] = act2;
     } else if (layout == "random") {
         for (int i = n - n2; i < n; ++i) m[i] = act2;
-        std::shuffle(m.begin(), m.end(), rng);
+        detu::shuffle(m, rng);
     } else {
         throw std::runtime_error("unknown layout: " + layout);
     }

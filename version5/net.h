@@ -34,6 +34,12 @@ public:
     // skipped, which roughly halves the cost of that layer's backward step.
     void backward(const float* d_values, float lr, bool compute_d_inputs = true);
 
+    // Weight snapshot, for early stopping: the run keeps the parameters from the epoch
+    // with the best validation accuracy and evaluates the test set with those, instead of
+    // whatever the last epoch happened to leave behind.
+    void save_state(std::vector<float>& w_out, std::vector<float>& b_out) const { w_out = W; b_out = b; }
+    void load_state(const std::vector<float>& w_in, const std::vector<float>& b_in) { W = w_in; b = b_in; }
+
     const float* outputs()  const { return out.data(); }
     const float* d_inputs() const { return d_in.data(); }
     int size() const { return n_out; }

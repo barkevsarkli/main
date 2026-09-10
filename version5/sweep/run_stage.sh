@@ -5,7 +5,7 @@
 # finished runs are detected from the result CSVs by pending.py and skipped.
 cd "$(dirname "$0")/.." || exit 1
 LABEL=$1; JOBS=$2; P=${3:-8}; CHUNK=${4:-64}
-LOG=results/sweep_extended.log
+LOG=${V5_RESULTS:-results}/sweep_extended.log
 ts(){ date '+%Y-%m-%d %H:%M:%S'; }
 pend(){ python3 sweep/pending.py < "$JOBS" | wc -l | tr -d ' '; }
 

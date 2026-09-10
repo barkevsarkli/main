@@ -8,8 +8,9 @@ width happened to be run longest."""
 import os, pandas as pd, numpy as np, math, itertools, collections
 rng = np.random.default_rng(0)
 BALANCED_N = 20
+RES = os.environ.get("V5_RESULTS", "results")
 def load(fn, cap=True):
-    df = pd.read_csv(f"results/{fn}", dtype=str)
+    df = pd.read_csv(f"{RES}/{fn}", dtype=str)
     df = df[(df.seed != "seed") & (df.status == "ok")].copy()
     for c in ["seed","hidden"]: df[c] = df[c].astype(int)
     if cap:
@@ -25,7 +26,7 @@ main = {12:"main_12_v2.csv",32:"main_32.csv",64:"main_64.csv",128:"main_128_v2.c
 M = {w: load(f) for w,f in main.items()}
 # CIFAR-10 replication; widths appear here only once their stage has finished.
 c10 = {w: f"c10_main_{w}.csv" for w in (12,32,64,128,256,512)}
-C = {w: load(f) for w,f in c10.items() if os.path.exists(f"results/{f}")}
+C = {w: load(f) for w,f in c10.items() if os.path.exists(f"{RES}/{f}")}
 WM = sorted(M); WC = sorted(C)
 def paired_d(df, a, b, col="test_acc"):
     x = df[df.cfg==a].set_index("seed")[col]; y = df[df.cfg==b].set_index("seed")[col]
@@ -120,7 +121,7 @@ for pair in ["tanh+relu","tanh+leaky_relu"]:
 
 print("\n"+"="*90); print("P9. Calibrated LR vs width (from best_lr.json)")
 import json
-for tag, path in (("MNIST", "results/best_lr.json"), ("CIFAR-10", "results/best_lr_c10.json")):
+for tag, path in (("MNIST", f"{RES}/best_lr.json"), ("CIFAR-10", f"{RES}/best_lr_c10.json")):
     if not os.path.exists(path): continue
     bl = json.load(open(path))
     print(f"  -- {tag} ({path})")

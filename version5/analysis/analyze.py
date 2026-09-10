@@ -39,7 +39,7 @@ except ImportError:  # p-values become "n/a"
     stats = None
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-RES = os.path.join(ROOT, "results")
+RES = os.environ.get("V5_RESULTS") or os.path.join(ROOT, "results")
 FIG = os.path.join(RES, "figures")
 os.makedirs(FIG, exist_ok=True)
 rng = np.random.default_rng(0)

@@ -10,7 +10,7 @@ on stdout so it can be pasted straight into REPORT_EXTENDED.md.
 """
 import csv, os, sys, collections
 
-RES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results")
+RES = os.environ.get("V5_RESULTS") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results")
 
 ALL  = ["relu", "tanh", "leaky_relu", "sigmoid", "tanh+relu", "tanh+leaky_relu", "sigmoid+relu"]
 CORE = ["relu", "tanh", "leaky_relu", "tanh+relu", "tanh+leaky_relu"]
@@ -68,6 +68,21 @@ EXPECT = {
     "c10_main_512.csv":  ("main",  CORE, range(1, 21), None),
 }
 
+# The AWS re-run is a different protocol (40 epochs, early stopping, deterministic
+# shuffle, ten calibration seeds, all seven configs at every width), so it has its own
+# expected grid.  Select it with V5_GRID=aws; the default stays the macOS sweep above so
+# nothing that reads results/ changes behaviour.
+AWS_CAL   = list(range(101, 107))
+AWS_SEEDS = range(1, 31)
+AWS_GRID  = [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3]
+if os.environ.get("V5_GRID") == "aws":
+    EXPECT = {}
+    for w in (12, 32, 64, 128, 256, 512):
+        EXPECT[f"calib_{w}.csv"]     = ("calib", ALL, AWS_CAL,   AWS_GRID)
+        EXPECT[f"main_{w}.csv"]      = ("main",  ALL, AWS_SEEDS, None)
+        EXPECT[f"c10_calib_{w}.csv"] = ("calib", ALL, AWS_CAL,   AWS_GRID)
+        EXPECT[f"c10_main_{w}.csv"]  = ("main",  ALL, AWS_SEEDS, None)
+
 # Stages dropped from the plan when the machine turned out to be 2.6x slower than the
 # Step-0 projection; absence of these files is expected, not a failure.
 # Deliberate, documented reductions — reported separately, not as failures.
@@ -84,19 +99,24 @@ def cfg_name(r):
     if ratio == 1: return r["act2"]
     return f'{r["act1"]}+{r["act2"]}'
 
-def read(path):
-    ok, bad = [], []
+def read(path, kind="main"):
+    ok, bad, diverged = [], [], []
     with open(path) as f:
         for r in csv.DictReader(f):
             if r.get("seed") == "seed":
                 continue
             if r.get("status") != "ok":
-                bad.append((cfg_name(r), r.get("seed"), r.get("lr"), r.get("layout"), f'status={r.get("status")}'))
+                # A calibration grid is supposed to contain rates that diverge -- that is how
+                # you know the selected one is interior rather than clipped. Such rows are
+                # counted and reported, but only an evaluation file failing counts as a
+                # problem.
+                bucket = diverged if kind == "calib" else bad
+                bucket.append((cfg_name(r), r.get("seed"), r.get("lr"), r.get("layout"), f'status={r.get("status")}'))
             elif not r.get("test_confusion") or r["test_confusion"].count("|") != 99:
                 bad.append((cfg_name(r), r.get("seed"), r.get("lr"), r.get("layout"), "truncated row"))
             else:
                 ok.append(r)
-    return ok, bad
+    return ok, bad, diverged
 
 def main():
     problems = []
@@ -110,8 +130,9 @@ def main():
             out.append(f"| `{fname}` | – | *file absent* | – | – | – | – | – |")
             problems.append(f"{fname}: file absent")
             continue
-        ok, bad = read(path)
+        ok, bad, diverged = read(path, kind)
         all_bad += [(fname,) + b for b in bad]
+        n_div = len(diverged)
         seeds = list(seeds)
         if kind == "layout":
             want = {(c, l, f"{r:g}", s) for (c, l, r) in cfgs for s in seeds}

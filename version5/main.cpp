@@ -38,6 +38,7 @@
 #include <memory>
 #include "dataset.h"
 #include "net.h"
+#include "rng_util.h"
 
 #define OUTPUT_SIZE 10
 #define SPLIT_SEED 12345u   // fixed permutation for the train/val/test split
@@ -146,7 +147,7 @@ int main(int argc, char** argv)
         uint32_t N = ds->size();
         std::vector<uint32_t> perm(N);
         std::iota(perm.begin(), perm.end(), 0u);
-        { std::mt19937 split_rng(SPLIT_SEED); std::shuffle(perm.begin(), perm.end(), split_rng); }
+        { std::mt19937 split_rng(SPLIT_SEED); detu::shuffle(perm, split_rng); }
         test_idx .assign(perm.begin(),                  perm.begin() + N_TEST);
         val_idx  .assign(perm.begin() + N_TEST,         perm.begin() + N_TEST + N_VAL);
         train_idx.assign(perm.begin() + N_TEST + N_VAL, perm.end());
@@ -157,7 +158,7 @@ int main(int argc, char** argv)
         // Same fixed SPLIT_SEED, so the split is identical for every run and every seed.
         std::vector<uint32_t> perm(CIFAR10_N_TRAIN);
         std::iota(perm.begin(), perm.end(), 0u);
-        { std::mt19937 split_rng(SPLIT_SEED); std::shuffle(perm.begin(), perm.end(), split_rng); }
+        { std::mt19937 split_rng(SPLIT_SEED); detu::shuffle(perm, split_rng); }
         val_idx  .assign(perm.begin(),         perm.begin() + N_VAL);
         train_idx.assign(perm.begin() + N_VAL, perm.end());
         test_idx.resize(CIFAR10_N_TEST);
@@ -165,6 +166,16 @@ int main(int argc, char** argv)
     }
     if (a.quiet) std::cout.clear();
     const int input_size = ds->input_size();
+
+    // Clean training accuracy is measured on a fixed 10 000-image subset of the training
+    // set rather than all 45 000. The subset is drawn once with SPLIT_SEED, so it is the
+    // same images for every run, every seed and every configuration -- paired comparisons
+    // are unaffected. Evaluating all 45 000 each epoch nearly doubled the cost of a run
+    // for no extra precision: 10 000 images match the test set's own sample size, which is
+    // what the generalisation gap is compared against.
+    std::vector<uint32_t> train_eval_idx(train_idx);
+    { std::mt19937 sub_rng(SPLIT_SEED + 1u); detu::shuffle(train_eval_idx, sub_rng); }
+    if (train_eval_idx.size() > (size_t)N_TEST) train_eval_idx.resize(N_TEST);
 
     // --- network ---------------------------------------------------------
     std::mt19937 rng(a.seed);
@@ -188,12 +199,20 @@ int main(int argc, char** argv)
     std::cout << " | train/val/test = " << train_idx.size() << "/" << val_idx.size() << "/" << test_idx.size() << "\n";
 
     // --- training --------------------------------------------------------
-    std::vector<float> epoch_loss, epoch_val_acc, epoch_val_f1, epoch_train_acc;
+    std::vector<float> epoch_loss, epoch_val_acc, epoch_val_f1, epoch_train_acc, epoch_train_acc_clean;
     std::string status = "ok";
     float d_loss[OUTPUT_SIZE];
 
+    // Early stopping: keep the parameters from the best-validation epoch and report the
+    // test set under those, rather than under whatever the last epoch left behind. Without
+    // this, a fixed epoch budget rewards whichever configuration happens to peak near the
+    // end, and the hybrids converge faster than their parents.
+    std::vector<std::vector<float>> best_W(net.size()), best_b(net.size());
+    float best_val_seen = -1.0f;
+    bool  have_snapshot = false;
+
     for (int epoch = 0; epoch < a.epochs && status == "ok"; ++epoch) {
-        std::shuffle(train_idx.begin(), train_idx.end(), rng);
+        detu::shuffle(train_idx, rng);
         double total_loss = 0; int correct = 0;
 
         for (uint32_t i : train_idx) {
@@ -223,45 +242,76 @@ int main(int argc, char** argv)
             net[0].backward(net[1].d_inputs(), a.lr, false);
         }
 
+        // `tr_acc` accumulates while the weights are still moving, so it understates the
+        // model that finished the epoch. `tr_clean` re-evaluates the finished model on the
+        // whole training set, which is what a generalisation gap needs.
         float tr_acc = 100.0f * correct / train_idx.size();
+        Metrics tr_clean = evaluate(net, *ds, train_eval_idx);
         Metrics v = evaluate(net, *ds, val_idx);
         epoch_loss.push_back(total_loss / train_idx.size());
         epoch_train_acc.push_back(tr_acc);
+        epoch_train_acc_clean.push_back(tr_clean.accuracy);
         epoch_val_acc.push_back(v.accuracy);
         epoch_val_f1.push_back(v.macro_f1);
+
+        if (v.accuracy > best_val_seen) {
+            best_val_seen = v.accuracy;
+            for (size_t L = 0; L < net.size(); ++L) net[L].save_state(best_W[L], best_b[L]);
+            have_snapshot = true;
+        }
+
         std::cout << "epoch " << epoch + 1 << "/" << a.epochs << "  loss=" << epoch_loss.back()
-                  << "  train_acc=" << tr_acc << "  val_acc=" << v.accuracy << "  val_f1=" << v.macro_f1 << "\n";
+                  << "  train_acc=" << tr_acc << "  train_clean=" << tr_clean.accuracy
+                  << "  val_acc=" << v.accuracy << "  val_f1=" << v.macro_f1 << "\n";
     }
 
     // --- final evaluation --------------------------------------------------
+    // Reported twice: at the last epoch's parameters (test_acc, for continuity with the
+    // earlier sweeps) and at the best-validation epoch's parameters (test_acc_best, the
+    // early-stopping result the article should quote).
     Metrics val  = evaluate(net, *ds, val_idx);
     Metrics test = evaluate(net, *ds, test_idx);
+    Metrics test_best = test;
+    if (have_snapshot) {
+        for (size_t L = 0; L < net.size(); ++L) net[L].load_state(best_W[L], best_b[L]);
+        test_best = evaluate(net, *ds, test_idx);
+    }
     int best_ep = epoch_val_acc.empty() ? 0 :
         (int)(std::max_element(epoch_val_acc.begin(), epoch_val_acc.end()) - epoch_val_acc.begin()) + 1;
     float best_val = epoch_val_acc.empty() ? 0.0f : *std::max_element(epoch_val_acc.begin(), epoch_val_acc.end());
     double secs = std::chrono::duration<double>(std::chrono::steady_clock::now() - t0).count();
 
     std::cout << "RESULT status=" << status << " test_acc=" << test.accuracy << " test_f1=" << test.macro_f1
+              << " test_acc_best=" << test_best.accuracy << " test_f1_best=" << test_best.macro_f1
               << " val_acc=" << val.accuracy << " (" << secs << " s)\n";
 
     // --- CSV -------------------------------------------------------------
-    std::vector<int> conf;
+    std::vector<int> conf, conf_best;
     for (int t = 0; t < OUTPUT_SIZE; ++t) for (int p = 0; p < OUTPUT_SIZE; ++p) conf.push_back(test.confusion[t][p]);
+    for (int t = 0; t < OUTPUT_SIZE; ++t) for (int p = 0; p < OUTPUT_SIZE; ++p) conf_best.push_back(test_best.confusion[t][p]);
 
     bool need_header = true;
     { std::ifstream f(a.out); need_header = !(f.good() && f.peek() != std::ifstream::traits_type::eof()); }
     std::ostringstream row;
     if (need_header)
+        // The first 23 columns are unchanged from the earlier sweeps, so every existing
+        // reader keeps working; the early-stopping and clean-training columns are appended.
         row << "seed,act1,act2,ratio,layout,hidden,lr,epochs,loss,status,seconds,"
                "train_acc,val_acc,val_f1,test_acc,test_f1,best_val_acc,best_val_epoch,"
-               "epoch_loss,epoch_train_acc,epoch_val_acc,epoch_val_f1,test_confusion\n";
+               "epoch_loss,epoch_train_acc,epoch_val_acc,epoch_val_f1,test_confusion,"
+               "dataset,train_acc_clean,test_acc_best,test_f1_best,"
+               "epoch_train_acc_clean,test_confusion_best\n";
     row << a.seed << "," << a.act1 << "," << a.act2 << "," << a.ratio << "," << a.layout << ","
         << a.hidden << "," << a.lr << "," << a.epochs << "," << a.loss << "," << status << "," << secs << ","
         << (epoch_train_acc.empty() ? 0.0f : epoch_train_acc.back()) << ","
         << val.accuracy << "," << val.macro_f1 << "," << test.accuracy << "," << test.macro_f1 << ","
         << best_val << "," << best_ep << ","
         << join(epoch_loss) << "," << join(epoch_train_acc) << "," << join(epoch_val_acc) << ","
-        << join(epoch_val_f1) << "," << join(conf) << "\n";
+        << join(epoch_val_f1) << "," << join(conf) << ","
+        << a.dataset << ","
+        << (epoch_train_acc_clean.empty() ? 0.0f : epoch_train_acc_clean.back()) << ","
+        << test_best.accuracy << "," << test_best.macro_f1 << ","
+        << join(epoch_train_acc_clean) << "," << join(conf_best) << "\n";
     std::ofstream out(a.out, std::ios::app);
     if (!out) { std::cerr << "cannot open " << a.out << "\n"; return 1; }
     out << row.str();
