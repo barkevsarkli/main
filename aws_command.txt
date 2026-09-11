@@ -43,7 +43,9 @@
 -------------------------------------------------------------------------------
  AMI            Ubuntu Server 24.04 LTS (ARM64)
  Instance       c8g.48xlarge   (192 vCPU / 384 GB)
- Disk           60 GB gp3      (repo 172 MB + sonuçlar ~200 MB, bolca yer)
+ Disk           100 GB gp3     (repo 172 MB + sonuçlar ~200 MB, fazlasıyla yeter)
+ Key pair       sweep-key.pem  (Mac'te ~/.ssh/sweep-key.pem, chmod 400)
+ Bölge          eu-central-1, en ucuz AZ'nin subnet'i (Spot fiyat geçmişine bak)
  Güvenlik       yalnız 22/tcp, kendi IP'ne kısıtlı
  Spot           "Persistent" + "Stop" davranışı seç; kesilirse tmux'taki iş
                 pending.py ile kaldığı yerden devam eder
@@ -53,6 +55,12 @@
 -------------------------------------------------------------------------------
  1) ARAÇLAR
 -------------------------------------------------------------------------------
+ <PUBLIC_IP> = instance'ın Public IPv4 adresi.  EC2 -> Instances -> makineyi seç
+ -> Details -> Public IPv4 address.  Elastic IP bağlamadıysan ve Persistent+Stop
+ kesintisi yaşarsan bu adres DEĞİŞİR; komutlarda yenisini kullan.
+
+ Bağlanma:  ssh -i ~/.ssh/sweep-key.pem ubuntu@<PUBLIC_IP>
+
 sudo apt update && sudo apt install -y build-essential git python3 python3-pip tmux htop
 pip3 install --break-system-packages numpy scipy pandas matplotlib
 
@@ -66,14 +74,31 @@ free -g | head -2            # ~370 GB available
  Veri setleri repoda izleniyor (CIFAR10/ 176 MB, MNIST 45 MB), o yüzden ayrı
  scp GEREKMİYOR. Klon her şeyi getirir.
 
-git clone <repo-url> article
+ Repo: https://github.com/barkevsarkli/main   (public, varsayılan dal: master)
+
+ !!! ÖNCE PUSH ET !!!  version5 henüz GitHub'a gitmemişti; klonlamadan önce
+     Mac'te bunu çalıştırdığından emin ol, yoksa instance'a version5 inmez:
+
+       cd ~/Desktop/article
+       git push origin master
+       git ls-remote --heads origin master   # hash local HEAD ile aynı olmalı
+
+ Instance'ta:
+
+git clone https://github.com/barkevsarkli/main.git article
 cd article/version5
+ls sweep/run_aws.sh analysis/sanity.py reference/determinism_mac.csv   # üçü de olmalı
 
- Repo private ise, Mac'te bir GitHub PAT üret ve:
-   git clone https://<KULLANICI>:<PAT>@github.com/<KULLANICI>/<REPO>.git article
+ Push edemiyorsan / etmek istemiyorsan, Mac'ten doğrudan gönder
+ (Mac'te, AYRI bir terminalde, instance ayaktayken):
 
- PAT istemiyorsan Mac'ten doğrudan gönder (Mac'te, ayrı terminalde):
-   rsync -az --exclude '.git' ~/Desktop/article/ ubuntu@<PUBLIC_IP>:~/article/
+   rsync -az --progress \
+     --exclude '.git' --exclude '.DS_Store' --exclude '*.bak' \
+     --exclude '_to_delete' --exclude 'results_aws' \
+     -e "ssh -i ~/.ssh/sweep-key.pem" \
+     ~/Desktop/article/ ubuntu@<PUBLIC_IP>:~/article/
+
+   (~240 MB; commit edilmemiş değişiklikleri de taşır, push'a ihtiyaç yok)
 
 -------------------------------------------------------------------------------
  3) DERLE
@@ -161,8 +186,17 @@ watch -n 60 'tail -3 ~/article/version5/results_aws/sweep.log; \
 htop                          # 190 işçi ~%100 CPU'da olmalı
 free -g                       # swap KULLANILMAMALI; kullanılıyorsa P'yi düşür
 
- Kalan iş sayısı:
-python3 sweep/pending.py < sweep/jobs_<asama>.txt | wc -l
+ Kalan iş sayısı (aşama adını jobs dosyasından seç):
+python3 sweep/pending.py < sweep/jobs_calib_128.txt   | wc -l    # MNIST  W=128 kalibrasyon
+python3 sweep/pending.py < sweep/jobs_main_128.txt    | wc -l    # MNIST  W=128 ana grid
+python3 sweep/pending.py < sweep/jobs_c10_main_256.txt| wc -l    # CIFAR  W=256 ana grid
+ls sweep/jobs_*.txt                                              # üretilmiş tüm aşamalar
+
+ Aşama sırası (run_aws.sh bu sırayla gider):
+   mnist_12  mnist_32  mnist_64  mnist_128  mnist_256  mnist_512
+   c10_12    c10_32    c10_64    c10_128    c10_256    c10_512
+ Baştan değil de ortadan devam etmek istersen:
+   P=190 EPOCHS=40 bash sweep/run_aws.sh c10_128
 
  ! Kesinti olursa: aynı komutu tekrar çalıştır. pending.py biten koşuları
    atlar, hiçbir iş tekrarlanmaz, yarım satırlar reddedilir.
@@ -176,25 +210,82 @@ python3 analysis/analyze.py               # summary_extended.md + figures/
 python3 analysis/patterns.py > $V5_RESULTS/patterns.txt
 
  Mac'te (kendi terminalinde):
-   scp -i ~/.ssh/<key>.pem -r ubuntu@<PUBLIC_IP>:~/article/version5/results_aws \
+   scp -i ~/.ssh/sweep-key.pem -r ubuntu@<PUBLIC_IP>:~/article/version5/results_aws \
        ~/Desktop/article/version5/
 
  ! Sonuçlar inene ve sanity.py geçene kadar instance'ı TERMINATE ETME.
 
 -------------------------------------------------------------------------------
- 7b) KOŞU SIRASINDA YEDEK  (spot kullanıyorsan şart)
+ 7b) KOŞU SIRASINDA YEDEK + MAC'İ UYUTMAMA  (spot kullanıyorsan şart)
 -------------------------------------------------------------------------------
- Mac'te ayrı bir terminalde, saatte bir sonuçları çeker:
+ SIRA ÖNEMLİ.  Yedek döngüsü, sweep ZATEN ÇALIŞIRKEN başlatılır — önce değil.
 
-   while true; do
-     rsync -az -e "ssh -i ~/.ssh/<key>.pem" \
-       ubuntu@<PUBLIC_IP>:~/article/version5/results_aws/ \
-       ~/Desktop/article/version5/results_aws/
-     sleep 3600
-   done
+   Terminal 1 (SSH)  adım 5   tmux new -s sweep -> sweep'i başlat -> Ctrl+B, D
+   Terminal 2 (SSH)  adım 6   watch ile izleme                      [opsiyonel]
+   Terminal 3 (Mac)  adım 7b  aşağıdaki caffeinate komutu           <-- EN SON
+
+ Mac'te, YENİ bir terminal penceresinde:
+
+   caffeinate -is bash -c '
+     while true; do
+       rsync -az -e "ssh -i ~/.ssh/sweep-key.pem" \
+         ubuntu@<PUBLIC_IP>:~/article/version5/results_aws/ \
+         ~/Desktop/article/version5/results_aws/
+       sleep 1800
+     done'
+
+ caffeinate bayrakları:
+   -i   boşta kalma (idle) uykusunu engeller
+   -s   sistem uykusunu engeller — YALNIZCA prize takılıyken geçerli
+   Etki, sardığı komut bitene kadar sürer.  Ctrl+C -> döngü durur, Mac normale
+   döner.  Ayrı bir "uyuma modu" açıp kapatmıyorsun, komutla birlikte yaşıyor.
+
+ ! KAPAK AÇIK KALMALI.  caffeinate, MacBook'un kapağı kapatılınca devreye giren
+   uykuyu engellemez.  Gece boyunca: şarja tak, kapağı açık bırak.  Ekranın
+   sönmesi sorun değil (-d vermedik, zaten sönsün).
+
+ ! Terminal penceresini kapatırsan döngü ölür.  Pencereyi açık bırak.
+
+ Kapağı kapatmak zorundaysan iki seçenek:
+   a) Yedeği makinenin kendisine yaptır  -> 7c (S3).  En temizi.
+   b) sudo pmset -b disablesleep 1       # kapak kapalıyken de uyumaz
+      İş biter bitmez MUTLAKA geri al:  sudo pmset -b disablesleep 0
+      (unutursan Mac bir daha hiç uyumaz, pil erir)
 
  Spot kesilse bile o ana kadarki her koşu elinde kalır; instance geri gelince
  aynı komut kaldığı yerden devam eder.
+
+ ! Persistent + Stop seçtiysen, kesinti sonrası instance'ın PUBLIC IP'si
+   DEĞİŞİR.  Döngü o andan itibaren eski IP'ye bağlanmaya çalışıp boşa döner —
+   hata vermez, sessizce yedek almaz.  Çözüm:
+     - Önceden Elastic IP bağla (EC2 -> Esnek IP'ler -> ayır -> ilişkilendir),
+       IP sabit kalır, hiçbir komutu değiştirmen gerekmez; ya da
+     - Ctrl+C, konsoldan yeni IP'yi al, komutu yeniden başlat.
+
+-------------------------------------------------------------------------------
+ 7c) ALTERNATİF YEDEK — S3  (Mac'i hiç açık tutmak istemiyorsan)
+-------------------------------------------------------------------------------
+ Hazırlık (launch'tan önce ya da sonra, fark etmez):
+   1. S3 -> Create bucket, bölge eu-central-1, ad: barkev-sweep-results
+      (isim global benzersiz olmalı; doluysa sonuna -2026 ekle ve
+       aşağıdaki komutlarda da değiştir)
+   2. IAM -> Roles -> Create role -> AWS service -> EC2
+      -> AmazonS3FullAccess -> ad: ec2-s3-sweep
+   3. Rolü instance'a ata.  Çalışan makineye sonradan da atanır:
+      EC2 -> Instances -> Actions -> Security -> Modify IAM role
+
+ Instance'ta, tmux'un DIŞINDA, sweep başladıktan sonra:
+
+   nohup bash -c 'while true; do
+     aws s3 sync ~/article/version5/results_aws s3://barkev-sweep-results/results_aws/ --quiet
+     sleep 900
+   done' >/dev/null 2>&1 &
+
+ Mac'e indirmek (ne zaman istersen, Mac uyanıkken):
+   aws s3 sync s3://barkev-sweep-results/results_aws/ ~/Desktop/article/version5/results_aws/
+
+ Bu yol Mac'ten bağımsızdır: laptopu kapat, git.  Ayrıca instance'ın IP'si
+ değişse bile etkilenmez.
 
 -------------------------------------------------------------------------------
  8) INSTANCE'I KAPAT
@@ -202,6 +293,11 @@ python3 analysis/patterns.py > $V5_RESULTS/patterns.txt
  Sonuçlar Mac'te ve doğrulandıysa:
    AWS Console -> Instances -> Terminate
  Spot kullandıysan request'i de iptal et, yoksa yeniden başlatır.
+   Sıra: Spot Talepleri -> talebi iptal et  ->  Instances -> Terminate
+         -> Volumes (available kalan varsa sil)
+         -> Esnek IP'ler (Elastic IP aldıysan serbest bırak)
+ Mac'teki caffeinate döngüsünü de Ctrl+C ile durdur; pmset kullandıysan
+ sudo pmset -b disablesleep 0
 
 ===============================================================================
  SIK YAPILAN HATALAR
@@ -213,3 +309,6 @@ python3 analysis/patterns.py > $V5_RESULTS/patterns.txt
  * V5_GRID=aws unutulmus                       -> eski izgarayi bekler, hata verir
  * P çekirdek sayısından büyük                  -> bağlam değiştirme kaybı
  * sanity.py çalıştırılmadan terminate edilmiş  -> eksik hücre fark edilmez
+ * Mac uyudu, yedek döngüsü sessizce durdu      -> caffeinate ile sar, kapak açık
+ * Kesinti sonrası eski IP'ye rsync             -> IP değişti; Elastic IP bağla
+ * caffeinate sweep'ten ÖNCE çalıştırılmış      -> sarılacak döngü yok, işe yaramaz

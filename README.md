@@ -10,6 +10,7 @@ A progressive exploration of neural network architectures built entirely from sc
 | **v2** | MNIST | 3-layer (2 hidden) | Backprop + SGD | Multi-activation experimentation (even/odd neuron split) |
 | **v3** | MNIST | 3-layer (2 hidden) | Backprop + SGD | Scaled hidden layers (128 neurons), configurable epochs |
 | **v4** | CIFAR-10 | 4-layer (3 hidden) | Backprop + SGD | Color image support (32x32 RGB) |
+| **v5** | MNIST | 3-layer (2 hidden), width on CLI | Backprop + SGD | Corrected protocol: per-neuron activation masks, uniform output layer, tuned LR, fixed val/test split, macro-F1 |
 
 ## Datasets
 
@@ -110,6 +111,24 @@ Adapts the network for color image classification with a deeper architecture.
 
 ---
 
+### Version 5 -- Corrected Hybrid-Activation Protocol
+
+Re-tests the v2 hypothesis ("mixing activation functions within a layer improves accuracy") with the confounds removed. Results and interpretation: `version5/FINDINGS.md`; full tables: `version5/results/summary.md`.
+
+- **Architecture**: `784 -> H -> H -> 10`, `H` on the CLI (12 and 128 tested)
+- **Activations**: per-neuron mask built from `--act1 --act2 --ratio --layout` (`interleave` at ratio 0.5 reproduces the v2 even/odd split; `block` and `random` also available)
+- **Output layer**: uniform -- linear + softmax with cross-entropy (`--loss ce`, default) or sigmoid with MSE (`--loss mse`)
+- **Split**: fixed 45k / 5k / 10k train / val / test, identical for every run; per-epoch shuffling seeded by `--seed`
+- **Metrics**: accuracy, macro-F1 and confusion matrix on validation (every epoch) and test (final)
+- **CLI**: `./main --act1 tanh --act2 relu --ratio 0.5 --layout interleave --hidden 12 --seed 1 --epochs 10 --lr 0.003 --loss ce --data .. --out results/x.csv`
+- **Files**: `main.cpp`, `net.cpp`, `net.h`, `data.cpp`, `data.h`, `sweep/` (job generation, LR selection, resumable chunked runner), `analysis/analyze.py`, `results/`
+
+**Fixes relative to v2/v3**: output layer no longer hybridised; `tanh/tanh`, `leaky/leaky`, `sigmoid/sigmoid` baselines added; learning rate tuned per configuration on validation with calibration seeds disjoint from evaluation seeds; single leaky-ReLU slope in forward and backward; `std::mt19937` instead of `rand()`; data path on the CLI.
+
+**Headline** (one-hour first-look sweep, 20 seeds at H=12, 6 seeds at H=128): the 6.5-point v2 advantage of `tanh/relu` over `relu/relu` does not survive the corrections -- it came from ReLU instability under the v2 setup. What survives: hybrids are far more robust to the learning rate (ReLU collapses at lr 0.03--0.1, the hybrid does not), and at H=128 `tanh+leaky_relu` beats `leaky_relu` on 6/6 seeds (+0.30 pts, p = 0.007) while at H=12 every hybrid is slightly below its better parent.
+
+---
+
 ## Building and Running
 
 ### Version 1
@@ -140,6 +159,14 @@ g++ -Wall -Wextra -O2 -o main main.cpp net.cpp cifar_data.cpp
 ./main tanh leaky_relu 42 10
 ```
 
+### Version 5
+```bash
+cd version5
+g++ -std=c++17 -O3 -march=native -o main main.cpp net.cpp data.cpp
+./main --act1 tanh --act2 relu --ratio 0.5 --hidden 12 --seed 1 --epochs 10 --lr 0.003 --data .. --out results/test.csv
+python3 analysis/analyze.py      # -> results/summary.md + results/figures/
+```
+
 ## Evolution Summary
 
 ```
@@ -157,10 +184,9 @@ v3: Wider 3-layer MLP (MNIST)
  |
 v4: 4-layer MLP (CIFAR-10)
  |
- v--- Paradigm shift: biological simulation replaces backpropagation
+ v--- Confounds removed, per-neuron activation masks, F1, paired statistics
  |
-v5: Bio-inspired 3D spatial neural network (MNIST)
-    - Hebbian learning, neurogenesis, mutation, tick-based processing
+v5: Corrected hybrid-activation protocol (MNIST, H = 12 / 128)
 ```
 
 ## File Structure
@@ -196,8 +222,15 @@ main-main/
 │   └── results_*.csv
 │
 ├── version4/                    # CIFAR-10 support
-    ├── main.cpp
-    ├── net.cpp / net.h
-    ├── cifar_data.cpp / cifar_data.h
-    ├── run.sh
-    └── cifar_results_*.csv
+│   ├── main.cpp
+│   ├── net.cpp / net.h
+│   ├── cifar_data.cpp / cifar_data.h
+│   ├── run.sh
+│   └── cifar_results_*.csv
+│
+└── version5/                    # Corrected hybrid-activation protocol
+    ├── FINDINGS.md              # results + interpretation
+    ├── main.cpp, net.cpp / net.h, data.cpp / data.h
+    ├── sweep/                   # make_jobs.py, select_lr.py, pending.py, run_chunk.sh
+    ├── analysis/analyze.py      # paired stats, bootstrap CIs, figures
+    └── results/                 # *.csv, best_lr.json, summary.md, figures/
