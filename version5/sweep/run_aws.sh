@@ -98,4 +98,4 @@ for W in 12 32 64 128 256 512; do
 done
 
 say "ALL STAGES COMPLETE"
-python3 analysis/sanity.py | tee -a "$LOG"
+V5_GRID=aws python3 analysis/sanity.py | tee -a "$LOG"

@@ -45,10 +45,11 @@ os.makedirs(FIG, exist_ok=True)
 rng = np.random.default_rng(0)
 
 # The evaluation grid is reported at one seed count for every width, so the width axis is a
-# like-for-like comparison and the pooled tests carry equal weight per cell.  Widths 12 and 32
-# hold 30 seeds on disk from an earlier pass; those extra seeds are kept and reported
-# separately (section 2x) rather than deleted or silently mixed in.
-BALANCED_N = 20
+# like-for-like comparison and the pooled tests carry equal weight per cell.  Any width that
+# holds more seeds on disk than this cap is kept and reported separately (section 3x) rather
+# than deleted or silently mixed in.  Set V5_N to the seed count the sweep actually ran:
+# the macOS sweep was n=20, the AWS extended sweep is n=30.
+BALANCED_N = int(os.environ.get("V5_N", "20"))
 
 COLLAPSE_ACC = 50.0     # final validation accuracy below this counts as a collapsed run
 WITHIN_PTS = 1.0        # robustness score: stay within this many points of the config's best
@@ -547,15 +548,41 @@ def crossover_sections(cross, per_width, widths, ds, tag, sec):
     return md
 
 
+def _protocol_facts():
+    """Read the epoch count and the calibration seed range off the CSVs, so the protocol
+    paragraph describes the run in hand instead of a hardcoded earlier one."""
+    eps, cseeds = set(), set()
+    for fn in sorted(os.listdir(RES)):
+        if not fn.endswith(".csv"):
+            continue
+        try:
+            with open(os.path.join(RES, fn), newline="") as fh:
+                for r in csv.DictReader(fh):
+                    if r.get("seed") == "seed":
+                        continue
+                    if r.get("epochs", "").strip().isdigit():
+                        eps.add(int(r["epochs"]))
+                    if "calib" in fn and r.get("seed", "").strip().isdigit():
+                        cseeds.add(int(r["seed"]))
+        except Exception:
+            continue
+    ep = "/".join(str(e) for e in sorted(eps)) if eps else "?"
+    cs = (f"{min(cseeds)}\u2013{max(cseeds)}" if len(cseeds) > 1
+          else (str(min(cseeds)) if cseeds else "?"))
+    return ep, cs
+
+
 # ---------------------------------------------------------------- main
 def main():
+    EPOCHS_LABEL, CALIB_SEEDS_LABEL = _protocol_facts()
     md = ["# version5 results (extended sweep): hybrid activations across width, learning rate and layout", ""]
-    md += ["Protocol: MLP D→H→H→10 (D = 784 on MNIST, 3072 on CIFAR-10), batch-size-1 SGD, 10 epochs, "
+    md += [f"Protocol: MLP D\u2192H\u2192H\u219210 (D = 784 on MNIST, 3072 on CIFAR-10), batch-size-1 SGD, "
+           f"{EPOCHS_LABEL} epochs with early stopping on validation accuracy, "
            "fixed 45k/5k/10k train/val/test split "
            "shared by all runs, per-epoch shuffling, He/Kaiming-uniform init. Hidden layers carry per-neuron activation "
            "masks; the output layer is uniform (linear+softmax with cross-entropy, or sigmoid with MSE). Learning rate "
-           "chosen per configuration on validation accuracy using calibration seeds (101–103) that are disjoint "
-           "from the evaluation seeds (1–N). All comparisons are paired by seed. Bootstrap CIs use 10,000 resamples "
+           f"chosen per configuration on validation accuracy using calibration seeds ({CALIB_SEEDS_LABEL}) that are disjoint "
+           f"from the evaluation seeds (1\u2013{BALANCED_N}). All comparisons are paired by seed. Bootstrap CIs use 10,000 resamples "
            f"and a collapsed run means final validation accuracy below {COLLAPSE_ACC:g}%.", ""]
 
     mains = discover("main")
@@ -665,8 +692,8 @@ def main():
     if over_n:
         md += ["## 3x. Widths with more seeds than the balanced grid reports", "",
                f"The tables above cap every width at n = {BALANCED_N} so the width axis is "
-               "like-for-like. Widths 12 and 32 were run to 30 seeds in an earlier pass and those "
-               "runs are kept. Below, each such width is shown at its full seed count next to the "
+               "like-for-like. Some widths hold more seeds on disk than that cap and those runs "
+               "are kept. Below, each such width is shown at its full seed count next to the "
                f"capped n = {BALANCED_N}. A paired difference that moves materially between the two "
                "is a warning that the cell is noise-limited, not a reason to prefer either number.", ""]
         for w, seeds in sorted(over_n.items()):

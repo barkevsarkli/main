@@ -13,6 +13,15 @@
              c7g.16xlarge (64 vCPU)  ~42.9 saat   ~$100
              (+-%30 belirsizlik: Graviton4 çekirdek hızı M1'e yakın ama ölçülmedi)
 
+ GERÇEKLEŞEN (2026-09-11/12, c8g.48xlarge spot, eu-central-1a, P=190)
+             başlangıç 17:15 UTC  ->  ALL STAGES COMPLETE 06:59 UTC
+             süre 13 s 44 dk | spot ~$2.6/sa | toplam ~$40
+             sanity: 24/24 dosya tam, 0 eksik / 0 fazla / 0 kopya / 0 red
+             Aşama süreleri:  mnist_12 77 s ... mnist tümü ~1.5 sa
+                              c10_32 ~12 dk | c10_64 ~25 dk | ikiye katlama ~2.1x
+                              c10_512 tek başına toplamın yaklaşık yarısı
+             Tahmin ($39 / 15.1 sa) neredeyse birebir tuttu.
+
  NOT         Maliyetin %57'si kalibrasyon. Bütçe sıkışırsa kalibrasyonu 40
              yerine 20 epoch'ta koşmak toplamı ~%25 düşürür; öğrenme oranı
              sıralaması yakınsamadan önce oturuyor. Değerlendirme her hâlükârda
@@ -144,21 +153,43 @@ python3 analysis/compare_rows.py /tmp/det_linux.csv reference/determinism_mac.cs
        yine karıştırılamaz ve AWS koşusunun tek anlamı kalmaz.
 
  4c) Hız ölçümü — P'yi tahminle değil ölçerek seç, ve maliyeti erken gör
+
+ ! run_chunk.sh'ın ikinci argümanı KAÇ İŞ alınacağı, üçüncüsü kaç işçi.  İş
+   sayısı işçi sayısından küçükse hepsi aynı anda başlar ve P'yi değiştirmek
+   hiçbir şeyi değiştirmez.  Ölçmek istediğin şey 190 çekirdek DOLUYKEN bellek
+   bant genişliğinin ne kadar kayıp verdiği, o yüzden chunk = P olmalı.
+
+ En pahalı hücre tipinden (CIFAR-10, genişlik 128, 40 epoch) 190 koşu:
+
 python3 sweep/make_jobs.py --stage calib --dataset cifar10 --hidden 128 \
-        --seeds 201-232 --lrs 0.001 --configs core --epochs 40 \
+        --seeds 201-240 --lrs 0.001 --configs core --epochs 40 \
         --out /tmp/bench.csv > /tmp/bench_jobs.txt
+wc -l /tmp/bench_jobs.txt          # 200 (5 config x 40 tohum)
 
-     for P in 96 144 190; do
-       rm -f /tmp/bench.csv
-       echo "P=$P"; time bash sweep/run_chunk.sh /tmp/bench_jobs.txt 32 $P
-     done
+rm -f /tmp/bench.csv
+time bash sweep/run_chunk.sh /tmp/bench_jobs.txt 190 190
 
-     32 koşu / gecen sure = kosu basina duvar suresi. Tahminimiz P=190'da
-     CIFAR-10 W=128 icin ~0.5 dk/kosu. Iki katindan fazlaysa toplam maliyet de
-     iki katina cikacak demektir; instance'i orada kapat, kaybin birkac dolar.
+ Ayrı bir SSH oturumunda:  uptime  (load ~190 olmalı),  free -g  (swap 0)
 
-     Olcum tohumlari 201+ secildi: degerlendirme (1-30) ve kalibrasyon (101-106)
-     tohumlarina dokunmaz, sonuclara karismaz.
+ ! run_chunk.sh her koşunun çıktısını /dev/null'a atar; bitene kadar tek satır
+   bile yazmaz.  15-25 dakika sessizlik normaldir, iş donmuş değildir.
+ ! SSH koparsa `time` çıktısı kaybolur.  Süreyi CSV'den de okuyabilirsin:
+   koşu süresi saniye cinsinden 11. alanda (status=ok'tan hemen sonra).
+
+ ÖLÇÜLEN (2026-09-11, c8g.48xlarge, eu-central-1a, Graviton4):
+   CIFAR-10 W=128, 40 epoch, 190 paralel  ->  koşu başına 773-775 s
+   Tek başına çalışan bir koşunun tahmini  ->  ~760-870 s
+   Yani 190 çekirdekte çekişme cezası ~0: ölçeklenme neredeyse doğrusal,
+   P=190 doğru seçim.  Bu iş yükü hesap-bağımlı, bellek-bağımlı değil.
+
+ Karar eşiği (190 koşu duvar süresi):
+   <= 22 dk   ölçeklenme iyi, plana devam
+   25-35 dk   bant genişliği sınırlıyor; P=128 ile tekrar ölç
+   > 40 dk    toplam maliyet iki katına çıkar; dur, kapsamı küçültmeyi konuş
+
+ Ölçüm tohumları 201+ seçildi: değerlendirme (1-30) ve kalibrasyon (101-106)
+ tohumlarına dokunmaz, sonuçlara karışmaz.  Çıktı /tmp/bench.csv'ye gider,
+ results_aws/ kirlenmez.  Ölçümün kendi maliyeti ~20 dk ≈ $1.
 
 -------------------------------------------------------------------------------
  5) TARAMAYI BAŞLAT
