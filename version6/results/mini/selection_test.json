@@ -1,0 +1,50 @@
+{
+ "mnist": {
+  "cfg1": {
+   "kernel_mode": "random",
+   "conv_k": 3,
+   "kernel_family": "none"
+  },
+  "cfg2": {
+   "kernel_mode": "frozen",
+   "conv_k": 3,
+   "kernel_family": "sobel"
+  },
+  "cfg1_relu_best_val_mean": 97.47333333333334,
+  "table": [
+   {
+    "kernel_mode": "random",
+    "conv_k": 3,
+    "kernel_family": "none",
+    "relu_best_lr": 0.03,
+    "relu_best_val_mean": 97.47333333333334,
+    "stress_lr": 0.1,
+    "stress_found": true,
+    "diff_final_val_at_stress": 0.040000000000000334,
+    "eligible": false
+   },
+   {
+    "kernel_mode": "frozen",
+    "conv_k": 3,
+    "kernel_family": "sobel",
+    "relu_best_lr": 0.03,
+    "relu_best_val_mean": 97.70666666666666,
+    "stress_lr": 0.3,
+    "stress_found": true,
+    "diff_final_val_at_stress": 70.43333333333334,
+    "eligible": true
+   },
+   {
+    "kernel_mode": "bank_init",
+    "conv_k": 3,
+    "kernel_family": "sobel",
+    "relu_best_lr": 0.03,
+    "relu_best_val_mean": 97.72666666666666,
+    "stress_lr": 0.1,
+    "stress_found": true,
+    "diff_final_val_at_stress": 0.040000000000000334,
+    "eligible": true
+   }
+  ]
+ }
+}

@@ -220,6 +220,21 @@ def smoke(epochs=2):
     return jobs
 
 
+def mini():
+    """Small Stage-1-shaped set (3 epochs) used only to test the analysis and selection
+    scripts end to end: MNIST H = 128, three kernel configurations, three models, an LR
+    grid reaching into the ReLU collapse region, seeds 1-3."""
+    jobs = []
+    for kc in ({"kernel_mode": "random", "conv_k": 3, "kernel_family": "none"},
+               {"kernel_mode": "frozen", "conv_k": 3, "kernel_family": "sobel"},
+               {"kernel_mode": "bank_init", "conv_k": 3, "kernel_family": "sobel"}):
+        for m in ("relu", "tanh", "tanh+relu"):
+            for lr in (0.03, 0.1, 0.3):
+                for s in (1, 2, 3):
+                    jobs.append(job("mini", "cnn", "mnist", 128, m, lr, s, kc, epochs=3))
+    return jobs
+
+
 # ---- helpers ----------------------------------------------------------------------------
 
 def dedupe(jobs):
@@ -265,7 +280,7 @@ def write(jobs, stage, name="jobs.jsonl"):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("stage", choices=("stage0", "stage1", "stage2", "stage3", "smoke"))
+    ap.add_argument("stage", choices=("stage0", "stage1", "stage2", "stage3", "smoke", "mini"))
     ap.add_argument("--part", choices=("sweep", "ext"), default="sweep", help="stage 2 only")
     ap.add_argument("--epochs", type=int, default=2, help="smoke only")
     a = ap.parse_args()
@@ -282,6 +297,8 @@ def main():
     elif a.stage == "stage3":
         sel1, sel2 = selections()
         write(dedupe(stage3(sel1, sel2)), "stage3")
+    elif a.stage == "mini":
+        write(dedupe(mini()), "mini")
     else:
         write(dedupe(smoke(a.epochs)), "smoke")
 

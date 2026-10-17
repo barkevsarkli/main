@@ -369,6 +369,7 @@ int run(const Args& a, const Config& c)
 
     // --- training --------------------------------------------------------
     std::vector<float> epoch_loss, epoch_val_acc, epoch_val_f1, epoch_val_loss, epoch_train_acc, epoch_train_acc_clean;
+    std::vector<double> epoch_seconds;         // wall time of each epoch (training + evaluation + diagnostics)
     std::string status = "ok";
     int status_epoch = 0;
     const long long max_steps = std::stoll(a.s("--max-steps"));
@@ -383,6 +384,7 @@ int run(const Args& a, const Config& c)
     CollapseWatch watch(c.abort_on_collapse);
 
     for (int epoch = 0; epoch < c.epochs && status == "ok"; ++epoch) {
+        const auto te0 = std::chrono::steady_clock::now();
         detu::shuffle(sp.train, r_order);
         if (epoch == 0 && debug_order > 0) {
             std::cout << "ORDER";
@@ -431,6 +433,7 @@ int run(const Args& a, const Config& c)
             if ((epoch + 1) % stats_every == 0 || last) stats->record_probe(epoch + 1, nf, *ds);
         }
 
+        epoch_seconds.push_back(std::chrono::duration<double>(std::chrono::steady_clock::now() - te0).count());
         if (!quiet)
             std::cout << "epoch " << epoch + 1 << "/" << c.epochs << "  loss=" << epoch_loss.back()
                       << "  train_acc=" << tr_acc << "  train_clean=" << tr_clean.accuracy
@@ -497,6 +500,7 @@ int run(const Args& a, const Config& c)
     put("init_hash", init_hash); put("init_hash_dense", init_hash_dense); put("kernel_hash", kernel_hash);
     put("split_hash", split_h.hex());
     put("dtype", std::is_same<T, float>::value ? "float32" : "float64");
+    put("epoch_seconds", util::join(epoch_seconds));
 
     std::string header, row;
     for (size_t i = 0; i < cols.size(); ++i) {
