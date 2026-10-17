@@ -1,0 +1,74 @@
+[
+  {
+    "hidden": 64,
+    "config": "relu",
+    "n_hits": 12,
+    "epochs": [
+      28,
+      19,
+      30,
+      23,
+      21,
+      21,
+      32,
+      26,
+      29,
+      30,
+      40,
+      22
+    ],
+    "largest_class_share": 48.903000000000006
+  },
+  {
+    "hidden": 64,
+    "config": "tanh+relu",
+    "n_hits": 0,
+    "epochs": [],
+    "largest_class_share": 11.452000000000002
+  },
+  {
+    "hidden": 128,
+    "config": "relu",
+    "n_hits": 30,
+    "epochs": [
+      25,
+      20,
+      20,
+      27,
+      18,
+      20,
+      23,
+      28,
+      23,
+      19,
+      22,
+      20,
+      20,
+      22,
+      24,
+      21,
+      23,
+      20,
+      26,
+      20,
+      19,
+      17,
+      20,
+      24,
+      25,
+      17,
+      19,
+      23,
+      23,
+      22
+    ],
+    "largest_class_share": 99.99733333333333
+  },
+  {
+    "hidden": 128,
+    "config": "tanh+relu",
+    "n_hits": 0,
+    "epochs": [],
+    "largest_class_share": 11.433333333333332
+  }
+]

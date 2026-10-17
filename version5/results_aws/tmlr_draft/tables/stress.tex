@@ -1,0 +1,26 @@
+\begin{table}[htbp]
+\centering
+\caption{MNIST at learning rate 0.03. Each row has 30 seeds. The loss is peak minus final validation accuracy.}
+\label{tab:stress}
+\small
+\begin{tabular}{@{}rlrrrr@{}}
+\toprule
+H & Model & Final acc. (SD) & Peak acc. & Loss (pp) & Below 15\% \\
+\midrule
+64 & ReLU & 58.431 (40.047) & 95.891 & 37.460 & 12/30 \\
+64 & Leaky-ReLU & 84.005 (2.889) & 96.629 & 12.625 & 0/30 \\
+64 & tanh & 95.907 (0.303) & 96.398 & 0.491 & 0/30 \\
+64 & sigmoid & 97.558 (0.137) & 97.659 & 0.101 & 0/30 \\
+64 & tanh + ReLU & 96.393 (0.302) & 96.861 & 0.468 & 0/30 \\
+64 & tanh + leaky-ReLU & 95.689 (0.506) & 96.539 & 0.849 & 0/30 \\
+64 & sigmoid + ReLU & 96.451 (0.261) & 96.870 & 0.419 & 0/30 \\
+128 & ReLU & 10.611 (0.911) & 96.371 & 85.760 & 30/30 \\
+128 & Leaky-ReLU & 85.228 (2.276) & 96.365 & 11.137 & 0/30 \\
+128 & tanh & 95.111 (0.580) & 95.862 & 0.751 & 0/30 \\
+128 & sigmoid & 98.031 (0.156) & 98.115 & 0.083 & 0/30 \\
+128 & tanh + ReLU & 96.761 (0.258) & 97.230 & 0.469 & 0/30 \\
+128 & tanh + leaky-ReLU & 84.633 (2.122) & 96.357 & 11.724 & 0/30 \\
+128 & sigmoid + ReLU & 97.784 (0.189) & 97.884 & 0.100 & 0/30 \\
+\bottomrule
+\end{tabular}
+\end{table}

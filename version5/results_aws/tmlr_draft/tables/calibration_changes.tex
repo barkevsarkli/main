@@ -1,0 +1,30 @@
+\begin{table}[htbp]
+\centering
+\caption{Learning-rate choices that change when tuning uses each run's best validation score. Existing evaluation runs are available for four of the 17 changed CE choices.}
+\label{tab:calchanges}
+\footnotesize
+\begin{tabular}{@{}lrllrrl@{}}
+\toprule
+Data & H & Model & Loss & Final rule & Peak rule & Runs exist \\
+\midrule
+CIFAR-10 & 32 & ReLU & CE & 0.0003 & 0.001 & No \\
+CIFAR-10 & 64 & Leaky-ReLU & CE & 0.001 & 0.0003 & No \\
+CIFAR-10 & 128 & sigmoid + ReLU & CE & 0.0003 & 0.001 & Yes \\
+CIFAR-10 & 128 & tanh & CE & 0.0003 & 0.001 & Yes \\
+CIFAR-10 & 256 & Leaky-ReLU & CE & 0.0003 & 0.001 & No \\
+CIFAR-10 & 256 & sigmoid + ReLU & CE & 0.0003 & 0.001 & No \\
+CIFAR-10 & 256 & tanh + leaky-ReLU & CE & 0.0003 & 0.001 & No \\
+CIFAR-10 & 256 & tanh + ReLU & CE & 0.0003 & 0.001 & No \\
+CIFAR-10 & 512 & Leaky-ReLU & CE & 0.0003 & 0.001 & No \\
+CIFAR-10 & 512 & tanh + leaky-ReLU & CE & 0.0003 & 0.001 & No \\
+MNIST & 12 & Leaky-ReLU & CE & 0.001 & 0.003 & No \\
+MNIST & 12 & sigmoid & CE & 0.003 & 0.01 & No \\
+MNIST & 12 & tanh + leaky-ReLU & CE & 0.001 & 0.003 & No \\
+MNIST & 32 & sigmoid & CE & 0.003 & 0.01 & No \\
+MNIST & 32 & tanh + leaky-ReLU & CE & 0.003 & 0.001 & No \\
+MNIST & 64 & sigmoid & CE & 0.01 & 0.03 & Yes \\
+MNIST & 128 & ReLU & CE & 0.003 & 0.01 & Yes \\
+MNIST & 64 & tanh + ReLU & MSE & 0.01 & 0.03 & No \\
+\bottomrule
+\end{tabular}
+\end{table}

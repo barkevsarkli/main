@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-01",
+  "scope": "Current adjacent source only; not a match to the historical AWS binary",
+  "files_sha256": {
+    "main.cpp": "c6a8af7f63c5676f4e59cbbb11ad04863f9fb8c31997ed64020f96dd17858784",
+    "net.cpp": "afc3e231f6f615c26ae5317f5ae91704cb18ffa06732899429a3bb2e33c48718",
+    "net.h": "121322c5238e80b95d227932a417e7eac0e90174332997336da3536887b5af8a",
+    "rng_util.h": "e21aca56c35eefba00c67ac383b805f0e50d45aa53e43d6bbf86ea2c4a8e368f"
+  },
+  "deterministic_masks": "interleave and block consume no random draws",
+  "epoch_loss": "Online before each update; CE probabilities floored at 1e-12",
+  "checks_passed": [
+    "third-rule LR windows",
+    "normalized optimum rates",
+    "ReLU loss",
+    "loss-minimum to failure gap",
+    "calibration width failures",
+    "CIFAR epoch1/ever/final failure counts"
+  ]
+}

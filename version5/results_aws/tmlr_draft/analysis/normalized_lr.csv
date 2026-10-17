@@ -1,0 +1,11 @@
+hidden,config,best_lr,upper_5pp,relative_upper
+64,relu,0.005,0.02,4.0
+64,tanh,0.005,0.03,6.0
+64,leaky_relu,0.005,0.02,4.0
+64,sigmoid,0.02,0.3,15.0
+64,tanh+relu,0.01,0.03,3.0
+128,relu,0.005,0.02,4.0
+128,tanh,0.01,0.03,3.0
+128,leaky_relu,0.005,0.01,2.0
+128,sigmoid,0.03,0.3,10.0
+128,tanh+relu,0.01,0.03,3.0

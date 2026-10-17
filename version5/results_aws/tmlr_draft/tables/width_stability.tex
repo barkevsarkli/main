@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{CE calibration at LR=0.03: mean final validation accuracy (\%) and final failures below 15\% in parentheses. Each cell has six seeds.}
+\label{tab:widthstability}
+\footnotesize
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+Data & Model & 12 & 32 & 64 & 128 & 256 & 512 \\
+\midrule
+MNIST & ReLU & 50.8 (0) & 89.6 (0) & 51.6 (3) & 10.4 (6) & 10.7 (6) & 10.3 (6) \\
+MNIST & tanh & 91.9 (0) & 94.8 (0) & 96.3 (0) & 94.8 (0) & 91.4 (0) & 81.8 (0) \\
+MNIST & tanh + ReLU & 89.3 (0) & 95.1 (0) & 96.3 (0) & 96.8 (0) & 94.8 (0) & 72.8 (0) \\
+CIFAR-10 & ReLU & 10.2 (6) & 11.4 (5) & 12.2 (4) & 11.0 (5) & 10.1 (6) & 10.2 (6) \\
+CIFAR-10 & tanh & 25.8 (0) & 22.8 (0) & 21.4 (0) & 13.8 (3) & 10.2 (6) & 10.0 (6) \\
+CIFAR-10 & tanh + ReLU & 25.8 (0) & 25.3 (0) & 21.9 (1) & 20.1 (1) & 10.5 (6) & 10.0 (6) \\
+\bottomrule
+\end{tabular}
+\par\smallskip{\footnotesize These are tuning seeds 101--106, used here for an exploratory width check. They are not additional 30-seed tests.}
+\end{table}

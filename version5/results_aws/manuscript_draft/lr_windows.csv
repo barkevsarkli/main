@@ -1,0 +1,85 @@
+dataset,hidden,config,criterion,low,high,grid_points,decades
+cifar10,128,leaky_relu,Within 1 pp of own best,0.0003,0.001,2,0.5228787452803376
+cifar10,128,leaky_relu,No final validation <15%,0.0001,0.03,6,2.4771212547196626
+cifar10,128,leaky_relu,No final validation <50%,0.0003,0.001,2,0.5228787452803376
+cifar10,128,leaky_relu,Mean final validation >=95%,,,0,
+cifar10,128,relu,Within 1 pp of own best,0.0003,0.001,2,0.5228787452803376
+cifar10,128,relu,No final validation <15%,0.0001,0.01,5,2.0
+cifar10,128,relu,No final validation <50%,,,0,
+cifar10,128,relu,Mean final validation >=95%,,,0,
+cifar10,128,sigmoid,Within 1 pp of own best,0.003,0.003,1,0.0
+cifar10,128,sigmoid,No final validation <15%,0.0001,0.1,7,3.0
+cifar10,128,sigmoid,No final validation <50%,,,0,
+cifar10,128,sigmoid,Mean final validation >=95%,,,0,
+cifar10,128,sigmoid+relu,Within 1 pp of own best,0.0003,0.001,2,0.5228787452803376
+cifar10,128,sigmoid+relu,No final validation <15%,0.0001,0.01,5,2.0
+cifar10,128,sigmoid+relu,No final validation <50%,,,0,
+cifar10,128,sigmoid+relu,Mean final validation >=95%,,,0,
+cifar10,128,tanh,Within 1 pp of own best,0.0003,0.001,2,0.5228787452803376
+cifar10,128,tanh,No final validation <15%,0.0001,0.01,5,2.0
+cifar10,128,tanh,No final validation <50%,,,0,
+cifar10,128,tanh,Mean final validation >=95%,,,0,
+cifar10,128,tanh+leaky_relu,Within 1 pp of own best,0.0003,0.001,2,0.5228787452803376
+cifar10,128,tanh+leaky_relu,No final validation <15%,0.0001,0.01,5,2.0
+cifar10,128,tanh+leaky_relu,No final validation <50%,,,0,
+cifar10,128,tanh+leaky_relu,Mean final validation >=95%,,,0,
+cifar10,128,tanh+relu,Within 1 pp of own best,0.0003,0.001,2,0.5228787452803376
+cifar10,128,tanh+relu,No final validation <15%,0.0001,0.003,4,1.4771212547196624
+cifar10,128,tanh+relu,No final validation <50%,0.0003,0.001,2,0.5228787452803376
+cifar10,128,tanh+relu,Mean final validation >=95%,,,0,
+mnist,64,leaky_relu,Within 1 pp of own best,0.001,0.01,4,1.0
+mnist,64,leaky_relu,No final validation <15%,0.0001,0.3,11,3.477121254719662
+mnist,64,leaky_relu,No final validation <50%,0.0001,0.3,11,3.477121254719662
+mnist,64,leaky_relu,Mean final validation >=95%,0.0003,0.02,6,1.8239087409443189
+mnist,64,relu,Within 1 pp of own best,0.0003,0.01,5,1.5228787452803376
+mnist,64,relu,No final validation <15%,0.0001,0.02,7,2.3010299956639813
+mnist,64,relu,No final validation <50%,0.0001,0.02,7,2.3010299956639813
+mnist,64,relu,Mean final validation >=95%,0.0001,0.02,7,2.3010299956639813
+mnist,64,sigmoid,Within 1 pp of own best,0.003,0.1,7,1.5228787452803376
+mnist,64,sigmoid,No final validation <15%,0.0001,0.3,11,3.477121254719662
+mnist,64,sigmoid,No final validation <50%,0.0001,0.3,11,3.477121254719662
+mnist,64,sigmoid,Mean final validation >=95%,0.001,0.1,8,2.0
+mnist,64,sigmoid+relu,Within 1 pp of own best,0.0003,0.05,8,2.2218487496163566
+mnist,64,sigmoid+relu,No final validation <15%,0.0001,0.1,10,3.0
+mnist,64,sigmoid+relu,No final validation <50%,0.0001,0.1,10,3.0
+mnist,64,sigmoid+relu,Mean final validation >=95%,0.0003,0.05,8,2.2218487496163566
+mnist,64,tanh,Within 1 pp of own best,0.0003,0.02,6,1.8239087409443189
+mnist,64,tanh,No final validation <15%,0.0001,0.1,10,3.0
+mnist,64,tanh,No final validation <50%,0.0001,0.1,10,3.0
+mnist,64,tanh,Mean final validation >=95%,0.0003,0.03,7,2.0
+mnist,64,tanh+leaky_relu,Within 1 pp of own best,0.0003,0.01,5,1.5228787452803376
+mnist,64,tanh+leaky_relu,No final validation <15%,0.0001,0.3,11,3.477121254719662
+mnist,64,tanh+leaky_relu,No final validation <50%,0.0001,0.3,11,3.477121254719662
+mnist,64,tanh+leaky_relu,Mean final validation >=95%,0.0003,0.03,7,2.0
+mnist,64,tanh+relu,Within 1 pp of own best,0.0003,0.01,5,1.5228787452803376
+mnist,64,tanh+relu,No final validation <15%,0.0001,0.05,9,2.6989700043360187
+mnist,64,tanh+relu,No final validation <50%,0.0001,0.05,9,2.6989700043360187
+mnist,64,tanh+relu,Mean final validation >=95%,0.0003,0.03,7,2.0
+mnist,128,leaky_relu,Within 1 pp of own best,0.0003,0.01,5,1.5228787452803376
+mnist,128,leaky_relu,No final validation <15%,0.0001,0.3,11,3.477121254719662
+mnist,128,leaky_relu,No final validation <50%,0.0001,0.3,11,3.477121254719662
+mnist,128,leaky_relu,Mean final validation >=95%,0.0001,0.01,6,2.0
+mnist,128,relu,Within 1 pp of own best,0.0003,0.01,5,1.5228787452803376
+mnist,128,relu,No final validation <15%,0.0001,0.02,7,2.3010299956639813
+mnist,128,relu,No final validation <50%,0.0001,0.02,7,2.3010299956639813
+mnist,128,relu,Mean final validation >=95%,0.0001,0.02,7,2.3010299956639813
+mnist,128,sigmoid,Within 1 pp of own best,0.003,0.1,7,1.5228787452803376
+mnist,128,sigmoid,No final validation <15%,0.0001,0.3,11,3.477121254719662
+mnist,128,sigmoid,No final validation <50%,0.0001,0.3,11,3.477121254719662
+mnist,128,sigmoid,Mean final validation >=95%,0.001,0.3,9,2.4771212547196626
+mnist,128,sigmoid+relu,Within 1 pp of own best,0.0003,0.05,8,2.2218487496163566
+mnist,128,sigmoid+relu,No final validation <15%,0.0001,0.1,10,3.0
+mnist,128,sigmoid+relu,No final validation <50%,0.0001,0.05,9,2.6989700043360187
+mnist,128,sigmoid+relu,Mean final validation >=95%,0.0003,0.05,8,2.2218487496163566
+mnist,128,tanh,Within 1 pp of own best,0.001,0.02,5,1.3010299956639813
+mnist,128,tanh,No final validation <15%,0.0001,0.1,10,3.0
+mnist,128,tanh,No final validation <50%,0.0001,0.05,9,2.6989700043360187
+mnist,128,tanh,Mean final validation >=95%,0.0003,0.03,7,2.0
+mnist,128,tanh+leaky_relu,Within 1 pp of own best,0.001,0.01,4,1.0
+mnist,128,tanh+leaky_relu,No final validation <15%,0.0001,0.3,11,3.477121254719662
+mnist,128,tanh+leaky_relu,No final validation <50%,0.0001,0.3,11,3.477121254719662
+mnist,128,tanh+leaky_relu,Mean final validation >=95%,0.0003,0.02,6,1.8239087409443189
+mnist,128,tanh+relu,Within 1 pp of own best,0.0003,0.02,6,1.8239087409443189
+mnist,128,tanh+relu,No final validation <15%,0.0001,0.05,9,2.6989700043360187
+mnist,128,tanh+relu,No final validation <50%,0.0001,0.05,9,2.6989700043360187
+mnist,128,tanh+relu,Mean final validation >=95%,0.0001,0.03,8,2.4771212547196626

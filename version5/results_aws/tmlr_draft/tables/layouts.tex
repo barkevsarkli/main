@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Mask layout at MNIST H=128, LR=0.01 and $\rho=0.5$. Differences use the interleave mask as the reference.}
+\label{tab:layouts}
+\footnotesize
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Model & Layout & Accuracy (\%), mean $\pm$ SD & Difference (pp) & 95\% interval \\
+\midrule
+tanh + ReLU & interleave & 98.038 $\pm$ 0.073 & +0.000 & [+0.000, +0.000] \\
+tanh + ReLU & block & 98.020 $\pm$ 0.088 & -0.018 & [-0.056, +0.021] \\
+tanh + ReLU & random & 98.034 $\pm$ 0.108 & -0.004 & [-0.055, +0.046] \\
+tanh + leaky-ReLU & interleave & 97.986 $\pm$ 0.081 & +0.000 & [+0.000, +0.000] \\
+tanh + leaky-ReLU & block & 98.022 $\pm$ 0.086 & +0.036 & [-0.013, +0.085] \\
+tanh + leaky-ReLU & random & 98.017 $\pm$ 0.071 & +0.031 & [-0.000, +0.066] \\
+\bottomrule
+\end{tabular}
+\end{table}

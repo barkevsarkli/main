@@ -1,0 +1,45 @@
+nohup: ignoring input
+[2026-09-12 18:19:19] START stage2 | P=190 | epochs=40 | results=/home/ubuntu/article/version5/results_aws
+[2026-09-12 18:19:19] cores=192 | Linux aarch64
+[2026-09-12 18:19:19] binary sha256=996387a0a0da727b
+[2026-09-12 18:19:19] === lrsweep_64 ===
+[2026-09-12 18:19:20] STAGE lrsweep_64 start | jobs=1680 pending=1680 workers=190
+[2026-09-12 18:22:56] STAGE lrsweep_64 | done 380/1680  remaining 1300  elapsed 3m36s  ETA 0h12m
+[2026-09-12 18:26:34] STAGE lrsweep_64 | done 760/1680  remaining 920  elapsed 7m14s  ETA 0h08m
+[2026-09-12 18:30:12] STAGE lrsweep_64 | done 1140/1680  remaining 540  elapsed 10m52s  ETA 0h05m
+[2026-09-12 18:33:47] STAGE lrsweep_64 | done 1520/1680  remaining 160  elapsed 14m27s  ETA 0h01m
+[2026-09-12 18:35:33] STAGE lrsweep_64 | done 1680/1680  remaining 0  elapsed 16m13s  ETA 0h00m
+[2026-09-12 18:35:33] STAGE lrsweep_64 COMPLETE | 1680 jobs run in 0h16m13s
+[2026-09-12 18:35:33] === lrsweep_128 ===
+[2026-09-12 18:35:33] STAGE lrsweep_128 start | jobs=1680 pending=1680 workers=190
+[2026-09-12 18:43:06] STAGE lrsweep_128 | done 380/1680  remaining 1300  elapsed 7m33s  ETA 0h25m
+[2026-09-12 18:50:50] STAGE lrsweep_128 | done 760/1680  remaining 920  elapsed 15m17s  ETA 0h18m
+[2026-09-12 18:58:24] STAGE lrsweep_128 | done 1140/1680  remaining 540  elapsed 22m51s  ETA 0h10m
+[2026-09-12 19:05:58] STAGE lrsweep_128 | done 1520/1680  remaining 160  elapsed 30m25s  ETA 0h03m
+[2026-09-12 19:09:38] STAGE lrsweep_128 | done 1680/1680  remaining 0  elapsed 34m05s  ETA 0h00m
+[2026-09-12 19:09:39] STAGE lrsweep_128 COMPLETE | 1680 jobs run in 0h34m06s
+[2026-09-12 19:09:39] === layout_128 ===
+[2026-09-12 19:09:39] STAGE layout_128 start | jobs=300 pending=300 workers=190
+[2026-09-12 19:17:08] STAGE layout_128 | done 300/300  remaining 0  elapsed 7m29s  ETA 0h00m
+[2026-09-12 19:17:08] STAGE layout_128 COMPLETE | 300 jobs run in 0h07m29s
+[2026-09-12 19:17:08] === calib_mse_128 ===
+[2026-09-12 19:17:08] STAGE calib_mse_128 start | jobs=144 pending=144 workers=190
+[2026-09-12 19:21:02] STAGE calib_mse_128 | done 144/144  remaining 0  elapsed 3m54s  ETA 0h00m
+[2026-09-12 19:21:02] STAGE calib_mse_128 COMPLETE | 144 jobs run in 0h03m54s
+relu/relu/0/interleave/128/mse                best lr=0.01      0.0001:92.29  0.0003:95.58  0.001:97.62  0.003:97.97  0.01:98.12  0.03:97.90  0.1:10.63  0.3:9.92
+tanh/relu/0.5/interleave/128/mse              best lr=0.03      0.0001:91.85  0.0003:95.18  0.001:97.44  0.003:97.92  0.01:98.20  0.03:98.26  0.1:36.32  0.3:10.96
+tanh/tanh/0/interleave/128/mse                best lr=0.01      0.0001:91.66  0.0003:94.53  0.001:97.22  0.003:97.87  0.01:98.02  0.03:97.97  0.1:92.69  0.3:12.83
+wrote /home/ubuntu/article/version5/results_aws/best_lr.json
+[2026-09-12 19:21:02] === mse_128 ===
+[2026-09-12 19:21:02] STAGE mse_128 start | jobs=90 pending=90 workers=190
+[2026-09-12 19:24:48] STAGE mse_128 | done 90/90  remaining 0  elapsed 3m46s  ETA 0h00m
+[2026-09-12 19:24:48] STAGE mse_128 COMPLETE | 90 jobs run in 0h03m46s
+[2026-09-12 19:24:48] === c10_lrsweep_128 ===
+[2026-09-12 19:24:48] STAGE c10_lrsweep_128 start | jobs=1680 pending=1680 workers=190
+[2026-09-12 19:50:21] STAGE c10_lrsweep_128 | done 380/1680  remaining 1300  elapsed 25m33s  ETA 1h27m
+[2026-09-12 20:16:05] STAGE c10_lrsweep_128 | done 760/1680  remaining 920  elapsed 51m17s  ETA 1h02m
+[2026-09-12 20:41:37] STAGE c10_lrsweep_128 | done 1140/1680  remaining 540  elapsed 76m49s  ETA 0h36m
+[2026-09-12 21:07:06] STAGE c10_lrsweep_128 | done 1520/1680  remaining 160  elapsed 102m18s  ETA 0h10m
+[2026-09-12 21:19:46] STAGE c10_lrsweep_128 | done 1680/1680  remaining 0  elapsed 114m58s  ETA 0h00m
+[2026-09-12 21:19:46] STAGE c10_lrsweep_128 COMPLETE | 1680 jobs run in 1h54m58s
+[2026-09-12 21:19:46] STAGE 2 COMPLETE

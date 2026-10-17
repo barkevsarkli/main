@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{CIFAR-10 tanh--ReLU minus ReLU: final and selected test checkpoints. All differences are in pp; intervals are pointwise paired 95\% bootstrap intervals.}
+\label{tab:endpoints}
+\footnotesize
+\begin{tabular}{@{}rrrrrrr@{}}
+\toprule
+H & R LR & T+R LR & Final diff. & 95\% interval & Selected diff. & 95\% interval \\
+\midrule
+12 & 0.0003 & 0.0003 & -0.678 & [-0.995, -0.364] & -0.550 & [-0.868, -0.241] \\
+32 & 0.0003 & 0.0003 & -0.617 & [-0.889, -0.341] & -0.385 & [-0.616, -0.145] \\
+64 & 0.001 & 0.0003 & +0.766 & [+0.445, +1.099] & +0.363 & [+0.156, +0.577] \\
+128 & 0.0003 & 0.0003 & +0.228 & [+0.046, +0.423] & +0.178 & [-0.082, +0.425] \\
+256 & 0.0003 & 0.0003 & +0.190 & [+0.016, +0.382] & +0.153 & [-0.049, +0.366] \\
+512 & 0.0003 & 0.0003 & +0.029 & [-0.145, +0.206] & -0.164 & [-0.404, +0.059] \\
+\bottomrule
+\end{tabular}
+\par\smallskip{\footnotesize The added final-epoch comparisons are exploratory and have no multiple-test correction. H=64 also changes LR. Main claims of selected-checkpoint accuracy retain the original Holm correction.}
+\end{table}

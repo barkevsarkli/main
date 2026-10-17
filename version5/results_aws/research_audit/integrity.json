@@ -1,0 +1,392 @@
+{
+  "inventory": [
+    {
+      "file": "c10_calib_12.csv",
+      "rows": 336,
+      "repeated_headers": 5,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_128.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_256.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_32.csv",
+      "rows": 336,
+      "repeated_headers": 2,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_512.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_64.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_lrsweep_128.csv",
+      "rows": 1680,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 1680
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_12.csv",
+      "rows": 210,
+      "repeated_headers": 2,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_128.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_256.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_32.csv",
+      "rows": 210,
+      "repeated_headers": 3,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_512.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_64.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_12.csv",
+      "rows": 336,
+      "repeated_headers": 1,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_128.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_256.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_32.csv",
+      "rows": 336,
+      "repeated_headers": 1,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_512.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_64.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_mse_128.csv",
+      "rows": 144,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 144
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_mse_64.csv",
+      "rows": 144,
+      "repeated_headers": 1,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 144
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "layout_128.csv",
+      "rows": 300,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 300
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "lrsweep_128.csv",
+      "rows": 2310,
+      "repeated_headers": 10,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 2310
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "lrsweep_64.csv",
+      "rows": 2310,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 2310
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_12.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_128.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_256.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_32.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_512.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_64.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "mse_128.csv",
+      "rows": 90,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 90
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "mse_64.csv",
+      "rows": 90,
+      "repeated_headers": 6,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 90
+      },
+      "missing_best": 0
+    }
+  ],
+  "total_unique_within_files": 13620,
+  "status": {
+    "ok": 13620
+  },
+  "metric_or_curve_errors": [],
+  "class_supports": {
+    "cifar10": [
+      [
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000
+      ]
+    ],
+    "mnist": [
+      [
+        985,
+        1149,
+        1007,
+        997,
+        985,
+        866,
+        977,
+        1082,
+        996,
+        956
+      ]
+    ]
+  },
+  "cross_file_duplicate_rows": 690
+}

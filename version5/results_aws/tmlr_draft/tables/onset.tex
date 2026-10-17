@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering
+\caption{When failure first appears at MNIST learning rate 0.03. Class share uses final test predictions.}
+\label{tab:onset}
+\footnotesize
+\begin{tabular}{@{}rllrr@{}}
+\toprule
+H & Model & Ever below 15\% & First epoch: min/median/max & Largest class (\%) \\
+\midrule
+64 & ReLU & 12/30 & 19 / 27 / 40 & 48.9 \\
+64 & tanh + ReLU & 0/30 & -- & 11.5 \\
+128 & ReLU & 30/30 & 17 / 21.5 / 28 & 100.0 \\
+128 & tanh + ReLU & 0/30 & -- & 11.4 \\
+\bottomrule
+\end{tabular}
+\end{table}

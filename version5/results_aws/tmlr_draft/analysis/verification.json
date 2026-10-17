@@ -1,0 +1,209 @@
+{
+  "raw_files": 32,
+  "data_rows": 13620,
+  "repeated_headers": 31,
+  "cross_stage_duplicate_rows": 690,
+  "main_rows": 2520,
+  "main_comparisons": 120,
+  "old_audit_deltas_reproduced": 240,
+  "all_status_ok": true,
+  "all_final_and_best_confusion_metrics_verified": true,
+  "all_validation_histories_verified": true,
+  "bootstrap_seed": 20260915,
+  "bootstrap_resamples": 10000,
+  "main_lr_changes": 17,
+  "inventory": [
+    {
+      "file": "c10_calib_12.csv",
+      "rows": 336,
+      "repeated_headers": 5,
+      "sha256": "f13fbe7fdade05107ff54e46163be39b70870d9723e230e9f0be9977e3b05119"
+    },
+    {
+      "file": "c10_calib_128.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "sha256": "b908ac1a2be1e9b4acd51db57a50c4f7a88b18acc5d50a2fe68e426fae657f97"
+    },
+    {
+      "file": "c10_calib_256.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "sha256": "d3c71b3999ce1ccb40c4cf90841b5788a3f2cbfbdcdb6c8212deba0fb3f3d011"
+    },
+    {
+      "file": "c10_calib_32.csv",
+      "rows": 336,
+      "repeated_headers": 2,
+      "sha256": "ff0730a35957cb3e160950d42ef539e2fd3fa5ba8431111fd2996937128bafbf"
+    },
+    {
+      "file": "c10_calib_512.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "sha256": "56284fa439f12bb6b464d01915a0f748d825454d4521badfcdcdf086f17d6719"
+    },
+    {
+      "file": "c10_calib_64.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "sha256": "824ff3c00cdd2a48ca0f50bca99419fcd0e9afa58d6aa1d3a970114dbbd4e53e"
+    },
+    {
+      "file": "c10_lrsweep_128.csv",
+      "rows": 1680,
+      "repeated_headers": 0,
+      "sha256": "463edae3a0c6039273366434935b6a6a2c800d22b1e4d8d63d36a1207dbe8f99"
+    },
+    {
+      "file": "c10_main_12.csv",
+      "rows": 210,
+      "repeated_headers": 2,
+      "sha256": "d3a66737004d1e453d30e81423d3c165995cd0a23fc2927aa9e64def6434fc6f"
+    },
+    {
+      "file": "c10_main_128.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "f0c07970ba2f19a9c16aed5b96f31df920913ccfce2e97577e6d3bd033660960"
+    },
+    {
+      "file": "c10_main_256.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "9c54ed4787f766fe37a9e7e51d37caf91f8f636006161ae26744ef7a71b55a08"
+    },
+    {
+      "file": "c10_main_32.csv",
+      "rows": 210,
+      "repeated_headers": 3,
+      "sha256": "def3a1b4a8ee356e72359e758900fe953bb74316f71af7403e10182ab7c6e0ab"
+    },
+    {
+      "file": "c10_main_512.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "037e41a9b9e3c3ad1d1c69bb5a337ed83712b6ec0863987e2084b5c50819af74"
+    },
+    {
+      "file": "c10_main_64.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "c4854753e0f562e433c074a9f2673e520f5c00adc088d3ddc2dc2e241c2bc17b"
+    },
+    {
+      "file": "calib_12.csv",
+      "rows": 336,
+      "repeated_headers": 1,
+      "sha256": "cf0702492b00fb380197f8aa6edb6801207cded12019892485fd1eae1ffe1516"
+    },
+    {
+      "file": "calib_128.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "sha256": "3696d8c973d976d1d8247b3eccfda76fa3e93e5b044328c74c9d721cca3b1267"
+    },
+    {
+      "file": "calib_256.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "sha256": "ae90cf0e02c1a665b7af7b109fbef69d47df9e0ddaa01eaa6bf673878ef29c39"
+    },
+    {
+      "file": "calib_32.csv",
+      "rows": 336,
+      "repeated_headers": 1,
+      "sha256": "c86bdade36be2369b46fd0920c60bb244e43ddf3d632425d1304111e4362d1ae"
+    },
+    {
+      "file": "calib_512.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "sha256": "99ccbd3ca7eea85f9adacec944a3ec0618440f9ef721251efe4f1edfb33c5c77"
+    },
+    {
+      "file": "calib_64.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "sha256": "74a8963e9ff10dc717a07caddf2feea86e268c44a09baffe9c9210b966e3ae2b"
+    },
+    {
+      "file": "calib_mse_128.csv",
+      "rows": 144,
+      "repeated_headers": 0,
+      "sha256": "39a78a70fb34059edbdd1308251bcbcc61feeb66b52ab24e8f3d79648b2e9a60"
+    },
+    {
+      "file": "calib_mse_64.csv",
+      "rows": 144,
+      "repeated_headers": 1,
+      "sha256": "a99c8892ae22f51f4530dae5a924a95766d6793c7e5fb6937a924fe0f6ac7a86"
+    },
+    {
+      "file": "layout_128.csv",
+      "rows": 300,
+      "repeated_headers": 0,
+      "sha256": "863a6b5961350c170c5574745ec49db347cdd972772bca44c27313cb569f4413"
+    },
+    {
+      "file": "lrsweep_128.csv",
+      "rows": 2310,
+      "repeated_headers": 10,
+      "sha256": "4a51c5ffbbd3b9af69ccad7f5c50d1dd50c0072e3a123e2163183b8e30564a62"
+    },
+    {
+      "file": "lrsweep_64.csv",
+      "rows": 2310,
+      "repeated_headers": 0,
+      "sha256": "91d0ba7c204b0d26b98f48439c0e183a8234ac2ec77f8577ee6e42fd8bc44909"
+    },
+    {
+      "file": "main_12.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "23d17215de97d331f32a9a0c4c9b34fa5f6441dded4afb828c63b675762ae707"
+    },
+    {
+      "file": "main_128.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "680f33bee21953cebd655c6bf286ec4cca2b29b3584ab77e188392edd9464d99"
+    },
+    {
+      "file": "main_256.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "2e466adb6cd1059ab287cff13ffd94e2a5910325f7254e506ef3cf6ba3649eb7"
+    },
+    {
+      "file": "main_32.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "32505b17c95378b2dcec0794113ec6a51a40369ec8b5737d27c8327e2fd20633"
+    },
+    {
+      "file": "main_512.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "1c4fe2642a2e5fa107bf4145c4f213d7a438a0428a2c8e9edcb5fb851ef33695"
+    },
+    {
+      "file": "main_64.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "sha256": "ad700be2d3077f8feae0ca50dc362783d71747d5ecb711f7c745d75320a8757d"
+    },
+    {
+      "file": "mse_128.csv",
+      "rows": 90,
+      "repeated_headers": 0,
+      "sha256": "c7ca4a1bd31415f661d8d890669a5919f4c49c4dc659ffbc62d1beed8796ae1f"
+    },
+    {
+      "file": "mse_64.csv",
+      "rows": 90,
+      "repeated_headers": 6,
+      "sha256": "c5ccdbd61fe2b597ff9c60365a45ca3976f429877499d83fe2b4d0c6ce4964ab"
+    }
+  ]
+}

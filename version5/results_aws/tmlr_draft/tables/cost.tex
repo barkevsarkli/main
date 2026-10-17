@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{Accuracy and size at selected operating points. Seconds are full-run elapsed time under the logged shared workload, not inference time.}
+\label{tab:cost}
+\small
+\begin{tabular}{@{}lrlrrr@{}}
+\toprule
+Data & H & Model & Accuracy (\%) & Parameters & Seconds \\
+\midrule
+MNIST & 128 & tanh + ReLU & 98.038 & 118,282 & 219.9 \\
+MNIST & 256 & ReLU & 98.214 & 269,322 & 482.5 \\
+MNIST & 512 & ReLU & 98.285 & 669,706 & 1456.7 \\
+MNIST & 512 & tanh + ReLU & 98.289 & 669,706 & 1474.4 \\
+CIFAR-10 & 128 & tanh + ReLU & 53.221 & 411,146 & 761.3 \\
+CIFAR-10 & 256 & ReLU & 54.074 & 855,050 & 2240.3 \\
+CIFAR-10 & 512 & ReLU & 54.875 & 1,841,162 & 8400.7 \\
+CIFAR-10 & 512 & tanh + ReLU & 54.711 & 1,841,162 & 8300.5 \\
+\bottomrule
+\end{tabular}
+\end{table}

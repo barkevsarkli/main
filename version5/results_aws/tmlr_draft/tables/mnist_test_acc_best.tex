@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{MNIST checkpoint test accuracy (\%). Mean $\pm$ seed SD, $n=30$.}
+\label{tab:mnist:test_acc_best}
+\footnotesize
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & 12 & 32 & 64 & 128 & 256 & 512 \\
+\midrule
+ReLU & 94.30 $\pm$ 0.30 & 96.71 $\pm$ 0.19 & 97.58 $\pm$ 0.13 & 97.86 $\pm$ 0.07 & 98.21 $\pm$ 0.07 & 98.29 $\pm$ 0.06 \\
+Leaky-ReLU & 94.27 $\pm$ 0.23 & 96.68 $\pm$ 0.19 & 97.56 $\pm$ 0.11 & 97.85 $\pm$ 0.08 & 98.18 $\pm$ 0.06 & 98.25 $\pm$ 0.09 \\
+tanh & 93.95 $\pm$ 0.26 & 96.37 $\pm$ 0.16 & 97.39 $\pm$ 0.12 & 97.83 $\pm$ 0.09 & 98.02 $\pm$ 0.07 & 98.02 $\pm$ 0.07 \\
+sigmoid & 93.77 $\pm$ 0.33 & 96.27 $\pm$ 0.14 & 97.12 $\pm$ 0.08 & 97.66 $\pm$ 0.09 & 97.97 $\pm$ 0.07 & 98.04 $\pm$ 0.07 \\
+tanh + ReLU & 93.99 $\pm$ 0.25 & 96.52 $\pm$ 0.18 & 97.58 $\pm$ 0.13 & 98.04 $\pm$ 0.07 & 98.21 $\pm$ 0.07 & 98.29 $\pm$ 0.09 \\
+tanh + leaky-ReLU & 94.02 $\pm$ 0.32 & 96.51 $\pm$ 0.16 & 97.61 $\pm$ 0.12 & 97.99 $\pm$ 0.08 & 98.19 $\pm$ 0.07 & 98.27 $\pm$ 0.08 \\
+sigmoid + ReLU & 93.77 $\pm$ 0.39 & 95.99 $\pm$ 0.17 & 96.71 $\pm$ 0.16 & 97.55 $\pm$ 0.14 & 98.04 $\pm$ 0.08 & 98.12 $\pm$ 0.07 \\
+\bottomrule
+\end{tabular}
+\par\smallskip{\footnotesize Main hybrids use a 50:50 split. These cells keep the original learning-rate choices.}
+\end{table}

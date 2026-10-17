@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{MNIST MSE calibration: mean final validation accuracy (\%) and final failure counts below 15\%. Each cell has six tuning seeds.}
+\label{tab:msestability}
+\small
+\begin{tabular}{@{}rlrr@{}}
+\toprule
+H & Model & LR=0.03 & LR=0.1 \\
+\midrule
+64 & ReLU & 93.047 (0/6) & 9.270 (6/6) \\
+64 & tanh & 97.383 (0/6) & 93.930 (0/6) \\
+64 & tanh + ReLU & 97.683 (0/6) & 75.560 (1/6) \\
+128 & ReLU & 97.903 (0/6) & 10.633 (6/6) \\
+128 & tanh & 97.973 (0/6) & 92.687 (0/6) \\
+128 & tanh + ReLU & 98.257 (0/6) & 36.323 (3/6) \\
+\bottomrule
+\end{tabular}
+\par\smallskip{\footnotesize These runs use sigmoid outputs and the implemented MSE derivative scale. They do not isolate loss choice from output activation or update scale.}
+\end{table}

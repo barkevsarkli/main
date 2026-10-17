@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{MNIST checkpoint test macro-F1 (\%). Mean $\pm$ seed SD, $n=30$.}
+\label{tab:mnist:test_f1_best}
+\footnotesize
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & 12 & 32 & 64 & 128 & 256 & 512 \\
+\midrule
+ReLU & 94.20 $\pm$ 0.31 & 96.67 $\pm$ 0.19 & 97.56 $\pm$ 0.13 & 97.84 $\pm$ 0.08 & 98.20 $\pm$ 0.07 & 98.27 $\pm$ 0.07 \\
+Leaky-ReLU & 94.18 $\pm$ 0.23 & 96.64 $\pm$ 0.19 & 97.54 $\pm$ 0.11 & 97.83 $\pm$ 0.08 & 98.16 $\pm$ 0.06 & 98.23 $\pm$ 0.09 \\
+tanh & 93.85 $\pm$ 0.27 & 96.32 $\pm$ 0.16 & 97.36 $\pm$ 0.12 & 97.80 $\pm$ 0.10 & 98.00 $\pm$ 0.08 & 98.01 $\pm$ 0.07 \\
+sigmoid & 93.66 $\pm$ 0.34 & 96.22 $\pm$ 0.14 & 97.09 $\pm$ 0.08 & 97.63 $\pm$ 0.10 & 97.94 $\pm$ 0.07 & 98.02 $\pm$ 0.07 \\
+tanh + ReLU & 93.88 $\pm$ 0.26 & 96.48 $\pm$ 0.19 & 97.56 $\pm$ 0.13 & 98.02 $\pm$ 0.07 & 98.20 $\pm$ 0.07 & 98.28 $\pm$ 0.09 \\
+tanh + leaky-ReLU & 93.92 $\pm$ 0.32 & 96.47 $\pm$ 0.16 & 97.58 $\pm$ 0.12 & 97.97 $\pm$ 0.08 & 98.18 $\pm$ 0.07 & 98.26 $\pm$ 0.08 \\
+sigmoid + ReLU & 93.66 $\pm$ 0.40 & 95.93 $\pm$ 0.18 & 96.67 $\pm$ 0.16 & 97.53 $\pm$ 0.14 & 98.02 $\pm$ 0.09 & 98.10 $\pm$ 0.07 \\
+\bottomrule
+\end{tabular}
+\par\smallskip{\footnotesize Main hybrids use a 50:50 split. These cells keep the original learning-rate choices.}
+\end{table}

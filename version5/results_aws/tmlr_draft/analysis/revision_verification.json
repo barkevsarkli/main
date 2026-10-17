@@ -1,0 +1,16 @@
+{
+  "mnist_checkpoint_lr003": {
+    "relu": 96.07133333333334,
+    "hybrid": 96.76633333333331,
+    "delta": 0.6949999999999998,
+    "ci_low": 0.6120000000000013,
+    "ci_high": 0.7773333333333322,
+    "wins": 30
+  },
+  "relu_prediction_share": {
+    "exactly_one_class": 26,
+    "minimum_share": 99.97,
+    "maximum_share": 100.0
+  },
+  "cifar_first_epoch_below15": 29
+}

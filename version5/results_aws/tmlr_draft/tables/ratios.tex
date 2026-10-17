@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Allocation ratio at MNIST H=128 and LR=0.01. The second function is ReLU or leaky-ReLU. Each row has 30 seeds.}
+\label{tab:ratios}
+\footnotesize
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Model & $\rho$ & Accuracy (\%), mean $\pm$ SD & Macro-F1 (\%) & Selected epoch \\
+\midrule
+tanh + ReLU & 0.25 & 97.957 $\pm$ 0.099 & 97.937 & 19.8 \\
+tanh + ReLU & 0.50 & 98.038 $\pm$ 0.073 & 98.020 & 24.0 \\
+tanh + ReLU & 0.75 & 98.052 $\pm$ 0.079 & 98.036 & 23.6 \\
+tanh + leaky-ReLU & 0.25 & 97.965 $\pm$ 0.096 & 97.944 & 21.6 \\
+tanh + leaky-ReLU & 0.50 & 97.986 $\pm$ 0.081 & 97.967 & 21.2 \\
+tanh + leaky-ReLU & 0.75 & 98.052 $\pm$ 0.084 & 98.035 & 25.0 \\
+\bottomrule
+\end{tabular}
+\end{table}

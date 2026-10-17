@@ -1,0 +1,14 @@
+\begin{table}[htbp]
+\centering
+\caption{MNIST, H=128: aligning the ReLU learning rate with checkpoint selection. The hybrid uses LR=0.01 in both rows.}
+\label{tab:aligned}
+\small
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+ReLU LR & ReLU acc. (\%) & Hybrid acc. (\%) & Difference (pp) & 95\% paired interval \\
+\midrule
+0.003 & 97.860 & 98.038 & +0.178 & [+0.143, +0.213] \\
+0.01 & 98.009 & 98.038 & +0.029 & [-0.017, +0.080] \\
+\bottomrule
+\end{tabular}
+\end{table}

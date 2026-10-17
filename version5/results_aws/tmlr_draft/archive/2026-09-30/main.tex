@@ -1,0 +1,322 @@
+\documentclass[10pt]{article}
+% Named draft for advisor review. Use \usepackage{tmlr} for blind submission.
+% The official style file is included unchanged.
+\usepackage[preprint]{tmlr}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{placeins}
+\hypersetup{pdftitle={When Mixed Activations Help Neural Networks Resist Training Collapse},pdfauthor={Barkev Sarkli and Rahim Dehkharghani},colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\newcommand{\TR}{tanh + ReLU}
+\newcommand{\TL}{tanh + leaky-ReLU}
+\newcommand{\SR}{sigmoid + ReLU}
+\title{When Mixed Activations Help Neural Networks\newline Resist Training Collapse}
+\author{\name Barkev \c{S}arkl\i\ \email barkev.sarkli@stu.khas.edu.tr\\
+\addr Undergraduate student
+\AND
+\name Rahim Dehkharghani}
+\begin{document}
+\maketitle
+\begin{center}\small Draft for advisor review --- 30 September 2026\end{center}
+
+\begin{abstract}
+A neural network can reach high accuracy and then lose it during training. We study whether using two activation functions in each hidden layer can reduce this failure. We test small fully connected networks on MNIST and CIFAR-10, using six hidden widths, seven activation choices, and 30 test-run seeds per setting. The clearest gain occurs on MNIST at width 128 and learning rate 0.03. All 30 ReLU runs fall below 15\% final validation accuracy. None of the tanh--ReLU runs does. Their mean final scores are 10.61\% and 96.76\%, although both models reach high scores earlier in training. The mixed model adds no trainable parameters. At the same width, its tested learning-rate range within one percentage point of its own best final score extends to 0.02, compared with 0.01 for ReLU. This benefit depends on the setting: it does not hold in the same way on CIFAR-10 or with every activation pair. Mixing also does not give a clear general gain in best test accuracy. We report full width tests, learning-rate tests, 25:75 to 75:25 activation splits, and loss-function checks. The results support mixed activations as a simple way to improve training stability in some settings, while showing the limits of that claim.
+\end{abstract}
+
+\section{Introduction}
+Most neural networks use the same activation function for all neurons in a hidden layer. This is a simple design choice, but it also gives those neurons the same type of response. ReLU is linear for positive inputs and zero for negative inputs. Tanh has both positive and negative outputs, but its output stays between $-1$ and $1$. Using both functions in the same layer may change how the network responds to large training steps.
+
+We study this question through a fixed assignment of activation functions to neurons. Each neuron uses one function throughout training. The assignment adds no learned gates or extra weights. We call such a layer a \emph{mixed} or \emph{hybrid} layer. A layer in which every neuron uses the same function is a \emph{single-function} layer.
+
+Our main focus is \emph{training stability}: whether a network keeps useful accuracy when the learning rate changes or training continues. This meaning is narrower than resistance to noisy images, attacks, or changes in the test data. We do not test those forms of robustness. We also separate training stability from best test accuracy. A model may have a wider useful learning-rate range without giving a higher score after careful tuning.
+
+The study uses a two-hidden-layer multilayer perceptron (MLP). We compare four single functions and three mixed pairs on two image tasks. We change width, learning rate, activation share, mask layout, and the loss/output pair. This simple network makes the comparisons easier to read. It is not intended to compete with the best image models.
+
+The paper has three main findings. First, a 50:50 tanh--ReLU split can prevent late loss of accuracy in MNIST runs where ReLU fails. Second, avoiding near-chance failure and keeping high accuracy are different outcomes; leaky-ReLU is a useful control for this reason. Third, the benefit depends on the dataset and training setup. Careful learning-rate selection removes most of one apparent test-accuracy gain. These limits are part of the result.
+
+\section{Related work}
+Activation choice and weight scale are closely linked. \citet{glorot2010} studied how activation outputs and gradients affect learning. \citet{glorot2011} showed the value of rectifier units, including their sparse zero outputs. \citet{he2015} developed an initialization rule that accounts for rectifier functions. These works support checking both activation choice and initialization when studying training stability.
+
+Inactive ReLU units are another possible source of failure. \citet{lu2019} studied dying ReLU networks and ways to change initialization. Our runs show a loss of accuracy after a period of useful learning. We do not measure hidden-unit activity, so their theory does not establish the cause of the failures reported here.
+
+Using different activation functions within a network is not a new idea. \citet{hagg2017} used an evolutionary search to select activation functions for individual neurons, along with network structure and weights. \citet{manessi2018} learned combinations of base functions during training. Our design fixes the network size and assigns one function to each neuron before training. We study the training behavior of this fixed assignment with single-example stochastic gradient descent (SGD). We make no claim to introduce mixed activations or the idea of an activation share for the first time.
+
+Finally, the choice of tuning rule can change a model comparison. \citet{cawley2010} describe how model selection can affect reported performance. We therefore show both the original tuning rule and a check that matches tuning to the model checkpoint used at test time.
+
+\section{Network and experiment setup}
+\subsection{Fixed activation assignments}
+The network has the form $D\rightarrow H\rightarrow H\rightarrow 10$. Here $D$ is the input size and $H$ is the width of each hidden layer. For neuron $i$ in layer $l$, let $z_{l,i}$ be its weighted input. A fixed binary mask $m_{l,i}$ sets its function:
+\begin{equation}
+h_{l,i}=\begin{cases} f_1(z_{l,i}),&m_{l,i}=0,\\f_2(z_{l,i}),&m_{l,i}=1.\end{cases}
+\qquad
+\rho_l=\frac{1}{H}\sum_{i=1}^{H}m_{l,i}.
+\label{eq:mask}
+\end{equation}
+We call $\rho_l$ the \emph{activation allocation ratio}: the share of neurons assigned to the second function. This is a definition for this study, not a claim of a new general concept. The main tests use $\rho_l=0.5$ in both layers. A neuron does not compute a weighted sum of tanh and ReLU.
+
+The main mask spreads the two functions across each layer. The code calls this layout \texttt{interleave}. We also test a block layout and a shuffled layout. The ratio controls how many neurons use each function; the layout controls their positions. Figure~\ref{fig:network} shows the fixed assignment.
+
+\begin{figure}[htbp]
+\centering\includegraphics[width=0.94\linewidth]{figures/network.pdf}
+\caption{The tested MLP and a 50:50 tanh--ReLU mask. The drawing shows only a few units. Both hidden layers have the same width and activation share. The output layer uses one common output rule.}
+\label{fig:network}
+\end{figure}
+
+We use ReLU, leaky-ReLU, tanh, and sigmoid as single-function controls. The mixed pairs are \TR, \TL, and \SR. Leaky-ReLU has negative-side slope 0.1. These choices let us compare each mixed pair with both of its parent functions.
+
+\subsection{Data and training}
+MNIST contains digit images \citep{lecun1998}. In these runs, a fixed shuffle of its 60,000-image training file gives 45,000 training, 5,000 validation, and 10,000 test images. Thus our MNIST test scores do not use the official test set. CIFAR-10 uses 45,000 training and 5,000 validation images from the standard training set and the official 10,000-image test set \citep{krizhevsky2009}. The split seed is 12345 and is shared by all model seeds. Input pixels are scaled to $[0,1]$; no image augmentation is used.
+
+Each run uses 40 epochs of SGD with one image per update, a fixed learning rate, and a shuffled image order each epoch. We test $H\in\{12,32,64,128,256,512\}$. The main loss is cross-entropy (CE), with linear output scores followed by softmax. We also test the implemented mean squared error (MSE) loss with sigmoid outputs at $H=64$ and $128$ on MNIST.
+
+Weights are drawn from $U(-1/\sqrt{n},1/\sqrt{n})$, where $n$ is the input count of the layer, and biases start at zero. The resulting weight variance is $1/(3n)$. This is six times smaller than the standard ReLU He variance $2/n$ \citep{he2015}. We keep this implemented scale common to all models; it should not be read as the best scale for each activation. The code clips each loss derivative with respect to a neuron's weighted input to $[-10,10]$.
+
+\begin{table}[htbp]\centering
+\caption{Completed experiment groups. Counts exclude repeated CSV header lines.}
+\label{tab:inventory}\small
+\begin{tabular}{@{}llrr@{}}\toprule
+Group & Scope & Seeds per cell & Recorded rows\\\midrule
+Main CE tests & Two datasets, six widths, seven models & 30 & 2,520\\
+CE tuning & Eight learning rates per main setting & 6 & 4,032\\
+Learning-rate tests & MNIST 64/128; CIFAR-10 128 & 30 & 6,300\\
+Ratio and layout & MNIST 128; two mixed pairs & 30 & 300\\
+MSE tests & MNIST 64/128; three models & 30 & 180\\
+MSE tuning & Eight learning rates per MSE setting & 6 & 288\\\midrule
+Total & 32 CSV files & & 13,620\\\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Tuning and checkpoint selection}
+Learning-rate tuning uses seeds 101--106. Test runs use seeds 1--30. The tuning grid is
+\begin{equation}
+\mathcal{G}_{\rm tune}=\{0.0001,0.0003,0.001,0.003,0.01,0.03,0.1,0.3\}.
+\end{equation}
+The original rule selects the rate with the highest mean \emph{final} validation accuracy. The MNIST evaluation grids at widths 64 and 128 add 0.005, 0.02, and 0.05. The CIFAR-10 evaluation grid at width 128 uses the eight tuning rates. Each evaluation rate has 30 seeds per model.
+
+The runner saves the first epoch that reaches the highest validation accuracy. We call this the \emph{selected checkpoint}, meaning the saved model state at that epoch. It is tested after training ends. The final epoch is also tested. All 40 epochs are completed, so checkpoint selection does not reduce the training time. Unless stated otherwise, test scores in this paper use the selected checkpoint. Final validation scores are used to study loss of performance during training. We do not choose between endpoints based on test accuracy.
+
+Table~\ref{tab:inventory} lists the data. There are 690 repeated job identities across groups. In particular, some learning-rate tests repeat main runs. We never count these as extra independent seeds. Both test confusion matrices reproduce their saved accuracy and macro-F1 values to the precision in the CSVs. All validation curves have 40 entries and match the saved best score and epoch. All recorded statuses are \texttt{ok}; this field alone is not a full numerical check.
+
+\subsection{Measures and uncertainty}
+For a run with validation accuracy $v_t$ at epoch $t$, we report
+\begin{equation}
+v_{\rm peak}=\max_{1\leq t\leq40}v_t,\qquad
+d=v_{\rm peak}-v_{40},\qquad
+F=\mathbb{1}[v_{40}<15].
+\label{eq:failure}
+\end{equation}
+The drop $d$ is measured in percentage points (pp). The flag $F$ marks final accuracy close to chance on a ten-class task. The 15\% threshold was chosen during analysis and is a descriptive check, not a universal rule. A large drop can still matter when the final score is above 15\%.
+
+We use two learning-rate range summaries. The first keeps sampled rates whose mean final validation score is within 1 pp of that model's own best grid mean. The second keeps sampled rates with no final score below 15\%. For each rule we report the widest consecutive set of passing grid points, measured by its log span. These summaries do not establish behavior at untested rates.
+
+Test accuracy counts correct labels. Macro-F1 gives each class the same weight by averaging its F1 score. We give means and sample standard deviations (SDs) across 30 seeds. For a model difference, we match seed identifiers and resample the 30 pairs 10,000 times, using bootstrap seed 20260915. The 2.5th and 97.5th percentiles give a pointwise 95\% interval. We also apply the Holm correction to paired t-test p-values across 120 main checkpoint-accuracy comparisons. Six ratio tests form a separate correction group. These checks do not cover all prior choices or all figures. All uncertainty estimates are tied to one fixed data split and the observed tuning process.
+
+\FloatBarrier
+\section{Main result: resistance to late training collapse}
+\subsection{A large effect on MNIST}
+Figure~\ref{fig:curves} shows the main stability result. At $H=128$ and learning rate 0.03, ReLU reaches a mean peak validation score of 96.371\%, but ends at 10.611\%. Its mean loss from peak to final is 85.760 pp. The 50:50 tanh--ReLU model reaches 97.230\% and ends at 96.761\%, a loss of only 0.469 pp. All 30 ReLU runs end below 15\%; none of the mixed runs does.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/training_curves.pdf}
+\caption{Validation accuracy at learning rate 0.03 on MNIST. Lines are seed means and shaded bands are $\pm1$ seed SD, clipped to 0--100\%. The dotted line is the 15\% failure threshold. The tanh--ReLU model keeps high accuracy while ReLU loses it late in training. The wide ReLU band at H=64 reflects a mix of failed and useful runs.}
+\label{fig:curves}\end{figure}
+
+\input{tables/stress}
+
+At $H=64$, 12 of the 30 ReLU runs fail by the same rule. This gives a mean final score of 58.431\% and a very large SD of 40.047 pp. The mean alone hides two types of outcome. Tanh--ReLU gives 96.393\% with SD 0.302 pp and no near-chance runs. Table~\ref{tab:stress} includes all seven models, so the result is not based on one selected control.
+
+Table~\ref{tab:onset} shows when the failures first appear. For ReLU at H=128, the first validation score below 15\% occurs between epochs 17 and 28, with a median of 21.5. At the final epoch, every one of those ReLU runs predicts one class for all test images. The most-used class holds, on average, 11.4\% of the mixed model's final test predictions. This supports late training collapse, rather than a network that never learned. It does not identify which hidden units caused the failure.
+
+\input{tables/onset}
+
+Leaky-ReLU is an important comparison. It has no near-chance failures at these MNIST settings, but at H=128 its final score is 85.228\%. Tanh--ReLU is 11.533 pp higher. Pure tanh also remains useful, ending at 95.111\%, but the mixed model is 1.650 pp higher. Thus the gain over these controls combines failure resistance with a high final score. Pure sigmoid is stronger at this fixed rate: its final mean is 98.031\% with no observed failures. The hybrid is therefore not the best choice among all tested functions at LR=0.03. Figure~\ref{fig:drops} shows the individual-seed drops. The tanh--leaky-ReLU pair does not retain the same benefit at H=128: its final mean is 84.633\%.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/drop_seeds.pdf}
+\caption{Peak-to-final validation loss at learning rate 0.03. Each point is one seed; black marks show the mean. R: ReLU, L: leaky-ReLU, T: tanh, S: sigmoid. Plus signs name fixed mixed pairs. Small losses indicate that the final model keeps its earlier performance.}
+\label{fig:drops}\end{figure}
+
+No failures in 30 runs does not mean the failure risk is zero. Under independent seed sampling, the one-sided 95\% upper binomial bound for zero failures out of 30 is about 9.5\%. Also, the selected ReLU checkpoint remains useful in many runs that later fail. The advantage is most direct for training behavior and the final model; it is not an 86-point gain in the best saved test model.
+
+\subsection{The useful range depends on the rule}
+Figure~\ref{fig:lrscores} gives the full mean learning-rate curves. At MNIST H=128, the tanh--ReLU range within 1 pp of its own best grid mean is 0.0003--0.02. ReLU's range is 0.0003--0.01. The largest passing rate doubles, while the log span increases from 1.523 to 1.824 decades, about 20\%. At H=64, both models have the same near-best range. We therefore do not assign one general robustness multiplier to the hybrid.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/lr_scores.pdf}
+\caption{Mean final validation accuracy over the tested learning rates. Each point contains 30 seeds. Lines connect tested values only; they do not describe untested rates. MNIST uses 11 rates and CIFAR-10 uses eight. Full numerical values are in Appendix~\ref{app:lr}.}
+\label{fig:lrscores}\end{figure}
+
+Under the no-observed-failure rule, the MNIST upper rate rises from 0.02 for ReLU to 0.05 for tanh--ReLU at both widths. This is a 2.5-fold ratio of upper tested rates, not a 2.5-fold gain in accuracy or a direct risk ratio. The full log-span ratio is about 1.17. Table~\ref{tab:windows} gives both rules for every activation choice.
+
+\input{tables/windows}
+
+\subsection{The benefit does not transfer in full to CIFAR-10}
+At CIFAR-10 H=128 and learning rate 0.03, tanh--ReLU has fewer final near-chance failures than ReLU: 9/30 versus 26/30. Yet its final validation mean is only 17.879\%, far below its low-rate scores. Leaky-ReLU keeps 36.411\% and has no near-chance failures at that rate. At learning rate 0.01, tanh--ReLU is worse than both controls, with mean 28.110\% and one failure. Table~\ref{tab:cifarstress} shows these cases.
+
+\input{tables/cifar_stress}
+
+The near-best grid range is the same for ReLU and tanh--ReLU on CIFAR-10: 0.0003--0.001. Under the consecutive no-failure rule, the mixed model's range ends earlier because of its failure at 0.01. These results rule out a dataset-wide or function-pair-wide claim that mixing always improves stability. Figure~\ref{fig:failmaps} includes all failures in the evaluation grids.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=0.94\linewidth]{figures/failure_maps.pdf}
+\caption{Number of runs, out of 30, ending below 15\% validation accuracy. The lightest cells mean zero observed failures. The full grid shows that lower failure risk at one rate does not imply a wider failure-free range across all rates. Model codes follow Figure~\ref{fig:drops}.}
+\label{fig:failmaps}\end{figure}
+
+\FloatBarrier
+\section{Test accuracy and other benefits}
+\subsection{Width and activation choice}
+Tables~\ref{tab:mnist:test_acc_best} and \ref{tab:cifar10:test_acc_best} show all main-grid accuracy means and SDs. The tests retain the original tuning choices. The largest MNIST mean is 98.289\% for tanh--ReLU at H=512, compared with 98.285\% for ReLU. CIFAR-10 has its largest mean with ReLU at H=512, 54.875\%, compared with 54.711\% for tanh--ReLU. These are observed ranks, not clear evidence of distinct best models.
+
+\input{tables/mnist_test_acc_best}
+\input{tables/cifar10_test_acc_best}
+
+Figure~\ref{fig:width} shows both accuracy and macro-F1. Their trends mostly agree. Mixed activations can match the stronger parent without adding weights, but mixing by itself is not enough to improve a model. Sigmoid--ReLU scores below ReLU at all main widths on both datasets. At small widths, giving each function fewer neurons may limit learning, but we have no feature-level measurements to establish this cause.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/width_scores.pdf}
+\caption{Checkpoint accuracy and macro-F1 across width. Each point is a mean over 30 seeds. All seven models share the same parameter count at a given width. Error estimates for accuracy are in the main tables; F1 means and SDs are in Appendix~\ref{app:main}.}
+\label{fig:width}\end{figure}
+
+The paired tanh--ReLU effects change with width (Figure~\ref{fig:paired}). On MNIST the model is worse at H=12 and 32, close at H=64, apparently better at H=128 under the original tuning rule, and close again at H=256 and 512. There is no steady increase in benefit as width grows. The CIFAR-10 H=64 difference is +0.363 pp, but its adjusted p-value is 0.095 across the 120 main tests. Full paired values appear in Appendix~\ref{app:main}.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/paired_width.pdf}
+\caption{Paired test-accuracy differences using the original learning rates. Bars are pointwise 95\% bootstrap intervals, not seed SDs. The MNIST H=128 result is sensitive to the baseline learning rate; Table~\ref{tab:aligned} gives the matched selection check.}
+\label{fig:paired}\end{figure}
+
+\subsection{The tuning target matters}
+The original learning-rate rule uses final validation accuracy, while the test model is selected by peak validation accuracy. Changing tuning to mean peak validation accuracy changes 17 of 84 main choices. Existing evaluation grids cover four of these changes. The remaining thirteen need further runs for a fully retuned main comparison. We keep this distinction clear rather than filling missing cells from test scores.
+
+The most important check is MNIST H=128. ReLU tuning changes from 0.003 to 0.01, while tanh--ReLU stays at 0.01. Its test gain falls from +0.178 pp to +0.029 pp (Table~\ref{tab:aligned}). The latter paired interval includes zero and the paired t-test gives $p=0.266$. Relative error reduction falls from 8.30\% to about 1.47\%. About 83.5\% of the original mean difference is removed by this change. The selection check uses validation data from separate tuning seeds, not a search for the highest evaluation test score.
+
+\input{tables/aligned}
+
+This check does not remove the fixed-rate stability result at 0.03. It changes a different claim: whether mixing gives better best-checkpoint test accuracy after tuning. Treating those claims separately prevents a training-failure control from overstating the value of a model that can be tuned to work well.
+
+\subsection{Activation share and layout}
+At MNIST H=128, the ratio tests assign 32, 64, or 96 neurons per hidden layer to the second function. All tests use interleave layout and LR=0.01. The parameter count is 118,282 for every ratio. Table~\ref{tab:ratios} gives their results.
+
+\input{tables/ratios}
+
+Increasing the ReLU share from 25\% to 50\% raises mean test accuracy by 0.081 pp. Moving from 50\% to 75\% adds only 0.014 pp, with a paired interval that includes zero. For the tanh--leaky-ReLU pair, the 50\% to 75\% change adds 0.066 pp and has an adjusted p-value of 0.015 within the six ratio tests. Both 75\% models reach the same mean accuracy, 98.052\%. Figure~\ref{fig:ratio} includes pure-function controls at the same learning rate.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/ratio_scores.pdf}
+\caption{Activation share at MNIST H=128 and LR=0.01. Circles are the ratio tests; squares are single-function controls from the learning-rate sweep. Bars show seed SD. For tanh--ReLU, 75\% gives 98.052\% and pure ReLU gives 98.009\%; their paired difference is not clearly above zero. These are accuracy tests at one LR, not high-rate stability tests of the other ratios.}
+\label{fig:ratio}\end{figure}
+
+At the common LR=0.01, pure ReLU reaches 98.009\%. The 75\% tanh--ReLU model is +0.043 pp higher, with a paired interval of about $[-0.005,+0.093]$. Thus the ratio results do not identify a universal best split. In particular, we cannot claim that a 75\% ReLU layer keeps the 50\% layer's stability at LR=0.03: no such ratio-by-rate test was run. Ratios also did not receive separate LR tuning.
+
+Block and random layouts give small differences from interleave (Appendix~\ref{app:ratio}). In a fully connected network, a neuron permutation with matching weight permutations leaves the model's function unchanged. Also, making the random mask uses random numbers that later affect weights and training order. Same seed labels therefore do not hold all these factors fixed in the random-layout comparison. The tests do not establish a special advantage of neuron position.
+
+\subsection{Loss function and output layer}
+The MSE runs do not show a stable gain for tanh--ReLU over ReLU (Table~\ref{tab:mse}). At H=64, the difference is $-0.202$ pp, with a paired interval of about $[-0.265,-0.138]$. At H=128, it is $-0.034$ pp and the interval includes zero. The H=64 mixed model's tuning choice also changes under the peak rule, but matching evaluation runs are not available.
+
+\input{tables/mse}
+
+These runs change both the loss and the output activation. There is also an implementation detail: the logged MSE is $\frac{1}{10}\sum_j(o_j-y_j)^2$, while the supplied output derivative is $2(o_j-y_j)$ rather than $\frac{2}{10}(o_j-y_j)$. Updates are therefore ten times the derivative scale of the logged loss before later clipping. We report the completed runs as implemented. They do not isolate the effect of a normalized MSE loss at the same numerical learning rate.
+
+\subsection{Model size and recorded cost}
+Mixed masks add no trainable weights at a fixed width. With biases included, the parameter count is
+\begin{equation}P(H,D)=H^2+(D+12)H+10.\end{equation}
+The choice can therefore improve final training behavior without increasing this count. It does not follow that tanh has the same computation cost as ReLU.
+
+\input{tables/cost}
+
+Figure~\ref{fig:cost} and Table~\ref{tab:cost} show the width trade-off. MNIST ReLU at H=256 scores 98.214\%, only 0.074 pp below the H=512 tanh--ReLU mean, with 59.8\% fewer parameters and 67.3\% less recorded run time. This saving is mainly a width effect and should not be credited to mixing. On CIFAR-10, ReLU at H=256 gives up 0.802 pp relative to H=512 while using 53.6\% fewer parameters.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/parameter_cost.pdf}
+\caption{Accuracy against parameter count for selected models. Increasing width has a large cost and a shrinking accuracy gain. Mixed and single-function models have equal counts at the same width. The figure does not measure inference latency or energy.}
+\label{fig:cost}\end{figure}
+
+Run time includes loading data, training, validation, clean training checks, and final tests. Logs report up to 190 workers on a 192-core ARM system. We do not have isolated timing or energy data. The recorded times can guide further tests but do not establish a deployment speed advantage.
+
+\FloatBarrier
+\section{What may explain the stability gain?}
+Tanh has bounded outputs, while ReLU keeps a positive linear path. A mixed layer could limit some large signals while retaining paths that do not flatten for positive inputs. The fact that pure tanh remains stable but scores below tanh--ReLU at MNIST LR=0.03 is consistent with this idea. It is not proof of it. Learned weights can still amplify bounded inputs, and half of the neurons still use ReLU.
+
+Leaky-ReLU keeps a gradient on the negative side, which may help avoid a network stuck with inactive units. Its MNIST results show that avoiding chance-level failure can still leave a large loss of accuracy. This is why both the failure count and the peak-to-final loss are useful.
+
+The gradient clip also has limits. If $g$ is the loss derivative with respect to a neuron's weighted input, an update includes the term
+\begin{equation}\Delta w=-\eta\,\operatorname{clip}(g,-10,10)\,h.\end{equation}
+Large previous-layer output $h$ can still give a large weight step. The fixed initialization scale may also interact with each activation. Without activation traces, gradient norms, or clip counts, we cannot state whether the failures arise from large signals, inactive neurons, or another process. These measurements are the next step needed to move from observed behavior to a tested explanation.
+
+\section{Limits and next tests}
+The strongest result is tied to a small MLP, single-example SGD, the implemented initialization, and selected MNIST rates. We have not tested other optimizers, batch sizes, convolutional models, or input attacks. CIFAR-10 already shows that the same benefit need not transfer. The available ratio tests cannot show which share is most stable at high rates.
+
+All seed runs share one split. Their intervals measure training variation on that split, not uncertainty across new datasets. Six tuning seeds may also give unstable learning-rate choices. Many settings were examined before the main result was selected, so the stability analysis is exploratory. The reported correction groups do not remove all selection effects. A fresh set of seeds and splits is needed for an independent check.
+
+The epoch budget may limit some models. On CIFAR-10, 239 of 1,260 main runs choose epoch 40. Larger models also show a growing train--test gap. ReLU's selected-checkpoint gap rises from 1.609 pp at H=12 to 14.318 pp at H=512. The clean training score uses a fixed 10,000-image subset. Appendix~\ref{app:classes} shows these gaps and class-level recall. Longer runs and weight decay would help separate incomplete learning from poor generalization.
+
+Source details were checked against the local runner and layer code, but the logged AWS binary was not rebuilt and matched to that source during this analysis. The current non-finite check covers only one output for NaN. Future runs should record complete numerical checks, source and compiler versions, and hashes of the splits and starting weights.
+
+The most useful next experiment is a dense LR test around the observed transition, using ReLU, leaky-ReLU, and tanh--ReLU with common starting weights and training orders. Activation-specific initialization should be tested with equal tuning budgets. Separate random streams should control weights, masks, and image order. A ratio-by-rate study can then ask how much tanh is needed to keep stability while retaining accuracy. These are proposed tests, not completed evidence in this paper.
+
+\section{Conclusion}
+Fixed mixed activations can help a network keep its learned performance during training. On MNIST at H=128 and LR=0.03, a 50:50 tanh--ReLU split changes the outcome from 30/30 near-chance failures with ReLU to 0/30, while keeping a mean final validation score of 96.76\%. The model adds no trainable parameters and has a wider near-best tested LR range at that width. These benefits are specific to the tested settings. They do not imply a general increase in best test accuracy, and they do not transfer in full to CIFAR-10 or all mixed pairs. The results support reporting stability, tuned accuracy, and model size as separate outcomes when judging mixed-activation networks.
+
+\section*{Reproducibility statement}
+All results come from the completed CSV logs; no new training runs were made for this draft. The analysis checks both final and selected confusion matrices, retains all recorded failures, and avoids pooling repeated jobs. The source package includes scripts for analysis, tables, and figures. Appendices give the complete main results, tested learning-rate grids, original tuning choices, and changed tuning choices. Raw logs and training source must accompany a public release or a review supplement; this draft does not claim that such a release has already been made.
+
+\bibliography{references}
+\bibliographystyle{tmlr}
+
+\clearpage
+\appendix
+\section{Complete main comparisons}\label{app:main}
+The following tables give paired effects, macro-F1, and complete mean scores for all 84 main conditions. Model codes are R (ReLU), L (leaky-ReLU), T (tanh), S (sigmoid), T+R, T+L, and S+R. In the long table, M denotes MNIST and C denotes CIFAR-10. Accuracy and F1 use percent units; train--test gaps use percentage points. The selected epoch is averaged across seeds. Original learning-rate choices remain in place unless a table explicitly says otherwise.
+\input{tables/paired}
+\input{tables/mnist_test_f1_best}
+\input{tables/cifar10_test_f1_best}
+\FloatBarrier
+\input{tables/all_main}
+
+\clearpage
+\section{Learning-rate data and tuning choices}\label{app:lr}
+Tables below report all mean final validation scores in the evaluation grids and the original main learning rates. Each evaluation cell has 30 seeds. The failure heatmaps in Figure~\ref{fig:failmaps} use those same cells. The calibration figures show all CE and MSE tuning groups, with six seeds per cell. Their color scale runs from 0 to 100\% and uses final validation accuracy, matching the original tuning rule.
+\input{tables/lr_matrix_mnist_64}
+\input{tables/lr_matrix_mnist_128}
+\input{tables/lr_matrix_cifar10_128}
+\input{tables/lrs_mnist}
+\input{tables/lrs_cifar10}
+\FloatBarrier
+\input{tables/calibration_changes}
+\FloatBarrier
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/calibration_ce_mnist.pdf}
+\caption{MNIST CE calibration: mean final validation accuracy (\%) over six calibration seeds. Columns are learning rates; rows use the model codes given in Appendix~\ref{app:main}.}
+\label{fig:calibrationce}\end{figure}
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/calibration_ce_cifar10.pdf}
+\caption{CIFAR-10 CE calibration: mean final validation accuracy (\%) over six calibration seeds. The color scale matches the MNIST calibration panels.}
+\label{fig:calibrationcifar}\end{figure}
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/calibration_mse.pdf}
+\caption{MSE calibration means on MNIST, using the implemented sigmoid-output loss. Each cell contains six calibration seeds.}
+\label{fig:calibrationmse}\end{figure}
+\FloatBarrier
+
+\section{Ratio and layout comparisons}\label{app:ratio}
+The six ratio tests below have their own Holm correction. It covers neither the layout tests nor additional comparisons against pure-function controls. Random layouts change the subsequent random-number stream, as discussed in the main text. All ratio and layout tests use MNIST, H=128, and LR=0.01. The 50:50 interleave jobs repeat the corresponding main conditions and are not extra independent samples.
+\input{tables/ratio_pairs}
+\input{tables/layouts}
+\FloatBarrier
+
+\section{Training gaps and class-level recall}\label{app:classes}
+Figure~\ref{fig:gaps} matches the clean training score to each run's selected epoch. It does not subtract the final-epoch training score from a different checkpoint's test score. The training subset has 10,000 fixed images. These gaps show a larger train--test difference as CIFAR-10 width grows.
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/train_test_gap.pdf}
+\caption{Mean clean training accuracy minus test accuracy at the selected checkpoint. The gap grows with width on CIFAR-10. It remains much smaller on MNIST.}
+\label{fig:gaps}\end{figure}
+
+Class recall in Figure~\ref{fig:classes} is the share of each true class that is correctly predicted, averaged across seeds. It shows details hidden by an overall score, but the figure is descriptive. Shared test images mean that predictions from different seeds are not independent test datasets. Confusion matrices also do not retain the per-image disagreements needed for a paired test across images.
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/class_recall.pdf}
+\caption{Per-class recall at H=128 for all seven main models. Every cell is a mean across 30 selected checkpoints. The two panels use different color ranges (MNIST: 90--100\%; CIFAR-10: 20--80\%); numbers show the measured values. Model codes follow Appendix~\ref{app:main}.}
+\label{fig:classes}\end{figure}
+\FloatBarrier
+\end{document}

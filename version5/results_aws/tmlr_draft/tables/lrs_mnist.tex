@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Original selected learning rates: MNIST.}
+\label{tab:lrs:mnist}
+\footnotesize
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & 12 & 32 & 64 & 128 & 256 & 512 \\
+\midrule
+ReLU & 0.001 & 0.003 & 0.003 & 0.003 & 0.01 & 0.01 \\
+Leaky-ReLU & 0.001 & 0.003 & 0.003 & 0.003 & 0.01 & 0.01 \\
+tanh & 0.001 & 0.001 & 0.01 & 0.01 & 0.01 & 0.01 \\
+sigmoid & 0.003 & 0.003 & 0.01 & 0.03 & 0.1 & 0.1 \\
+tanh + ReLU & 0.001 & 0.003 & 0.01 & 0.01 & 0.01 & 0.01 \\
+tanh + leaky-ReLU & 0.001 & 0.003 & 0.01 & 0.01 & 0.01 & 0.01 \\
+sigmoid + ReLU & 0.003 & 0.01 & 0.003 & 0.003 & 0.01 & 0.03 \\
+\bottomrule
+\end{tabular}
+\end{table}

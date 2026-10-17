@@ -1,0 +1,78 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Cawley \& Talbot(2010)Cawley and Talbot]{cawley2010}
+Gavin~C. Cawley and Nicola L.~C. Talbot.
+\newblock On over-fitting in model selection and subsequent selection bias in
+  performance evaluation.
+\newblock \emph{Journal of Machine Learning Research}, 11:\penalty0 2079--2107,
+  2010.
+\newblock URL \url{https://jmlr.org/papers/v11/cawley10a.html}.
+
+\bibitem[Glorot \& Bengio(2010)Glorot and Bengio]{glorot2010}
+Xavier Glorot and Yoshua Bengio.
+\newblock Understanding the difficulty of training deep feedforward neural
+  networks.
+\newblock In \emph{Proceedings of the Thirteenth International Conference on
+  Artificial Intelligence and Statistics}, volume~9 of \emph{Proceedings of
+  Machine Learning Research}, pp.\  249--256, 2010.
+\newblock URL \url{https://proceedings.mlr.press/v9/glorot10a.html}.
+
+\bibitem[Glorot et~al.(2011)Glorot, Bordes, and Bengio]{glorot2011}
+Xavier Glorot, Antoine Bordes, and Yoshua Bengio.
+\newblock Deep sparse rectifier neural networks.
+\newblock In \emph{Proceedings of the Fourteenth International Conference on
+  Artificial Intelligence and Statistics}, volume~15 of \emph{Proceedings of
+  Machine Learning Research}, pp.\  315--323, 2011.
+\newblock URL \url{https://proceedings.mlr.press/v15/glorot11a.html}.
+
+\bibitem[Hagg et~al.(2017)Hagg, Mensing, and Asteroth]{hagg2017}
+Alexander Hagg, Maximilian Mensing, and Alexander Asteroth.
+\newblock Evolving parsimonious networks by mixing activation functions.
+\newblock In \emph{Proceedings of the Genetic and Evolutionary Computation
+  Conference}, pp.\  425--432, 2017.
+\newblock \doi{10.1145/3071178.3071275}.
+\newblock URL \url{https://arxiv.org/abs/1703.07122}.
+
+\bibitem[He et~al.(2015)He, Zhang, Ren, and Sun]{he2015}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Delving deep into rectifiers: Surpassing human-level performance on
+  {ImageNet} classification.
+\newblock In \emph{Proceedings of the IEEE International Conference on Computer
+  Vision}, pp.\  1026--1034, 2015.
+\newblock URL \url{https://arxiv.org/abs/1502.01852}.
+
+\bibitem[Krizhevsky(2009)]{krizhevsky2009}
+Alex Krizhevsky.
+\newblock Learning multiple layers of features from tiny images.
+\newblock Technical report, University of Toronto, 2009.
+\newblock URL
+  \url{https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf}.
+
+\bibitem[LeCun et~al.(1998)LeCun, Bottou, Bengio, and Haffner]{lecun1998}
+Yann LeCun, L{\'e}on Bottou, Yoshua Bengio, and Patrick Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock \emph{Proceedings of the IEEE}, 86\penalty0 (11):\penalty0
+  2278--2324, 1998.
+\newblock \doi{10.1109/5.726791}.
+\newblock URL \url{https://bottou.org/papers/lecun-98h}.
+
+\bibitem[Lu et~al.(2019)Lu, Shin, Su, and Karniadakis]{lu2019}
+Lu~Lu, Yeonjong Shin, Yanhui Su, and George~Em Karniadakis.
+\newblock Dying {ReLU} and initialization: Theory and numerical examples.
+\newblock arXiv:1903.06733, 2019.
+\newblock URL \url{https://arxiv.org/abs/1903.06733}.
+
+\bibitem[Manessi \& Rozza(2018)Manessi and Rozza]{manessi2018}
+Franco Manessi and Alessandro Rozza.
+\newblock Learning combinations of activation functions.
+\newblock In \emph{24th International Conference on Pattern Recognition}, pp.\
+  61--66, 2018.
+\newblock \doi{10.1109/ICPR.2018.8545362}.
+\newblock URL \url{https://arxiv.org/abs/1801.09403}.
+
+\end{thebibliography}

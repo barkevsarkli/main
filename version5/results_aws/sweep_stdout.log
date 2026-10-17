@@ -1,0 +1,260 @@
+nohup: ignoring input
+[2026-09-11 17:15:23] START | P=190 | epochs=40 | results=/home/ubuntu/article/version5/results_aws
+[2026-09-11 17:15:23] cores=192 | Linux aarch64
+[2026-09-11 17:15:23] binary sha256=996387a0a0da727b
+[2026-09-11 17:15:23] === mnist_12 ===
+[2026-09-11 17:15:23] STAGE calib12 start | jobs=336 pending=0 workers=190
+[2026-09-11 17:15:23] STAGE calib12 COMPLETE | 0 jobs run in 0h00m00s
+relu/relu/0/interleave/12/ce                  best lr=0.001     0.0001:92.70  0.0003:94.29  0.001:94.64  0.003:94.26  0.01:93.28  0.03:50.80  0.1:11.34  0.3:9.63
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.001     0.0001:92.68  0.0003:94.17  0.001:94.41  0.003:94.00  0.01:94.02  0.03:93.45  0.1:82.51  0.3:84.27
+tanh/tanh/0/interleave/12/ce                  best lr=0.001     0.0001:92.61  0.0003:94.09  0.001:94.14  0.003:93.68  0.01:92.72  0.03:91.93  0.1:84.53  0.3:49.83
+sigmoid/sigmoid/0/interleave/12/ce            best lr=0.003     0.0001:73.32  0.0003:89.48  0.001:92.96  0.003:93.77  0.01:93.54  0.03:92.90  0.1:91.72  0.3:88.49
+tanh/relu/0.5/interleave/12/ce                best lr=0.001     0.0001:92.60  0.0003:94.05  0.001:94.29  0.003:93.70  0.01:92.90  0.03:89.33  0.1:82.55  0.3:41.60
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.001     0.0001:92.54  0.0003:93.96  0.001:94.08  0.003:94.07  0.01:93.45  0.03:92.07  0.1:75.47  0.3:78.31
+sigmoid/relu/0.5/interleave/12/ce             best lr=0.003     0.0001:89.75  0.0003:91.08  0.001:93.35  0.003:93.60  0.01:93.18  0.03:92.77  0.1:89.68  0.3:83.51
+wrote /home/ubuntu/article/version5/results_aws/best_lr.json
+[2026-09-11 17:15:23] STAGE main12 start | jobs=210 pending=0 workers=190
+[2026-09-11 17:15:23] STAGE main12 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-11 17:15:23] === mnist_32 ===
+[2026-09-11 17:15:23] STAGE calib32 start | jobs=336 pending=146 workers=190
+[2026-09-11 17:16:17] STAGE calib32 | done 146/146  remaining 0  elapsed 0m54s  ETA 0h00m
+[2026-09-11 17:16:17] STAGE calib32 COMPLETE | 146 jobs run in 0h00m54s
+relu/relu/0/interleave/32/ce                  best lr=0.003     0.0001:94.52  0.0003:96.33  0.001:96.65  0.003:96.70  0.01:96.28  0.03:89.63  0.1:11.68  0.3:10.13
+leaky_relu/leaky_relu/0/interleave/32/ce      best lr=0.003     0.0001:94.28  0.0003:96.30  0.001:96.62  0.003:96.67  0.01:96.15  0.03:94.38  0.1:84.14  0.3:85.38
+tanh/tanh/0/interleave/32/ce                  best lr=0.001     0.0001:94.66  0.0003:96.47  0.001:96.59  0.003:96.49  0.01:95.80  0.03:94.85  0.1:81.08  0.3:12.71
+sigmoid/sigmoid/0/interleave/32/ce            best lr=0.003     0.0001:80.86  0.0003:91.51  0.001:95.60  0.003:96.56  0.01:96.27  0.03:96.23  0.1:95.60  0.3:93.29
+tanh/relu/0.5/interleave/32/ce                best lr=0.003     0.0001:94.51  0.0003:96.42  0.001:96.75  0.003:96.76  0.01:96.20  0.03:95.07  0.1:85.04  0.3:17.66
+sigmoid/relu/0.5/interleave/32/ce             best lr=0.01      0.0001:93.11  0.0003:94.91  0.001:95.20  0.003:95.76  0.01:96.35  0.03:95.73  0.1:86.11  0.3:77.58
+tanh/leaky_relu/0.5/interleave/32/ce          best lr=0.003     0.0001:94.46  0.0003:96.42  0.001:96.72  0.003:96.81  0.01:96.11  0.03:95.35  0.1:82.76  0.3:83.21
+wrote /home/ubuntu/article/version5/results_aws/best_lr.json
+[2026-09-11 17:16:17] STAGE main32 start | jobs=210 pending=210 workers=190
+[2026-09-11 17:17:57] STAGE main32 | done 210/210  remaining 0  elapsed 1m40s  ETA 0h00m
+[2026-09-11 17:17:57] STAGE main32 COMPLETE | 210 jobs run in 0h01m40s
+[2026-09-11 17:17:57] === mnist_64 ===
+[2026-09-11 17:17:57] STAGE calib64 start | jobs=336 pending=336 workers=190
+[2026-09-11 17:21:31] STAGE calib64 | done 336/336  remaining 0  elapsed 3m34s  ETA 0h00m
+[2026-09-11 17:21:31] STAGE calib64 COMPLETE | 336 jobs run in 0h03m34s
+relu/relu/0/interleave/64/ce                  best lr=0.003     0.0001:94.99  0.0003:97.00  0.001:97.54  0.003:97.83  0.01:97.10  0.03:51.55  0.1:10.48  0.3:9.82
+tanh/tanh/0/interleave/64/ce                  best lr=0.01      0.0001:94.80  0.0003:96.91  0.001:97.44  0.003:97.63  0.01:97.65  0.03:96.28  0.1:69.88  0.3:9.81
+leaky_relu/leaky_relu/0/interleave/64/ce      best lr=0.003     0.0001:94.77  0.0003:96.92  0.001:97.48  0.003:97.83  0.01:96.90  0.03:84.68  0.1:85.24  0.3:86.61
+sigmoid/sigmoid/0/interleave/64/ce            best lr=0.01      0.0001:83.96  0.0003:91.83  0.001:96.07  0.003:97.30  0.01:97.59  0.03:97.56  0.1:96.68  0.3:94.69
+tanh/relu/0.5/interleave/64/ce                best lr=0.01      0.0001:94.92  0.0003:96.91  0.001:97.49  0.003:97.68  0.01:97.84  0.03:96.33  0.1:50.51  0.3:9.82
+tanh/leaky_relu/0.5/interleave/64/ce          best lr=0.01      0.0001:94.85  0.0003:96.84  0.001:97.53  0.003:97.73  0.01:97.82  0.03:95.86  0.1:83.20  0.3:83.77
+sigmoid/relu/0.5/interleave/64/ce             best lr=0.003     0.0001:94.25  0.0003:96.20  0.001:96.73  0.003:96.86  0.01:96.49  0.03:96.11  0.1:72.43  0.3:79.21
+wrote /home/ubuntu/article/version5/results_aws/best_lr.json
+[2026-09-11 17:21:31] STAGE main64 start | jobs=210 pending=210 workers=190
+[2026-09-11 17:24:55] STAGE main64 | done 210/210  remaining 0  elapsed 3m24s  ETA 0h00m
+[2026-09-11 17:24:55] STAGE main64 COMPLETE | 210 jobs run in 0h03m24s
+[2026-09-11 17:24:55] === mnist_128 ===
+[2026-09-11 17:24:55] STAGE calib128 start | jobs=336 pending=336 workers=190
+[2026-09-11 17:32:29] STAGE calib128 | done 336/336  remaining 0  elapsed 7m34s  ETA 0h00m
+[2026-09-11 17:32:29] STAGE calib128 COMPLETE | 336 jobs run in 0h07m34s
+relu/relu/0/interleave/128/ce                 best lr=0.003     0.0001:95.24  0.0003:97.29  0.001:97.91  0.003:98.09  0.01:98.03  0.03:10.40  0.1:10.54  0.3:10.24
+tanh/tanh/0/interleave/128/ce                 best lr=0.01      0.0001:94.55  0.0003:97.10  0.001:97.79  0.003:97.96  0.01:98.14  0.03:94.75  0.1:59.21  0.3:10.67
+leaky_relu/leaky_relu/0/interleave/128/ce     best lr=0.003     0.0001:94.95  0.0003:97.23  0.001:97.83  0.003:97.99  0.01:97.55  0.03:84.98  0.1:85.65  0.3:85.80
+sigmoid/sigmoid/0/interleave/128/ce           best lr=0.03      0.0001:84.36  0.0003:91.51  0.001:95.94  0.003:97.53  0.01:97.92  0.03:98.06  0.1:97.99  0.3:95.62
+tanh/relu/0.5/interleave/128/ce               best lr=0.01      0.0001:95.10  0.0003:97.22  0.001:97.80  0.003:98.07  0.01:98.31  0.03:96.79  0.1:35.40  0.3:10.00
+tanh/leaky_relu/0.5/interleave/128/ce         best lr=0.01      0.0001:94.90  0.0003:97.16  0.001:97.75  0.003:97.97  0.01:98.29  0.03:83.93  0.1:84.31  0.3:84.67
+sigmoid/relu/0.5/interleave/128/ce            best lr=0.003     0.0001:94.70  0.0003:96.96  0.001:97.43  0.003:97.79  0.01:97.07  0.03:97.78  0.1:65.44  0.3:63.86
+wrote /home/ubuntu/article/version5/results_aws/best_lr.json
+[2026-09-11 17:32:29] STAGE main128 start | jobs=210 pending=210 workers=190
+[2026-09-11 17:39:36] STAGE main128 | done 210/210  remaining 0  elapsed 7m07s  ETA 0h00m
+[2026-09-11 17:39:36] STAGE main128 COMPLETE | 210 jobs run in 0h07m07s
+[2026-09-11 17:39:36] === mnist_256 ===
+[2026-09-11 17:39:36] STAGE calib256 start | jobs=336 pending=336 workers=190
+[2026-09-11 17:56:44] STAGE calib256 | done 336/336  remaining 0  elapsed 17m08s  ETA 0h00m
+[2026-09-11 17:56:44] STAGE calib256 COMPLETE | 336 jobs run in 0h17m08s
+relu/relu/0/interleave/256/ce                 best lr=0.01      0.0001:95.65  0.0003:97.64  0.001:98.09  0.003:98.28  0.01:98.44  0.03:10.68  0.1:10.51  0.3:10.00
+tanh/tanh/0/interleave/256/ce                 best lr=0.01      0.0001:94.05  0.0003:96.75  0.001:97.84  0.003:98.00  0.01:98.28  0.03:91.43  0.1:46.02  0.3:9.91
+sigmoid/sigmoid/0/interleave/256/ce           best lr=0.1       0.0001:86.04  0.0003:91.21  0.001:95.46  0.003:97.54  0.01:98.10  0.03:98.27  0.1:98.32  0.3:96.38
+leaky_relu/leaky_relu/0/interleave/256/ce     best lr=0.01      0.0001:95.34  0.0003:97.60  0.001:98.08  0.003:98.15  0.01:98.40  0.03:87.14  0.1:86.39  0.3:86.94
+tanh/relu/0.5/interleave/256/ce               best lr=0.01      0.0001:95.23  0.0003:97.47  0.001:98.02  0.003:98.22  0.01:98.46  0.03:94.83  0.1:34.30  0.3:11.02
+tanh/leaky_relu/0.5/interleave/256/ce         best lr=0.01      0.0001:94.99  0.0003:97.29  0.001:97.94  0.003:98.21  0.01:98.44  0.03:85.30  0.1:86.39  0.3:85.80
+sigmoid/relu/0.5/interleave/256/ce            best lr=0.01      0.0001:95.09  0.0003:97.43  0.001:97.87  0.003:98.14  0.01:98.26  0.03:98.20  0.1:38.77  0.3:57.68
+wrote /home/ubuntu/article/version5/results_aws/best_lr.json
+[2026-09-11 17:56:44] STAGE main256 start | jobs=210 pending=210 workers=190
+[2026-09-11 18:12:44] STAGE main256 | done 210/210  remaining 0  elapsed 16m00s  ETA 0h00m
+[2026-09-11 18:12:44] STAGE main256 COMPLETE | 210 jobs run in 0h16m00s
+[2026-09-11 18:12:44] === mnist_512 ===
+[2026-09-11 18:12:44] STAGE calib512 start | jobs=336 pending=336 workers=190
+[2026-09-11 18:59:56] STAGE calib512 | done 336/336  remaining 0  elapsed 47m12s  ETA 0h00m
+[2026-09-11 18:59:56] STAGE calib512 COMPLETE | 336 jobs run in 0h47m12s
+sigmoid/sigmoid/0/interleave/512/ce           best lr=0.1       0.0001:86.90  0.0003:91.03  0.001:94.94  0.003:97.20  0.01:98.00  0.03:98.28  0.1:98.36  0.3:80.97
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.01      0.0001:95.47  0.0003:97.62  0.001:98.13  0.003:98.28  0.01:98.55  0.03:85.71  0.1:88.08  0.3:87.10
+tanh/tanh/0/interleave/512/ce                 best lr=0.01      0.0001:93.38  0.0003:96.51  0.001:97.72  0.003:98.01  0.01:98.27  0.03:81.79  0.1:35.90  0.3:9.99
+relu/relu/0/interleave/512/ce                 best lr=0.01      0.0001:95.82  0.0003:97.78  0.001:98.20  0.003:98.31  0.01:98.49  0.03:10.32  0.1:11.56  0.3:10.20
+tanh/relu/0.5/interleave/512/ce               best lr=0.01      0.0001:95.29  0.0003:97.58  0.001:98.11  0.003:98.30  0.01:98.59  0.03:72.84  0.1:36.83  0.3:14.55
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.01      0.0001:94.99  0.0003:97.45  0.001:98.06  0.003:98.29  0.01:98.51  0.03:87.06  0.1:87.58  0.3:88.05
+sigmoid/relu/0.5/interleave/512/ce            best lr=0.03      0.0001:95.33  0.0003:97.60  0.001:97.97  0.003:98.22  0.01:98.37  0.03:98.37  0.1:37.72  0.3:49.58
+wrote /home/ubuntu/article/version5/results_aws/best_lr.json
+[2026-09-11 18:59:56] STAGE main512 start | jobs=210 pending=210 workers=190
+[2026-09-11 19:44:04] STAGE main512 | done 210/210  remaining 0  elapsed 44m08s  ETA 0h00m
+[2026-09-11 19:44:04] STAGE main512 COMPLETE | 210 jobs run in 0h44m08s
+[2026-09-11 19:44:04] === c10_12 ===
+[2026-09-11 19:44:04] STAGE c10_calib12 start | jobs=336 pending=336 workers=190
+[2026-09-11 19:46:37] STAGE c10_calib12 | done 336/336  remaining 0  elapsed 2m33s  ETA 0h00m
+[2026-09-11 19:46:37] STAGE c10_calib12 COMPLETE | 336 jobs run in 0h02m33s
+relu/relu/0/interleave/12/ce                  best lr=0.0003    0.0001:41.14  0.0003:42.63  0.001:41.61  0.003:38.14  0.01:21.44  0.03:10.19  0.1:10.00  0.3:10.05
+leaky_relu/leaky_relu/0/interleave/12/ce      best lr=0.0003    0.0001:40.63  0.0003:42.58  0.001:42.47  0.003:41.95  0.01:39.71  0.03:32.86  0.1:10.13  0.3:10.59
+tanh/tanh/0/interleave/12/ce                  best lr=0.0003    0.0001:41.33  0.0003:41.85  0.001:41.08  0.003:38.11  0.01:34.07  0.03:25.80  0.1:11.80  0.3:10.07
+sigmoid/sigmoid/0/interleave/12/ce            best lr=0.003     0.0001:25.95  0.0003:35.00  0.001:39.95  0.003:40.15  0.01:38.43  0.03:35.50  0.1:28.04  0.3:15.23
+tanh/relu/0.5/interleave/12/ce                best lr=0.0003    0.0001:40.90  0.0003:42.01  0.001:40.76  0.003:39.04  0.01:30.11  0.03:25.84  0.1:13.33  0.3:9.98
+tanh/leaky_relu/0.5/interleave/12/ce          best lr=0.0003    0.0001:41.11  0.0003:42.19  0.001:41.40  0.003:39.76  0.01:36.47  0.03:28.23  0.1:9.56  0.3:10.08
+sigmoid/relu/0.5/interleave/12/ce             best lr=0.001     0.0001:36.13  0.0003:39.16  0.001:40.73  0.003:39.66  0.01:35.10  0.03:30.23  0.1:24.10  0.3:14.02
+wrote /home/ubuntu/article/version5/results_aws/c10_best_lr.json
+[2026-09-11 19:46:37] STAGE c10_main12 start | jobs=210 pending=210 workers=190
+[2026-09-11 19:49:06] STAGE c10_main12 | done 210/210  remaining 0  elapsed 2m29s  ETA 0h00m
+[2026-09-11 19:49:06] STAGE c10_main12 COMPLETE | 210 jobs run in 0h02m29s
+[2026-09-11 19:49:06] === c10_32 ===
+[2026-09-11 19:49:06] STAGE c10_calib32 start | jobs=336 pending=336 workers=190
+[2026-09-11 19:55:28] STAGE c10_calib32 | done 336/336  remaining 0  elapsed 6m22s  ETA 0h00m
+[2026-09-11 19:55:28] STAGE c10_calib32 COMPLETE | 336 jobs run in 0h06m22s
+relu/relu/0/interleave/32/ce                  best lr=0.0003    0.0001:46.32  0.0003:47.94  0.001:47.66  0.003:44.09  0.01:33.04  0.03:11.37  0.1:10.11  0.3:10.11
+leaky_relu/leaky_relu/0/interleave/32/ce      best lr=0.0003    0.0001:45.83  0.0003:48.03  0.001:47.66  0.003:45.76  0.01:42.52  0.03:35.48  0.1:13.57  0.3:13.29
+tanh/tanh/0/interleave/32/ce                  best lr=0.0003    0.0001:45.93  0.0003:46.74  0.001:46.49  0.003:42.74  0.01:35.74  0.03:22.82  0.1:11.04  0.3:9.84
+sigmoid/sigmoid/0/interleave/32/ce            best lr=0.003     0.0001:28.77  0.0003:38.28  0.001:45.18  0.003:46.13  0.01:42.80  0.03:37.36  0.1:28.58  0.3:16.32
+tanh/relu/0.5/interleave/32/ce                best lr=0.0003    0.0001:46.14  0.0003:47.66  0.001:46.83  0.003:44.08  0.01:30.98  0.03:25.35  0.1:14.69  0.3:9.84
+tanh/leaky_relu/0.5/interleave/32/ce          best lr=0.0003    0.0001:46.16  0.0003:47.59  0.001:47.52  0.003:44.38  0.01:40.58  0.03:21.98  0.1:11.63  0.3:11.56
+sigmoid/relu/0.5/interleave/32/ce             best lr=0.001     0.0001:43.33  0.0003:45.37  0.001:46.73  0.003:45.52  0.01:41.23  0.03:35.13  0.1:25.10  0.3:15.15
+wrote /home/ubuntu/article/version5/results_aws/c10_best_lr.json
+[2026-09-11 19:55:28] STAGE c10_main32 start | jobs=210 pending=210 workers=190
+[2026-09-11 20:01:46] STAGE c10_main32 | done 210/210  remaining 0  elapsed 6m18s  ETA 0h00m
+[2026-09-11 20:01:46] STAGE c10_main32 COMPLETE | 210 jobs run in 0h06m18s
+[2026-09-11 20:01:46] === c10_64 ===
+[2026-09-11 20:01:46] STAGE c10_calib64 start | jobs=336 pending=336 workers=190
+[2026-09-11 20:14:18] STAGE c10_calib64 | done 336/336  remaining 0  elapsed 12m32s  ETA 0h00m
+[2026-09-11 20:14:18] STAGE c10_calib64 COMPLETE | 336 jobs run in 0h12m32s
+relu/relu/0/interleave/64/ce                  best lr=0.001     0.0001:48.29  0.0003:50.27  0.001:50.52  0.003:47.20  0.01:36.60  0.03:12.21  0.1:10.00  0.3:10.21
+leaky_relu/leaky_relu/0/interleave/64/ce      best lr=0.001     0.0001:47.79  0.0003:50.24  0.001:50.57  0.003:48.39  0.01:43.90  0.03:36.49  0.1:15.82  0.3:18.18
+tanh/tanh/0/interleave/64/ce                  best lr=0.0003    0.0001:47.86  0.0003:49.53  0.001:48.64  0.003:44.05  0.01:35.97  0.03:21.35  0.1:10.22  0.3:10.14
+sigmoid/sigmoid/0/interleave/64/ce            best lr=0.003     0.0001:30.60  0.0003:39.51  0.001:47.75  0.003:48.63  0.01:45.01  0.03:39.03  0.1:27.21  0.3:15.67
+tanh/relu/0.5/interleave/64/ce                best lr=0.0003    0.0001:48.73  0.0003:50.37  0.001:49.52  0.003:47.21  0.01:32.03  0.03:21.89  0.1:12.87  0.3:10.14
+tanh/leaky_relu/0.5/interleave/64/ce          best lr=0.0003    0.0001:48.36  0.0003:50.55  0.001:48.96  0.003:46.83  0.01:41.30  0.03:18.39  0.1:13.87  0.3:15.13
+sigmoid/relu/0.5/interleave/64/ce             best lr=0.001     0.0001:46.25  0.0003:48.53  0.001:49.20  0.003:48.24  0.01:44.27  0.03:34.67  0.1:27.08  0.3:14.93
+wrote /home/ubuntu/article/version5/results_aws/c10_best_lr.json
+[2026-09-11 20:14:18] STAGE c10_main64 start | jobs=210 pending=210 workers=190
+[2026-09-11 20:26:37] STAGE c10_main64 | done 210/210  remaining 0  elapsed 12m19s  ETA 0h00m
+[2026-09-11 20:26:37] STAGE c10_main64 COMPLETE | 210 jobs run in 0h12m19s
+[2026-09-11 20:26:37] === c10_128 ===
+[2026-09-11 20:26:37] STAGE c10_calib128 start | jobs=336 pending=336 workers=190
+[2026-09-11 20:52:01] STAGE c10_calib128 | done 336/336  remaining 0  elapsed 25m24s  ETA 0h00m
+[2026-09-11 20:52:01] STAGE c10_calib128 COMPLETE | 336 jobs run in 0h25m24s
+relu/relu/0/interleave/128/ce                 best lr=0.0003    0.0001:50.00  0.0003:52.20  0.001:51.18  0.003:48.92  0.01:37.40  0.03:10.98  0.1:9.67  0.3:9.85
+leaky_relu/leaky_relu/0/interleave/128/ce     best lr=0.0003    0.0001:49.41  0.0003:52.25  0.001:51.88  0.003:49.28  0.01:45.03  0.03:35.70  0.1:20.07  0.3:20.15
+sigmoid/sigmoid/0/interleave/128/ce           best lr=0.003     0.0001:31.26  0.0003:39.75  0.001:49.02  0.003:50.41  0.01:45.91  0.03:39.78  0.1:29.25  0.3:10.49
+tanh/tanh/0/interleave/128/ce                 best lr=0.0003    0.0001:48.45  0.0003:51.02  0.001:50.65  0.003:45.64  0.01:34.43  0.03:13.82  0.1:9.81  0.3:9.81
+tanh/relu/0.5/interleave/128/ce               best lr=0.0003    0.0001:49.85  0.0003:52.35  0.001:51.64  0.003:49.06  0.01:26.33  0.03:20.11  0.1:9.82  0.3:9.81
+tanh/leaky_relu/0.5/interleave/128/ce         best lr=0.0003    0.0001:49.23  0.0003:52.04  0.001:51.35  0.003:49.03  0.01:41.25  0.03:15.17  0.1:14.70  0.3:16.18
+sigmoid/relu/0.5/interleave/128/ce            best lr=0.0003    0.0001:47.95  0.0003:50.58  0.001:50.45  0.003:49.42  0.01:44.64  0.03:18.30  0.1:27.07  0.3:15.71
+wrote /home/ubuntu/article/version5/results_aws/c10_best_lr.json
+[2026-09-11 20:52:01] STAGE c10_main128 start | jobs=210 pending=210 workers=190
+[2026-09-11 21:16:52] STAGE c10_main128 | done 210/210  remaining 0  elapsed 24m51s  ETA 0h00m
+[2026-09-11 21:16:52] STAGE c10_main128 COMPLETE | 210 jobs run in 0h24m51s
+[2026-09-11 21:16:52] === c10_256 ===
+[2026-09-11 21:16:52] STAGE c10_calib256 start | jobs=336 pending=336 workers=190
+[2026-09-11 22:27:52] STAGE c10_calib256 | done 336/336  remaining 0  elapsed 71m00s  ETA 0h00m
+[2026-09-11 22:27:52] STAGE c10_calib256 COMPLETE | 336 jobs run in 1h11m00s
+sigmoid/sigmoid/0/interleave/256/ce           best lr=0.003     0.0001:31.56  0.0003:39.99  0.001:48.72  0.003:50.81  0.01:47.28  0.03:36.89  0.1:23.80  0.3:9.82
+leaky_relu/leaky_relu/0/interleave/256/ce     best lr=0.0003    0.0001:50.16  0.0003:52.67  0.001:52.50  0.003:50.10  0.01:44.10  0.03:34.58  0.1:17.65  0.3:18.83
+relu/relu/0/interleave/256/ce                 best lr=0.0003    0.0001:50.68  0.0003:52.72  0.001:50.99  0.003:49.35  0.01:37.85  0.03:10.13  0.1:9.83  0.3:9.75
+tanh/tanh/0/interleave/256/ce                 best lr=0.001     0.0001:48.64  0.0003:50.89  0.001:51.11  0.003:45.61  0.01:31.09  0.03:10.23  0.1:9.82  0.3:9.82
+tanh/relu/0.5/interleave/256/ce               best lr=0.0003    0.0001:50.75  0.0003:52.73  0.001:52.59  0.003:49.98  0.01:22.73  0.03:10.53  0.1:9.82  0.3:9.82
+tanh/leaky_relu/0.5/interleave/256/ce         best lr=0.0003    0.0001:50.19  0.0003:52.71  0.001:52.64  0.003:49.93  0.01:39.18  0.03:17.93  0.1:18.60  0.3:16.14
+sigmoid/relu/0.5/interleave/256/ce            best lr=0.0003    0.0001:49.63  0.0003:52.05  0.001:51.28  0.003:50.74  0.01:47.93  0.03:13.27  0.1:25.80  0.3:12.76
+wrote /home/ubuntu/article/version5/results_aws/c10_best_lr.json
+[2026-09-11 22:27:52] STAGE c10_main256 start | jobs=210 pending=210 workers=190
+[2026-09-11 23:29:57] STAGE c10_main256 | done 210/210  remaining 0  elapsed 62m05s  ETA 0h00m
+[2026-09-11 23:29:57] STAGE c10_main256 COMPLETE | 210 jobs run in 1h02m05s
+[2026-09-11 23:29:57] === c10_512 ===
+[2026-09-11 23:29:57] STAGE c10_calib512 start | jobs=336 pending=336 workers=190
+[2026-09-12 03:43:23] STAGE c10_calib512 | done 336/336  remaining 0  elapsed 253m26s  ETA 0h00m
+[2026-09-12 03:43:23] STAGE c10_calib512 COMPLETE | 336 jobs run in 4h13m26s
+leaky_relu/leaky_relu/0/interleave/512/ce     best lr=0.0003    0.0001:50.85  0.0003:53.59  0.001:52.67  0.003:50.42  0.01:42.99  0.03:34.60  0.1:19.20  0.3:20.56
+sigmoid/sigmoid/0/interleave/512/ce           best lr=0.003     0.0001:31.84  0.0003:39.91  0.001:48.36  0.003:51.63  0.01:49.31  0.03:12.94  0.1:9.99  0.3:9.99
+tanh/tanh/0/interleave/512/ce                 best lr=0.001     0.0001:48.28  0.0003:51.55  0.001:51.57  0.003:45.04  0.01:14.20  0.03:9.99  0.1:9.99  0.3:9.99
+relu/relu/0/interleave/512/ce                 best lr=0.0003    0.0001:51.49  0.0003:54.10  0.001:52.75  0.003:50.12  0.01:40.20  0.03:10.18  0.1:10.10  0.3:10.16
+tanh/relu/0.5/interleave/512/ce               best lr=0.0003    0.0001:51.11  0.0003:53.88  0.001:52.71  0.003:50.50  0.01:20.36  0.03:9.99  0.1:9.99  0.3:9.99
+tanh/leaky_relu/0.5/interleave/512/ce         best lr=0.0003    0.0001:50.71  0.0003:53.47  0.001:52.95  0.003:50.93  0.01:37.71  0.03:19.77  0.1:17.86  0.3:20.21
+sigmoid/relu/0.5/interleave/512/ce            best lr=0.0003    0.0001:50.47  0.0003:53.74  0.001:52.66  0.003:51.73  0.01:49.76  0.03:15.95  0.1:16.29  0.3:12.64
+wrote /home/ubuntu/article/version5/results_aws/c10_best_lr.json
+[2026-09-12 03:43:23] STAGE c10_main512 start | jobs=210 pending=210 workers=190
+[2026-09-12 06:59:06] STAGE c10_main512 | done 210/210  remaining 0  elapsed 195m43s  ETA 0h00m
+[2026-09-12 06:59:06] STAGE c10_main512 COMPLETE | 210 jobs run in 3h15m43s
+[2026-09-12 06:59:06] ALL STAGES COMPLETE
+### Run-inventory check
+
+| file | expected runs | ok rows | unique keys | missing | extra | duplicates | rejected |
+|---|---|---|---|---|---|---|---|
+| `calib_12_v2.csv` | – | *file absent* | – | – | – | – | – |
+| `calib_32.csv` | 84 | 336 | 336 | 0 | 252 | 0 | 0 |
+| `calib_64.csv` | 84 | 336 | 336 | 0 | 252 | 0 | 0 |
+| `calib_128_v2.csv` | – | *file absent* | – | – | – | – | – |
+| `calib_256.csv` | 60 | 336 | 336 | 0 | 276 | 0 | 0 |
+| `calib_mse_128.csv` | – | *file absent* | – | – | – | – | – |
+| `main_12_v2.csv` | – | *file absent* | – | – | – | – | – |
+| `main_32.csv` | 210 | 210 | 210 | 0 | 0 | 0 | 0 |
+| `main_64.csv` | 140 | 210 | 210 | 0 | 70 | 0 | 0 |
+| `main_128_v2.csv` | – | *file absent* | – | – | – | – | – |
+| `main_256.csv` | 100 | 210 | 210 | 0 | 110 | 0 | 0 |
+| `main_512.csv` | 100 | 210 | 210 | 0 | 110 | 0 | 0 |
+| `calib_512.csv` | 30 | 336 | 336 | 0 | 264 | 0 | 0 |
+| `mse_128.csv` | – | *file absent* | – | – | – | – | – |
+| `lrsweep_12.csv` | – | *file absent* | – | – | – | – | – |
+| `lrsweep_64.csv` | – | *file absent* | – | – | – | – | – |
+| `lrsweep_128.csv` | – | *file absent* | – | – | – | – | – |
+| `layout_128.csv` | – | *file absent* | – | – | – | – | – |
+| `layout_256.csv` | – | *file absent* | – | – | – | – | – |
+| `c10_calib_12.csv` | 90 | 336 | 336 | 0 | 246 | 0 | 0 |
+| `c10_calib_32.csv` | 90 | 336 | 336 | 0 | 246 | 0 | 0 |
+| `c10_calib_64.csv` | 90 | 336 | 336 | 0 | 246 | 0 | 0 |
+| `c10_calib_128.csv` | 90 | 336 | 336 | 0 | 246 | 0 | 0 |
+| `c10_calib_256.csv` | 50 | 336 | 336 | 0 | 286 | 0 | 0 |
+| `c10_calib_512.csv` | 40 | 336 | 336 | 0 | 296 | 0 | 0 |
+| `c10_main_12.csv` | 100 | 210 | 210 | 0 | 110 | 0 | 0 |
+| `c10_main_32.csv` | 100 | 210 | 210 | 0 | 110 | 0 | 0 |
+| `c10_main_64.csv` | 100 | 210 | 210 | 0 | 110 | 0 | 0 |
+| `c10_main_128.csv` | 100 | 210 | 210 | 0 | 110 | 0 | 0 |
+| `c10_main_256.csv` | 100 | 210 | 210 | 0 | 110 | 0 | 0 |
+| `c10_main_512.csv` | 100 | 210 | 210 | 0 | 110 | 0 | 0 |
+
+### Rejected rows (status != ok, or truncated)
+
+None. Every row in every extended-sweep CSV has `status=ok` and a complete 100-entry confusion matrix.
+
+### Deliberate reductions (documented, not failures)
+
+- `calib_512.csv` — lr 0.03 dropped from the width-512 grid by design; the 4 runs completed at 0.03 before the trim remain in the file and are counted as extra
+- `lrsweep_64.csv` — optional stage, past the time budget; run last, now complete at 250/250
+
+### Problems
+
+- calib_12_v2.csv: file absent
+- calib_32.csv: 252 unexpected, e.g. [('leaky_relu', '0.0001', 101), ('leaky_relu', '0.0001', 102), ('leaky_relu', '0.0001', 103), ('leaky_relu', '0.0001', 104)]
+- calib_64.csv: 252 unexpected, e.g. [('leaky_relu', '0.0001', 101), ('leaky_relu', '0.0001', 102), ('leaky_relu', '0.0001', 103), ('leaky_relu', '0.0001', 104)]
+- calib_128_v2.csv: file absent
+- calib_256.csv: 276 unexpected, e.g. [('leaky_relu', '0.0001', 101), ('leaky_relu', '0.0001', 102), ('leaky_relu', '0.0001', 103), ('leaky_relu', '0.0001', 104)]
+- calib_mse_128.csv: file absent
+- main_12_v2.csv: file absent
+- main_64.csv: 70 unexpected, e.g. [('leaky_relu', 21), ('leaky_relu', 22), ('leaky_relu', 23), ('leaky_relu', 24)]
+- main_128_v2.csv: file absent
+- main_256.csv: 110 unexpected, e.g. [('leaky_relu', 21), ('leaky_relu', 22), ('leaky_relu', 23), ('leaky_relu', 24)]
+- main_512.csv: 110 unexpected, e.g. [('leaky_relu', 21), ('leaky_relu', 22), ('leaky_relu', 23), ('leaky_relu', 24)]
+- calib_512.csv: 264 unexpected, e.g. [('leaky_relu', '0.0001', 101), ('leaky_relu', '0.0001', 102), ('leaky_relu', '0.0001', 103), ('leaky_relu', '0.0001', 104)]
+- mse_128.csv: file absent
+- lrsweep_12.csv: file absent
+- lrsweep_64.csv: file absent
+- lrsweep_128.csv: file absent
+- layout_128.csv: file absent
+- layout_256.csv: file absent
+- c10_calib_12.csv: 246 unexpected, e.g. [('leaky_relu', '0.0001', 104), ('leaky_relu', '0.0001', 105), ('leaky_relu', '0.0001', 106), ('leaky_relu', '0.0003', 104)]
+- c10_calib_32.csv: 246 unexpected, e.g. [('leaky_relu', '0.0001', 104), ('leaky_relu', '0.0001', 105), ('leaky_relu', '0.0001', 106), ('leaky_relu', '0.0003', 104)]
+- c10_calib_64.csv: 246 unexpected, e.g. [('leaky_relu', '0.0001', 104), ('leaky_relu', '0.0001', 105), ('leaky_relu', '0.0001', 106), ('leaky_relu', '0.0003', 104)]
+- c10_calib_128.csv: 246 unexpected, e.g. [('leaky_relu', '0.0001', 104), ('leaky_relu', '0.0001', 105), ('leaky_relu', '0.0001', 106), ('leaky_relu', '0.0003', 104)]
+- c10_calib_256.csv: 286 unexpected, e.g. [('leaky_relu', '0.0001', 103), ('leaky_relu', '0.0001', 104), ('leaky_relu', '0.0001', 105), ('leaky_relu', '0.0001', 106)]
+- c10_calib_512.csv: 296 unexpected, e.g. [('leaky_relu', '0.0001', 101), ('leaky_relu', '0.0001', 102), ('leaky_relu', '0.0001', 103), ('leaky_relu', '0.0001', 104)]
+- c10_main_12.csv: 110 unexpected, e.g. [('leaky_relu', 21), ('leaky_relu', 22), ('leaky_relu', 23), ('leaky_relu', 24)]
+- c10_main_32.csv: 110 unexpected, e.g. [('leaky_relu', 21), ('leaky_relu', 22), ('leaky_relu', 23), ('leaky_relu', 24)]
+- c10_main_64.csv: 110 unexpected, e.g. [('leaky_relu', 21), ('leaky_relu', 22), ('leaky_relu', 23), ('leaky_relu', 24)]
+- c10_main_128.csv: 110 unexpected, e.g. [('leaky_relu', 21), ('leaky_relu', 22), ('leaky_relu', 23), ('leaky_relu', 24)]
+- c10_main_256.csv: 110 unexpected, e.g. [('leaky_relu', 21), ('leaky_relu', 22), ('leaky_relu', 23), ('leaky_relu', 24)]
+- c10_main_512.csv: 110 unexpected, e.g. [('leaky_relu', 21), ('leaky_relu', 22), ('leaky_relu', 23), ('leaky_relu', 24)]

@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{MNIST H=128, LR=0.03: online CE loss patterns over 30 seeds. SD is the sample standard deviation.}
+\label{tab:losssignatures}
+\footnotesize
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Model & Final CE, mean $\pm$ SD & Min. epoch (median) & Max. jump epoch & Mean jump \\
+\midrule
+ReLU & 2.3081 $\pm$ 0.0003 & 6--13 (9) & 17--28 & 1.266 \\
+Leaky-ReLU & 3.7739 $\pm$ 0.0862 & 5--9 (7) & 13--15 & 4.570 \\
+tanh + leaky-ReLU & 4.1822 $\pm$ 0.0872 & 5--11 (7) & 23--26 & 4.456 \\
+tanh + ReLU & 0.0484 $\pm$ 0.0061 & 21--40 (38) & 6--40 & 0.012 \\
+\bottomrule
+\end{tabular}
+\par\smallskip{\footnotesize The largest jump is the maximum consecutive-epoch increase, computed separately for each seed. Its epoch range is meaningful only when the jump is large. Loss is collected while weights change; it is not a fixed-checkpoint validation loss.}
+\end{table}

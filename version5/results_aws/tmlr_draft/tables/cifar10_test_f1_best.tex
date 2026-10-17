@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{CIFAR-10 checkpoint test macro-F1 (\%). Mean $\pm$ seed SD, $n=30$.}
+\label{tab:cifar10:test_f1_best}
+\footnotesize
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & 12 & 32 & 64 & 128 & 256 & 512 \\
+\midrule
+ReLU & 42.75 $\pm$ 0.89 & 48.62 $\pm$ 0.66 & 50.87 $\pm$ 0.59 & 52.67 $\pm$ 0.69 & 53.68 $\pm$ 0.55 & 54.58 $\pm$ 0.63 \\
+Leaky-ReLU & 43.02 $\pm$ 0.84 & 48.64 $\pm$ 0.60 & 50.90 $\pm$ 0.54 & 52.53 $\pm$ 0.62 & 53.51 $\pm$ 0.61 & 54.19 $\pm$ 0.59 \\
+tanh & 41.62 $\pm$ 0.59 & 47.39 $\pm$ 0.51 & 50.08 $\pm$ 0.54 & 51.50 $\pm$ 0.59 & 52.05 $\pm$ 0.63 & 52.90 $\pm$ 0.62 \\
+sigmoid & 40.64 $\pm$ 0.48 & 46.63 $\pm$ 0.59 & 49.40 $\pm$ 0.54 & 51.20 $\pm$ 0.61 & 52.34 $\pm$ 0.76 & 52.83 $\pm$ 0.68 \\
+tanh + ReLU & 42.11 $\pm$ 0.80 & 48.30 $\pm$ 0.49 & 51.23 $\pm$ 0.50 & 52.80 $\pm$ 0.49 & 53.86 $\pm$ 0.51 & 54.35 $\pm$ 0.55 \\
+tanh + leaky-ReLU & 42.27 $\pm$ 0.91 & 48.15 $\pm$ 0.51 & 50.85 $\pm$ 0.43 & 52.61 $\pm$ 0.57 & 53.49 $\pm$ 0.59 & 54.21 $\pm$ 0.48 \\
+sigmoid + ReLU & 41.54 $\pm$ 0.97 & 47.17 $\pm$ 0.78 & 49.80 $\pm$ 0.45 & 51.48 $\pm$ 0.61 & 53.06 $\pm$ 0.67 & 54.00 $\pm$ 0.66 \\
+\bottomrule
+\end{tabular}
+\par\smallskip{\footnotesize Main hybrids use a 50:50 split. These cells keep the original learning-rate choices.}
+\end{table}

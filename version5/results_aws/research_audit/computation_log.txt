@@ -1,0 +1,512 @@
+{
+  "inventory": [
+    {
+      "file": "c10_calib_12.csv",
+      "rows": 336,
+      "repeated_headers": 5,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_128.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_256.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_32.csv",
+      "rows": 336,
+      "repeated_headers": 2,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_512.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_calib_64.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_lrsweep_128.csv",
+      "rows": 1680,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 1680
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_12.csv",
+      "rows": 210,
+      "repeated_headers": 2,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_128.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_256.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_32.csv",
+      "rows": 210,
+      "repeated_headers": 3,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_512.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "c10_main_64.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_12.csv",
+      "rows": 336,
+      "repeated_headers": 1,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_128.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_256.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_32.csv",
+      "rows": 336,
+      "repeated_headers": 1,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_512.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_64.csv",
+      "rows": 336,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 336
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_mse_128.csv",
+      "rows": 144,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 144
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "calib_mse_64.csv",
+      "rows": 144,
+      "repeated_headers": 1,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 144
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "layout_128.csv",
+      "rows": 300,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 300
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "lrsweep_128.csv",
+      "rows": 2310,
+      "repeated_headers": 10,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 2310
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "lrsweep_64.csv",
+      "rows": 2310,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 2310
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_12.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_128.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_256.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_32.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_512.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "main_64.csv",
+      "rows": 210,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 210
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "mse_128.csv",
+      "rows": 90,
+      "repeated_headers": 0,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 90
+      },
+      "missing_best": 0
+    },
+    {
+      "file": "mse_64.csv",
+      "rows": 90,
+      "repeated_headers": 6,
+      "duplicates": 0,
+      "conflicting_keys": 0,
+      "status": {
+        "ok": 90
+      },
+      "missing_best": 0
+    }
+  ],
+  "total_unique_within_files": 13620,
+  "status": {
+    "ok": 13620
+  },
+  "metric_or_curve_errors": [],
+  "class_supports": {
+    "cifar10": [
+      [
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000
+      ]
+    ],
+    "mnist": [
+      [
+        985,
+        1149,
+        1007,
+        997,
+        985,
+        866,
+        977,
+        1082,
+        996,
+        956
+      ]
+    ]
+  },
+  "cross_file_duplicate_rows": 690
+}
+
+MAIN CHECKPOINT ACCURACY
+ dataset         cifar10                                           mnist                                        
+hidden              12      32      64      128     256     512     12      32      64      128     256     512
+config                                                                                                         
+leaky_relu       43.618  49.254  51.270  52.953  53.852  54.607  94.274  96.683  97.560  97.849  98.176  98.248
+relu             43.461  49.186  51.239  53.043  54.074  54.875  94.297  96.707  97.579  97.860  98.214  98.285
+sigmoid          41.360  47.206  50.013  51.661  52.777  53.137  93.770  96.269  97.123  97.658  97.966  98.042
+sigmoid+relu     42.340  47.774  50.274  51.902  53.481  54.357  93.772  95.989  96.709  97.550  98.037  98.116
+tanh             42.343  47.894  50.490  51.930  52.489  53.190  93.952  96.375  97.390  97.827  98.018  98.024
+tanh+leaky_relu  42.987  48.759  51.288  53.086  53.983  54.474  94.021  96.513  97.607  97.986  98.194  98.274
+tanh+relu        42.911  48.801  51.603  53.221  54.227  54.711  93.990  96.521  97.583  98.038  98.214  98.289
+
+MAIN SUMMARY
+ dataset  hidden          config     lr  test_acc_best_mean  test_acc_best_std  test_acc_mean  test_f1_best_mean  gap_best_mean  best_val_epoch_mean  seconds_mean
+cifar10      12      leaky_relu 0.0003             43.6183             0.8801        43.2000            43.0172         1.8180              37.1000       76.0775
+cifar10      12            relu 0.0003             43.4613             0.7446        43.3180            42.7533         1.6087              36.3000       74.7720
+cifar10      12         sigmoid 0.0030             41.3600             0.3807        40.7137            40.6368         2.5543              34.5667       76.3464
+cifar10      12    sigmoid+relu 0.0010             42.3400             0.8613        41.7123            41.5371         2.0350              35.3333       74.3453
+cifar10      12            tanh 0.0003             42.3430             0.5624        41.9530            41.6178         2.7843              34.8667       76.4481
+cifar10      12 tanh+leaky_relu 0.0003             42.9870             0.7555        42.6510            42.2703         2.1313              33.8333       76.3467
+cifar10      12       tanh+relu 0.0003             42.9110             0.6470        42.6403            42.1051         2.3927              36.9333       76.1230
+cifar10      32      leaky_relu 0.0003             49.2537             0.4896        48.6323            48.6424         4.2903              36.7333      192.8731
+cifar10      32            relu 0.0003             49.1857             0.5883        48.8910            48.6155         4.4920              36.5000      191.0654
+cifar10      32         sigmoid 0.0030             47.2057             0.5452        46.3537            46.6293         5.1970              35.2667      192.9548
+cifar10      32    sigmoid+relu 0.0010             47.7743             0.6118        47.1750            47.1711         3.8410              37.3000      187.6178
+cifar10      32            tanh 0.0003             47.8937             0.4759        47.4820            47.3893         5.2170              35.3000      193.1892
+cifar10      32 tanh+leaky_relu 0.0003             48.7587             0.4476        48.0923            48.1517         4.6883              36.7000      193.0163
+cifar10      32       tanh+relu 0.0003             48.8010             0.4517        48.2740            48.3008         4.8147              35.4333      192.5203
+cifar10      64      leaky_relu 0.0010             51.2700             0.4906        50.6383            50.9036         8.9840              34.2000      378.1828
+cifar10      64            relu 0.0010             51.2393             0.5041        50.6270            50.8717         8.7327              32.8667      371.6205
+cifar10      64         sigmoid 0.0030             50.0130             0.3569        49.7307            49.3993         7.8240              37.0667      377.4030
+cifar10      64    sigmoid+relu 0.0010             50.2743             0.4271        49.9223            49.7982         6.1143              36.5000      368.8059
+cifar10      64            tanh 0.0003             50.4903             0.3891        50.1420            50.0752         7.4007              37.0667      380.2625
+cifar10      64 tanh+leaky_relu 0.0003             51.2877             0.4387        51.0567            50.8466         6.6557              36.0000      379.9772
+cifar10      64       tanh+relu 0.0003             51.6027             0.3756        51.3933            51.2270         7.2310              37.1333      376.0243
+cifar10     128      leaky_relu 0.0003             52.9527             0.5124        52.4030            52.5342         9.0057              37.1000      770.3528
+cifar10     128            relu 0.0003             53.0433             0.5272        52.5210            52.6744         9.7350              36.6667      751.2268
+cifar10     128         sigmoid 0.0030             51.6610             0.4631        51.1833            51.1956         9.5917              35.9667      761.9207
+cifar10     128    sigmoid+relu 0.0003             51.9017             0.4532        51.3287            51.4808         6.8777              37.3667      743.9884
+cifar10     128            tanh 0.0003             51.9297             0.5171        51.3153            51.4986         9.0770              36.7000      771.9869
+cifar10     128 tanh+leaky_relu 0.0003             53.0857             0.5207        52.4937            52.6099         8.8257              36.8000      771.5627
+cifar10     128       tanh+relu 0.0003             53.2210             0.4388        52.7490            52.8034         8.9453              35.9000      761.2733
+cifar10     256      leaky_relu 0.0003             53.8517             0.4820        53.3410            53.5134        11.3590              37.7667     2233.8337
+cifar10     256            relu 0.0003             54.0737             0.5060        53.6943            53.6798        11.9177              36.5667     2240.3217
+cifar10     256         sigmoid 0.0030             52.7773             0.5336        52.1280            52.3352        10.3053              36.9333     2223.3210
+cifar10     256    sigmoid+relu 0.0003             53.4813             0.5004        53.1640            53.0632         9.0087              37.3667     1777.4280
+cifar10     256            tanh 0.0010             52.4890             0.4960        51.9080            52.0532        15.3820              32.1000     2263.7023
+cifar10     256 tanh+leaky_relu 0.0003             53.9833             0.4049        53.5110            53.4890        10.4317              37.5333     2230.7147
+cifar10     256       tanh+relu 0.0003             54.2267             0.4593        53.8843            53.8616        11.0280              37.4667     2233.3357
+cifar10     512      leaky_relu 0.0003             54.6067             0.4244        53.9950            54.1878        12.7223              36.8000     8387.9317
+cifar10     512            relu 0.0003             54.8753             0.4692        54.3327            54.5766        14.3183              36.8667     8400.6853
+cifar10     512         sigmoid 0.0030             53.1367             0.5297        52.8890            52.8290         9.1697              36.8667     8339.1037
+cifar10     512    sigmoid+relu 0.0003             54.3570             0.5127        53.9397            53.9956        10.5873              35.9000     5143.7747
+cifar10     512            tanh 0.0010             53.1903             0.4875        52.1873            52.8963        15.9090              33.0333     8401.8107
+cifar10     512 tanh+leaky_relu 0.0003             54.4740             0.3722        53.8993            54.2134        11.6860              38.0667     8351.5053
+cifar10     512       tanh+relu 0.0003             54.7113             0.4296        54.3613            54.3471        12.2310              36.7333     8300.4837
+  mnist      12      leaky_relu 0.0010             94.2743             0.2261        94.1510            94.1763         2.0303              30.4000       19.4115
+  mnist      12            relu 0.0010             94.2970             0.3030        94.1060            94.2006         1.9503              29.1000       18.7034
+  mnist      12         sigmoid 0.0030             93.7703             0.3310        93.7373            93.6580         2.2210              35.1000       19.6524
+  mnist      12    sigmoid+relu 0.0030             93.7723             0.3891        93.5383            93.6629         2.0763              33.3000       18.9928
+  mnist      12            tanh 0.0010             93.9520             0.2596        93.8193            93.8459         2.4780              32.1000       19.9823
+  mnist      12 tanh+leaky_relu 0.0010             94.0213             0.3160        93.9250            93.9169         2.1903              29.1333       19.6186
+  mnist      12       tanh+relu 0.0010             93.9903             0.2505        93.8357            93.8831         2.2243              30.9333       19.3258
+  mnist      32      leaky_relu 0.0030             96.6827             0.1888        96.5187            96.6406         2.5843              26.1667       53.3362
+  mnist      32            relu 0.0030             96.7067             0.1899        96.4767            96.6669         2.6787              26.9333       49.9297
+  mnist      32         sigmoid 0.0030             96.2687             0.1384        96.2730            96.2158         2.3553              34.3000       52.6922
+  mnist      32    sigmoid+relu 0.0100             95.9887             0.1743        95.8217            95.9327         2.7570              31.1667       50.5730
+  mnist      32            tanh 0.0010             96.3747             0.1599        96.3350            96.3218         2.7353              28.3000       53.6442
+  mnist      32 tanh+leaky_relu 0.0030             96.5127             0.1594        96.4860            96.4650         2.8803              24.9000       52.9786
+  mnist      32       tanh+relu 0.0030             96.5207             0.1848        96.4903            96.4752         2.9503              25.0667       51.2276
+  mnist      64      leaky_relu 0.0030             97.5603             0.1069        97.5713            97.5360         2.4313              29.4000      108.6532
+  mnist      64            relu 0.0030             97.5790             0.1253        97.6080            97.5554         2.4187              26.0667      103.3636
+  mnist      64         sigmoid 0.0100             97.1233             0.0833        97.1353            97.0888         2.7877              29.2667      107.2176
+  mnist      64    sigmoid+relu 0.0030             96.7093             0.1594        96.5317            96.6687         2.6427              24.2333      101.9434
+  mnist      64            tanh 0.0100             97.3903             0.1222        97.3993            97.3589         2.5987              22.9667      106.8510
+  mnist      64 tanh+leaky_relu 0.0100             97.6067             0.1165        97.6400            97.5807         2.3813              29.1667      106.6042
+  mnist      64       tanh+relu 0.0100             97.5827             0.1264        97.6050            97.5552         2.3970              28.3000      105.2656
+  mnist     128      leaky_relu 0.0030             97.8493             0.0820        97.8517            97.8312         2.1477              25.8333      230.5095
+  mnist     128            relu 0.0030             97.8603             0.0745        97.8800            97.8422         2.1323              25.1333      213.7124
+  mnist     128         sigmoid 0.0300             97.6580             0.0948        97.6837            97.6330         2.3320              23.4000      223.0742
+  mnist     128    sigmoid+relu 0.0030             97.5503             0.1412        97.5743            97.5265         2.4077              26.4000      213.3855
+  mnist     128            tanh 0.0100             97.8267             0.0939        97.8310            97.8042         2.1720              22.9000      228.1747
+  mnist     128 tanh+leaky_relu 0.0100             97.9860             0.0807        98.0010            97.9674         2.0110              21.2333      226.4347
+  mnist     128       tanh+relu 0.0100             98.0380             0.0734        98.0527            98.0198         1.9617              24.0000      219.9385
+  mnist     256      leaky_relu 0.0100             98.1763             0.0631        98.2013            98.1589         1.8223              29.9000      508.7646
+  mnist     256            relu 0.0100             98.2143             0.0735        98.2277            98.1987         1.7857              26.9333      482.4992
+  mnist     256         sigmoid 0.1000             97.9657             0.0690        97.9980            97.9444         2.0290              24.8333      498.0825
+  mnist     256    sigmoid+relu 0.0100             98.0373             0.0829        98.0543            98.0198         1.9620              33.7333      478.8657
+  mnist     256            tanh 0.0100             98.0177             0.0735        98.0427            97.9984         1.9820              20.6333      528.6418
+  mnist     256 tanh+leaky_relu 0.0100             98.1937             0.0713        98.2017            98.1781         1.8063              24.6000      518.2871
+  mnist     256       tanh+relu 0.0100             98.2137             0.0746        98.2250            98.1987         1.7863              20.9000      504.9381
+  mnist     512      leaky_relu 0.0100             98.2480             0.0911        98.2757            98.2327         1.7467              26.1333     1504.8457
+  mnist     512            relu 0.0100             98.2853             0.0641        98.2997            98.2717         1.7137              23.7667     1456.7230
+  mnist     512         sigmoid 0.1000             98.0420             0.0713        98.0657            98.0223         1.9547              26.1333     1469.6623
+  mnist     512    sigmoid+relu 0.0300             98.1163             0.0704        98.1427            98.0972         1.8790              25.8000     1277.2340
+  mnist     512            tanh 0.0100             98.0240             0.0679        98.0490            98.0058         1.9737              20.0333     1551.3593
+  mnist     512 tanh+leaky_relu 0.0100             98.2743             0.0763        98.2887            98.2623         1.7207              23.2333     1485.0240
+  mnist     512       tanh+relu 0.0100             98.2887             0.0868        98.3177            98.2762         1.7073              24.0000     1474.3930
+
+CALIBRATION CHANGES
+ dataset     stage  hidden          config  lr_final  lr_best  selection_changed
+cifar10     calib      32            relu    0.0003   0.0010               True
+cifar10     calib      64      leaky_relu    0.0010   0.0003               True
+cifar10     calib     128    sigmoid+relu    0.0003   0.0010               True
+cifar10     calib     128            tanh    0.0003   0.0010               True
+cifar10     calib     256      leaky_relu    0.0003   0.0010               True
+cifar10     calib     256    sigmoid+relu    0.0003   0.0010               True
+cifar10     calib     256 tanh+leaky_relu    0.0003   0.0010               True
+cifar10     calib     256       tanh+relu    0.0003   0.0010               True
+cifar10     calib     512      leaky_relu    0.0003   0.0010               True
+cifar10     calib     512 tanh+leaky_relu    0.0003   0.0010               True
+  mnist     calib      12      leaky_relu    0.0010   0.0030               True
+  mnist     calib      12         sigmoid    0.0030   0.0100               True
+  mnist     calib      12 tanh+leaky_relu    0.0010   0.0030               True
+  mnist     calib      32         sigmoid    0.0030   0.0100               True
+  mnist     calib      32 tanh+leaky_relu    0.0030   0.0010               True
+  mnist     calib      64         sigmoid    0.0100   0.0300               True
+  mnist     calib     128            relu    0.0030   0.0100               True
+  mnist calib_mse      64       tanh+relu    0.0100   0.0300               True

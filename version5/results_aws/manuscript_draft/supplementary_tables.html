@@ -1,0 +1,3666 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>supplementary tables</title><style>body{font-family:Georgia,serif;color:#172331;background:#f5f6f8;margin:0;line-height:1.65}main{max-width:1250px;margin:auto;background:white;padding:48px 60px}h1,h2,h3{font-family:system-ui,sans-serif;line-height:1.2}h1{font-size:36px}h2{margin-top:48px;border-top:2px solid #d9e2ed;padding-top:24px;color:#143d63}h3{margin-top:30px}p{max-width:1000px}table{display:block;overflow-x:auto;border-collapse:collapse;width:100%;font:13px/1.45 system-ui,sans-serif;margin:18px 0 28px;font-variant-numeric:tabular-nums}th{background:#183b59;color:white;text-align:left}td,th{padding:9px 12px;border-bottom:1px solid #dfe5eb}tr:nth-child(even){background:#f2f6fa}td{vertical-align:top}a{color:#165b91}code{background:#f1f4f7;padding:2px 4px}@media(max-width:700px){main{padding:24px 18px}h1{font-size:28px}}@media print{body{background:white}main{max-width:none;padding:0}table{font-size:9px;display:table}tr{break-inside:avoid}h2,h3{break-after:avoid}}</style></head><body><main><h1>Supplementary Tables</h1>
+<p>Companion to “Hybrid Activations in Multilayer Perceptrons: Learning-Rate Stability, Predictive Accuracy, and Activation Allocation.”</p>
+<p>All values are recomputed from the original CSV files. Accuracy/F1 are percentages; pp denotes percentage points. ± is sample SD across training seeds. Primary test scores use validation-selected checkpoints. Unless specified otherwise, evaluation n=30 per cell and calibration n=6. Tables in this supplement have their own numbering.</p>
+<h2>S1. Complete main-grid results</h2>
+<p>Original final-validation-based LR selections are retained here; this is not the fully checkpoint-recalibrated grid. Complete means, SDs, medians, minima, and maxima for all stages are in <code>metric_summary.csv</code>.</p>
+<p><strong>Table 1. MNIST, H=12</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.001</td>
+<td>94.297 ± 0.303</td>
+<td>94.201 ± 0.312</td>
+<td>+0.000</td>
+<td>94.106</td>
+<td>1.950</td>
+<td>18.7</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.001</td>
+<td>94.274 ± 0.226</td>
+<td>94.176 ± 0.231</td>
+<td>-0.023</td>
+<td>94.151</td>
+<td>2.030</td>
+<td>19.4</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.001</td>
+<td>93.952 ± 0.260</td>
+<td>93.846 ± 0.269</td>
+<td>-0.345</td>
+<td>93.819</td>
+<td>2.478</td>
+<td>20.0</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>93.770 ± 0.331</td>
+<td>93.658 ± 0.336</td>
+<td>-0.527</td>
+<td>93.737</td>
+<td>2.221</td>
+<td>19.7</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.001</td>
+<td>93.990 ± 0.250</td>
+<td>93.883 ± 0.259</td>
+<td>-0.307</td>
+<td>93.836</td>
+<td>2.224</td>
+<td>19.3</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.001</td>
+<td>94.021 ± 0.316</td>
+<td>93.917 ± 0.322</td>
+<td>-0.276</td>
+<td>93.925</td>
+<td>2.190</td>
+<td>19.6</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.003</td>
+<td>93.772 ± 0.389</td>
+<td>93.663 ± 0.403</td>
+<td>-0.525</td>
+<td>93.538</td>
+<td>2.076</td>
+<td>19.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 2. MNIST, H=32</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.003</td>
+<td>96.707 ± 0.190</td>
+<td>96.667 ± 0.193</td>
+<td>+0.000</td>
+<td>96.477</td>
+<td>2.679</td>
+<td>49.9</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.003</td>
+<td>96.683 ± 0.189</td>
+<td>96.641 ± 0.191</td>
+<td>-0.024</td>
+<td>96.519</td>
+<td>2.584</td>
+<td>53.3</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.001</td>
+<td>96.375 ± 0.160</td>
+<td>96.322 ± 0.163</td>
+<td>-0.332</td>
+<td>96.335</td>
+<td>2.735</td>
+<td>53.6</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>96.269 ± 0.138</td>
+<td>96.216 ± 0.141</td>
+<td>-0.438</td>
+<td>96.273</td>
+<td>2.355</td>
+<td>52.7</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.003</td>
+<td>96.521 ± 0.185</td>
+<td>96.475 ± 0.189</td>
+<td>-0.186</td>
+<td>96.490</td>
+<td>2.950</td>
+<td>51.2</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.003</td>
+<td>96.513 ± 0.159</td>
+<td>96.465 ± 0.160</td>
+<td>-0.194</td>
+<td>96.486</td>
+<td>2.880</td>
+<td>53.0</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.01</td>
+<td>95.989 ± 0.174</td>
+<td>95.933 ± 0.179</td>
+<td>-0.718</td>
+<td>95.822</td>
+<td>2.757</td>
+<td>50.6</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 3. MNIST, H=64</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.003</td>
+<td>97.579 ± 0.125</td>
+<td>97.555 ± 0.129</td>
+<td>+0.000</td>
+<td>97.608</td>
+<td>2.419</td>
+<td>103.4</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.003</td>
+<td>97.560 ± 0.107</td>
+<td>97.536 ± 0.107</td>
+<td>-0.019</td>
+<td>97.571</td>
+<td>2.431</td>
+<td>108.7</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.01</td>
+<td>97.390 ± 0.122</td>
+<td>97.359 ± 0.125</td>
+<td>-0.189</td>
+<td>97.399</td>
+<td>2.599</td>
+<td>106.9</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.01</td>
+<td>97.123 ± 0.083</td>
+<td>97.089 ± 0.083</td>
+<td>-0.456</td>
+<td>97.135</td>
+<td>2.788</td>
+<td>107.2</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.01</td>
+<td>97.583 ± 0.126</td>
+<td>97.555 ± 0.130</td>
+<td>+0.004</td>
+<td>97.605</td>
+<td>2.397</td>
+<td>105.3</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.01</td>
+<td>97.607 ± 0.116</td>
+<td>97.581 ± 0.118</td>
+<td>+0.028</td>
+<td>97.640</td>
+<td>2.381</td>
+<td>106.6</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.003</td>
+<td>96.709 ± 0.159</td>
+<td>96.669 ± 0.162</td>
+<td>-0.870</td>
+<td>96.532</td>
+<td>2.643</td>
+<td>101.9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 4. MNIST, H=128</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.003</td>
+<td>97.860 ± 0.075</td>
+<td>97.842 ± 0.075</td>
+<td>+0.000</td>
+<td>97.880</td>
+<td>2.132</td>
+<td>213.7</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.003</td>
+<td>97.849 ± 0.082</td>
+<td>97.831 ± 0.085</td>
+<td>-0.011</td>
+<td>97.852</td>
+<td>2.148</td>
+<td>230.5</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.01</td>
+<td>97.827 ± 0.094</td>
+<td>97.804 ± 0.096</td>
+<td>-0.034</td>
+<td>97.831</td>
+<td>2.172</td>
+<td>228.2</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.03</td>
+<td>97.658 ± 0.095</td>
+<td>97.633 ± 0.095</td>
+<td>-0.202</td>
+<td>97.684</td>
+<td>2.332</td>
+<td>223.1</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.01</td>
+<td>98.038 ± 0.073</td>
+<td>98.020 ± 0.074</td>
+<td>+0.178</td>
+<td>98.053</td>
+<td>1.962</td>
+<td>219.9</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.01</td>
+<td>97.986 ± 0.081</td>
+<td>97.967 ± 0.080</td>
+<td>+0.126</td>
+<td>98.001</td>
+<td>2.011</td>
+<td>226.4</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.003</td>
+<td>97.550 ± 0.141</td>
+<td>97.526 ± 0.143</td>
+<td>-0.310</td>
+<td>97.574</td>
+<td>2.408</td>
+<td>213.4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 5. MNIST, H=256</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.01</td>
+<td>98.214 ± 0.074</td>
+<td>98.199 ± 0.074</td>
+<td>+0.000</td>
+<td>98.228</td>
+<td>1.786</td>
+<td>482.5</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.01</td>
+<td>98.176 ± 0.063</td>
+<td>98.159 ± 0.063</td>
+<td>-0.038</td>
+<td>98.201</td>
+<td>1.822</td>
+<td>508.8</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.01</td>
+<td>98.018 ± 0.073</td>
+<td>97.998 ± 0.075</td>
+<td>-0.197</td>
+<td>98.043</td>
+<td>1.982</td>
+<td>528.6</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.1</td>
+<td>97.966 ± 0.069</td>
+<td>97.944 ± 0.072</td>
+<td>-0.249</td>
+<td>97.998</td>
+<td>2.029</td>
+<td>498.1</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.01</td>
+<td>98.214 ± 0.075</td>
+<td>98.199 ± 0.075</td>
+<td>-0.001</td>
+<td>98.225</td>
+<td>1.786</td>
+<td>504.9</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.01</td>
+<td>98.194 ± 0.071</td>
+<td>98.178 ± 0.073</td>
+<td>-0.021</td>
+<td>98.202</td>
+<td>1.806</td>
+<td>518.3</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.01</td>
+<td>98.037 ± 0.083</td>
+<td>98.020 ± 0.085</td>
+<td>-0.177</td>
+<td>98.054</td>
+<td>1.962</td>
+<td>478.9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 6. MNIST, H=512</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.01</td>
+<td>98.285 ± 0.064</td>
+<td>98.272 ± 0.065</td>
+<td>+0.000</td>
+<td>98.300</td>
+<td>1.714</td>
+<td>1456.7</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.01</td>
+<td>98.248 ± 0.091</td>
+<td>98.233 ± 0.092</td>
+<td>-0.037</td>
+<td>98.276</td>
+<td>1.747</td>
+<td>1504.8</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.01</td>
+<td>98.024 ± 0.068</td>
+<td>98.006 ± 0.070</td>
+<td>-0.261</td>
+<td>98.049</td>
+<td>1.974</td>
+<td>1551.4</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.1</td>
+<td>98.042 ± 0.071</td>
+<td>98.022 ± 0.072</td>
+<td>-0.243</td>
+<td>98.066</td>
+<td>1.955</td>
+<td>1469.7</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.01</td>
+<td>98.289 ± 0.087</td>
+<td>98.276 ± 0.087</td>
+<td>+0.003</td>
+<td>98.318</td>
+<td>1.707</td>
+<td>1474.4</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.01</td>
+<td>98.274 ± 0.076</td>
+<td>98.262 ± 0.077</td>
+<td>-0.011</td>
+<td>98.289</td>
+<td>1.721</td>
+<td>1485.0</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.03</td>
+<td>98.116 ± 0.070</td>
+<td>98.097 ± 0.071</td>
+<td>-0.169</td>
+<td>98.143</td>
+<td>1.879</td>
+<td>1277.2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 7. CIFAR-10, H=12</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.0003</td>
+<td>43.461 ± 0.745</td>
+<td>42.753 ± 0.895</td>
+<td>+0.000</td>
+<td>43.318</td>
+<td>1.609</td>
+<td>74.8</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.0003</td>
+<td>43.618 ± 0.880</td>
+<td>43.017 ± 0.838</td>
+<td>+0.157</td>
+<td>43.200</td>
+<td>1.818</td>
+<td>76.1</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.0003</td>
+<td>42.343 ± 0.562</td>
+<td>41.618 ± 0.592</td>
+<td>-1.118</td>
+<td>41.953</td>
+<td>2.784</td>
+<td>76.4</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>41.360 ± 0.381</td>
+<td>40.637 ± 0.475</td>
+<td>-2.101</td>
+<td>40.714</td>
+<td>2.554</td>
+<td>76.3</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.0003</td>
+<td>42.911 ± 0.647</td>
+<td>42.105 ± 0.797</td>
+<td>-0.550</td>
+<td>42.640</td>
+<td>2.393</td>
+<td>76.1</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.0003</td>
+<td>42.987 ± 0.756</td>
+<td>42.270 ± 0.907</td>
+<td>-0.474</td>
+<td>42.651</td>
+<td>2.131</td>
+<td>76.3</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.001</td>
+<td>42.340 ± 0.861</td>
+<td>41.537 ± 0.967</td>
+<td>-1.121</td>
+<td>41.712</td>
+<td>2.035</td>
+<td>74.3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 8. CIFAR-10, H=32</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.0003</td>
+<td>49.186 ± 0.588</td>
+<td>48.615 ± 0.662</td>
+<td>+0.000</td>
+<td>48.891</td>
+<td>4.492</td>
+<td>191.1</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.0003</td>
+<td>49.254 ± 0.490</td>
+<td>48.642 ± 0.597</td>
+<td>+0.068</td>
+<td>48.632</td>
+<td>4.290</td>
+<td>192.9</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.0003</td>
+<td>47.894 ± 0.476</td>
+<td>47.389 ± 0.511</td>
+<td>-1.292</td>
+<td>47.482</td>
+<td>5.217</td>
+<td>193.2</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>47.206 ± 0.545</td>
+<td>46.629 ± 0.593</td>
+<td>-1.980</td>
+<td>46.354</td>
+<td>5.197</td>
+<td>193.0</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.0003</td>
+<td>48.801 ± 0.452</td>
+<td>48.301 ± 0.487</td>
+<td>-0.385</td>
+<td>48.274</td>
+<td>4.815</td>
+<td>192.5</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.0003</td>
+<td>48.759 ± 0.448</td>
+<td>48.152 ± 0.512</td>
+<td>-0.427</td>
+<td>48.092</td>
+<td>4.688</td>
+<td>193.0</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.001</td>
+<td>47.774 ± 0.612</td>
+<td>47.171 ± 0.783</td>
+<td>-1.411</td>
+<td>47.175</td>
+<td>3.841</td>
+<td>187.6</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 9. CIFAR-10, H=64</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.001</td>
+<td>51.239 ± 0.504</td>
+<td>50.872 ± 0.591</td>
+<td>+0.000</td>
+<td>50.627</td>
+<td>8.733</td>
+<td>371.6</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.001</td>
+<td>51.270 ± 0.491</td>
+<td>50.904 ± 0.541</td>
+<td>+0.031</td>
+<td>50.638</td>
+<td>8.984</td>
+<td>378.2</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.0003</td>
+<td>50.490 ± 0.389</td>
+<td>50.075 ± 0.536</td>
+<td>-0.749</td>
+<td>50.142</td>
+<td>7.401</td>
+<td>380.3</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>50.013 ± 0.357</td>
+<td>49.399 ± 0.543</td>
+<td>-1.226</td>
+<td>49.731</td>
+<td>7.824</td>
+<td>377.4</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.0003</td>
+<td>51.603 ± 0.376</td>
+<td>51.227 ± 0.499</td>
+<td>+0.363</td>
+<td>51.393</td>
+<td>7.231</td>
+<td>376.0</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.0003</td>
+<td>51.288 ± 0.439</td>
+<td>50.847 ± 0.427</td>
+<td>+0.048</td>
+<td>51.057</td>
+<td>6.656</td>
+<td>380.0</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.001</td>
+<td>50.274 ± 0.427</td>
+<td>49.798 ± 0.450</td>
+<td>-0.965</td>
+<td>49.922</td>
+<td>6.114</td>
+<td>368.8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 10. CIFAR-10, H=128</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.0003</td>
+<td>53.043 ± 0.527</td>
+<td>52.674 ± 0.692</td>
+<td>+0.000</td>
+<td>52.521</td>
+<td>9.735</td>
+<td>751.2</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.0003</td>
+<td>52.953 ± 0.512</td>
+<td>52.534 ± 0.622</td>
+<td>-0.091</td>
+<td>52.403</td>
+<td>9.006</td>
+<td>770.4</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.0003</td>
+<td>51.930 ± 0.517</td>
+<td>51.499 ± 0.594</td>
+<td>-1.114</td>
+<td>51.315</td>
+<td>9.077</td>
+<td>772.0</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>51.661 ± 0.463</td>
+<td>51.196 ± 0.609</td>
+<td>-1.382</td>
+<td>51.183</td>
+<td>9.592</td>
+<td>761.9</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.0003</td>
+<td>53.221 ± 0.439</td>
+<td>52.803 ± 0.492</td>
+<td>+0.178</td>
+<td>52.749</td>
+<td>8.945</td>
+<td>761.3</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.0003</td>
+<td>53.086 ± 0.521</td>
+<td>52.610 ± 0.569</td>
+<td>+0.042</td>
+<td>52.494</td>
+<td>8.826</td>
+<td>771.6</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.0003</td>
+<td>51.902 ± 0.453</td>
+<td>51.481 ± 0.607</td>
+<td>-1.142</td>
+<td>51.329</td>
+<td>6.878</td>
+<td>744.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 11. CIFAR-10, H=256</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.0003</td>
+<td>54.074 ± 0.506</td>
+<td>53.680 ± 0.547</td>
+<td>+0.000</td>
+<td>53.694</td>
+<td>11.918</td>
+<td>2240.3</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.0003</td>
+<td>53.852 ± 0.482</td>
+<td>53.513 ± 0.608</td>
+<td>-0.222</td>
+<td>53.341</td>
+<td>11.359</td>
+<td>2233.8</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.001</td>
+<td>52.489 ± 0.496</td>
+<td>52.053 ± 0.627</td>
+<td>-1.585</td>
+<td>51.908</td>
+<td>15.382</td>
+<td>2263.7</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>52.777 ± 0.534</td>
+<td>52.335 ± 0.755</td>
+<td>-1.296</td>
+<td>52.128</td>
+<td>10.305</td>
+<td>2223.3</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.0003</td>
+<td>54.227 ± 0.459</td>
+<td>53.862 ± 0.515</td>
+<td>+0.153</td>
+<td>53.884</td>
+<td>11.028</td>
+<td>2233.3</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.0003</td>
+<td>53.983 ± 0.405</td>
+<td>53.489 ± 0.593</td>
+<td>-0.090</td>
+<td>53.511</td>
+<td>10.432</td>
+<td>2230.7</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.0003</td>
+<td>53.481 ± 0.500</td>
+<td>53.063 ± 0.666</td>
+<td>-0.592</td>
+<td>53.164</td>
+<td>9.009</td>
+<td>1777.4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 12. CIFAR-10, H=512</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR</th>
+<th>Checkpoint accuracy ± SD</th>
+<th>Checkpoint macro-F1 ± SD</th>
+<th>Δ vs ReLU, pp</th>
+<th>Final accuracy</th>
+<th>Train–test gap, pp</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>0.0003</td>
+<td>54.875 ± 0.469</td>
+<td>54.577 ± 0.630</td>
+<td>+0.000</td>
+<td>54.333</td>
+<td>14.318</td>
+<td>8400.7</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>0.0003</td>
+<td>54.607 ± 0.424</td>
+<td>54.188 ± 0.595</td>
+<td>-0.269</td>
+<td>53.995</td>
+<td>12.722</td>
+<td>8387.9</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>0.001</td>
+<td>53.190 ± 0.487</td>
+<td>52.896 ± 0.623</td>
+<td>-1.685</td>
+<td>52.187</td>
+<td>15.909</td>
+<td>8401.8</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>53.137 ± 0.530</td>
+<td>52.829 ± 0.682</td>
+<td>-1.739</td>
+<td>52.889</td>
+<td>9.170</td>
+<td>8339.1</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>0.0003</td>
+<td>54.711 ± 0.430</td>
+<td>54.347 ± 0.553</td>
+<td>-0.164</td>
+<td>54.361</td>
+<td>12.231</td>
+<td>8300.5</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>0.0003</td>
+<td>54.474 ± 0.372</td>
+<td>54.213 ± 0.480</td>
+<td>-0.401</td>
+<td>53.899</td>
+<td>11.686</td>
+<td>8351.5</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>0.0003</td>
+<td>54.357 ± 0.513</td>
+<td>53.996 ± 0.659</td>
+<td>-0.518</td>
+<td>53.940</td>
+<td>10.587</td>
+<td>5143.8</td>
+</tr>
+</tbody>
+</table>
+<h2>S2. Calibration grids</h2>
+<p>Each cell shows mean final validation / mean peak validation accuracy (%), across calibration seeds 101–106. These two metrics can select different learning rates. No test scores are used for LR selection.</p>
+<p><strong>Table 13. CIFAR-10, H=12, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>41.140 / 41.453</td>
+<td>42.633 / 43.347</td>
+<td>41.607 / 42.693</td>
+<td>38.140 / 39.293</td>
+<td>21.440 / 27.053</td>
+<td>10.187 / 10.683</td>
+<td>9.997 / 10.680</td>
+<td>10.053 / 10.680</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>40.627 / 40.907</td>
+<td>42.583 / 43.330</td>
+<td>42.467 / 43.210</td>
+<td>41.953 / 42.843</td>
+<td>39.710 / 41.253</td>
+<td>32.860 / 37.500</td>
+<td>10.133 / 15.337</td>
+<td>10.587 / 14.970</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>41.333 / 42.110</td>
+<td>41.850 / 42.680</td>
+<td>41.077 / 42.220</td>
+<td>38.113 / 39.803</td>
+<td>34.070 / 35.303</td>
+<td>25.797 / 29.333</td>
+<td>11.800 / 12.660</td>
+<td>10.073 / 10.683</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>25.953 / 25.997</td>
+<td>35.000 / 35.137</td>
+<td>39.947 / 40.850</td>
+<td>40.147 / 41.713</td>
+<td>38.430 / 39.847</td>
+<td>35.497 / 36.760</td>
+<td>28.040 / 29.013</td>
+<td>15.227 / 18.833</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>40.903 / 41.803</td>
+<td>42.007 / 43.040</td>
+<td>40.757 / 42.390</td>
+<td>39.037 / 40.003</td>
+<td>30.113 / 31.450</td>
+<td>25.840 / 27.997</td>
+<td>13.330 / 15.970</td>
+<td>9.983 / 10.680</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>41.110 / 41.807</td>
+<td>42.193 / 42.907</td>
+<td>41.400 / 42.423</td>
+<td>39.757 / 40.820</td>
+<td>36.467 / 38.403</td>
+<td>28.233 / 32.423</td>
+<td>9.557 / 13.147</td>
+<td>10.080 / 13.613</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>36.130 / 36.827</td>
+<td>39.163 / 40.223</td>
+<td>40.730 / 42.093</td>
+<td>39.657 / 41.317</td>
+<td>35.100 / 37.367</td>
+<td>30.230 / 31.677</td>
+<td>24.100 / 26.117</td>
+<td>14.017 / 18.883</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 14. CIFAR-10, H=32, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>46.317 / 46.843</td>
+<td>47.940 / 48.727</td>
+<td>47.663 / 48.740</td>
+<td>44.090 / 45.800</td>
+<td>33.037 / 35.730</td>
+<td>11.370 / 14.457</td>
+<td>10.113 / 10.680</td>
+<td>10.113 / 10.653</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>45.833 / 46.550</td>
+<td>48.030 / 49.027</td>
+<td>47.660 / 48.810</td>
+<td>45.763 / 47.207</td>
+<td>42.517 / 44.430</td>
+<td>35.480 / 40.197</td>
+<td>13.567 / 18.200</td>
+<td>13.290 / 18.380</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>45.930 / 46.373</td>
+<td>46.737 / 48.050</td>
+<td>46.490 / 47.370</td>
+<td>42.743 / 43.657</td>
+<td>35.737 / 37.920</td>
+<td>22.823 / 26.633</td>
+<td>11.040 / 14.303</td>
+<td>9.843 / 10.680</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>28.767 / 28.767</td>
+<td>38.283 / 38.397</td>
+<td>45.177 / 46.083</td>
+<td>46.127 / 47.423</td>
+<td>42.797 / 43.717</td>
+<td>37.363 / 39.103</td>
+<td>28.583 / 30.170</td>
+<td>16.323 / 18.937</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>46.140 / 46.830</td>
+<td>47.663 / 48.270</td>
+<td>46.830 / 48.053</td>
+<td>44.083 / 44.930</td>
+<td>30.980 / 35.340</td>
+<td>25.350 / 28.877</td>
+<td>14.693 / 17.950</td>
+<td>9.843 / 11.057</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>46.157 / 46.973</td>
+<td>47.590 / 48.247</td>
+<td>47.520 / 48.123</td>
+<td>44.380 / 46.107</td>
+<td>40.580 / 42.463</td>
+<td>21.977 / 32.063</td>
+<td>11.630 / 16.027</td>
+<td>11.557 / 15.607</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>43.330 / 43.757</td>
+<td>45.370 / 46.257</td>
+<td>46.727 / 47.480</td>
+<td>45.523 / 46.627</td>
+<td>41.230 / 42.697</td>
+<td>35.133 / 36.783</td>
+<td>25.097 / 28.490</td>
+<td>15.153 / 19.310</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 15. CIFAR-10, H=64, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>48.293 / 48.593</td>
+<td>50.267 / 51.080</td>
+<td>50.523 / 51.277</td>
+<td>47.203 / 48.587</td>
+<td>36.600 / 39.020</td>
+<td>12.210 / 15.357</td>
+<td>10.003 / 10.653</td>
+<td>10.210 / 10.680</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>47.793 / 48.007</td>
+<td>50.240 / 51.057</td>
+<td>50.567 / 50.993</td>
+<td>48.390 / 49.273</td>
+<td>43.897 / 46.093</td>
+<td>36.493 / 41.740</td>
+<td>15.820 / 21.553</td>
+<td>18.183 / 21.420</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>47.863 / 47.967</td>
+<td>49.527 / 50.020</td>
+<td>48.637 / 49.590</td>
+<td>44.053 / 44.940</td>
+<td>35.967 / 37.183</td>
+<td>21.353 / 25.873</td>
+<td>10.220 / 13.097</td>
+<td>10.137 / 10.680</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>30.597 / 30.597</td>
+<td>39.507 / 39.543</td>
+<td>47.753 / 48.490</td>
+<td>48.630 / 49.463</td>
+<td>45.007 / 46.297</td>
+<td>39.033 / 40.603</td>
+<td>27.210 / 30.733</td>
+<td>15.667 / 18.650</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>48.730 / 49.090</td>
+<td>50.367 / 51.150</td>
+<td>49.517 / 50.560</td>
+<td>47.207 / 47.573</td>
+<td>32.027 / 36.793</td>
+<td>21.890 / 27.293</td>
+<td>12.873 / 17.623</td>
+<td>10.137 / 10.680</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>48.357 / 48.543</td>
+<td>50.550 / 50.977</td>
+<td>48.963 / 50.403</td>
+<td>46.833 / 48.293</td>
+<td>41.297 / 43.757</td>
+<td>18.393 / 30.100</td>
+<td>13.867 / 18.573</td>
+<td>15.127 / 18.203</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>46.247 / 46.453</td>
+<td>48.527 / 49.010</td>
+<td>49.200 / 49.953</td>
+<td>48.237 / 49.053</td>
+<td>44.273 / 45.250</td>
+<td>34.667 / 37.057</td>
+<td>27.080 / 28.227</td>
+<td>14.930 / 18.453</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 16. CIFAR-10, H=128, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>49.997 / 50.150</td>
+<td>52.197 / 52.870</td>
+<td>51.180 / 52.510</td>
+<td>48.920 / 49.993</td>
+<td>37.400 / 40.487</td>
+<td>10.980 / 14.187</td>
+<td>9.667 / 10.687</td>
+<td>9.850 / 10.680</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>49.410 / 49.670</td>
+<td>52.253 / 52.653</td>
+<td>51.877 / 52.610</td>
+<td>49.280 / 50.673</td>
+<td>45.027 / 47.157</td>
+<td>35.697 / 41.150</td>
+<td>20.073 / 22.797</td>
+<td>20.147 / 23.403</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>48.447 / 48.713</td>
+<td>51.017 / 51.477</td>
+<td>50.650 / 51.507</td>
+<td>45.640 / 46.490</td>
+<td>34.430 / 36.787</td>
+<td>13.817 / 22.497</td>
+<td>9.813 / 10.710</td>
+<td>9.813 / 10.680</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>31.260 / 31.297</td>
+<td>39.750 / 39.827</td>
+<td>49.017 / 49.353</td>
+<td>50.407 / 51.297</td>
+<td>45.907 / 46.880</td>
+<td>39.780 / 41.027</td>
+<td>29.247 / 30.750</td>
+<td>10.487 / 15.453</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>49.850 / 50.170</td>
+<td>52.353 / 52.873</td>
+<td>51.643 / 52.240</td>
+<td>49.063 / 49.953</td>
+<td>26.327 / 37.763</td>
+<td>20.113 / 26.437</td>
+<td>9.820 / 13.540</td>
+<td>9.813 / 10.680</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>49.233 / 49.640</td>
+<td>52.043 / 52.530</td>
+<td>51.350 / 52.443</td>
+<td>49.030 / 50.030</td>
+<td>41.250 / 44.243</td>
+<td>15.170 / 25.450</td>
+<td>14.697 / 20.853</td>
+<td>16.183 / 20.607</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>47.950 / 48.187</td>
+<td>50.580 / 51.163</td>
+<td>50.453 / 51.687</td>
+<td>49.420 / 50.790</td>
+<td>44.637 / 46.003</td>
+<td>18.300 / 32.910</td>
+<td>27.070 / 29.370</td>
+<td>15.713 / 18.823</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 17. CIFAR-10, H=256, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>50.677 / 51.043</td>
+<td>52.717 / 53.693</td>
+<td>50.990 / 53.417</td>
+<td>49.353 / 50.887</td>
+<td>37.850 / 41.680</td>
+<td>10.127 / 14.773</td>
+<td>9.833 / 10.697</td>
+<td>9.753 / 10.680</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>50.157 / 50.687</td>
+<td>52.670 / 53.530</td>
+<td>52.503 / 53.947</td>
+<td>50.097 / 51.817</td>
+<td>44.100 / 47.127</td>
+<td>34.577 / 40.387</td>
+<td>17.647 / 25.810</td>
+<td>18.833 / 25.973</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>48.643 / 48.900</td>
+<td>50.893 / 51.940</td>
+<td>51.110 / 52.530</td>
+<td>45.607 / 46.993</td>
+<td>31.093 / 35.683</td>
+<td>10.230 / 18.743</td>
+<td>9.823 / 10.653</td>
+<td>9.823 / 10.653</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>31.557 / 31.627</td>
+<td>39.993 / 40.000</td>
+<td>48.720 / 49.507</td>
+<td>50.813 / 52.517</td>
+<td>47.280 / 48.823</td>
+<td>36.887 / 40.663</td>
+<td>23.800 / 28.757</td>
+<td>9.823 / 14.533</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>50.747 / 50.957</td>
+<td>52.733 / 53.723</td>
+<td>52.587 / 53.973</td>
+<td>49.983 / 51.157</td>
+<td>22.733 / 38.547</td>
+<td>10.533 / 22.490</td>
+<td>9.823 / 10.653</td>
+<td>9.823 / 10.653</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>50.193 / 50.553</td>
+<td>52.707 / 53.580</td>
+<td>52.640 / 53.660</td>
+<td>49.933 / 51.477</td>
+<td>39.180 / 42.863</td>
+<td>17.930 / 24.667</td>
+<td>18.603 / 23.763</td>
+<td>16.143 / 23.143</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>49.633 / 49.797</td>
+<td>52.047 / 53.113</td>
+<td>51.280 / 53.180</td>
+<td>50.740 / 52.220</td>
+<td>47.927 / 48.943</td>
+<td>13.273 / 34.503</td>
+<td>25.797 / 29.437</td>
+<td>12.760 / 18.233</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 18. CIFAR-10, H=512, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>51.487 / 51.740</td>
+<td>54.103 / 54.743</td>
+<td>52.747 / 54.453</td>
+<td>50.123 / 51.733</td>
+<td>40.197 / 42.343</td>
+<td>10.183 / 15.873</td>
+<td>10.103 / 10.687</td>
+<td>10.160 / 10.680</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>50.850 / 51.147</td>
+<td>53.587 / 54.367</td>
+<td>52.670 / 54.393</td>
+<td>50.423 / 52.720</td>
+<td>42.993 / 47.673</td>
+<td>34.603 / 40.817</td>
+<td>19.203 / 26.797</td>
+<td>20.563 / 26.463</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>48.283 / 48.693</td>
+<td>51.547 / 52.413</td>
+<td>51.570 / 53.050</td>
+<td>45.037 / 48.473</td>
+<td>14.197 / 35.710</td>
+<td>9.987 / 15.333</td>
+<td>9.987 / 10.680</td>
+<td>9.987 / 10.680</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>31.843 / 32.093</td>
+<td>39.907 / 39.907</td>
+<td>48.360 / 48.890</td>
+<td>51.633 / 52.573</td>
+<td>49.310 / 51.127</td>
+<td>12.943 / 42.857</td>
+<td>9.987 / 29.487</td>
+<td>9.987 / 11.913</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>51.110 / 51.397</td>
+<td>53.880 / 54.550</td>
+<td>52.713 / 54.450</td>
+<td>50.500 / 52.370</td>
+<td>20.357 / 39.223</td>
+<td>9.987 / 18.757</td>
+<td>9.987 / 10.680</td>
+<td>9.987 / 10.680</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>50.713 / 51.097</td>
+<td>53.470 / 54.150</td>
+<td>52.947 / 54.717</td>
+<td>50.930 / 52.480</td>
+<td>37.707 / 45.453</td>
+<td>19.767 / 24.560</td>
+<td>17.857 / 26.477</td>
+<td>20.210 / 24.613</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>50.470 / 50.747</td>
+<td>53.740 / 54.467</td>
+<td>52.663 / 54.127</td>
+<td>51.733 / 52.667</td>
+<td>49.760 / 51.090</td>
+<td>15.953 / 36.850</td>
+<td>16.293 / 28.003</td>
+<td>12.640 / 16.150</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 19. MNIST, H=12, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>92.700 / 92.787</td>
+<td>94.287 / 94.420</td>
+<td>94.640 / 94.977</td>
+<td>94.263 / 94.697</td>
+<td>93.280 / 94.137</td>
+<td>50.797 / 91.100</td>
+<td>11.340 / 14.573</td>
+<td>9.630 / 11.860</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>92.680 / 92.740</td>
+<td>94.167 / 94.333</td>
+<td>94.410 / 94.760</td>
+<td>93.997 / 94.847</td>
+<td>94.020 / 94.610</td>
+<td>93.447 / 94.103</td>
+<td>82.507 / 88.150</td>
+<td>84.267 / 87.697</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>92.613 / 92.677</td>
+<td>94.090 / 94.283</td>
+<td>94.140 / 94.577</td>
+<td>93.677 / 94.270</td>
+<td>92.723 / 93.320</td>
+<td>91.930 / 92.420</td>
+<td>84.533 / 86.217</td>
+<td>49.830 / 59.450</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>73.320 / 73.320</td>
+<td>89.483 / 89.507</td>
+<td>92.957 / 92.980</td>
+<td>93.767 / 93.967</td>
+<td>93.537 / 94.120</td>
+<td>92.900 / 93.473</td>
+<td>91.723 / 92.363</td>
+<td>88.487 / 90.577</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>92.603 / 92.630</td>
+<td>94.050 / 94.187</td>
+<td>94.290 / 94.570</td>
+<td>93.697 / 94.183</td>
+<td>92.903 / 93.587</td>
+<td>89.333 / 91.507</td>
+<td>82.547 / 85.573</td>
+<td>41.600 / 44.460</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>92.543 / 92.550</td>
+<td>93.957 / 94.063</td>
+<td>94.080 / 94.423</td>
+<td>94.067 / 94.510</td>
+<td>93.450 / 94.210</td>
+<td>92.070 / 93.157</td>
+<td>75.473 / 83.637</td>
+<td>78.313 / 84.947</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>89.750 / 89.797</td>
+<td>91.083 / 91.190</td>
+<td>93.350 / 93.653</td>
+<td>93.597 / 94.227</td>
+<td>93.180 / 93.870</td>
+<td>92.770 / 93.480</td>
+<td>89.680 / 90.223</td>
+<td>83.507 / 86.367</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 20. MNIST, H=32, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>94.517 / 94.573</td>
+<td>96.333 / 96.430</td>
+<td>96.653 / 96.897</td>
+<td>96.700 / 97.007</td>
+<td>96.277 / 96.740</td>
+<td>89.627 / 95.177</td>
+<td>11.683 / 20.087</td>
+<td>10.133 / 11.860</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>94.277 / 94.350</td>
+<td>96.297 / 96.380</td>
+<td>96.623 / 96.940</td>
+<td>96.673 / 97.143</td>
+<td>96.153 / 96.787</td>
+<td>94.380 / 96.250</td>
+<td>84.137 / 87.920</td>
+<td>85.377 / 87.840</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>94.657 / 94.677</td>
+<td>96.473 / 96.503</td>
+<td>96.593 / 96.843</td>
+<td>96.490 / 96.760</td>
+<td>95.800 / 96.390</td>
+<td>94.847 / 95.480</td>
+<td>81.077 / 83.450</td>
+<td>12.707 / 16.970</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>80.857 / 80.857</td>
+<td>91.510 / 91.513</td>
+<td>95.600 / 95.650</td>
+<td>96.557 / 96.647</td>
+<td>96.267 / 96.650</td>
+<td>96.230 / 96.597</td>
+<td>95.603 / 95.933</td>
+<td>93.290 / 93.913</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>94.507 / 94.547</td>
+<td>96.423 / 96.493</td>
+<td>96.750 / 97.000</td>
+<td>96.757 / 97.030</td>
+<td>96.197 / 96.627</td>
+<td>95.073 / 95.757</td>
+<td>85.043 / 86.577</td>
+<td>17.663 / 27.760</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>94.463 / 94.503</td>
+<td>96.417 / 96.477</td>
+<td>96.723 / 97.007</td>
+<td>96.813 / 96.980</td>
+<td>96.107 / 96.677</td>
+<td>95.350 / 95.967</td>
+<td>82.757 / 87.673</td>
+<td>83.213 / 87.930</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>93.110 / 93.133</td>
+<td>94.907 / 95.057</td>
+<td>95.197 / 95.597</td>
+<td>95.757 / 96.207</td>
+<td>96.347 / 96.643</td>
+<td>95.733 / 96.307</td>
+<td>86.110 / 90.223</td>
+<td>77.577 / 78.567</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 21. MNIST, H=64, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>94.987 / 94.997</td>
+<td>97.000 / 97.050</td>
+<td>97.543 / 97.683</td>
+<td>97.833 / 97.933</td>
+<td>97.097 / 97.530</td>
+<td>51.553 / 95.830</td>
+<td>10.480 / 18.343</td>
+<td>9.820 / 11.863</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>94.770 / 94.770</td>
+<td>96.917 / 96.960</td>
+<td>97.480 / 97.577</td>
+<td>97.830 / 97.910</td>
+<td>96.897 / 97.600</td>
+<td>84.683 / 96.470</td>
+<td>85.243 / 88.270</td>
+<td>86.613 / 88.403</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>94.800 / 94.807</td>
+<td>96.910 / 96.997</td>
+<td>97.440 / 97.560</td>
+<td>97.627 / 97.720</td>
+<td>97.650 / 97.720</td>
+<td>96.283 / 96.480</td>
+<td>69.877 / 78.990</td>
+<td>9.810 / 13.817</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>83.963 / 83.963</td>
+<td>91.827 / 91.827</td>
+<td>96.073 / 96.100</td>
+<td>97.300 / 97.397</td>
+<td>97.593 / 97.660</td>
+<td>97.557 / 97.677</td>
+<td>96.677 / 97.180</td>
+<td>94.690 / 95.113</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>94.923 / 94.943</td>
+<td>96.907 / 96.983</td>
+<td>97.490 / 97.603</td>
+<td>97.680 / 97.800</td>
+<td>97.840 / 97.917</td>
+<td>96.327 / 96.823</td>
+<td>50.510 / 65.550</td>
+<td>9.820 / 20.210</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>94.853 / 94.853</td>
+<td>96.843 / 96.920</td>
+<td>97.530 / 97.640</td>
+<td>97.727 / 97.833</td>
+<td>97.817 / 97.880</td>
+<td>95.857 / 96.533</td>
+<td>83.200 / 87.787</td>
+<td>83.773 / 87.810</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>94.253 / 94.270</td>
+<td>96.200 / 96.343</td>
+<td>96.730 / 96.903</td>
+<td>96.857 / 97.027</td>
+<td>96.493 / 96.890</td>
+<td>96.110 / 96.623</td>
+<td>72.427 / 85.733</td>
+<td>79.210 / 80.477</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 22. MNIST, H=128, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>95.237 / 95.247</td>
+<td>97.290 / 97.440</td>
+<td>97.913 / 98.030</td>
+<td>98.090 / 98.183</td>
+<td>98.027 / 98.260</td>
+<td>10.400 / 96.403</td>
+<td>10.540 / 17.743</td>
+<td>10.243 / 11.860</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>94.947 / 94.960</td>
+<td>97.227 / 97.357</td>
+<td>97.830 / 97.897</td>
+<td>97.993 / 98.123</td>
+<td>97.550 / 98.053</td>
+<td>84.977 / 96.337</td>
+<td>85.647 / 89.110</td>
+<td>85.797 / 88.873</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>94.553 / 94.573</td>
+<td>97.100 / 97.150</td>
+<td>97.790 / 97.933</td>
+<td>97.957 / 98.047</td>
+<td>98.137 / 98.207</td>
+<td>94.753 / 95.893</td>
+<td>59.210 / 67.587</td>
+<td>10.667 / 14.483</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>84.360 / 84.360</td>
+<td>91.510 / 91.513</td>
+<td>95.937 / 95.987</td>
+<td>97.527 / 97.683</td>
+<td>97.920 / 98.027</td>
+<td>98.063 / 98.147</td>
+<td>97.990 / 98.020</td>
+<td>95.623 / 96.250</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>95.103 / 95.133</td>
+<td>97.217 / 97.300</td>
+<td>97.803 / 97.903</td>
+<td>98.067 / 98.140</td>
+<td>98.310 / 98.373</td>
+<td>96.787 / 97.203</td>
+<td>35.403 / 46.120</td>
+<td>9.997 / 14.497</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>94.897 / 94.917</td>
+<td>97.163 / 97.207</td>
+<td>97.753 / 97.853</td>
+<td>97.970 / 98.053</td>
+<td>98.293 / 98.320</td>
+<td>83.927 / 96.390</td>
+<td>84.307 / 88.093</td>
+<td>84.667 / 88.380</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>94.700 / 94.727</td>
+<td>96.957 / 97.040</td>
+<td>97.430 / 97.607</td>
+<td>97.793 / 97.910</td>
+<td>97.067 / 97.580</td>
+<td>97.783 / 97.813</td>
+<td>65.443 / 89.993</td>
+<td>63.857 / 68.177</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 23. MNIST, H=256, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>95.653 / 95.653</td>
+<td>97.643 / 97.747</td>
+<td>98.090 / 98.157</td>
+<td>98.280 / 98.333</td>
+<td>98.440 / 98.460</td>
+<td>10.680 / 96.733</td>
+<td>10.513 / 23.510</td>
+<td>9.997 / 11.860</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>95.337 / 95.337</td>
+<td>97.597 / 97.667</td>
+<td>98.083 / 98.110</td>
+<td>98.147 / 98.237</td>
+<td>98.397 / 98.460</td>
+<td>87.143 / 96.303</td>
+<td>86.387 / 89.377</td>
+<td>86.943 / 89.463</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>94.053 / 94.077</td>
+<td>96.747 / 96.770</td>
+<td>97.840 / 97.917</td>
+<td>98.003 / 98.127</td>
+<td>98.280 / 98.323</td>
+<td>91.427 / 93.707</td>
+<td>46.017 / 58.130</td>
+<td>9.910 / 11.860</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>86.037 / 86.037</td>
+<td>91.213 / 91.237</td>
+<td>95.460 / 95.493</td>
+<td>97.543 / 97.637</td>
+<td>98.103 / 98.160</td>
+<td>98.273 / 98.333</td>
+<td>98.323 / 98.377</td>
+<td>96.383 / 97.003</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>95.227 / 95.253</td>
+<td>97.467 / 97.487</td>
+<td>98.023 / 98.083</td>
+<td>98.223 / 98.307</td>
+<td>98.460 / 98.490</td>
+<td>94.833 / 96.690</td>
+<td>34.300 / 50.330</td>
+<td>11.020 / 15.647</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>94.993 / 94.993</td>
+<td>97.293 / 97.307</td>
+<td>97.943 / 98.023</td>
+<td>98.210 / 98.303</td>
+<td>98.437 / 98.473</td>
+<td>85.303 / 95.480</td>
+<td>86.387 / 89.087</td>
+<td>85.797 / 88.943</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>95.087 / 95.100</td>
+<td>97.430 / 97.480</td>
+<td>97.867 / 97.933</td>
+<td>98.137 / 98.180</td>
+<td>98.263 / 98.313</td>
+<td>98.197 / 98.227</td>
+<td>38.773 / 92.853</td>
+<td>57.683 / 70.580</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 24. MNIST, H=512, calib: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>95.817 / 95.827</td>
+<td>97.783 / 97.867</td>
+<td>98.203 / 98.253</td>
+<td>98.307 / 98.367</td>
+<td>98.493 / 98.547</td>
+<td>10.317 / 97.133</td>
+<td>11.557 / 29.373</td>
+<td>10.203 / 11.860</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>95.473 / 95.490</td>
+<td>97.623 / 97.750</td>
+<td>98.133 / 98.173</td>
+<td>98.283 / 98.373</td>
+<td>98.547 / 98.573</td>
+<td>85.710 / 96.083</td>
+<td>88.077 / 89.693</td>
+<td>87.097 / 89.930</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>93.377 / 93.397</td>
+<td>96.513 / 96.523</td>
+<td>97.723 / 97.797</td>
+<td>98.007 / 98.120</td>
+<td>98.273 / 98.330</td>
+<td>81.793 / 90.510</td>
+<td>35.903 / 47.213</td>
+<td>9.987 / 13.463</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>86.900 / 86.907</td>
+<td>91.033 / 91.053</td>
+<td>94.943 / 94.983</td>
+<td>97.203 / 97.313</td>
+<td>98.003 / 98.107</td>
+<td>98.280 / 98.313</td>
+<td>98.363 / 98.397</td>
+<td>80.970 / 97.367</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>95.290 / 95.290</td>
+<td>97.580 / 97.607</td>
+<td>98.110 / 98.143</td>
+<td>98.300 / 98.337</td>
+<td>98.590 / 98.613</td>
+<td>72.843 / 94.997</td>
+<td>36.830 / 49.800</td>
+<td>14.550 / 18.827</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>94.990 / 94.990</td>
+<td>97.450 / 97.490</td>
+<td>98.057 / 98.133</td>
+<td>98.287 / 98.363</td>
+<td>98.507 / 98.563</td>
+<td>87.057 / 93.750</td>
+<td>87.580 / 89.443</td>
+<td>88.053 / 89.070</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>95.333 / 95.343</td>
+<td>97.597 / 97.623</td>
+<td>97.967 / 98.060</td>
+<td>98.220 / 98.273</td>
+<td>98.370 / 98.407</td>
+<td>98.373 / 98.413</td>
+<td>37.720 / 94.553</td>
+<td>49.583 / 60.040</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 25. MNIST, H=64, calib_mse: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>91.880 / 91.880</td>
+<td>95.220 / 95.227</td>
+<td>97.157 / 97.210</td>
+<td>97.590 / 97.707</td>
+<td>97.903 / 97.987</td>
+<td>93.047 / 97.510</td>
+<td>9.270 / 68.977</td>
+<td>12.993 / 15.627</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>91.787 / 91.790</td>
+<td>94.873 / 94.900</td>
+<td>97.060 / 97.107</td>
+<td>97.477 / 97.590</td>
+<td>97.527 / 97.650</td>
+<td>97.383 / 97.507</td>
+<td>93.930 / 94.593</td>
+<td>17.147 / 52.457</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>91.720 / 91.720</td>
+<td>94.897 / 94.920</td>
+<td>96.983 / 97.000</td>
+<td>97.417 / 97.563</td>
+<td>97.687 / 97.753</td>
+<td>97.683 / 97.757</td>
+<td>75.560 / 95.110</td>
+<td>14.483 / 45.523</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 26. MNIST, H=128, calib_mse: final / peak validation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>LR=0.0001</th>
+<th>LR=0.0003</th>
+<th>LR=0.001</th>
+<th>LR=0.003</th>
+<th>LR=0.01</th>
+<th>LR=0.03</th>
+<th>LR=0.1</th>
+<th>LR=0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>92.287 / 92.287</td>
+<td>95.577 / 95.597</td>
+<td>97.617 / 97.667</td>
+<td>97.967 / 98.117</td>
+<td>98.120 / 98.243</td>
+<td>97.903 / 98.183</td>
+<td>10.633 / 64.030</td>
+<td>9.920 / 9.920</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>91.663 / 91.663</td>
+<td>94.533 / 94.533</td>
+<td>97.217 / 97.237</td>
+<td>97.870 / 97.927</td>
+<td>98.023 / 98.127</td>
+<td>97.973 / 98.030</td>
+<td>92.687 / 94.577</td>
+<td>12.833 / 48.300</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>91.850 / 91.850</td>
+<td>95.183 / 95.183</td>
+<td>97.443 / 97.513</td>
+<td>97.917 / 98.000</td>
+<td>98.197 / 98.287</td>
+<td>98.257 / 98.300</td>
+<td>36.323 / 95.440</td>
+<td>10.960 / 11.290</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 27. All changed LR selections</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Stage</th>
+<th>H</th>
+<th>Activation</th>
+<th>Original LR</th>
+<th>Checkpoint-aligned LR</th>
+<th>Existing evaluation seeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>32</td>
+<td>ReLU</td>
+<td>0.0003</td>
+<td>0.001</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>64</td>
+<td>Leaky-ReLU</td>
+<td>0.001</td>
+<td>0.0003</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>128</td>
+<td>sigmoid + ReLU</td>
+<td>0.0003</td>
+<td>0.001</td>
+<td>30</td>
+</tr>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>128</td>
+<td>tanh</td>
+<td>0.0003</td>
+<td>0.001</td>
+<td>30</td>
+</tr>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>256</td>
+<td>Leaky-ReLU</td>
+<td>0.0003</td>
+<td>0.001</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>256</td>
+<td>sigmoid + ReLU</td>
+<td>0.0003</td>
+<td>0.001</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>256</td>
+<td>tanh + leaky-ReLU</td>
+<td>0.0003</td>
+<td>0.001</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>256</td>
+<td>tanh + ReLU</td>
+<td>0.0003</td>
+<td>0.001</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>512</td>
+<td>Leaky-ReLU</td>
+<td>0.0003</td>
+<td>0.001</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CIFAR-10</td>
+<td>calib</td>
+<td>512</td>
+<td>tanh + leaky-ReLU</td>
+<td>0.0003</td>
+<td>0.001</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MNIST</td>
+<td>calib</td>
+<td>12</td>
+<td>Leaky-ReLU</td>
+<td>0.001</td>
+<td>0.003</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MNIST</td>
+<td>calib</td>
+<td>12</td>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>0.01</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MNIST</td>
+<td>calib</td>
+<td>12</td>
+<td>tanh + leaky-ReLU</td>
+<td>0.001</td>
+<td>0.003</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MNIST</td>
+<td>calib</td>
+<td>32</td>
+<td>sigmoid</td>
+<td>0.003</td>
+<td>0.01</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MNIST</td>
+<td>calib</td>
+<td>32</td>
+<td>tanh + leaky-ReLU</td>
+<td>0.003</td>
+<td>0.001</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MNIST</td>
+<td>calib</td>
+<td>64</td>
+<td>sigmoid</td>
+<td>0.01</td>
+<td>0.03</td>
+<td>30</td>
+</tr>
+<tr>
+<td>MNIST</td>
+<td>calib</td>
+<td>128</td>
+<td>ReLU</td>
+<td>0.003</td>
+<td>0.01</td>
+<td>30</td>
+</tr>
+<tr>
+<td>MNIST</td>
+<td>calib_mse</td>
+<td>64</td>
+<td>tanh + ReLU</td>
+<td>0.01</td>
+<td>0.03</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Zero means no matching evaluation runs are available in the relevant completed stages. It does not mean zero accuracy.</p>
+<h2>S3. Complete evaluation LR grids</h2>
+<p>Cells show mean final validation accuracy / number of final validation scores below 15%. Each cell has 30 seeds. The score before the slash is a percentage and the count after the slash is a count out of 30. All LR results are exploratory grid descriptions.</p>
+<p><strong>Table 28. MNIST, H=64: final validation / failure count</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>0.0001</th>
+<th>0.0003</th>
+<th>0.001</th>
+<th>0.003</th>
+<th>0.005</th>
+<th>0.01</th>
+<th>0.02</th>
+<th>0.03</th>
+<th>0.05</th>
+<th>0.1</th>
+<th>0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>95.070 / 0</td>
+<td>97.015 / 0</td>
+<td>97.533 / 0</td>
+<td>97.779 / 0</td>
+<td>97.939 / 0</td>
+<td>96.947 / 0</td>
+<td>95.499 / 0</td>
+<td>58.431 / 12</td>
+<td>19.766 / 2</td>
+<td>11.065 / 28</td>
+<td>10.068 / 30</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>94.775 / 0</td>
+<td>96.855 / 0</td>
+<td>97.403 / 0</td>
+<td>97.781 / 0</td>
+<td>97.904 / 0</td>
+<td>97.069 / 0</td>
+<td>95.553 / 0</td>
+<td>84.005 / 0</td>
+<td>83.706 / 0</td>
+<td>85.427 / 0</td>
+<td>84.310 / 0</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>94.756 / 0</td>
+<td>96.993 / 0</td>
+<td>97.479 / 0</td>
+<td>97.617 / 0</td>
+<td>97.711 / 0</td>
+<td>97.660 / 0</td>
+<td>96.725 / 0</td>
+<td>95.907 / 0</td>
+<td>91.886 / 0</td>
+<td>69.398 / 0</td>
+<td>11.265 / 26</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>83.239 / 0</td>
+<td>91.731 / 0</td>
+<td>96.078 / 0</td>
+<td>97.286 / 0</td>
+<td>97.399 / 0</td>
+<td>97.461 / 0</td>
+<td>97.583 / 0</td>
+<td>97.558 / 0</td>
+<td>97.509 / 0</td>
+<td>96.940 / 0</td>
+<td>94.803 / 0</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>94.963 / 0</td>
+<td>96.997 / 0</td>
+<td>97.510 / 0</td>
+<td>97.712 / 0</td>
+<td>97.809 / 0</td>
+<td>97.903 / 0</td>
+<td>96.797 / 0</td>
+<td>96.393 / 0</td>
+<td>91.053 / 0</td>
+<td>61.283 / 2</td>
+<td>12.235 / 23</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>94.795 / 0</td>
+<td>96.954 / 0</td>
+<td>97.469 / 0</td>
+<td>97.735 / 0</td>
+<td>97.817 / 0</td>
+<td>97.863 / 0</td>
+<td>96.501 / 0</td>
+<td>95.689 / 0</td>
+<td>82.741 / 0</td>
+<td>84.977 / 0</td>
+<td>84.265 / 0</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>94.069 / 0</td>
+<td>96.317 / 0</td>
+<td>96.646 / 0</td>
+<td>96.723 / 0</td>
+<td>96.627 / 0</td>
+<td>96.729 / 0</td>
+<td>96.699 / 0</td>
+<td>96.451 / 0</td>
+<td>96.151 / 0</td>
+<td>81.760 / 0</td>
+<td>76.575 / 6</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 29. MNIST, H=128: final validation / failure count</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>0.0001</th>
+<th>0.0003</th>
+<th>0.001</th>
+<th>0.003</th>
+<th>0.005</th>
+<th>0.01</th>
+<th>0.02</th>
+<th>0.03</th>
+<th>0.05</th>
+<th>0.1</th>
+<th>0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>95.405 / 0</td>
+<td>97.443 / 0</td>
+<td>97.871 / 0</td>
+<td>98.120 / 0</td>
+<td>98.260 / 0</td>
+<td>98.245 / 0</td>
+<td>96.497 / 0</td>
+<td>10.611 / 30</td>
+<td>20.235 / 3</td>
+<td>10.836 / 28</td>
+<td>10.158 / 30</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>95.098 / 0</td>
+<td>97.305 / 0</td>
+<td>97.811 / 0</td>
+<td>98.117 / 0</td>
+<td>98.206 / 0</td>
+<td>97.711 / 0</td>
+<td>84.707 / 0</td>
+<td>85.228 / 0</td>
+<td>86.402 / 0</td>
+<td>86.303 / 0</td>
+<td>86.212 / 0</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>94.508 / 0</td>
+<td>97.020 / 0</td>
+<td>97.793 / 0</td>
+<td>97.940 / 0</td>
+<td>98.011 / 0</td>
+<td>98.142 / 0</td>
+<td>97.465 / 0</td>
+<td>95.111 / 0</td>
+<td>86.419 / 0</td>
+<td>54.075 / 0</td>
+<td>10.468 / 29</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>85.031 / 0</td>
+<td>91.526 / 0</td>
+<td>95.967 / 0</td>
+<td>97.559 / 0</td>
+<td>97.772 / 0</td>
+<td>97.930 / 0</td>
+<td>98.018 / 0</td>
+<td>98.031 / 0</td>
+<td>97.993 / 0</td>
+<td>97.945 / 0</td>
+<td>95.897 / 0</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>95.159 / 0</td>
+<td>97.283 / 0</td>
+<td>97.835 / 0</td>
+<td>98.071 / 0</td>
+<td>98.183 / 0</td>
+<td>98.282 / 0</td>
+<td>97.574 / 0</td>
+<td>96.761 / 0</td>
+<td>69.273 / 0</td>
+<td>31.598 / 7</td>
+<td>11.426 / 26</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>94.968 / 0</td>
+<td>97.197 / 0</td>
+<td>97.815 / 0</td>
+<td>98.063 / 0</td>
+<td>98.200 / 0</td>
+<td>98.283 / 0</td>
+<td>96.779 / 0</td>
+<td>84.633 / 0</td>
+<td>84.636 / 0</td>
+<td>85.215 / 0</td>
+<td>84.990 / 0</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>94.683 / 0</td>
+<td>96.959 / 0</td>
+<td>97.443 / 0</td>
+<td>97.747 / 0</td>
+<td>97.949 / 0</td>
+<td>97.305 / 0</td>
+<td>97.839 / 0</td>
+<td>97.784 / 0</td>
+<td>96.970 / 0</td>
+<td>69.481 / 0</td>
+<td>71.573 / 5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 30. CIFAR-10, H=128: final validation / failure count</strong></p>
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>0.0001</th>
+<th>0.0003</th>
+<th>0.001</th>
+<th>0.003</th>
+<th>0.01</th>
+<th>0.03</th>
+<th>0.1</th>
+<th>0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReLU</td>
+<td>49.728 / 0</td>
+<td>51.887 / 0</td>
+<td>51.447 / 0</td>
+<td>48.351 / 0</td>
+<td>37.516 / 0</td>
+<td>10.903 / 26</td>
+<td>9.825 / 30</td>
+<td>9.827 / 30</td>
+</tr>
+<tr>
+<td>Leaky-ReLU</td>
+<td>49.290 / 0</td>
+<td>51.709 / 0</td>
+<td>51.683 / 0</td>
+<td>49.223 / 0</td>
+<td>44.602 / 0</td>
+<td>36.411 / 0</td>
+<td>18.139 / 4</td>
+<td>17.171 / 7</td>
+</tr>
+<tr>
+<td>tanh</td>
+<td>48.553 / 0</td>
+<td>50.825 / 0</td>
+<td>50.427 / 0</td>
+<td>44.949 / 0</td>
+<td>34.630 / 0</td>
+<td>12.206 / 27</td>
+<td>9.935 / 30</td>
+<td>9.935 / 30</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>31.223 / 0</td>
+<td>39.781 / 0</td>
+<td>49.009 / 0</td>
+<td>50.584 / 0</td>
+<td>46.246 / 0</td>
+<td>39.875 / 0</td>
+<td>27.699 / 0</td>
+<td>13.310 / 21</td>
+</tr>
+<tr>
+<td>tanh + ReLU</td>
+<td>49.701 / 0</td>
+<td>52.006 / 0</td>
+<td>51.409 / 0</td>
+<td>48.833 / 0</td>
+<td>28.110 / 1</td>
+<td>17.879 / 9</td>
+<td>9.937 / 30</td>
+<td>9.935 / 30</td>
+</tr>
+<tr>
+<td>tanh + leaky-ReLU</td>
+<td>49.333 / 0</td>
+<td>51.801 / 0</td>
+<td>51.185 / 0</td>
+<td>48.936 / 0</td>
+<td>41.782 / 0</td>
+<td>15.528 / 12</td>
+<td>15.345 / 16</td>
+<td>16.494 / 10</td>
+</tr>
+<tr>
+<td>sigmoid + ReLU</td>
+<td>48.114 / 0</td>
+<td>50.565 / 0</td>
+<td>50.766 / 0</td>
+<td>49.765 / 0</td>
+<td>44.683 / 0</td>
+<td>18.068 / 16</td>
+<td>24.503 / 2</td>
+<td>15.683 / 12</td>
+</tr>
+</tbody>
+</table>
+<h2>S4. Full parent comparisons</h2>
+<p>The following tables compare each hybrid to both of its own homogeneous parents. CIs are pointwise paired 95% bootstrap intervals. Main-grid p-values are adjusted across the complete 120-contrast accuracy family, which also includes the additional comparisons to ReLU listed in <code>paired_main.csv</code>.</p>
+<p><strong>Table 31. MNIST hybrid-parent accuracy contrasts</strong></p>
+<table>
+<thead>
+<tr>
+<th>H</th>
+<th>Hybrid</th>
+<th>Parent</th>
+<th>Δ, pp</th>
+<th>95% CI</th>
+<th>Wins</th>
+<th>Holm p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+0.038</td>
+<td>[-0.077, +0.154]</td>
+<td>18/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>12</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>-0.307</td>
+<td>[-0.449, -0.160]</td>
+<td>8/30</td>
+<td>0.020</td>
+</tr>
+<tr>
+<td>12</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+0.069</td>
+<td>[-0.081, +0.216]</td>
+<td>17/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>12</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>-0.253</td>
+<td>[-0.398, -0.109]</td>
+<td>8/30</td>
+<td>0.083</td>
+</tr>
+<tr>
+<td>12</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>+0.002</td>
+<td>[-0.190, +0.187]</td>
+<td>16/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>12</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-0.525</td>
+<td>[-0.669, -0.386]</td>
+<td>4/30</td>
+<td>5.20e-06</td>
+</tr>
+<tr>
+<td>32</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+0.146</td>
+<td>[+0.064, +0.230]</td>
+<td>20/30</td>
+<td>0.081</td>
+</tr>
+<tr>
+<td>32</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>-0.186</td>
+<td>[-0.281, -0.087]</td>
+<td>7/30</td>
+<td>0.042</td>
+</tr>
+<tr>
+<td>32</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+0.138</td>
+<td>[+0.065, +0.215]</td>
+<td>22/30</td>
+<td>0.066</td>
+</tr>
+<tr>
+<td>32</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>-0.170</td>
+<td>[-0.258, -0.074]</td>
+<td>7/30</td>
+<td>0.060</td>
+</tr>
+<tr>
+<td>32</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>-0.280</td>
+<td>[-0.347, -0.214]</td>
+<td>2/30</td>
+<td>6.11e-07</td>
+</tr>
+<tr>
+<td>32</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-0.718</td>
+<td>[-0.815, -0.628]</td>
+<td>0/30</td>
+<td>7.04e-13</td>
+</tr>
+<tr>
+<td>64</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+0.192</td>
+<td>[+0.124, +0.256]</td>
+<td>27/30</td>
+<td>2.55e-04</td>
+</tr>
+<tr>
+<td>64</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>+0.004</td>
+<td>[-0.058, +0.067]</td>
+<td>15/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>64</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+0.216</td>
+<td>[+0.152, +0.277]</td>
+<td>27/30</td>
+<td>1.30e-05</td>
+</tr>
+<tr>
+<td>64</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>+0.046</td>
+<td>[-0.010, +0.101]</td>
+<td>19/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>64</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>-0.414</td>
+<td>[-0.475, -0.351]</td>
+<td>0/30</td>
+<td>1.44e-11</td>
+</tr>
+<tr>
+<td>64</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-0.870</td>
+<td>[-0.937, -0.798]</td>
+<td>0/30</td>
+<td>1.30e-18</td>
+</tr>
+<tr>
+<td>128</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+0.211</td>
+<td>[+0.174, +0.251]</td>
+<td>29/30</td>
+<td>2.83e-09</td>
+</tr>
+<tr>
+<td>128</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>+0.178</td>
+<td>[+0.143, +0.213]</td>
+<td>28/30</td>
+<td>1.29e-08</td>
+</tr>
+<tr>
+<td>128</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+0.159</td>
+<td>[+0.110, +0.208]</td>
+<td>29/30</td>
+<td>6.40e-05</td>
+</tr>
+<tr>
+<td>128</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>+0.137</td>
+<td>[+0.096, +0.174]</td>
+<td>25/30</td>
+<td>1.38e-05</td>
+</tr>
+<tr>
+<td>128</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>-0.108</td>
+<td>[-0.158, -0.057]</td>
+<td>7/30</td>
+<td>0.022</td>
+</tr>
+<tr>
+<td>128</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-0.310</td>
+<td>[-0.361, -0.259]</td>
+<td>0/30</td>
+<td>1.51e-10</td>
+</tr>
+<tr>
+<td>256</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+0.196</td>
+<td>[+0.155, +0.238]</td>
+<td>30/30</td>
+<td>4.99e-08</td>
+</tr>
+<tr>
+<td>256</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>-0.001</td>
+<td>[-0.035, +0.034]</td>
+<td>14/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>256</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+0.176</td>
+<td>[+0.131, +0.219]</td>
+<td>27/30</td>
+<td>1.26e-06</td>
+</tr>
+<tr>
+<td>256</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>+0.017</td>
+<td>[-0.014, +0.049]</td>
+<td>17/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>256</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>+0.072</td>
+<td>[+0.031, +0.113]</td>
+<td>20/30</td>
+<td>0.083</td>
+</tr>
+<tr>
+<td>256</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-0.177</td>
+<td>[-0.212, -0.143]</td>
+<td>0/30</td>
+<td>7.73e-09</td>
+</tr>
+<tr>
+<td>512</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+0.265</td>
+<td>[+0.222, +0.306]</td>
+<td>29/30</td>
+<td>8.02e-11</td>
+</tr>
+<tr>
+<td>512</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>+0.003</td>
+<td>[-0.036, +0.042]</td>
+<td>15/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>512</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+0.250</td>
+<td>[+0.211, +0.286]</td>
+<td>29/30</td>
+<td>1.48e-11</td>
+</tr>
+<tr>
+<td>512</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>+0.026</td>
+<td>[-0.010, +0.066]</td>
+<td>17/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>512</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>+0.074</td>
+<td>[+0.046, +0.104]</td>
+<td>21/30</td>
+<td>0.002</td>
+</tr>
+<tr>
+<td>512</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-0.169</td>
+<td>[-0.202, -0.137]</td>
+<td>1/30</td>
+<td>3.67e-09</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 32. CIFAR-10 hybrid-parent accuracy contrasts</strong></p>
+<table>
+<thead>
+<tr>
+<th>H</th>
+<th>Hybrid</th>
+<th>Parent</th>
+<th>Δ, pp</th>
+<th>95% CI</th>
+<th>Wins</th>
+<th>Holm p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+0.568</td>
+<td>[+0.262, +0.865]</td>
+<td>22/30</td>
+<td>0.052</td>
+</tr>
+<tr>
+<td>12</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>-0.550</td>
+<td>[-0.868, -0.241]</td>
+<td>11/30</td>
+<td>0.085</td>
+</tr>
+<tr>
+<td>12</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+0.644</td>
+<td>[+0.344, +0.932]</td>
+<td>23/30</td>
+<td>0.014</td>
+</tr>
+<tr>
+<td>12</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>-0.631</td>
+<td>[-0.980, -0.270]</td>
+<td>6/30</td>
+<td>0.081</td>
+</tr>
+<tr>
+<td>12</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>+0.980</td>
+<td>[+0.675, +1.262]</td>
+<td>28/30</td>
+<td>3.08e-05</td>
+</tr>
+<tr>
+<td>12</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-1.121</td>
+<td>[-1.474, -0.740]</td>
+<td>3/30</td>
+<td>1.35e-04</td>
+</tr>
+<tr>
+<td>32</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+0.907</td>
+<td>[+0.685, +1.114]</td>
+<td>28/30</td>
+<td>5.14e-07</td>
+</tr>
+<tr>
+<td>32</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>-0.385</td>
+<td>[-0.616, -0.145]</td>
+<td>10/30</td>
+<td>0.167</td>
+</tr>
+<tr>
+<td>32</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+0.865</td>
+<td>[+0.622, +1.076]</td>
+<td>28/30</td>
+<td>2.17e-06</td>
+</tr>
+<tr>
+<td>32</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>-0.495</td>
+<td>[-0.719, -0.276]</td>
+<td>8/30</td>
+<td>0.010</td>
+</tr>
+<tr>
+<td>32</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>+0.569</td>
+<td>[+0.277, +0.855]</td>
+<td>24/30</td>
+<td>0.038</td>
+</tr>
+<tr>
+<td>32</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-1.411</td>
+<td>[-1.651, -1.157]</td>
+<td>1/30</td>
+<td>8.87e-10</td>
+</tr>
+<tr>
+<td>64</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+1.112</td>
+<td>[+0.914, +1.309]</td>
+<td>29/30</td>
+<td>9.36e-10</td>
+</tr>
+<tr>
+<td>64</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>+0.363</td>
+<td>[+0.156, +0.577]</td>
+<td>22/30</td>
+<td>0.095</td>
+</tr>
+<tr>
+<td>64</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+0.797</td>
+<td>[+0.575, +1.022]</td>
+<td>27/30</td>
+<td>8.81e-06</td>
+</tr>
+<tr>
+<td>64</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>+0.018</td>
+<td>[-0.194, +0.236]</td>
+<td>15/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>64</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>+0.261</td>
+<td>[+0.056, +0.462]</td>
+<td>21/30</td>
+<td>0.621</td>
+</tr>
+<tr>
+<td>64</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-0.965</td>
+<td>[-1.184, -0.744]</td>
+<td>1/30</td>
+<td>1.67e-07</td>
+</tr>
+<tr>
+<td>128</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+1.291</td>
+<td>[+1.079, +1.515]</td>
+<td>29/30</td>
+<td>3.20e-10</td>
+</tr>
+<tr>
+<td>128</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>+0.178</td>
+<td>[-0.082, +0.425]</td>
+<td>17/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>128</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+1.156</td>
+<td>[+0.940, +1.381]</td>
+<td>29/30</td>
+<td>6.18e-09</td>
+</tr>
+<tr>
+<td>128</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>+0.133</td>
+<td>[-0.120, +0.383]</td>
+<td>17/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>128</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>+0.241</td>
+<td>[+0.020, +0.487]</td>
+<td>15/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>128</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-1.142</td>
+<td>[-1.357, -0.920]</td>
+<td>1/30</td>
+<td>6.18e-09</td>
+</tr>
+<tr>
+<td>256</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+1.738</td>
+<td>[+1.501, +1.976]</td>
+<td>30/30</td>
+<td>2.07e-12</td>
+</tr>
+<tr>
+<td>256</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>+0.153</td>
+<td>[-0.049, +0.366]</td>
+<td>16/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>256</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+1.494</td>
+<td>[+1.277, +1.728]</td>
+<td>30/30</td>
+<td>2.27e-11</td>
+</tr>
+<tr>
+<td>256</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>+0.132</td>
+<td>[-0.079, +0.345]</td>
+<td>16/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>256</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>+0.704</td>
+<td>[+0.505, +0.913]</td>
+<td>27/30</td>
+<td>2.42e-05</td>
+</tr>
+<tr>
+<td>256</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-0.592</td>
+<td>[-0.828, -0.347]</td>
+<td>4/30</td>
+<td>0.003</td>
+</tr>
+<tr>
+<td>512</td>
+<td>tanh + ReLU</td>
+<td>tanh</td>
+<td>+1.521</td>
+<td>[+1.306, +1.749]</td>
+<td>30/30</td>
+<td>8.14e-12</td>
+</tr>
+<tr>
+<td>512</td>
+<td>tanh + ReLU</td>
+<td>ReLU</td>
+<td>-0.164</td>
+<td>[-0.404, +0.059]</td>
+<td>13/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>512</td>
+<td>tanh + leaky-ReLU</td>
+<td>tanh</td>
+<td>+1.284</td>
+<td>[+1.095, +1.484]</td>
+<td>30/30</td>
+<td>2.36e-11</td>
+</tr>
+<tr>
+<td>512</td>
+<td>tanh + leaky-ReLU</td>
+<td>Leaky-ReLU</td>
+<td>-0.133</td>
+<td>[-0.313, +0.048]</td>
+<td>11/30</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>512</td>
+<td>sigmoid + ReLU</td>
+<td>sigmoid</td>
+<td>+1.220</td>
+<td>[+0.940, +1.495]</td>
+<td>28/30</td>
+<td>1.85e-07</td>
+</tr>
+<tr>
+<td>512</td>
+<td>sigmoid + ReLU</td>
+<td>ReLU</td>
+<td>-0.518</td>
+<td>[-0.748, -0.292]</td>
+<td>8/30</td>
+<td>0.008</td>
+</tr>
+</tbody>
+</table>
+<h2>S5. Source inventory and reproducibility</h2>
+<p><code>analyze_results.py</code> parses and verifies the original CSV files and computes statistical outputs. <code>build_report.py</code> regenerates both report documents. The bootstrap seed is 20260915 and each interval uses 10,000 paired resamples. Required analytical Python packages are numpy, pandas, and scipy. Run <code>python3 manuscript_draft/build_report.py</code> from the results directory to regenerate. The original data are read only.</p>
+<p>The bundled runtime did not contain scipy; the available local Python environment supplied the missing statistical capability. The numerical analysis is ordinary Python and does not require a workbook engine.</p>
+<p><strong>Table 33. Original CSV inventory</strong></p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Data rows</th>
+<th>Repeated headers ignored</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_calib_12.csv">c10_calib_12.csv</a></td>
+<td>336</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_calib_128.csv">c10_calib_128.csv</a></td>
+<td>336</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_calib_256.csv">c10_calib_256.csv</a></td>
+<td>336</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_calib_32.csv">c10_calib_32.csv</a></td>
+<td>336</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_calib_512.csv">c10_calib_512.csv</a></td>
+<td>336</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_calib_64.csv">c10_calib_64.csv</a></td>
+<td>336</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_lrsweep_128.csv">c10_lrsweep_128.csv</a></td>
+<td>1680</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_main_12.csv">c10_main_12.csv</a></td>
+<td>210</td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_main_128.csv">c10_main_128.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_main_256.csv">c10_main_256.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_main_32.csv">c10_main_32.csv</a></td>
+<td>210</td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_main_512.csv">c10_main_512.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/c10_main_64.csv">c10_main_64.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/calib_12.csv">calib_12.csv</a></td>
+<td>336</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/calib_128.csv">calib_128.csv</a></td>
+<td>336</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/calib_256.csv">calib_256.csv</a></td>
+<td>336</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/calib_32.csv">calib_32.csv</a></td>
+<td>336</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/calib_512.csv">calib_512.csv</a></td>
+<td>336</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/calib_64.csv">calib_64.csv</a></td>
+<td>336</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/calib_mse_128.csv">calib_mse_128.csv</a></td>
+<td>144</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/calib_mse_64.csv">calib_mse_64.csv</a></td>
+<td>144</td>
+<td>1</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/layout_128.csv">layout_128.csv</a></td>
+<td>300</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/lrsweep_128.csv">lrsweep_128.csv</a></td>
+<td>2310</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/lrsweep_64.csv">lrsweep_64.csv</a></td>
+<td>2310</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/main_12.csv">main_12.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/main_128.csv">main_128.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/main_256.csv">main_256.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/main_32.csv">main_32.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/main_512.csv">main_512.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/main_64.csv">main_64.csv</a></td>
+<td>210</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/mse_128.csv">mse_128.csv</a></td>
+<td>90</td>
+<td>0</td>
+</tr>
+<tr>
+<td><a href="/Users/khaos/Desktop/article/version5/results_aws/mse_64.csv">mse_64.csv</a></td>
+<td>90</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>Exact raw-file hashes are recorded in <code>verification.json</code>. There are 12,930 distinct job identities across the 13,620 recorded rows; repeated identities across stages do not increase the independent sample count.</p>
+</main></body></html>

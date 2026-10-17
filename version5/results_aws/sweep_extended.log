@@ -1,0 +1,192 @@
+[2026-09-11 17:04:26] STAGE calib12 start | jobs=336 pending=336 workers=190
+[17:04:26] sweep/jobs_calib_12.txt: 336 of 336 pending; running up to 380 with 190 workers
+[17:05:05] remaining: 0
+[2026-09-11 17:05:05] STAGE calib12 | done 336/336  remaining 0  elapsed 0m39s  ETA 0h00m
+[2026-09-11 17:05:05] STAGE calib12 COMPLETE | 336 jobs run in 0h00m39s
+[2026-09-11 17:05:05] STAGE main12 start | jobs=210 pending=210 workers=190
+[17:05:05] sweep/jobs_main_12.txt: 210 of 210 pending; running up to 380 with 190 workers
+[17:05:43] remaining: 0
+[2026-09-11 17:05:43] STAGE main12 | done 210/210  remaining 0  elapsed 0m38s  ETA 0h00m
+[2026-09-11 17:05:43] STAGE main12 COMPLETE | 210 jobs run in 0h00m38s
+[2026-09-11 17:05:43] STAGE calib32 start | jobs=336 pending=336 workers=190
+[17:05:43] sweep/jobs_calib_32.txt: 336 of 336 pending; running up to 380 with 190 workers
+[2026-09-11 17:15:23] STAGE calib12 start | jobs=336 pending=0 workers=190
+[2026-09-11 17:15:23] STAGE calib12 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-11 17:15:23] STAGE main12 start | jobs=210 pending=0 workers=190
+[2026-09-11 17:15:23] STAGE main12 COMPLETE | 0 jobs run in 0h00m00s
+[2026-09-11 17:15:23] STAGE calib32 start | jobs=336 pending=146 workers=190
+[17:15:23] sweep/jobs_calib_32.txt: 146 of 336 pending; running up to 380 with 190 workers
+[17:16:16] remaining: 0
+[2026-09-11 17:16:17] STAGE calib32 | done 146/146  remaining 0  elapsed 0m54s  ETA 0h00m
+[2026-09-11 17:16:17] STAGE calib32 COMPLETE | 146 jobs run in 0h00m54s
+[2026-09-11 17:16:17] STAGE main32 start | jobs=210 pending=210 workers=190
+[17:16:17] sweep/jobs_main_32.txt: 210 of 210 pending; running up to 380 with 190 workers
+[17:17:57] remaining: 0
+[2026-09-11 17:17:57] STAGE main32 | done 210/210  remaining 0  elapsed 1m40s  ETA 0h00m
+[2026-09-11 17:17:57] STAGE main32 COMPLETE | 210 jobs run in 0h01m40s
+[2026-09-11 17:17:57] STAGE calib64 start | jobs=336 pending=336 workers=190
+[17:17:58] sweep/jobs_calib_64.txt: 336 of 336 pending; running up to 380 with 190 workers
+[17:21:31] remaining: 0
+[2026-09-11 17:21:31] STAGE calib64 | done 336/336  remaining 0  elapsed 3m34s  ETA 0h00m
+[2026-09-11 17:21:31] STAGE calib64 COMPLETE | 336 jobs run in 0h03m34s
+[2026-09-11 17:21:31] STAGE main64 start | jobs=210 pending=210 workers=190
+[17:21:31] sweep/jobs_main_64.txt: 210 of 210 pending; running up to 380 with 190 workers
+[17:24:55] remaining: 0
+[2026-09-11 17:24:55] STAGE main64 | done 210/210  remaining 0  elapsed 3m24s  ETA 0h00m
+[2026-09-11 17:24:55] STAGE main64 COMPLETE | 210 jobs run in 0h03m24s
+[2026-09-11 17:24:55] STAGE calib128 start | jobs=336 pending=336 workers=190
+[17:24:55] sweep/jobs_calib_128.txt: 336 of 336 pending; running up to 380 with 190 workers
+[17:32:29] remaining: 0
+[2026-09-11 17:32:29] STAGE calib128 | done 336/336  remaining 0  elapsed 7m34s  ETA 0h00m
+[2026-09-11 17:32:29] STAGE calib128 COMPLETE | 336 jobs run in 0h07m34s
+[2026-09-11 17:32:29] STAGE main128 start | jobs=210 pending=210 workers=190
+[17:32:29] sweep/jobs_main_128.txt: 210 of 210 pending; running up to 380 with 190 workers
+[17:39:36] remaining: 0
+[2026-09-11 17:39:36] STAGE main128 | done 210/210  remaining 0  elapsed 7m07s  ETA 0h00m
+[2026-09-11 17:39:36] STAGE main128 COMPLETE | 210 jobs run in 0h07m07s
+[2026-09-11 17:39:36] STAGE calib256 start | jobs=336 pending=336 workers=190
+[17:39:36] sweep/jobs_calib_256.txt: 336 of 336 pending; running up to 380 with 190 workers
+[17:56:44] remaining: 0
+[2026-09-11 17:56:44] STAGE calib256 | done 336/336  remaining 0  elapsed 17m08s  ETA 0h00m
+[2026-09-11 17:56:44] STAGE calib256 COMPLETE | 336 jobs run in 0h17m08s
+[2026-09-11 17:56:44] STAGE main256 start | jobs=210 pending=210 workers=190
+[17:56:44] sweep/jobs_main_256.txt: 210 of 210 pending; running up to 380 with 190 workers
+[18:12:44] remaining: 0
+[2026-09-11 18:12:44] STAGE main256 | done 210/210  remaining 0  elapsed 16m00s  ETA 0h00m
+[2026-09-11 18:12:44] STAGE main256 COMPLETE | 210 jobs run in 0h16m00s
+[2026-09-11 18:12:44] STAGE calib512 start | jobs=336 pending=336 workers=190
+[18:12:44] sweep/jobs_calib_512.txt: 336 of 336 pending; running up to 380 with 190 workers
+[18:59:56] remaining: 0
+[2026-09-11 18:59:56] STAGE calib512 | done 336/336  remaining 0  elapsed 47m12s  ETA 0h00m
+[2026-09-11 18:59:56] STAGE calib512 COMPLETE | 336 jobs run in 0h47m12s
+[2026-09-11 18:59:56] STAGE main512 start | jobs=210 pending=210 workers=190
+[18:59:56] sweep/jobs_main_512.txt: 210 of 210 pending; running up to 380 with 190 workers
+[19:44:04] remaining: 0
+[2026-09-11 19:44:04] STAGE main512 | done 210/210  remaining 0  elapsed 44m08s  ETA 0h00m
+[2026-09-11 19:44:04] STAGE main512 COMPLETE | 210 jobs run in 0h44m08s
+[2026-09-11 19:44:04] STAGE c10_calib12 start | jobs=336 pending=336 workers=190
+[19:44:05] sweep/jobs_c10_calib_12.txt: 336 of 336 pending; running up to 380 with 190 workers
+[19:46:37] remaining: 0
+[2026-09-11 19:46:37] STAGE c10_calib12 | done 336/336  remaining 0  elapsed 2m33s  ETA 0h00m
+[2026-09-11 19:46:37] STAGE c10_calib12 COMPLETE | 336 jobs run in 0h02m33s
+[2026-09-11 19:46:37] STAGE c10_main12 start | jobs=210 pending=210 workers=190
+[19:46:37] sweep/jobs_c10_main_12.txt: 210 of 210 pending; running up to 380 with 190 workers
+[19:49:06] remaining: 0
+[2026-09-11 19:49:06] STAGE c10_main12 | done 210/210  remaining 0  elapsed 2m29s  ETA 0h00m
+[2026-09-11 19:49:06] STAGE c10_main12 COMPLETE | 210 jobs run in 0h02m29s
+[2026-09-11 19:49:06] STAGE c10_calib32 start | jobs=336 pending=336 workers=190
+[19:49:06] sweep/jobs_c10_calib_32.txt: 336 of 336 pending; running up to 380 with 190 workers
+[19:55:28] remaining: 0
+[2026-09-11 19:55:28] STAGE c10_calib32 | done 336/336  remaining 0  elapsed 6m22s  ETA 0h00m
+[2026-09-11 19:55:28] STAGE c10_calib32 COMPLETE | 336 jobs run in 0h06m22s
+[2026-09-11 19:55:28] STAGE c10_main32 start | jobs=210 pending=210 workers=190
+[19:55:29] sweep/jobs_c10_main_32.txt: 210 of 210 pending; running up to 380 with 190 workers
+[20:01:45] remaining: 0
+[2026-09-11 20:01:46] STAGE c10_main32 | done 210/210  remaining 0  elapsed 6m18s  ETA 0h00m
+[2026-09-11 20:01:46] STAGE c10_main32 COMPLETE | 210 jobs run in 0h06m18s
+[2026-09-11 20:01:46] STAGE c10_calib64 start | jobs=336 pending=336 workers=190
+[20:01:46] sweep/jobs_c10_calib_64.txt: 336 of 336 pending; running up to 380 with 190 workers
+[20:14:18] remaining: 0
+[2026-09-11 20:14:18] STAGE c10_calib64 | done 336/336  remaining 0  elapsed 12m32s  ETA 0h00m
+[2026-09-11 20:14:18] STAGE c10_calib64 COMPLETE | 336 jobs run in 0h12m32s
+[2026-09-11 20:14:18] STAGE c10_main64 start | jobs=210 pending=210 workers=190
+[20:14:18] sweep/jobs_c10_main_64.txt: 210 of 210 pending; running up to 380 with 190 workers
+[20:26:37] remaining: 0
+[2026-09-11 20:26:37] STAGE c10_main64 | done 210/210  remaining 0  elapsed 12m19s  ETA 0h00m
+[2026-09-11 20:26:37] STAGE c10_main64 COMPLETE | 210 jobs run in 0h12m19s
+[2026-09-11 20:26:37] STAGE c10_calib128 start | jobs=336 pending=336 workers=190
+[20:26:37] sweep/jobs_c10_calib_128.txt: 336 of 336 pending; running up to 380 with 190 workers
+[20:52:01] remaining: 0
+[2026-09-11 20:52:01] STAGE c10_calib128 | done 336/336  remaining 0  elapsed 25m24s  ETA 0h00m
+[2026-09-11 20:52:01] STAGE c10_calib128 COMPLETE | 336 jobs run in 0h25m24s
+[2026-09-11 20:52:01] STAGE c10_main128 start | jobs=210 pending=210 workers=190
+[20:52:01] sweep/jobs_c10_main_128.txt: 210 of 210 pending; running up to 380 with 190 workers
+[21:16:51] remaining: 0
+[2026-09-11 21:16:52] STAGE c10_main128 | done 210/210  remaining 0  elapsed 24m51s  ETA 0h00m
+[2026-09-11 21:16:52] STAGE c10_main128 COMPLETE | 210 jobs run in 0h24m51s
+[2026-09-11 21:16:52] STAGE c10_calib256 start | jobs=336 pending=336 workers=190
+[21:16:52] sweep/jobs_c10_calib_256.txt: 336 of 336 pending; running up to 380 with 190 workers
+[22:27:52] remaining: 0
+[2026-09-11 22:27:52] STAGE c10_calib256 | done 336/336  remaining 0  elapsed 71m00s  ETA 0h00m
+[2026-09-11 22:27:52] STAGE c10_calib256 COMPLETE | 336 jobs run in 1h11m00s
+[2026-09-11 22:27:52] STAGE c10_main256 start | jobs=210 pending=210 workers=190
+[22:27:52] sweep/jobs_c10_main_256.txt: 210 of 210 pending; running up to 380 with 190 workers
+[23:29:57] remaining: 0
+[2026-09-11 23:29:57] STAGE c10_main256 | done 210/210  remaining 0  elapsed 62m05s  ETA 0h00m
+[2026-09-11 23:29:57] STAGE c10_main256 COMPLETE | 210 jobs run in 1h02m05s
+[2026-09-11 23:29:57] STAGE c10_calib512 start | jobs=336 pending=336 workers=190
+[23:29:57] sweep/jobs_c10_calib_512.txt: 336 of 336 pending; running up to 380 with 190 workers
+[03:43:23] remaining: 0
+[2026-09-12 03:43:23] STAGE c10_calib512 | done 336/336  remaining 0  elapsed 253m26s  ETA 0h00m
+[2026-09-12 03:43:23] STAGE c10_calib512 COMPLETE | 336 jobs run in 4h13m26s
+[2026-09-12 03:43:23] STAGE c10_main512 start | jobs=210 pending=210 workers=190
+[03:43:23] sweep/jobs_c10_main_512.txt: 210 of 210 pending; running up to 380 with 190 workers
+[06:59:06] remaining: 0
+[2026-09-12 06:59:06] STAGE c10_main512 | done 210/210  remaining 0  elapsed 195m43s  ETA 0h00m
+[2026-09-12 06:59:06] STAGE c10_main512 COMPLETE | 210 jobs run in 3h15m43s
+[2026-09-12 18:19:20] STAGE lrsweep_64 start | jobs=1680 pending=1680 workers=190
+[18:19:20] sweep/jobs_lrsweep_64.txt: 1680 of 1680 pending; running up to 380 with 190 workers
+[18:22:56] remaining: 1300
+[2026-09-12 18:22:56] STAGE lrsweep_64 | done 380/1680  remaining 1300  elapsed 3m36s  ETA 0h12m
+[18:22:57] sweep/jobs_lrsweep_64.txt: 1300 of 1680 pending; running up to 380 with 190 workers
+[18:26:34] remaining: 920
+[2026-09-12 18:26:34] STAGE lrsweep_64 | done 760/1680  remaining 920  elapsed 7m14s  ETA 0h08m
+[18:26:35] sweep/jobs_lrsweep_64.txt: 920 of 1680 pending; running up to 380 with 190 workers
+[18:30:11] remaining: 540
+[2026-09-12 18:30:12] STAGE lrsweep_64 | done 1140/1680  remaining 540  elapsed 10m52s  ETA 0h05m
+[18:30:12] sweep/jobs_lrsweep_64.txt: 540 of 1680 pending; running up to 380 with 190 workers
+[18:33:46] remaining: 160
+[2026-09-12 18:33:47] STAGE lrsweep_64 | done 1520/1680  remaining 160  elapsed 14m27s  ETA 0h01m
+[18:33:47] sweep/jobs_lrsweep_64.txt: 160 of 1680 pending; running up to 380 with 190 workers
+[18:35:32] remaining: 0
+[2026-09-12 18:35:33] STAGE lrsweep_64 | done 1680/1680  remaining 0  elapsed 16m13s  ETA 0h00m
+[2026-09-12 18:35:33] STAGE lrsweep_64 COMPLETE | 1680 jobs run in 0h16m13s
+[2026-09-12 18:35:33] STAGE lrsweep_128 start | jobs=1680 pending=1680 workers=190
+[18:35:33] sweep/jobs_lrsweep_128.txt: 1680 of 1680 pending; running up to 380 with 190 workers
+[18:43:05] remaining: 1300
+[2026-09-12 18:43:06] STAGE lrsweep_128 | done 380/1680  remaining 1300  elapsed 7m33s  ETA 0h25m
+[18:43:06] sweep/jobs_lrsweep_128.txt: 1300 of 1680 pending; running up to 380 with 190 workers
+[18:50:50] remaining: 920
+[2026-09-12 18:50:50] STAGE lrsweep_128 | done 760/1680  remaining 920  elapsed 15m17s  ETA 0h18m
+[18:50:51] sweep/jobs_lrsweep_128.txt: 920 of 1680 pending; running up to 380 with 190 workers
+[18:58:24] remaining: 540
+[2026-09-12 18:58:24] STAGE lrsweep_128 | done 1140/1680  remaining 540  elapsed 22m51s  ETA 0h10m
+[18:58:24] sweep/jobs_lrsweep_128.txt: 540 of 1680 pending; running up to 380 with 190 workers
+[19:05:58] remaining: 160
+[2026-09-12 19:05:58] STAGE lrsweep_128 | done 1520/1680  remaining 160  elapsed 30m25s  ETA 0h03m
+[19:05:58] sweep/jobs_lrsweep_128.txt: 160 of 1680 pending; running up to 380 with 190 workers
+[19:09:38] remaining: 0
+[2026-09-12 19:09:38] STAGE lrsweep_128 | done 1680/1680  remaining 0  elapsed 34m05s  ETA 0h00m
+[2026-09-12 19:09:39] STAGE lrsweep_128 COMPLETE | 1680 jobs run in 0h34m06s
+[2026-09-12 19:09:39] STAGE layout_128 start | jobs=300 pending=300 workers=190
+[19:09:39] sweep/jobs_layout_128.txt: 300 of 300 pending; running up to 380 with 190 workers
+[19:17:08] remaining: 0
+[2026-09-12 19:17:08] STAGE layout_128 | done 300/300  remaining 0  elapsed 7m29s  ETA 0h00m
+[2026-09-12 19:17:08] STAGE layout_128 COMPLETE | 300 jobs run in 0h07m29s
+[2026-09-12 19:17:08] STAGE calib_mse_128 start | jobs=144 pending=144 workers=190
+[19:17:08] sweep/jobs_calib_mse_128.txt: 144 of 144 pending; running up to 380 with 190 workers
+[19:21:01] remaining: 0
+[2026-09-12 19:21:02] STAGE calib_mse_128 | done 144/144  remaining 0  elapsed 3m54s  ETA 0h00m
+[2026-09-12 19:21:02] STAGE calib_mse_128 COMPLETE | 144 jobs run in 0h03m54s
+[2026-09-12 19:21:02] STAGE mse_128 start | jobs=90 pending=90 workers=190
+[19:21:02] sweep/jobs_mse_128.txt: 90 of 90 pending; running up to 380 with 190 workers
+[19:24:48] remaining: 0
+[2026-09-12 19:24:48] STAGE mse_128 | done 90/90  remaining 0  elapsed 3m46s  ETA 0h00m
+[2026-09-12 19:24:48] STAGE mse_128 COMPLETE | 90 jobs run in 0h03m46s
+[2026-09-12 19:24:48] STAGE c10_lrsweep_128 start | jobs=1680 pending=1680 workers=190
+[19:24:49] sweep/jobs_c10_lrsweep_128.txt: 1680 of 1680 pending; running up to 380 with 190 workers
+[19:50:20] remaining: 1300
+[2026-09-12 19:50:21] STAGE c10_lrsweep_128 | done 380/1680  remaining 1300  elapsed 25m33s  ETA 1h27m
+[19:50:21] sweep/jobs_c10_lrsweep_128.txt: 1300 of 1680 pending; running up to 380 with 190 workers
+[20:16:05] remaining: 920
+[2026-09-12 20:16:05] STAGE c10_lrsweep_128 | done 760/1680  remaining 920  elapsed 51m17s  ETA 1h02m
+[20:16:06] sweep/jobs_c10_lrsweep_128.txt: 920 of 1680 pending; running up to 380 with 190 workers
+[20:41:36] remaining: 540
+[2026-09-12 20:41:37] STAGE c10_lrsweep_128 | done 1140/1680  remaining 540  elapsed 76m49s  ETA 0h36m
+[20:41:37] sweep/jobs_c10_lrsweep_128.txt: 540 of 1680 pending; running up to 380 with 190 workers
+[21:07:05] remaining: 160
+[2026-09-12 21:07:06] STAGE c10_lrsweep_128 | done 1520/1680  remaining 160  elapsed 102m18s  ETA 0h10m
+[21:07:06] sweep/jobs_c10_lrsweep_128.txt: 160 of 1680 pending; running up to 380 with 190 workers
+[21:19:46] remaining: 0
+[2026-09-12 21:19:46] STAGE c10_lrsweep_128 | done 1680/1680  remaining 0  elapsed 114m58s  ETA 0h00m
+[2026-09-12 21:19:46] STAGE c10_lrsweep_128 COMPLETE | 1680 jobs run in 1h54m58s

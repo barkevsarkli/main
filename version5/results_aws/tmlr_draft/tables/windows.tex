@@ -1,0 +1,34 @@
+\begin{table}[htbp]
+\centering
+\caption{Passing learning-rate ranges on the tested grid. Parentheses give the number of sampled rates.}
+\label{tab:windows}
+\footnotesize
+\begin{tabular}{@{}lrlrrr@{}}
+\toprule
+Data & H & Model & Near best & No final $<15\%$ & No drop $>10$ pp \\
+\midrule
+MNIST & 64 & R & 0.0003--0.01 (5) & 0.0001--0.02 (7) & 0.0001--0.02 (7) \\
+MNIST & 64 & L & 0.001--0.01 (4) & 0.0001--0.3 (11) & 0.0001--0.02 (7) \\
+MNIST & 64 & T & 0.0003--0.02 (6) & 0.0001--0.1 (10) & 0.0001--0.05 (9) \\
+MNIST & 64 & S & 0.003--0.1 (7) & 0.0001--0.3 (11) & 0.0001--0.3 (11) \\
+MNIST & 64 & T+R & 0.0003--0.01 (5) & 0.0001--0.05 (9) & 0.0001--0.03 (8) \\
+MNIST & 64 & T+L & 0.0003--0.01 (5) & 0.0001--0.3 (11) & 0.0001--0.03 (8) \\
+MNIST & 64 & S+R & 0.0003--0.05 (8) & 0.0001--0.1 (10) & 0.0001--0.05 (9) \\
+MNIST & 128 & R & 0.0003--0.01 (5) & 0.0001--0.02 (7) & 0.0001--0.02 (7) \\
+MNIST & 128 & L & 0.0003--0.01 (5) & 0.0001--0.3 (11) & 0.0001--0.01 (6) \\
+MNIST & 128 & T & 0.001--0.02 (5) & 0.0001--0.1 (10) & 0.0001--0.03 (8) \\
+MNIST & 128 & S & 0.003--0.1 (7) & 0.0001--0.3 (11) & 0.0001--0.3 (11) \\
+MNIST & 128 & T+R & 0.0003--0.02 (6) & 0.0001--0.05 (9) & 0.0001--0.03 (8) \\
+MNIST & 128 & T+L & 0.001--0.01 (4) & 0.0001--0.3 (11) & 0.0001--0.02 (7) \\
+MNIST & 128 & S+R & 0.0003--0.05 (8) & 0.0001--0.1 (10) & 0.0001--0.05 (9) \\
+CIFAR-10 & 128 & R & 0.0003--0.001 (2) & 0.0001--0.01 (5) & 0.0001--0.3 (8) \\
+CIFAR-10 & 128 & L & 0.0003--0.001 (2) & 0.0001--0.03 (6) & 0.0001--0.003 (4) \\
+CIFAR-10 & 128 & T & 0.0003--0.001 (2) & 0.0001--0.01 (5) & 0.0001--0.01 (5) \\
+CIFAR-10 & 128 & S & 0.003--0.003 (1) & 0.0001--0.1 (7) & 0.0001--0.3 (8) \\
+CIFAR-10 & 128 & T+R & 0.0003--0.001 (2) & 0.0001--0.003 (4) & 0.0001--0.003 (4) \\
+CIFAR-10 & 128 & T+L & 0.0003--0.001 (2) & 0.0001--0.01 (5) & 0.0001--0.01 (5) \\
+CIFAR-10 & 128 & S+R & 0.0003--0.001 (2) & 0.0001--0.01 (5) & 0.0001--0.01 (5) \\
+\bottomrule
+\end{tabular}
+\par\smallskip{\footnotesize Near best: mean final score within 1 pp of the model's own best grid mean. Each no-event rule requires all 30 seeds to pass. Ranges are the widest consecutive passing sets, chosen by log span; untested rates are unknown. Small drops alone do not imply high accuracy. Model codes follow Figure~\ref{fig:drops}.}
+\end{table}

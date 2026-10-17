@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{MNIST with the implemented MSE loss and sigmoid output. Mean and SD use 30 seeds. Differences are against ReLU at the same width.}
+\label{tab:mse}
+\footnotesize
+\begin{tabular}{@{}rllrrrr@{}}
+\toprule
+H & Model & LR & Accuracy (\%) & F1 (\%) & $\Delta$ (pp) & 95\% interval \\
+\midrule
+64 & ReLU & 0.01 & 97.637 $\pm$ 0.133 & 97.612 & +0.000 & [+0.000, +0.000] \\
+64 & tanh & 0.01 & 97.266 $\pm$ 0.132 & 97.232 & -0.371 & [-0.436, -0.311] \\
+64 & tanh + ReLU & 0.01 & 97.435 $\pm$ 0.119 & 97.407 & -0.202 & [-0.265, -0.138] \\
+128 & ReLU & 0.01 & 97.998 $\pm$ 0.080 & 97.981 & +0.000 & [+0.000, +0.000] \\
+128 & tanh & 0.01 & 97.777 $\pm$ 0.070 & 97.752 & -0.221 & [-0.263, -0.177] \\
+128 & tanh + ReLU & 0.03 & 97.964 $\pm$ 0.088 & 97.943 & -0.034 & [-0.075, +0.008] \\
+\bottomrule
+\end{tabular}
+\end{table}
