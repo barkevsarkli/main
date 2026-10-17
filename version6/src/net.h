@@ -162,17 +162,20 @@ public:
         }
     }
 
-    // Fixed-order dot product: eight running partial sums over j mod 8, combined as a
+    // Fixed-order dot product: sixteen running partial sums over j mod 16, combined as a
     // balanced tree, then the tail added in order. The order never depends on the
     // platform or the vector width, so the result is reproducible everywhere, and the
-    // eight independent chains let the compiler vectorise without reassociating.
+    // independent chains let the compiler vectorise without reassociating.
     static T dot_blocked(const T* x, const T* w, int n)
     {
-        T a[8] = {T(0), T(0), T(0), T(0), T(0), T(0), T(0), T(0)};
+        T a[16];
+        for (int l = 0; l < 16; ++l) a[l] = T(0);
         int j = 0;
-        for (; j + 8 <= n; j += 8)
-            for (int l = 0; l < 8; ++l) a[l] += x[j + l] * w[j + l];
-        T s = ((a[0] + a[1]) + (a[2] + a[3])) + ((a[4] + a[5]) + (a[6] + a[7]));
+        for (; j + 16 <= n; j += 16)
+            for (int l = 0; l < 16; ++l) a[l] += x[j + l] * w[j + l];
+        for (int step = 8; step >= 1; step /= 2)
+            for (int l = 0; l < step; ++l) a[l] = a[l] + a[l + step];
+        T s = a[0];
         for (; j < n; ++j) s += x[j] * w[j];
         return s;
     }

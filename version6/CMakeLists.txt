@@ -73,6 +73,8 @@ add_executable(main src/main.cpp)
 target_link_libraries(main v6core)
 
 add_executable(kernel_dump tools/kernel_dump.cpp)
+add_executable(profile_layers tools/profile_layers.cpp)
+target_link_libraries(profile_layers v6core)
 target_link_libraries(kernel_dump v6core)
 
 enable_testing()

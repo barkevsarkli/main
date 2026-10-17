@@ -63,15 +63,16 @@ public:
             for (int i = 0; i < H * Wd; ++i) zc[i] = b[c];
             for (int ci = 0; ci < cin; ++ci) {
                 const T* xc = &xpad[(size_t)ci * Hp * Wp];
-                for (int ky = 0; ky < K; ++ky)
-                    for (int kx = 0; kx < K; ++kx) {
-                        const T w = W[(((size_t)c * cin + ci) * K + ky) * K + kx];
-                        for (int y = 0; y < H; ++y) {
-                            const T* xr = xc + (size_t)(y + ky) * Wp + kx;
-                            T* zr = zc + (size_t)y * Wd;
-                            for (int xx = 0; xx < Wd; ++xx) zr[xx] += w * xr[xx];
-                        }
+                for (int ky = 0; ky < K; ++ky) {
+                    const T* wk = &W[(((size_t)c * cin + ci) * K + ky) * K];
+                    switch (K) {
+                        case 3: rows_k<3>(zc, xc + (size_t)ky * Wp, wk); break;
+                        case 5: rows_k<5>(zc, xc + (size_t)ky * Wp, wk); break;
+                        case 7: rows_k<7>(zc, xc + (size_t)ky * Wp, wk); break;
+                        case 9: rows_k<9>(zc, xc + (size_t)ky * Wp, wk); break;
+                        default: rows_any(zc, xc + (size_t)ky * Wp, wk); break;
                     }
+                }
             }
             const Act a = act[c];
             T* hc = &h[(size_t)c * H * Wd];
@@ -119,14 +120,22 @@ public:
                 if (g == T(0)) continue;
                 db[c] += g;
                 const int y = pos / Wd, xx = pos % Wd;
-                for (int ci = 0; ci < cin; ++ci) {
-                    const T* xc = &xpad[(size_t)ci * Hp * Wp];
-                    T* dWk = dWc + (size_t)ci * KK;
-                    for (int ky = 0; ky < K; ++ky) {
-                        const T* xr = xc + (size_t)(y + ky) * Wp + xx;
-                        T* dr = dWk + ky * K;
-                        for (int kx = 0; kx < K; ++kx) dr[kx] += g * xr[kx];
-                    }
+                // K = 9 measured faster with the generic loop (Apple M1); 3, 5, 7 with the
+                // unrolled one. Both add the same terms in the same order.
+                switch (K) {
+                    case 3: patch_k<3>(dWc, y, xx, g); break;
+                    case 5: patch_k<5>(dWc, y, xx, g); break;
+                    case 7: patch_k<7>(dWc, y, xx, g); break;
+                    default:
+                        for (int ci = 0; ci < cin; ++ci) {
+                            const T* xc = &xpad[(size_t)ci * Hp * Wp];
+                            T* dWk = dWc + (size_t)ci * KK;
+                            for (int ky = 0; ky < K; ++ky) {
+                                const T* xr = xc + (size_t)(y + ky) * Wp + xx;
+                                T* dr = dWk + ky * K;
+                                for (int kx = 0; kx < K; ++kx) dr[kx] += g * xr[kx];
+                            }
+                        }
                 }
             }
             if (gstats) {
@@ -137,6 +146,55 @@ public:
         }
         for (size_t i = 0; i < W.size(); ++i) W[i] -= lr * dW[i];
         for (int c = 0; c < C; ++c) b[c] -= lr * db[c];
+    }
+
+    // One kernel row (fixed ci, ky) applied to every output row: z[y, x] += sum over kx of
+    // wk[kx] * xpad[y + ky, x + kx], the K taps added one after another in kx order. With
+    // K known at compile time the tap loop unrolls, the whole sum stays in a register and
+    // the x loop vectorises; z is loaded and stored once per kernel row instead of per tap.
+    template <int KT>
+    void rows_k(T* zc, const T* x0, const T* wk) const
+    {
+        T w[KT];
+        for (int k = 0; k < KT; ++k) w[k] = wk[k];
+        for (int y = 0; y < H; ++y) {
+            const T* xr = x0 + (size_t)y * Wp;
+            T* zr = zc + (size_t)y * Wd;
+            for (int xx = 0; xx < Wd; ++xx) {
+                T s = zr[xx];
+                for (int k = 0; k < KT; ++k) s += w[k] * xr[xx + k];
+                zr[xx] = s;
+            }
+        }
+    }
+
+    // dW[c, ci, ky, kx] += g * xpad[ci, y + ky, x + kx] for every (ci, ky, kx) of one
+    // arg-max position; K at compile time so the kx loop unrolls.
+    template <int KT>
+    void patch_k(T* dWc, int y, int xx, T g)
+    {
+        for (int ci = 0; ci < cin; ++ci) {
+            const T* xc = &xpad[(size_t)ci * Hp * Wp];
+            T* dWk = dWc + (size_t)ci * KT * KT;
+            for (int ky = 0; ky < KT; ++ky) {
+                const T* xr = xc + (size_t)(y + ky) * Wp + xx;
+                T* dr = dWk + ky * KT;
+                for (int kx = 0; kx < KT; ++kx) dr[kx] += g * xr[kx];
+            }
+        }
+    }
+
+    void rows_any(T* zc, const T* x0, const T* wk) const
+    {
+        for (int y = 0; y < H; ++y) {
+            const T* xr = x0 + (size_t)y * Wp;
+            T* zr = zc + (size_t)y * Wd;
+            for (int xx = 0; xx < Wd; ++xx) {
+                T s = zr[xx];
+                for (int k = 0; k < K; ++k) s += wk[k] * xr[xx + k];
+                zr[xx] = s;
+            }
+        }
     }
 
     int cin, H, Wd, C, K, P, r, Hp, Wp, Ho, Wo;

@@ -34,6 +34,14 @@ static void run_case(int cin, int H, int K, int P, uint32_t seed, double tol, do
 
     pc.forward(x.data());
     rc.forward(xd.data());
+    // Same summation order as the reference in the same precision: bit-identical forward.
+    {
+        ConvRef<T> rt(cin, H, H, C, K, P, acts);
+        rt.W = pc.W; rt.b = pc.b;
+        rt.forward(x.data());
+        CHECK(std::memcmp(rt.z.data(), pc.z.data(), rt.z.size() * sizeof(T)) == 0,
+              "forward not bit-identical to the same-order reference (cin=%d K=%d)", cin, K);
+    }
     for (size_t i = 0; i < rc.z.size(); ++i) {
         const double e = std::fabs((double)pc.z[i] - rc.z[i]) / std::max(rc.abs_z[i], 1e-30);
         worst_f = std::max(worst_f, e);
