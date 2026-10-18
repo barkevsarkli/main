@@ -52,3 +52,9 @@ version6/results/smoke/figures/
 
 # Editor index and local review scratch
 version6/.cache/
+
+# version6 per-run files: the merged results/<stage>/<stage>.csv is committed instead;
+# the stats go to per-stage archives outside git (DECISIONS 45)
+version6/results/stage*/rows/
+version6/results/stage*/stats/
+version6/results/run_all_aws.log

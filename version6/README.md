@@ -94,8 +94,9 @@ git clone <repo> article && cd article && git checkout v6-cnn   # the datasets a
 cd version6 && ./build.sh test && python3 tests/test_selection.py
 python3 tools/bench.py --workers-list 96,144,192               # ~20 min; replaces the M1 ratio
 tmux new -s v6                                                 # then, inside tmux:
-python3 sweep/run_jobs.py results/stage0/jobs.jsonl --workers 192
+W=192 bash sweep/run_all_aws.sh                               # Stages 0-3 in order, resumable
 ```
+Step-by-step console and command guide (Turkish): `AWS_RUNBOOK_TR.md`.
 Order: Stage 0 → Stage 1 → `select_stage2.py` → `make_jobs.py stage2` → Stage 2 sweep →
 `select_lr.py` → `make_jobs.py stage2 --part ext` → extension → `make_jobs.py stage3` →
 Stage 3. Seeds: Stage 1 101–103, Stage 2 1–30, Stage 3 31–45 (PLAN.md, *Seed sets*).
