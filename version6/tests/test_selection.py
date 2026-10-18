@@ -39,7 +39,7 @@ def stage1_rows():
     rows = []
     for (mode, K, fam), (rb, rf, tf) in spec.items():
         for i, lr in enumerate(LRS):
-            for s in (1, 2, 3):
+            for s in (101, 102, 103):       # Stage 1 screening seeds
                 rows.append(row(mode, K, fam, "relu", lr, s, rb[i], rf[i]))
                 rows.append(row(mode, K, fam, "tanh+relu", lr, s, tf[i], tf[i]))
                 rows.append(row(mode, K, fam, "tanh", lr, s, 90, 90))

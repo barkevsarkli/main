@@ -7,7 +7,7 @@ Per dataset, over the main Stage 1 runs (H = 128, conv_mask_offset 0; the mask-c
 and mlp1 runs are not used here):
 
 1. Configuration 1 (standard CNN): the `random`-mode K whose ReLU model has the highest
-   mean best-validation accuracy (seeds 1-3) at its best grid LR. Ties -> smaller K.
+   mean best-validation accuracy (screening seeds 101-103) at its best grid LR. Ties -> smaller K.
 2. Configuration 2 (most informative bank): among the frozen and bank_init configurations
    whose ReLU mean best-validation accuracy (at its best grid LR) is within 2 pp of
    configuration 1's, the one with the largest mean (tanh+relu - relu) difference in
@@ -32,7 +32,7 @@ import sys
 V6 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FAM_ORDER = ["none", "gauss", "sharpen", "sobel", "laplacian", "gabor", "random_frozen"]
 MODE_ORDER = ["random", "frozen", "bank_init"]
-SEEDS = {"1", "2", "3"}
+DEFAULT_SEEDS = "101,102,103"   # Stage 1 screening seeds (sweep/make_jobs.py STAGE1_SEEDS)
 
 
 def model_of(r):
@@ -58,7 +58,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("csv", nargs="?", default=os.path.join(V6, "results", "stage1", "stage1.csv"))
     ap.add_argument("--out", default=os.path.join(V6, "results", "stage1", "selection.json"))
+    ap.add_argument("--seeds", default=DEFAULT_SEEDS,
+                    help="comma-separated seeds every cell must have (default: the Stage 1 screening seeds)")
     a = ap.parse_args()
+    SEEDS = {s.strip() for s in a.seeds.split(",") if s.strip()}
 
     # cells[(ds, mode, K, family, model, lr)] = {seed: (best_val, final_val)}
     cells = collections.defaultdict(dict)
@@ -73,7 +76,7 @@ def main():
 
     missing = [k for k, v in cells.items() if set(v) != SEEDS]
     if missing:
-        sys.exit(f"{len(missing)} Stage 1 cells lack seeds 1-3, e.g. {missing[:3]}; finish Stage 1 first")
+        sys.exit(f"{len(missing)} Stage 1 cells lack seeds {sorted(SEEDS, key=int)}, e.g. {missing[:3]}; finish Stage 1 first")
 
     out = {}
     for ds in sorted({k[0] for k in cells}):

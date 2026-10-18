@@ -5,7 +5,7 @@ version5, and every question for Barkev. Dated; **OPEN** marks items that need a
 
 ## Environment and repository (2026-10-18)
 
-1. **Machine. OPEN (partly answered).** PROMPT.md assumes a Windows laptop (Core Ultra 9
+1. **Machine. RESOLVED (item 42).** PROMPT.md assumes a Windows laptop (Core Ultra 9
    275HX). This work ran on an Apple M1 (4 performance + 4 efficiency cores, 8 GB, macOS
    26). Barkev's answer on 2026-10-18: *the heavy runs will go to AWS again; write the code
    for that.* Consequences:
@@ -37,7 +37,7 @@ version5, and every question for Barkev. Dated; **OPEN** marks items that need a
    -O3 -mcpu=native -std=c++17`. GCC documents `-ffp-contract=off` as the default only for
    ISO C, so the version5 AWS runs most likely used `fast` contraction. version6 forbids
    contraction everywhere, as PROMPT.md requires. Test 2 therefore compares version5
-   against version6 built with the same flags. **Open:** say in the article that version5's
+   against version6 built with the same flags. **RESOLVED (item 47):** say in the article that version5's
    AWS numbers came from a contracted build. The source code is unchanged; only the last
    bits of some runs differ.
 6. **Dense summation order.** `--rng-mode legacy` keeps version5's sequential order
@@ -95,7 +95,7 @@ version5, and every question for Barkev. Dated; **OPEN** marks items that need a
     round-trips float exactly, plus the gains, τ and an FNV hash that is checked at load
     time. libm differences between platforms therefore cannot change a run's kernels. A
     `random_frozen` run's `--kernel-seed` must match the seed stored in its file.
-17. **Gabor at K = 3. OPEN.** With the specified λ = max(2, (K+1)/2) = 2, the odd-phase
+17. **Gabor at K = 3. RESOLVED (item 44).** With the specified λ = max(2, (K+1)/2) = 2, the odd-phase
     filters at θ = 0 and π/2 are sin(πu) = 0 at every integer u, so they are all zeros and
     cannot be normalised. Provisional choice: λ = 2.5 at K = 3 only. K = 5, 7 and 9 follow
     the specification. Alternatives would be other phases at K = 3, or dropping Gabor K = 3.
@@ -148,7 +148,7 @@ version5, and every question for Barkev. Dated; **OPEN** marks items that need a
     Measured size: about 4 KB per measurement point, roughly 170 KB for a 40-epoch run (see
     the benchmark).
 27. **Abort-on-collapse** is implemented and tested, off by default, and unused by every plan.
-    **OPEN:** enable it for any stage? It would save compute on collapsed runs, but it
+    **RESOLVED (item 46): off everywhere.** Question was: enable it for any stage? It would save compute on collapsed runs, but it
     truncates their curves.
 
 ## Plan, selection, statistics
@@ -168,7 +168,7 @@ version5, and every question for Barkev. Dated; **OPEN** marks items that need a
     refused to proceed in that case. Here the grids are pre-registered and fixed.
 33. **Stage 3's ratio-0.5 model duplicates Stage 2 runs** (cfg2, H = 128, tanh+relu, at the
     same LRs and seeds 1–10). They are re-run in Stage 3's own directory for simplicity,
-    about 20% of Stage 3. **OPEN:** reuse the Stage 2 rows instead?
+    about 20% of Stage 3. **RESOLVED (item 43):** moot, Stage 3 now uses seeds 31–45.
 34. **The Stage 2 extension** de-duplicates LRs when the selected LR coincides with the
     stress LR or the LR just below it. The estimates assume three distinct LRs, an upper
     bound.
@@ -194,14 +194,56 @@ version5, and every question for Barkev. Dated; **OPEN** marks items that need a
     So pooling runs from different machines is safe only when the compiler/libm pairs have
     been compared. **Recommendation:** run every stage of a comparison on one platform, and
     record `platform` and `compiler` (both are in every row).
-39. **Stats storage. OPEN.** About 180 KB per run means ≈ 0.8 GB (Stage 1) and ≈ 2.3 GB
+39. **Stats storage. RESOLVED (item 45).** About 180 KB per run means ≈ 0.8 GB (Stage 1) and ≈ 2.3 GB
     (Stage 2) of small CSV files. Options: commit them compressed (`.csv.gz` per stage),
     keep them in S3 and commit only the merged result rows, or record stats every 2
     epochs. Provisional: commit rows; archive stats separately.
 40. **The laptop cannot meet the Stage 1/2 targets** even with every prescribed reduction
     (PLAN.md, Budget). On AWS no reduction is needed (~14 instance-hours in total).
-    **OPEN:** confirm AWS for Stages 1–3, and whether Stage 0 runs on the laptop (1.5 h).
+    **RESOLVED (item 42):** all stages, Stage 0 included, run on AWS.
 41. Benchmark noise: one cell (CIFAR-10 H = 128, K = 5) measured the frozen conv slower
     than the learned one (39.2 vs 34.2 s). That is impossible as a cost ordering (frozen
     skips work), so it shows the run-to-run spread on a laptop with mixed P/E cores under
     full load. The estimates use the measured values as they are.
+
+## Independent review and answers (2026-10-18, after commit f49ddbb)
+
+An independent pre-launch review (`ON_KONTROL_2026-10-18.md`, Turkish) rebuilt the code on
+Linux aarch64 (Ubuntu 22.04, GCC 11.4, glibc 2.35), reran the C++ tests (6/6), repeated the
+version5 bit-identity check, and compared the trainer with a NumPy float64 implementation
+written without reference to this code (all kernel modes, K 3/5/7/9, pool 1/2/4, every
+activation, MNIST and CIFAR-10; final-weight differences ≤ 5e-15 relative after 80–150
+SGD steps). Its findings and the answers:
+
+42. **Where:** every stage, Stage 0 included, runs on AWS on **one instance type, one AMI
+    and one build** (Barkev). Re-run `tools/bench.py` on the instance first (~20 min). The
+    Mac smoke, mini and bench rows are not pooled with any AWS result.
+43. **Seed sets made disjoint.** Under `split`, the same seed reproduces a run exactly, so
+    Stage 2 seeds 1–3 at H = 128 repeated the very Stage 1 runs the kernel selection was
+    made on, and Stage 3's seeds 1–15 overlapped the Stage 2 runs its LRs were chosen from.
+    Now: Stage 1 screening seeds **101–103** (`make_jobs.STAGE1_SEEDS`,
+    `select_stage2.py --seeds`, default 101,102,103), Stage 3 seeds **31–45**
+    (`make_jobs.STAGE3_SEEDS`). Stage 0 (1–10) and Stage 2 (1–10 sweep, 11–30 extension)
+    are unchanged. Job files regenerated: stage1 4,554 and stage3 450 jobs, as before.
+    `results/mini/` (seeds 1–3) still works with `select_stage2.py --seeds 1,2,3`.
+44. **Gabor K = 3:** keep λ = 2.5 at K = 3 only (review recommendation; Barkev may still
+    override). The article states it.
+45. **Diagnostics storage:** outside git, one compressed archive per stage
+    (`stats_<stage>.tar.gz`, e.g. in S3); git keeps the merged row CSVs and the summaries
+    (Barkev). Every epoch is still recorded.
+46. **Collapse abort:** off in every stage (review recommendation). The AWS cost is small
+    and the collapse curves are a result.
+47. **Article note:** version5's AWS numbers came from an FMA-contracted GCC build; the
+    source was unchanged, only the last bits of some runs differ.
+48. **Windows:** not used for the planned runs; `build.ps1` stays untested.
+49. **Confirmatory analysis rule (pre-registered):** in Stage 2, the paired tests at the
+    selected, stress and below-stress LRs are reported on **seeds 11–30**, which played
+    no part in choosing those LRs (`analysis/summarise.py results/stage2 --seeds 11-30`);
+    the seeds 1–30 tables are secondary.
+50. **Cross-platform, refined (narrows item 38):** rerunning the Mac smoke rows
+    (AppleClang + macOS libm) with GCC 11 + glibc 2.35 gave identical rows for some jobs
+    (e.g. frozen sobel K = 3, mlp2) and rows that differ **from epoch 1** for others (e.g.
+    frozen gauss K = 3, mlp1; 0.1–0.3 pp), most likely last-bit differences of
+    `tanhf`/`expf`. The one-platform rule (item 42) is therefore required.
+51. `version6/.cache/` (clangd index) was committed by mistake; it is now ignored and
+    removed from the index.

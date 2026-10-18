@@ -5,7 +5,9 @@ Nothing below has been run. Stages 0–3 start only after Barkev approves them.
 Common to every stage: `--rng-mode split`, 40 epochs, cross-entropy (linear outputs +
 softmax), batch-size-1 SGD at a fixed LR, the version5 split (SPLIT_SEED 12345),
 diagnostics every epoch (`stats_every = 1`), `--abort-on-collapse` off, evaluation seeds
-1–30, and validation-only selection. Same seed ⇒ same initial dense weights, same conv
+1–30 (Stage 1 screening seeds 101–103, Stage 3 seeds 31–45; see *Seed sets* below), and
+validation-only selection. **Every stage runs on AWS** on one instance type, one AMI and
+one build (DECISIONS 42). Same seed ⇒ same initial dense weights, same conv
 random weights and same data order across every model, kernel mode and layout (tested,
 WORKLOG/test 7), so every model comparison is paired by seed.
 
@@ -32,9 +34,9 @@ weights and orders; the comparison with version5 is distributional.
   and pool 2, so 1,568 (MNIST) or 2,048 (CIFAR-10) features feed the hidden layer.
 - Models: relu, tanh, tanh+relu (both layers mixed, ratio 0.5).
 - LR grids: MNIST {0.001, 0.003, 0.01, 0.03, 0.1}; CIFAR-10 {0.0003, 0.001, 0.003,
-  0.01, 0.03}. Every model runs on the full grid. Seeds 1–3.
+  0.01, 0.03}. Every model runs on the full grid. Screening seeds 101–103.
 - Mask control: every frozen bank, tanh+relu with `--conv-mask-offset 1` (the channels
-  that were tanh become ReLU and vice versa), at MNIST 0.01 / CIFAR-10 0.003, seeds 1–3.
+  that were tanh become ReLU and vice versa), at MNIST 0.01 / CIFAR-10 0.003, seeds 101–103.
 - No-conv reference: `mlp1` with the same models, LRs and seeds.
 
 **Pre-registered selection for Stage 2** (`sweep/select_stage2.py`, validation only, per
@@ -48,14 +50,14 @@ dataset; tested in `tests/test_selection.py`):
    order (gauss, sharpen, sobel, laplacian, gabor, random_frozen), then frozen before
    bank_init.
    *Stage 1 stress LR* of a configuration: the smallest grid LR at which ReLU's mean final
-   validation accuracy (seeds 1–3) is below 50% of its best grid mean final validation
+   validation accuracy (seeds 101–103) is below 50% of its best grid mean final validation
    accuracy; if none, the largest grid LR.
 3. Datasets select independently.
 
 *Can show:* which fixed filters let a frozen or initialised conv layer match a learned
 one, and where the hybrid's protection is largest. *Cannot show:* precise effects. Three
-seeds is a screen, and the selection uses the same runs it ranks (Stage 2 re-tests the
-winners on fresh seeds and a finer grid).
+seeds is a screen, and the selection uses the same runs it ranks. Stage 2 re-tests the
+winners on seeds 1–30, none of which appears in Stage 1, on a finer grid.
 
 ## Stage 2 — main CNN study (6,860 sweep runs + 5,880 extension runs)
 
@@ -78,7 +80,9 @@ winners on fresh seeds and a finer grid).
   LR, and the grid LR just below the stress LR (duplicates removed).
 
 *Can show:* whether the MLP's collapse resistance transfers to a CNN, per dataset and
-width; paired tests at 30 seeds at the three LRs that matter; whether the effect needs the
+width; paired tests at the three LRs that matter, **confirmatory on seeds 11–30 only**
+(those LRs were chosen from seeds 1–10; `analysis/summarise.py results/stage2 --seeds
+11-30`), with the 1–30 tables as secondary; whether the effect needs the
 mix in the conv layer, the hidden layer or both (controls). *Cannot show:* behaviour at
 untested LRs or widths, or with other optimisers or batch sizes.
 
@@ -87,11 +91,26 @@ untested LRs or widths, or with other optimisers or batch sizes.
 Configuration 2 at H = 128, both datasets; models tanh+relu@ρ for ρ ∈ {0.25, 0.5, 0.75}
 (ρ = share of ReLU: 2/4/6 of the 8 channels, 32/64/96 of the 128 neurons), relu and tanh;
 LRs = Stage 2's stress LR for that setting and the grid LRs just below and above it;
-seeds 1–15.
+seeds 31–45 (fresh: the stress LR was chosen from Stage 2's seeds 1–10, and no Stage 3 run
+repeats a Stage 2 run).
 
 *Can show:* how much tanh is needed to keep stability and how much ReLU to keep accuracy,
 around the transition. *Cannot show:* the optimal ratio in general. Three ratios at three
 LRs is a slice, not a surface.
+
+## Seed sets (decision of 2026-10-18)
+
+Under `--rng-mode split` the same seed gives the same initial weights and data order, so a
+run with a reused seed is an exact repeat. Seed sets are therefore kept disjoint wherever a
+later stage tests something an earlier stage selected:
+
+| stage | seeds | used for |
+|---|---|---|
+| 0 | 1–10 | mechanism check (`mlp2`; no selection) |
+| 1 | 101–103 | kernel screen → Stage 2 configurations |
+| 2 sweep | 1–10 | LR selection and stress LR |
+| 2 extension | 11–30 | confirmatory tests at the selected / stress / below-stress LRs |
+| 3 | 31–45 | ratio × LR at Stage 2's stress LR |
 
 ## Outcome measures (what the analysis supports)
 
@@ -143,12 +162,14 @@ Workers here: 8. AWS: 192 workers, per-run time / 2.25 (this machine vs c8g.48xl
   cannot bring either stage within budget here.
 - On AWS (192 Graviton4 workers) the **full** plan takes about 0.05 + 4.0 + 9.5 + 0.5 ≈
   14 instance-hours, about $37 at spot prices. No reduction is needed there.
-  Recommendation: run Stage 0 here or on AWS, and Stages 1–3 on AWS in full. Before
+  Decision (2026-10-18): Stages 0–3 all run on AWS in full. Before
   launching, re-run `tools/bench.py --workers-list 96,144,192` on the instance (≈ 20 min):
   the 2.25 ratio was measured on the MLP, and the CIFAR-10 H = 256 cells were memory-bound
   on the laptop (see bench.md).
 - Diagnostics cost ≈ 180 KB per run: Stage 1 ≈ 0.8 GB, Stage 2 ≈ 2.3 GB of stats files.
-  Too large to commit to GitHub as they are (DECISIONS, open question).
+  Decision (2026-10-18): kept out of git as one compressed archive per stage
+  (`stats_<stage>.tar.gz`, stored outside the repository, e.g. S3); git holds the merged
+  row CSVs and the summaries (DECISIONS 39).
 
 Reduced variants, if the work must stay on one machine (PROMPT.md 11.5 order; never
 dropping relu, tanh, tanh+relu, the stress LR or the random CNN baseline):

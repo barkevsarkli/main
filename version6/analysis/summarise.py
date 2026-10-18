@@ -2,6 +2,12 @@
 """Tables of the PLAN.md outcome measures for one stage.
 
     python3 analysis/summarise.py results/stage1      -> results/stage1/summary/
+    python3 analysis/summarise.py results/stage2 --seeds 11-30
+                                                   -> results/stage2/summary_seeds11-30/
+
+--seeds keeps only the listed run seeds ("11-30" or "11,12,13"). PLAN.md pre-registers the
+Stage 2 confirmatory tests at the selected and stress LRs on seeds 11-30, which played no
+part in choosing those LRs; the 1-30 tables are secondary.
 
 Writes
   cells.csv    one row per (dataset, config, hidden, model, lr): n, final/best validation
@@ -128,9 +134,23 @@ def md_table(t):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("stage_dir")
+    ap.add_argument("--seeds", default="", help='keep only these run seeds, e.g. "11-30" or "1,2,3"')
     a = ap.parse_args()
     df = load_rows(a.stage_dir)
     out = os.path.join(a.stage_dir, "summary")
+    if a.seeds:
+        keep = set()
+        for part in a.seeds.split(","):
+            part = part.strip()
+            if "-" in part:
+                lo, hi = (int(x) for x in part.split("-"))
+                keep.update(range(lo, hi + 1))
+            elif part:
+                keep.add(int(part))
+        df = df[df["seed"].astype(int).isin(keep)].copy()
+        if df.empty:
+            sys.exit(f"no runs with seeds {a.seeds}")
+        out = os.path.join(a.stage_dir, "summary_seeds" + a.seeds.replace(",", "_"))
     os.makedirs(out, exist_ok=True)
     cells = cell_table(df, per_run_diagnostics(a.stage_dir, df))
     paired = paired_table(df)

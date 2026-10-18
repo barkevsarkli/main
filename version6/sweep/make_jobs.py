@@ -113,7 +113,14 @@ def stage1_kernel_configs():
     return cfgs
 
 
-def stage1(seeds=(1, 2, 3), ks=KS, drop_low_lr=False):
+# Stage 1 uses its own screening seeds (101-103, version5's calibration convention) so that
+# no Stage 2 or Stage 3 run repeats a run the selection was made on (same seed = same
+# initial weights and data order under --rng-mode split). Decision of 2026-10-18.
+STAGE1_SEEDS = (101, 102, 103)
+STAGE3_SEEDS = range(31, 46)
+
+
+def stage1(seeds=STAGE1_SEEDS, ks=KS, drop_low_lr=False):
     jobs = []
     for ds in DATASETS:
         lrs = STAGE1_LRS[ds][1:] if drop_low_lr else STAGE1_LRS[ds]
@@ -188,7 +195,7 @@ def ext_lrs(sel2, ds, label, H, m):
     return out
 
 
-def stage3(sel1, sel2, seeds=range(1, 16)):
+def stage3(sel1, sel2, seeds=STAGE3_SEEDS):
     jobs = []
     for ds in DATASETS:
         if sel2 is None:

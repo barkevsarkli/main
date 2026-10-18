@@ -97,3 +97,17 @@ Extra cross-checks:
 - Estimates (`results/bench/estimates.md`): full plan ≈ 14 h on one c8g.48xlarge (≈ $37
   spot). On the laptop Stage 1 needs 198 h and Stage 2 495 h; the prescribed reductions
   only reach 78 h and 275 h.
+
+## 2026-10-18 — independent review and fixes (after f49ddbb)
+- Independent pre-launch review: `ON_KONTROL_2026-10-18.md` (Linux aarch64, GCC 11.4; C++
+  tests 6/6; version5 bit-identity; NumPy float64 reference of the CNN ≤ 5e-15; kernel
+  gains; determinism; stats/mmap invariance; runner resume; one 40-epoch Stage-0-type run
+  per model: ReLU H=128 LR 0.03 collapses with hidden2 128/128 dead and input-independent
+  logits, tanh+relu 96.9%).
+- Seed sets made disjoint (DECISIONS 43): Stage 1 101–103, Stage 3 31–45; job files
+  regenerated (4,554 / 450). `select_stage2.py --seeds`; `summarise.py --seeds` for the
+  pre-registered confirmatory tables on seeds 11–30 (DECISIONS 49).
+- Answers to the open questions recorded (DECISIONS 42–48); PLAN.md and README updated
+  (all stages on AWS, stats archives outside git, AWS runbook).
+- `version6/.cache/` removed from the index and ignored.
+- `python3 tests/test_selection.py`: PASS.

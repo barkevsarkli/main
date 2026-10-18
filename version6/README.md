@@ -83,8 +83,28 @@ affecting argument. Ctrl-C kills the workers cleanly, failures go to
 systemd-inhibit / SetThreadExecutionState). Stage-to-stage selection uses validation data
 only: `sweep/select_stage2.py` after Stage 1, `sweep/select_lr.py` after the Stage 2 sweep.
 
-On AWS (Ubuntu, Graviton): `sudo apt install cmake g++ python3`, clone, `./build.sh test`,
-then run the commands above inside `tmux`. Use `--workers` = number of vCPUs.
+### On AWS (all stages run there; DECISIONS 42)
+
+One instance type, one AMI and one build for every stage (results from different
+compiler/libm pairs can differ from epoch 1; DECISIONS 50).
+
+```bash
+sudo apt update && sudo apt install -y cmake g++ git python3 tmux
+git clone <repo> article && cd article && git checkout v6-cnn   # the datasets are in git
+cd version6 && ./build.sh test && python3 tests/test_selection.py
+python3 tools/bench.py --workers-list 96,144,192               # ~20 min; replaces the M1 ratio
+tmux new -s v6                                                 # then, inside tmux:
+python3 sweep/run_jobs.py results/stage0/jobs.jsonl --workers 192
+```
+Order: Stage 0 → Stage 1 → `select_stage2.py` → `make_jobs.py stage2` → Stage 2 sweep →
+`select_lr.py` → `make_jobs.py stage2 --part ext` → extension → `make_jobs.py stage3` →
+Stage 3. Seeds: Stage 1 101–103, Stage 2 1–30, Stage 3 31–45 (PLAN.md, *Seed sets*).
+
+Results: commit the merged `results/<stage>/<stage>.csv` and summaries; keep the
+diagnostics out of git as `stats_<stage>.tar.gz` (≈ 0.8 GB Stage 1, 2.3 GB Stage 2 before
+compression), e.g. `tar czf stats_stage1.tar.gz results/stage1/stats` then copy to S3 or
+`rsync` to the laptop. Stage 2's confirmatory tables: `python3 analysis/summarise.py
+results/stage2 --seeds 11-30` (needs numpy, pandas, scipy; run it on the laptop).
 
 ## Tests (PROMPT.md section 9)
 
