@@ -63,3 +63,37 @@ keeps the (ci, ky, kx) order and is bit-identical to the reference loops; a 16-l
 order dense dot product (DECISIONS 6); the conv backward unrolls for K = 3, 5, 7 (generic
 loop at K = 9, which measured faster). One attempt (an 8-wide register block over x with
 a runtime K) was 2.2× *slower* and was dropped.
+
+### Phase 5 — verification (final binary, commit d97603f, clean build; log: `results/final_verification.log`)
+
+| # | test | result | detail |
+|---|---|---|---|
+| 1 | loader equivalence | PASS | 60,000 MNIST + 60,000 CIFAR-10 images: mmap vs ifstream identical floats and labels; CIFAR plane means 0.4914 / 0.4822 / 0.4465 confirm R, G, B order; known first labels |
+| 2 | version5 regression | PASS (POSIX variant) | version5 built unchanged with the same compiler and flags vs version6 `mlp2 --rng-mode legacy`: 8/8 rows bit-identical (MNIST relu, MNIST tanh+relu, CIFAR tanh+relu, MNIST tanh+relu random layout; seeds 1, 2; 3 epochs). Also 8/8 on Ubuntu 24.04 / GCC 13.3 / aarch64 (Docker) |
+| 3 | gradient check | PASS | 5,768 parameters, float64 production templates, CNN both input shapes × K {3, 9} × P {1, 2, 4} × 4 activation pairs, frozen CNN, mlp1/mlp2 × 4 activations × CE/MSE; update = −lr·grad to 1e-9 |
+| 4 | reference convolution | PASS | float vs double reference: worst 2.3e-7 (forward) / 2.5e-7 (backward) relative to Σ\|terms\| (limit 1e-6); forward bit-identical to same-order reference; bit-reproducible |
+| 5 | PyTorch equivalence | PASS | torch 2.8.0 float64, 200 SGD steps, random / bank_init / frozen on MNIST and CIFAR-10: max relative weight error 4.6e-16 to 1.5e-15 |
+| 6 | kernel banks | PASS | 1,547 checks: shapes, unit norm, zero sum, K=3 Sobel = classic, Gaussians ≥ 0, stored banks = make_bank, gains finite > 0, galleries exist |
+| 7 | RNG alignment | PASS | 20 configurations (4 kernel modes/families × 5 activation setups incl. random layout) share one dense init hash; epoch-1 order identical incl. mlp1 |
+| 8 | frozen mode | PASS | conv W and b bit-identical after 3,000 steps; bank_init conv changes |
+| 9 | determinism / workers | PASS | same job twice identical; 4 jobs with 1 vs 4 workers identical; resumption skips finished runs |
+| 10 | diagnostics invariance | PASS | rows identical with stats on/off; hand-built network: dead / nearly-dead / saturated counts exact, conv dead channel found |
+| 11 | collapse abort | PASS | fires after N collapsed epochs, resets on a good epoch, respects both thresholds, N = 0 never fires |
+| 12 | smoke | PASS | 108 runs (mlp1, mlp2, every cnn mode × family × K, both datasets, H = 64, tanh+relu, 2 epochs): all ok; learned modes 47–98% validation accuracy |
+| – | selection rules | PASS | `tests/test_selection.py`: ties, 2 pp window, stress-LR fallback, lower-LR tie-break |
+| – | non-finite | PASS | lr 1e30 → status nan in epoch 1, row still written |
+
+Extra cross-checks:
+- GCC 16 + libstdc++ (macOS) and Apple clang + libc++ give bit-identical CNN rows. Ubuntu
+  24.04 / GCC 13.3 / glibc (Docker, aarch64) gives the same row too (DECISIONS 38).
+- Mini stage (81 runs, 3 epochs) exercised `summarise.py`, `figures.py` and
+  `select_stage2.py` end to end (`results/mini/`).
+
+### Phase 7 — benchmark (`results/bench/bench.md`, 42.7 min)
+- Worker scaling on the M1: 380 / 547 / 673 jobs/h at 4 / 6 / 8 workers → 8 chosen.
+- No thermal drift. Low Power Mode was on (left as found).
+- Stats: 4.4 KB per measurement point, about 180 KB per 40-epoch run.
+- AWS ratio 2.25 (version5 code path: 43.5 s/epoch here vs 19.4 on c8g.48xlarge).
+- Estimates (`results/bench/estimates.md`): full plan ≈ 14 h on one c8g.48xlarge (≈ $37
+  spot). On the laptop Stage 1 needs 198 h and Stage 2 495 h; the prescribed reductions
+  only reach 78 h and 275 h.

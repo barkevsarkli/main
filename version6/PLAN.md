@@ -112,4 +112,47 @@ to validation accuracy; kernel-family × K heatmaps (Stage 1).
 
 ## Budget
 
-ESTIMATES_PLACEHOLDER
+Measured on the Apple M1 laptop (`results/bench/bench.md`; provisional: Low Power Mode
+on, 8 workers). Formula: runs × (40 × seconds/epoch + per-run overhead) ÷ workers × 1.05
++ the longest single run. AWS column: the same per-run times divided by 2.25, the measured
+ratio between this machine and a c8g.48xlarge on version5's own code path, spread over
+192 workers. The price is version5's spot price (≈ $2.6/h). Stages 2 and 3 assume
+configuration 1 = random K = 3, configuration 2 = bank_init K = 5, and three distinct
+extension LRs (an upper bound).
+
+Workers here: 8. AWS: 192 workers, per-run time / 2.25 (this machine vs c8g.48xlarge on the version5 code path).
+
+| stage | variant | runs | epochs | here (h) | target (h) | AWS (h) | AWS cost (USD) |
+|---|---|---:|---:|---:|---:|---:|---:|
+| stage0 | full | 240 | 9600 | 1.5 | 4 | 0.05 | 0 |
+| stage1 | full | 4554 | 182160 | 198.2 | 72 | 4.00 | 10 |
+| stage1 | seeds 3 -> 2 | 3036 | 121440 | 132.4 | 72 | 2.77 | 7 |
+| stage1 | + drop K = 7 | 2292 | 91680 | 97.1 | 72 | 2.12 | 6 |
+| stage1 | + drop lowest LR | 1848 | 73920 | 78.4 | 72 | 1.77 | 5 |
+| stage2 | full | 12740 | 509600 | 494.9 | 120 | 9.51 | 25 |
+| stage2 | sweep seeds 10 -> 6 | 11172 | 446880 | 434.1 | 120 | 8.38 | 22 |
+| stage2 | + extension 30 -> 20 seeds | 8232 | 329280 | 320.0 | 120 | 6.27 | 16 |
+| stage2 | + drop @conv/@hidden at H=256 | 7896 | 315840 | 298.1 | 120 | 5.86 | 15 |
+| stage2 | + drop sigmoid CIFAR H=256 | 7644 | 305760 | 274.6 | 120 | 5.42 | 14 |
+| stage3 | full | 450 | 18000 | 17.9 | 24 | 0.49 | 1 |
+
+**Reading the table.**
+- On this laptop only Stage 0 (1.5 h ≤ 4 h) and Stage 3 (17.9 h ≤ 24 h) fit their targets.
+  Stage 1 still needs 78 h after every prescribed reduction (target 72 h); Stage 2 needs
+  275 h after every prescribed reduction (target 120 h). The prescribed reduction order
+  cannot bring either stage within budget here.
+- On AWS (192 Graviton4 workers) the **full** plan takes about 0.05 + 4.0 + 9.5 + 0.5 ≈
+  14 instance-hours, about $37 at spot prices. No reduction is needed there.
+  Recommendation: run Stage 0 here or on AWS, and Stages 1–3 on AWS in full. Before
+  launching, re-run `tools/bench.py --workers-list 96,144,192` on the instance (≈ 20 min):
+  the 2.25 ratio was measured on the MLP, and the CIFAR-10 H = 256 cells were memory-bound
+  on the laptop (see bench.md).
+- Diagnostics cost ≈ 180 KB per run: Stage 1 ≈ 0.8 GB, Stage 2 ≈ 2.3 GB of stats files.
+  Too large to commit to GitHub as they are (DECISIONS, open question).
+
+Reduced variants, if the work must stay on one machine (PROMPT.md 11.5 order; never
+dropping relu, tanh, tanh+relu, the stress LR or the random CNN baseline):
+- Stage 1: seeds 3 → 2, then drop K = 7, then drop the lowest grid LR (1,848 runs).
+- Stage 2: sweep seeds 10 → 6, extension 30 → 20 seeds, drop the @conv/@hidden controls
+  at H = 256, drop sigmoid at CIFAR-10 H = 256 (7,644 runs).
+- Stage 3 (not in PROMPT; proposed only if needed): seeds 15 → 10.

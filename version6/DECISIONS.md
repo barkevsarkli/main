@@ -183,3 +183,25 @@ version5, and every question for Barkev. Dated; **OPEN** marks items that need a
     of downloading it again. pytest was installed into the venv. `.venv/` is gitignored.
 37. Job files (`results/*/jobs*.jsonl`) are committed as the record of what was planned.
     Those with placeholders cannot be run (`run_jobs.py` refuses them).
+
+## Added after the benchmark (2026-10-18)
+
+38. **Cross-platform reproducibility, measured.** On the same CNN job (MNIST, H = 32, frozen
+    gabor K = 5, tanh+relu, 1 epoch), three builds gave rows identical in every metric,
+    curve and hash: Apple clang 21 + libc++ (macOS), GCC 16 + libstdc++ (macOS), and GCC
+    13.3 + glibc (Ubuntu 24.04 aarch64, Docker; same OS and arch as the AWS AMI). The
+    version5 MLP rows do differ between macOS and Linux in the tanh runs (libm `tanhf`).
+    So pooling runs from different machines is safe only when the compiler/libm pairs have
+    been compared. **Recommendation:** run every stage of a comparison on one platform, and
+    record `platform` and `compiler` (both are in every row).
+39. **Stats storage. OPEN.** About 180 KB per run means ≈ 0.8 GB (Stage 1) and ≈ 2.3 GB
+    (Stage 2) of small CSV files. Options: commit them compressed (`.csv.gz` per stage),
+    keep them in S3 and commit only the merged result rows, or record stats every 2
+    epochs. Provisional: commit rows; archive stats separately.
+40. **The laptop cannot meet the Stage 1/2 targets** even with every prescribed reduction
+    (PLAN.md, Budget). On AWS no reduction is needed (~14 instance-hours in total).
+    **OPEN:** confirm AWS for Stages 1–3, and whether Stage 0 runs on the laptop (1.5 h).
+41. Benchmark noise: one cell (CIFAR-10 H = 128, K = 5) measured the frozen conv slower
+    than the learned one (39.2 vs 34.2 s). That is impossible as a cost ordering (frozen
+    skips work), so it shows the run-to-run spread on a laptop with mixed P/E cores under
+    full load. The estimates use the measured values as they are.

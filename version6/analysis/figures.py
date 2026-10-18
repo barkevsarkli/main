@@ -191,6 +191,8 @@ def kernel_heatmaps(df, out):
             mats[mode] = (A, B)
         # One colour scale per row, shared by the kernel modes, so panels compare directly.
         allA = np.concatenate([m[0].ravel() for m in mats.values()])
+        if not np.isfinite(allA).any():          # no ReLU runs (e.g. the smoke stage)
+            continue
         allB = np.concatenate([m[1].ravel() for m in mats.values()])
         a_lo, a_hi = np.nanmin(allA), np.nanmax(allA)
         if a_hi - a_lo < 1:
