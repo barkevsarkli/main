@@ -1,6 +1,7 @@
 #include "kernels.h"
 #include "rng_util.h"
 #include "util.h"
+#include <algorithm>
 #include <cctype>
 #include <cmath>
 #include <cstdio>

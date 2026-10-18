@@ -11,6 +11,7 @@
 // Coverage: cnn on 1x28x28 and 3x32x32, K in {3, 9}, P in {1, 2, 4}, every activation in
 // the conv and hidden layers, mixed masks in both layers; mlp1 and mlp2 likewise; CE and MSE.
 
+#include <algorithm>
 #include <cmath>
 #include <random>
 #include "check.h"

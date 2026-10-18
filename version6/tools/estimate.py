@@ -4,7 +4,7 @@
     python3 tools/estimate.py [--aws-cores 192] [--aws-price 2.6]
 
 Wall time = sum over runs of (epochs x seconds_per_epoch + per-run overhead) / workers,
-plus 5%. seconds_per_epoch comes from the benchmark cell with the same dataset, arch,
+plus 5%, plus the longest single run (the tail while the last runs finish alone). seconds_per_epoch comes from the benchmark cell with the same dataset, arch,
 H, K and conv cost class (frozen = no conv backward; random and bank_init = learned
 conv), measured with all workers busy, so contention is included.
 
@@ -51,11 +51,13 @@ class Cost:
 
 
 def total(jobs, cost):
-    return sum(cost.run_seconds(j) for j in jobs)
+    t = [cost.run_seconds(j) for j in jobs]
+    return sum(t), max(t)
 
 
-def hours(sec, workers):
-    return sec / workers / 3600 * 1.05
+def hours(sec, longest, workers):
+    """Fill the workers, then wait for the last run: sum / workers x 1.05 + longest run."""
+    return (sec / workers * 1.05 + longest) / 3600
 
 
 def variants(stage, sel1, sel2_assumed):
@@ -115,13 +117,13 @@ def main():
         fits = False
         for label, jobs in variants(stage, sel1, sel2):
             jobs = mj.dedupe(jobs)
-            sec = total(jobs, cost)
-            here, aws = hours(sec, W), hours(sec / ratio, a.aws_cores)
+            sec, longest = total(jobs, cost)
+            here, aws = hours(sec, longest, W), hours(sec / ratio, longest / ratio, a.aws_cores)
             rec = {"variant": label, "runs": len(jobs), "epochs": sum(int(j.get("epochs", 40)) for j in jobs),
                    "hours_here": here, "hours_aws": aws, "usd_aws": aws * a.aws_price}
             report[stage].append(rec)
             lines.append(f"| {stage} | {label} | {len(jobs)} | {rec['epochs']} | {here:.1f} | {TARGET_H[stage]} | "
-                         f"{aws:.1f} | {aws * a.aws_price:.0f} |")
+                         f"{aws:.2f} | {aws * a.aws_price:.0f} |")
             if label == "full" and here <= TARGET_H[stage]:
                 fits = True
                 break

@@ -1,0 +1,102 @@
+{
+ "stage0": [
+  {
+   "variant": "full",
+   "runs": 240,
+   "epochs": 9600,
+   "hours_here": 1.501554905815969,
+   "hours_aws": 0.054104330394348685,
+   "usd_aws": 0.14067125902530658
+  }
+ ],
+ "stage0_fits_here_in_full": true,
+ "stage1": [
+  {
+   "variant": "full",
+   "runs": 4554,
+   "epochs": 182160,
+   "hours_here": 198.2363323304836,
+   "hours_aws": 3.9957837886257503,
+   "usd_aws": 10.389037850426952
+  },
+  {
+   "variant": "seeds 3 -> 2",
+   "runs": 3036,
+   "epochs": 121440,
+   "hours_here": 132.40682808722102,
+   "hours_aws": 2.77481680886042,
+   "usd_aws": 7.214523703037092
+  },
+  {
+   "variant": "+ drop K = 7",
+   "runs": 2292,
+   "epochs": 91680,
+   "hours_here": 97.13436193565667,
+   "hours_aws": 2.1206038239531537,
+   "usd_aws": 5.5135699422782
+  },
+  {
+   "variant": "+ drop lowest LR",
+   "runs": 1848,
+   "epochs": 73920,
+   "hours_here": 78.42987969772663,
+   "hours_aws": 1.7736840734758132,
+   "usd_aws": 4.611578591037115
+  }
+ ],
+ "stage1_fits_here_in_full": false,
+ "stage2": [
+  {
+   "variant": "full",
+   "runs": 12740,
+   "epochs": 509600,
+   "hours_here": 494.8856849112518,
+   "hours_aws": 9.509795590155763,
+   "usd_aws": 24.725468534404985
+  },
+  {
+   "variant": "sweep seeds 10 -> 6",
+   "runs": 11172,
+   "epochs": 446880,
+   "hours_here": 434.0721599435694,
+   "hours_aws": 8.381862047860036,
+   "usd_aws": 21.792841324436093
+  },
+  {
+   "variant": "+ extension 30 -> 20 seeds",
+   "runs": 8232,
+   "epochs": 329280,
+   "hours_here": 320.04680062908153,
+   "hours_aws": 6.266986656054004,
+   "usd_aws": 16.29416530574041
+  },
+  {
+   "variant": "+ drop @conv/@hidden at H=256",
+   "runs": 7896,
+   "epochs": 315840,
+   "hours_here": 298.1437448915864,
+   "hours_aws": 5.860741642987873,
+   "usd_aws": 15.23792827176847
+  },
+  {
+   "variant": "+ drop sigmoid CIFAR H=256",
+   "runs": 7644,
+   "epochs": 305760,
+   "hours_here": 274.5955190158024,
+   "hours_aws": 5.423982980486925,
+   "usd_aws": 14.102355749266005
+  }
+ ],
+ "stage2_fits_here_in_full": false,
+ "stage3": [
+  {
+   "variant": "full",
+   "runs": 450,
+   "epochs": 18000,
+   "hours_here": 17.875502627278536,
+   "hours_aws": 0.49472588666250267,
+   "usd_aws": 1.286287305322507
+  }
+ ],
+ "stage3_fits_here_in_full": true
+}

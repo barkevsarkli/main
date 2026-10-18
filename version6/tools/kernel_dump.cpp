@@ -11,6 +11,7 @@
 // Usage: kernel_dump [--data ..] [--out kernels] [--datasets mnist,cifar10] [--ks 3,5,7,9]
 //                    [--kernel-seed 20261018] [--calib 1000] [--no-mmap]
 
+#include <algorithm>
 #include <cmath>
 #include <cstdio>
 #include <filesystem>

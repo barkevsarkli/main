@@ -57,10 +57,13 @@ add_custom_target(v6_provenance ALL
   COMMENT "provenance")
 
 # ---- targets ---------------------------------------------------------------------------
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+# Executables go to version6/bin/ (what the sweep scripts use) unless V6_BIN_DIR says
+# otherwise, e.g. for a second compiler's build tree.
+set(V6_BIN_DIR ${CMAKE_SOURCE_DIR}/bin CACHE PATH "where the executables are written")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${V6_BIN_DIR})
 foreach(cfg ${CMAKE_CONFIGURATION_TYPES})
   string(TOUPPER ${cfg} CFG)
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CFG} ${CMAKE_SOURCE_DIR}/bin)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CFG} ${V6_BIN_DIR})
 endforeach()
 
 add_library(v6core STATIC

@@ -4,6 +4,7 @@
 //
 // Usage: test_kernels <kernels dir>
 
+#include <algorithm>
 #include <cmath>
 #include <filesystem>
 #include "check.h"

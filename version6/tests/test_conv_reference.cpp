@@ -6,6 +6,7 @@
 //  (c) the production forward/backward run twice gives bit-identical results.
 // Covers both input shapes, K in {3,5,7,9}, P in {1,2,4}, mixed channel masks.
 
+#include <algorithm>
 #include <cmath>
 #include <cstring>
 #include <random>

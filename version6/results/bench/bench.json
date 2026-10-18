@@ -1,0 +1,763 @@
+{
+ "conditions": {
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "machine": "arm64",
+  "cpu_count": 8,
+  "python": "3.11.9",
+  "time": "2026-10-18 01:36:55",
+  "cpu": "Apple M1",
+  "perf_cores": "4",
+  "eff_cores": "4",
+  "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=24576099)\t100%; charged; 0:00 remaining present: true",
+  "therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "low_power_mode": [
+   " lowpowermode         1"
+  ]
+ },
+ "binary_provenance": {
+  "git_hash": "26e4f0d165a76cd2371a2162c412402bec5a51c6",
+  "git_dirty": "1",
+  "compiler": "AppleClang 21.0.0.21000101",
+  "build_flags": "-O3 -march=native -ffp-contract=off -fno-fast-math",
+  "platform": "Darwin-arm64"
+ },
+ "scaling": [
+  {
+   "workers": 4,
+   "wall_s": 37.92135190963745,
+   "jobs_per_hour": 379.7332973337467,
+   "epoch_s_min": 29.4269,
+   "epoch_s_max": 29.5471,
+   "epoch_s_mean": 29.467200000000002
+  },
+  {
+   "workers": 6,
+   "wall_s": 39.5199933052063,
+   "jobs_per_hour": 546.5587970419633,
+   "epoch_s_min": 30.9602,
+   "epoch_s_max": 31.0465,
+   "epoch_s_mean": 31.01783333333334
+  },
+  {
+   "workers": 8,
+   "wall_s": 42.79305124282837,
+   "jobs_per_hour": 673.006461646657,
+   "epoch_s_min": 33.3399,
+   "epoch_s_max": 33.5865,
+   "epoch_s_mean": 33.437887499999995
+  }
+ ],
+ "chosen_workers": 8,
+ "cost": [
+  {
+   "dataset": "mnist",
+   "arch": "mlp1",
+   "hidden": 64,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 2.5255525,
+   "epoch_s_max": 2.61303,
+   "overhead_s": 0.72333125,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "mlp2",
+   "hidden": 64,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 2.6725499999999998,
+   "epoch_s_max": 2.75784,
+   "overhead_s": 0.6823762500000001,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 3,
+   "kernel_mode": "random",
+   "epoch_s": 11.505300000000002,
+   "epoch_s_max": 11.582,
+   "overhead_s": 3.3557125,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 3,
+   "kernel_mode": "frozen",
+   "epoch_s": 8.906108750000001,
+   "epoch_s_max": 9.03914,
+   "overhead_s": 3.3123537499999998,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 5,
+   "kernel_mode": "random",
+   "epoch_s": 13.460275,
+   "epoch_s_max": 13.6668,
+   "overhead_s": 3.8638749999999997,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 5,
+   "kernel_mode": "frozen",
+   "epoch_s": 10.0370875,
+   "epoch_s_max": 10.1085,
+   "overhead_s": 3.86585,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 7,
+   "kernel_mode": "random",
+   "epoch_s": 16.1833875,
+   "epoch_s_max": 16.3124,
+   "overhead_s": 4.680949999999999,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 7,
+   "kernel_mode": "frozen",
+   "epoch_s": 11.898787500000001,
+   "epoch_s_max": 12.1057,
+   "overhead_s": 4.6720125,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 9,
+   "kernel_mode": "random",
+   "epoch_s": 19.5917875,
+   "epoch_s_max": 19.8298,
+   "overhead_s": 5.750775000000001,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 9,
+   "kernel_mode": "frozen",
+   "epoch_s": 14.1410125,
+   "epoch_s_max": 14.4488,
+   "overhead_s": 5.556025,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "mlp1",
+   "hidden": 128,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 4.51463875,
+   "epoch_s_max": 4.55121,
+   "overhead_s": 1.15904125,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "mlp2",
+   "hidden": 128,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 5.50331375,
+   "epoch_s_max": 5.62086,
+   "overhead_s": 1.42827,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 3,
+   "kernel_mode": "random",
+   "epoch_s": 16.894237500000003,
+   "epoch_s_max": 17.1697,
+   "overhead_s": 4.811100000000001,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 3,
+   "kernel_mode": "frozen",
+   "epoch_s": 13.998312499999999,
+   "epoch_s_max": 14.0802,
+   "overhead_s": 4.549625,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 5,
+   "kernel_mode": "random",
+   "epoch_s": 18.757025,
+   "epoch_s_max": 18.8755,
+   "overhead_s": 5.1059624999999995,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 5,
+   "kernel_mode": "frozen",
+   "epoch_s": 14.3695625,
+   "epoch_s_max": 14.4909,
+   "overhead_s": 5.1678,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 7,
+   "kernel_mode": "random",
+   "epoch_s": 21.851174999999998,
+   "epoch_s_max": 22.2651,
+   "overhead_s": 5.8366750000000005,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 7,
+   "kernel_mode": "frozen",
+   "epoch_s": 17.285449999999997,
+   "epoch_s_max": 17.4673,
+   "overhead_s": 5.939400000000001,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 9,
+   "kernel_mode": "random",
+   "epoch_s": 25.228675,
+   "epoch_s_max": 25.4282,
+   "overhead_s": 7.051812499999999,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 9,
+   "kernel_mode": "frozen",
+   "epoch_s": 18.536724999999997,
+   "epoch_s_max": 18.6958,
+   "overhead_s": 6.837325,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "mlp1",
+   "hidden": 256,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 8.994438749999999,
+   "epoch_s_max": 9.11513,
+   "overhead_s": 2.40058625,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "mlp2",
+   "hidden": 256,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 13.085762500000001,
+   "epoch_s_max": 13.308,
+   "overhead_s": 3.3121875000000003,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 3,
+   "kernel_mode": "random",
+   "epoch_s": 29.5988375,
+   "epoch_s_max": 29.8619,
+   "overhead_s": 7.651487499999998,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 3,
+   "kernel_mode": "frozen",
+   "epoch_s": 24.155274999999996,
+   "epoch_s_max": 24.3955,
+   "overhead_s": 7.679925000000001,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 5,
+   "kernel_mode": "random",
+   "epoch_s": 31.5205,
+   "epoch_s_max": 31.7535,
+   "overhead_s": 8.3109875,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 5,
+   "kernel_mode": "frozen",
+   "epoch_s": 25.807287499999997,
+   "epoch_s_max": 25.9662,
+   "overhead_s": 8.301924999999999,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 7,
+   "kernel_mode": "random",
+   "epoch_s": 34.2625,
+   "epoch_s_max": 34.5914,
+   "overhead_s": 9.000600000000002,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 7,
+   "kernel_mode": "frozen",
+   "epoch_s": 26.8873375,
+   "epoch_s_max": 27.2017,
+   "overhead_s": 8.914025,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 9,
+   "kernel_mode": "random",
+   "epoch_s": 37.4042125,
+   "epoch_s_max": 37.6796,
+   "overhead_s": 9.843612499999999,
+   "measured": true
+  },
+  {
+   "dataset": "mnist",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 9,
+   "kernel_mode": "frozen",
+   "epoch_s": 29.183124999999997,
+   "epoch_s_max": 29.4782,
+   "overhead_s": 9.926925,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "mlp1",
+   "hidden": 64,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 8.53918625,
+   "epoch_s_max": 8.72329,
+   "overhead_s": 3.55593875,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "mlp2",
+   "hidden": 64,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 8.9084125,
+   "epoch_s_max": 9.05348,
+   "overhead_s": 2.3802624999999997,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 3,
+   "kernel_mode": "random",
+   "epoch_s": 18.4577375,
+   "epoch_s_max": 18.542,
+   "overhead_s": 5.462350000000001,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 3,
+   "kernel_mode": "frozen",
+   "epoch_s": 13.5712125,
+   "epoch_s_max": 13.7054,
+   "overhead_s": 5.444862500000001,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 5,
+   "kernel_mode": "random",
+   "epoch_s": 26.5191125,
+   "epoch_s_max": 26.7219,
+   "overhead_s": 7.470912500000001,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 5,
+   "kernel_mode": "frozen",
+   "epoch_s": 18.569575,
+   "epoch_s_max": 18.8149,
+   "overhead_s": 7.396325,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 7,
+   "kernel_mode": "random",
+   "epoch_s": 37.2049875,
+   "epoch_s_max": 37.8574,
+   "overhead_s": 10.49315,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 7,
+   "kernel_mode": "frozen",
+   "epoch_s": 25.422062500000003,
+   "epoch_s_max": 25.7514,
+   "overhead_s": 10.2986625,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 9,
+   "kernel_mode": "random",
+   "epoch_s": 48.51630000000001,
+   "epoch_s_max": 49.0753,
+   "overhead_s": 14.1462125,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 64,
+   "conv_k": 9,
+   "kernel_mode": "frozen",
+   "epoch_s": 34.329049999999995,
+   "epoch_s_max": 34.9484,
+   "overhead_s": 14.054400000000001,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "mlp1",
+   "hidden": 128,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 19.142775000000004,
+   "epoch_s_max": 19.2738,
+   "overhead_s": 5.3543,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "mlp2",
+   "hidden": 128,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 20.4740875,
+   "epoch_s_max": 20.6389,
+   "overhead_s": 5.767337500000001,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 3,
+   "kernel_mode": "random",
+   "epoch_s": 25.4087375,
+   "epoch_s_max": 25.7258,
+   "overhead_s": 7.890224999999999,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 3,
+   "kernel_mode": "frozen",
+   "epoch_s": 25.4801125,
+   "epoch_s_max": 25.8245,
+   "overhead_s": 8.228862499999998,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 5,
+   "kernel_mode": "random",
+   "epoch_s": 34.192975,
+   "epoch_s_max": 34.6202,
+   "overhead_s": 9.371300000000002,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 5,
+   "kernel_mode": "frozen",
+   "epoch_s": 39.2048125,
+   "epoch_s_max": 39.4225,
+   "overhead_s": 9.653837499999998,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 7,
+   "kernel_mode": "random",
+   "epoch_s": 46.6111875,
+   "epoch_s_max": 47.3169,
+   "overhead_s": 17.64345,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 7,
+   "kernel_mode": "frozen",
+   "epoch_s": 43.45008750000001,
+   "epoch_s_max": 44.1309,
+   "overhead_s": 14.211625,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 9,
+   "kernel_mode": "random",
+   "epoch_s": 66.8060625,
+   "epoch_s_max": 67.1515,
+   "overhead_s": 19.908062500000003,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 128,
+   "conv_k": 9,
+   "kernel_mode": "frozen",
+   "epoch_s": 50.7221,
+   "epoch_s_max": 51.608,
+   "overhead_s": 19.683025,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "mlp1",
+   "hidden": 256,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 69.3349,
+   "epoch_s_max": 70.3793,
+   "overhead_s": 19.464375,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "mlp2",
+   "hidden": 256,
+   "conv_k": 0,
+   "kernel_mode": "none",
+   "epoch_s": 78.41885,
+   "epoch_s_max": 79.0255,
+   "overhead_s": 20.804924999999997,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 3,
+   "kernel_mode": "random",
+   "epoch_s": 64.38215,
+   "epoch_s_max": 65.9894,
+   "overhead_s": 14.192124999999995,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 3,
+   "kernel_mode": "frozen",
+   "epoch_s": 39.46915,
+   "epoch_s_max": 39.7903,
+   "overhead_s": 13.188362499999998,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 5,
+   "kernel_mode": "random",
+   "epoch_s": 57.3129,
+   "epoch_s_max": 57.4534,
+   "overhead_s": 14.362112499999995,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 5,
+   "kernel_mode": "frozen",
+   "epoch_s": 44.1394375,
+   "epoch_s_max": 44.2862,
+   "overhead_s": 14.291724999999998,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 7,
+   "kernel_mode": "random",
+   "epoch_s": 68.27810000000001,
+   "epoch_s_max": 68.6444,
+   "overhead_s": 16.0430125,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 7,
+   "kernel_mode": "frozen",
+   "epoch_s": 45.432,
+   "epoch_s_max": 45.7642,
+   "overhead_s": 15.9196375,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 9,
+   "kernel_mode": "random",
+   "epoch_s": 72.0477875,
+   "epoch_s_max": 72.5519,
+   "overhead_s": 19.344125,
+   "measured": true
+  },
+  {
+   "dataset": "cifar10",
+   "arch": "cnn",
+   "hidden": 256,
+   "conv_k": 9,
+   "kernel_mode": "frozen",
+   "epoch_s": 53.55168749999999,
+   "epoch_s_max": 53.7784,
+   "overhead_s": 19.496950000000002,
+   "measured": true
+  }
+ ],
+ "drift": [
+  [
+   33.4232,
+   33.107,
+   32.7509
+  ],
+  [
+   33.1595,
+   32.9991,
+   32.6843
+  ],
+  [
+   32.9067,
+   33.1449,
+   32.8106
+  ],
+  [
+   33.1196,
+   32.8641,
+   33.078
+  ],
+  [
+   33.1667,
+   33.0225,
+   32.75
+  ],
+  [
+   33.0364,
+   32.9706,
+   32.7373
+  ],
+  [
+   32.8588,
+   32.9365,
+   32.7867
+  ],
+  [
+   33.077,
+   33.146,
+   32.6981
+  ]
+ ],
+ "stats_bytes_per_epoch": 4378.0,
+ "stats_bytes_per_40_epoch_run": 179498.0,
+ "aws_reference": {
+  "this_machine_epoch_s": 43.469674999999995,
+  "aws_v5_epoch_s": 19.35,
+  "ratio_this_over_aws": 2.246494832041343
+ },
+ "bench_wall_s": 2561.141975879669
+}

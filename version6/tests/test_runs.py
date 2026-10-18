@@ -28,7 +28,7 @@ BIN = common.default_binary()
 DATA = os.path.join(V6, "..")
 KDIR = os.path.join(V6, "kernels")
 TMP = tempfile.mkdtemp(prefix="v6tests_")
-VOLATILE = {"seconds"}
+VOLATILE = {"seconds", "epoch_seconds"}
 
 
 def run(args, name):

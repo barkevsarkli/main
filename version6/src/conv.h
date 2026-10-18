@@ -1,6 +1,7 @@
 #ifndef CONV_H
 #define CONV_H
 
+#include <algorithm>
 #include <cstdint>
 #include <stdexcept>
 #include <vector>
