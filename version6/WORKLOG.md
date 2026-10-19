@@ -149,3 +149,27 @@ All times in this entry are UTC.
   | `stats_stage1.tar.gz` | 115,780,202 | `c65bd729441416333684ea7f693bce1ebfcb5245cf134eef0980d4f20b425c59` |
   | `stats_stage2.tar.gz` | 313,297,751 | `c774aa194fc437f7d784123411338c32172499496f33fc700b57a33ce8c5fa44` |
   | `stats_stage3.tar.gz` | 18,526,196 | `2d3f78654b07844cd7159853d6378854deeb4bc73675e0a80245eb7835004192` |
+
+### Estimate vs actual wall time (2026-10-19)
+
+The pre-launch estimate is `results/bench_aws/estimates.md` (measured on the instance,
+192 workers). The actual times are the runner's `=== finished ... elapsed` lines in the
+local `results/run_all_aws.log`.
+
+| stage | runs planned / run | estimate (h) | actual | actual / estimate |
+|---|---:|---:|---:|---:|
+| stage0 | 240 / 240 | 0.06 | 0h02m20s (0.04 h) | 0.69 |
+| stage1 | 4,554 / 4,554 | 4.15 | 3h36m05s (3.60 h) | 0.87 |
+| stage2 sweep | 6,860 / 6,860 | – | 7h36m18s (7.61 h) | – |
+| stage2 extension | 5,880 (upper bound) / 5,520 | – | 6h18m45s (6.31 h) | – |
+| stage2 total | 12,740 / 12,380 | 10.74 | 13h55m03s (13.92 h) | 1.30 |
+| stage3 | 450 / 450 | 0.59 | 0h45m06s (0.75 h) | 1.28 |
+| all stages | 17,984 / 17,624 | 15.54 | 18h18m34s (18.31 h) | 1.18 |
+
+Wall time from START to ALL STAGES COMPLETE, including merges, selections and archiving:
+18h19m24s. Stages 2 and 3 ran slower than estimated even though Stage 2 had 360 fewer
+runs than its upper bound. The estimate assumed configuration 1 = random K = 3 and
+configuration 2 = bank_init K = 5 (PLAN.md, Budget); Stage 1 selected K = 9 for both
+configurations on both datasets, and the K = 9 conv costs more per epoch. That is the
+likely cause; it was not measured separately. Stage 2 also ran as two batches (sweep,
+then extension), each with its own tail of single long runs.
