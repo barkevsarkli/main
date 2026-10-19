@@ -3,6 +3,12 @@
     from load import load_rows, load_stats
     df = load_rows("results/stage1")            # merged results/stage1/stage1.csv (or rows/)
     st = load_stats("results/stage1", df.run_id) # long stats table for those runs
+    st = load_stats("results/stage1", df.run_id, stats_root="~/Desktop/v6_archives/extracted/stage1")
+
+    python3 analysis/load.py results/stage0 [--stats-root DIR]   # overview of one stage
+
+`stats_root` / `--stats-root` is the directory that holds `stats/` (default: the stage
+directory itself), e.g. an extracted stats archive outside the repository.
 
 Per-run outcome measures (PLAN.md, "Outcome measures"):
   final_val, best_val, drop (peak-to-final validation accuracy, pp), final_lt15,
@@ -89,9 +95,12 @@ def load_rows(stage_dir_or_csv):
     return df.reset_index(drop=True)
 
 
-def load_stats(stage_dir, run_ids=None, metrics=None):
-    """Long table run_id, epoch, layer, group, metric, value (histograms kept as strings)."""
-    files = sorted(glob.glob(os.path.join(stage_dir, "stats", "*.csv")))
+def load_stats(stage_dir, run_ids=None, metrics=None, stats_root=None):
+    """Long table run_id, epoch, layer, group, metric, value (histograms kept as strings).
+
+    stats_root: directory holding `stats/` (default: stage_dir)."""
+    root = os.path.expanduser(stats_root) if stats_root else stage_dir
+    files = sorted(glob.glob(os.path.join(root, "stats", "*.csv")))
     if run_ids is not None:
         want = set(run_ids)
         files = [f for f in files if os.path.basename(f)[:-4] in want]
@@ -117,3 +126,22 @@ def final_stat(st, metric, layer, group=None, how="last"):
         t = t[t["group"] == group]
     t = t.sort_values("epoch")
     return t.groupby("run_id")["num"].last() if how == "last" else t.groupby("run_id")["num"].agg(how)
+
+
+def main():
+    import argparse
+    ap = argparse.ArgumentParser(description="Overview of one stage: runs, models and stats files found.")
+    ap.add_argument("stage_dir")
+    ap.add_argument("--stats-root", default=None, help="directory holding stats/ (default: stage_dir)")
+    a = ap.parse_args()
+    df = load_rows(a.stage_dir)
+    root = os.path.expanduser(a.stats_root) if a.stats_root else a.stage_dir
+    have = {os.path.basename(f)[:-4] for f in glob.glob(os.path.join(root, "stats", "*.csv"))}
+    print(f"{len(df)} runs; statuses {df.status.value_counts().to_dict()}")
+    print(f"models: {sorted(df.model.unique())}")
+    print(f"configs: {sorted(df.config.unique())}")
+    print(f"stats files in {root}/stats: {len(have & set(df.run_id))} of {len(df)} runs")
+
+
+if __name__ == "__main__":
+    main()

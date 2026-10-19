@@ -5,6 +5,9 @@
     python3 analysis/summarise.py results/stage2 --seeds 11-30
                                                    -> results/stage2/summary_seeds11-30/
 
+--stats-root DIR reads the diagnostics from DIR/stats/ instead of <stage_dir>/stats/ (e.g. an
+extracted archive: ~/Desktop/v6_archives/extracted/stage2). Outputs still go under stage_dir.
+
 --seeds keeps only the listed run seeds ("11-30" or "11,12,13"). PLAN.md pre-registers the
 Stage 2 confirmatory tests at the selected and stress LRs on seeds 11-30, which played no
 part in choosing those LRs; the 1-30 tables are secondary.
@@ -57,8 +60,9 @@ def holm(p):
     return adj
 
 
-def per_run_diagnostics(stage_dir, df):
-    st = load_stats(stage_dir, df.run_id, metrics=["logit_between_std", "dead_units", "n_units"])
+def per_run_diagnostics(stage_dir, df, stats_root=None):
+    st = load_stats(stage_dir, df.run_id, metrics=["logit_between_std", "dead_units", "n_units"],
+                    stats_root=stats_root)
     out = pd.DataFrame(index=df.run_id)
     if st.empty:
         return out
@@ -135,6 +139,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("stage_dir")
     ap.add_argument("--seeds", default="", help='keep only these run seeds, e.g. "11-30" or "1,2,3"')
+    ap.add_argument("--stats-root", default=None, help="directory holding stats/ (default: stage_dir)")
     a = ap.parse_args()
     df = load_rows(a.stage_dir)
     out = os.path.join(a.stage_dir, "summary")
@@ -152,7 +157,7 @@ def main():
             sys.exit(f"no runs with seeds {a.seeds}")
         out = os.path.join(a.stage_dir, "summary_seeds" + a.seeds.replace(",", "_"))
     os.makedirs(out, exist_ok=True)
-    cells = cell_table(df, per_run_diagnostics(a.stage_dir, df))
+    cells = cell_table(df, per_run_diagnostics(a.stage_dir, df, a.stats_root))
     paired = paired_table(df)
     cells.to_csv(os.path.join(out, "cells.csv"), index=False, float_format="%.4f")
     paired.to_csv(os.path.join(out, "paired.csv"), index=False, float_format="%.5g")
