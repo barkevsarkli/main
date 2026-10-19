@@ -1,0 +1,23 @@
+\begin{table}[htbp]\centering\small
+\caption{Critical LR vs width, H = 12..512, 6 seeds, exploratory (late\_collapse). version5 calib\_* (MNIST) and c10\_calib\_* (CIFAR-10) files, mlp2, seeds 101-106; analysed separately from the 30-seed sweeps.}
+\label{tab:calib_width_late_collapse}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llllrllllllrrrrrrrrrllrrrlrrr@{}}
+\toprule
+source & kind & dataset & arch & hidden & seed\_set & lr50\_relu & lr50\_tanh+relu & lr50\_tanh & lr50\_leaky\_relu & lr50\_sigmoid & lr50\_relu\_lo & lr50\_relu\_hi & nl\_share\_relu & lr50\_tanh+relu\_lo & lr50\_tanh+relu\_hi & nl\_share\_tanh+relu & lr50\_tanh\_lo & lr50\_tanh\_hi & nl\_share\_tanh & fail\_is\_never\_learned & ratio\_tanh+relu\_relu & ratio\_tanh+relu\_relu\_point & ratio\_tanh+relu\_relu\_lo & ratio\_tanh+relu\_relu\_hi & ratio\_tanh\_relu & ratio\_tanh\_relu\_point & ratio\_tanh\_relu\_lo & ratio\_tanh\_relu\_hi \\
+\midrule
+v5 c10\_calib\_12 & calib & cifar10 & mlp2 & 12 & v5 calib seeds 101-106 (6 seeds, exploratory) & > 0.01 & > 0.03 & > 0.03 & > 0.03 & > 0.1 & 0.0100 & inf & 1.0000 & 0.0300 & inf & 1.0000 & 0.0300 & inf & 1.0000 & yes & unbounded &  & 0.0000 & inf & unbounded &  & 0.0000 & inf \\
+v5 c10\_calib\_32 & calib & cifar10 & mlp2 & 32 & v5 calib seeds 101-106 (6 seeds, exploratory) & > 0.01 & > 0.03 & > 0.03 & > 0.03 & > 0.1 & 0.0100 & inf & 1.0000 & 0.0300 & inf & 1.0000 & 0.0300 & inf & 1.0000 & yes & unbounded &  & 0.0000 & inf & unbounded &  & 0.0000 & inf \\
+v5 c10\_calib\_64 & calib & cifar10 & mlp2 & 64 & v5 calib seeds 101-106 (6 seeds, exploratory) & > 0.01 & in [0.01, inf] & > 0.03 & > 0.03 & > 0.1 & 0.0100 & inf & 1.0000 & 0.0100 & inf & 0.9091 & 0.0300 & inf & 1.0000 & yes & unbounded &  & 0.0000 & inf & unbounded &  & 0.0000 & inf \\
+v5 c10\_calib\_128 & calib & cifar10 & mlp2 & 128 & v5 calib seeds 101-106 (6 seeds, exploratory) & > 0.01 & > 0.03 & > 0.01 & > 0.03 & > 0.1 & 0.0100 & inf & 1.0000 & 0.0300 & inf & 1.0000 & 0.0100 & inf & 1.0000 & yes & unbounded &  & 0.0000 & inf & unbounded &  & 0.0000 & inf \\
+v5 c10\_calib\_256 & calib & cifar10 & mlp2 & 256 & v5 calib seeds 101-106 (6 seeds, exploratory) & > 0.01 & > 0.01 & > 0.01 & > 0.3 & > 0.1 & 0.0100 & inf & 1.0000 & 0.0100 & inf & 1.0000 & 0.0100 & inf & 1.0000 & yes & unbounded &  & 0.0000 & inf & unbounded &  & 0.0000 & inf \\
+v5 c10\_calib\_512 & calib & cifar10 & mlp2 & 512 & v5 calib seeds 101-106 (6 seeds, exploratory) & > 0.01 & > 0.01 & in [0.003, inf] & > 0.3 & in [0.01, 0.1] & 0.0100 & inf & 1.0000 & 0.0100 & inf & 1.0000 & 0.0030 & inf & 0.8571 & yes & unbounded &  & 0.0000 & inf & unbounded &  & 0.0000 & inf \\
+v5 calib\_12 & calib & mnist & mlp2 & 12 & v5 calib seeds 101-106 (6 seeds, exploratory) & > 0.03 & > 0.3 & > 0.3 & > 0.3 & > 0.3 & 0.0300 & inf & 1.0000 & 0.3000 & inf &  & 0.3000 & inf &  & yes & unbounded &  & 0.0000 & inf & unbounded &  & 0.0000 & inf \\
+v5 calib\_32 & calib & mnist & mlp2 & 32 & v5 calib seeds 101-106 (6 seeds, exploratory) & > 0.03 & > 0.1 & > 0.1 & > 0.3 & > 0.3 & 0.0300 & inf & 1.0000 & 0.1000 & inf & 1.0000 & 0.1000 & inf & 1.0000 & yes & unbounded &  & 0.0000 & inf & unbounded &  & 0.0000 & inf \\
+v5 calib\_64 & calib & mnist & mlp2 & 64 & v5 calib seeds 101-106 (6 seeds, exploratory) & in [0.01, inf] & > 0.1 & > 0.1 & > 0.3 & > 0.3 & 0.0100 & inf & 0.8000 & 0.1000 & inf & 1.0000 & 0.1000 & inf & 1.0000 & yes & unbounded &  & 0.0000 & inf & unbounded &  & 0.0000 & inf \\
+v5 calib\_128 & calib & mnist & mlp2 & 128 & v5 calib seeds 101-106 (6 seeds, exploratory) & in [0.01, 0.03] & > 0.1 & > 0.1 & > 0.3 & > 0.3 & 0.0100 & 0.0300 & 0.6667 & 0.1000 & inf & 1.0000 & 0.1000 & inf & 1.0000 & yes & > 3.33 &  & 3.3333 & inf & > 3.33 &  & 3.3333 & inf \\
+v5 calib\_256 & calib & mnist & mlp2 & 256 & v5 calib seeds 101-106 (6 seeds, exploratory) & in [0.01, 0.03] & in [0.03, inf] & > 0.1 & > 0.3 & > 0.3 & 0.0100 & 0.0300 & 0.6667 & 0.0300 & inf & 0.8333 & 0.1000 & inf & 1.0000 & yes & > 1 &  & 1.0000 & inf & > 3.33 &  & 3.3333 & inf \\
+v5 calib\_512 & calib & mnist & mlp2 & 512 & v5 calib seeds 101-106 (6 seeds, exploratory) & in [0.01, 0.03] & > 0.1 & > 0.1 & > 0.3 & in [0.1, inf] & 0.0100 & 0.0300 & 0.6471 & 0.1000 & inf & 1.0000 & 0.1000 & inf & 1.0000 & yes & > 3.33 &  & 3.3333 & inf & > 3.33 &  & 3.3333 & inf \\
+\bottomrule
+\end{tabular}}
+\end{table}
