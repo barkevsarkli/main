@@ -1,0 +1,47 @@
+\begin{table}[htbp]\centering\small
+\caption{T5b (CONFIRMATORY, seeds 11-30). Paired differences in checkpoint test accuracy (pp), each model at its own selected LR: tanh+relu - relu and tanh+relu - tanh; 95\% paired bootstrap CI, wins/losses, paired t p, Holm within (dataset, comparison).}
+\label{tab:T5_tuned_paired}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llrllrrrrrrrr@{}}
+\toprule
+dataset & arch & hidden & metric & comparison & n & mean\_diff & ci\_lo & ci\_hi & wins & losses & p\_t & p\_holm \\
+\midrule
+mnist & cfg1 & 64 & test\_acc\_best & tanh+relu - relu & 20 & -0.042 & -0.089 & 0.007 & 8 & 12 & 0.120 & 0.769 \\
+mnist & cfg1 & 64 & test\_acc\_best & tanh+relu - tanh & 20 & 0.041 & -0.013 & 0.099 & 13 & 6 & 0.174 & 0.523 \\
+mnist & cfg1 & 128 & test\_acc\_best & tanh+relu - relu & 20 & -0.008 & -0.052 & 0.036 & 8 & 10 & 0.717 & 1.000 \\
+mnist & cfg1 & 128 & test\_acc\_best & tanh+relu - tanh & 20 & 0.038 & -1.25e-05 & 0.079 & 12 & 7 & 0.083 & 0.369 \\
+mnist & cfg1 & 256 & test\_acc\_best & tanh+relu - relu & 20 & 0.021 & -0.037 & 0.078 & 10 & 9 & 0.499 & 1.000 \\
+mnist & cfg1 & 256 & test\_acc\_best & tanh+relu - tanh & 20 & 0.009 & -0.030 & 0.051 & 10 & 10 & 0.658 & 0.658 \\
+mnist & cfg2 & 64 & test\_acc\_best & tanh+relu - relu & 20 & -0.098 & -0.143 & -0.053 & 3 & 16 & 5.77e-04 & 0.005 \\
+mnist & cfg2 & 64 & test\_acc\_best & tanh+relu - tanh & 20 & -0.055 & -0.111 & -0.002 & 9 & 11 & 0.072 & 0.369 \\
+mnist & cfg2 & 128 & test\_acc\_best & tanh+relu - relu & 20 & 0.004 & -0.026 & 0.034 & 9 & 10 & 0.779 & 1.000 \\
+mnist & cfg2 & 128 & test\_acc\_best & tanh+relu - tanh & 20 & -0.029 & -0.074 & 0.016 & 9 & 11 & 0.237 & 0.523 \\
+mnist & cfg2 & 256 & test\_acc\_best & tanh+relu - relu & 20 & 0.032 & -0.010 & 0.073 & 13 & 7 & 0.160 & 0.801 \\
+mnist & cfg2 & 256 & test\_acc\_best & tanh+relu - tanh & 20 & -0.035 & -0.071 & -0.003 & 6 & 13 & 0.062 & 0.369 \\
+mnist & mlp1 & 64 & test\_acc\_best & tanh+relu - relu & 20 & -0.110 & -0.203 & -0.014 & 6 & 14 & 0.038 & 0.304 \\
+mnist & mlp1 & 64 & test\_acc\_best & tanh+relu - tanh & 20 & 0.261 & 0.163 & 0.358 & 16 & 4 & 6.40e-05 & 4.48e-04 \\
+mnist & mlp1 & 128 & test\_acc\_best & tanh+relu - relu & 20 & -0.054 & -0.115 & 0.008 & 5 & 13 & 0.110 & 0.769 \\
+mnist & mlp1 & 128 & test\_acc\_best & tanh+relu - tanh & 20 & 0.202 & 0.146 & 0.257 & 19 & 0 & 1.04e-06 & 8.30e-06 \\
+mnist & mlp1 & 256 & test\_acc\_best & tanh+relu - relu & 20 & 0.008 & -0.030 & 0.046 & 10 & 9 & 0.713 & 1.000 \\
+mnist & mlp1 & 256 & test\_acc\_best & tanh+relu - tanh & 20 & 0.286 & 0.237 & 0.336 & 20 & 0 & 7.51e-10 & 6.76e-09 \\
+cifar10 & cfg1 & 64 & test\_acc\_best & tanh+relu - relu & 20 & -0.726 & -1.083 & -0.373 & 3 & 17 & 9.39e-04 & 0.008 \\
+cifar10 & cfg1 & 64 & test\_acc\_best & tanh+relu - tanh & 20 & 0.281 & -0.078 & 0.622 & 14 & 6 & 0.140 & 0.560 \\
+cifar10 & cfg1 & 128 & test\_acc\_best & tanh+relu - relu & 20 & -0.464 & -0.839 & -0.103 & 6 & 14 & 0.025 & 0.125 \\
+cifar10 & cfg1 & 128 & test\_acc\_best & tanh+relu - tanh & 20 & -0.122 & -0.441 & 0.200 & 9 & 11 & 0.469 & 0.560 \\
+cifar10 & cfg1 & 256 & test\_acc\_best & tanh+relu - relu & 20 & 0.079 & -0.431 & 0.586 & 10 & 10 & 0.775 & 1.000 \\
+cifar10 & cfg1 & 256 & test\_acc\_best & tanh+relu - tanh & 20 & -0.406 & -0.794 & -0.032 & 7 & 13 & 0.058 & 0.348 \\
+cifar10 & cfg2 & 64 & test\_acc\_best & tanh+relu - relu & 20 & -0.914 & -1.194 & -0.652 & 1 & 19 & 3.38e-06 & 3.04e-05 \\
+cifar10 & cfg2 & 64 & test\_acc\_best & tanh+relu - tanh & 20 & 0.329 & -0.118 & 0.750 & 12 & 8 & 0.164 & 0.560 \\
+cifar10 & cfg2 & 128 & test\_acc\_best & tanh+relu - relu & 20 & -0.775 & -1.166 & -0.369 & 6 & 14 & 0.001 & 0.010 \\
+cifar10 & cfg2 & 128 & test\_acc\_best & tanh+relu - tanh & 20 & -0.277 & -0.634 & 0.091 & 6 & 14 & 0.161 & 0.560 \\
+cifar10 & cfg2 & 256 & test\_acc\_best & tanh+relu - relu & 20 & 0.034 & -0.324 & 0.379 & 11 & 9 & 0.853 & 1.000 \\
+cifar10 & cfg2 & 256 & test\_acc\_best & tanh+relu - tanh & 20 & -0.431 & -0.874 & 0.009 & 6 & 14 & 0.075 & 0.374 \\
+cifar10 & mlp1 & 64 & test\_acc\_best & tanh+relu - relu & 20 & -0.214 & -0.485 & 0.055 & 6 & 14 & 0.138 & 0.551 \\
+cifar10 & mlp1 & 64 & test\_acc\_best & tanh+relu - tanh & 20 & 0.819 & 0.488 & 1.133 & 18 & 2 & 1.09e-04 & 8.75e-04 \\
+cifar10 & mlp1 & 128 & test\_acc\_best & tanh+relu - relu & 20 & -0.040 & -0.224 & 0.139 & 10 & 10 & 0.678 & 1.000 \\
+cifar10 & mlp1 & 128 & test\_acc\_best & tanh+relu - tanh & 20 & 0.688 & 0.392 & 1.005 & 18 & 2 & 4.08e-04 & 0.003 \\
+cifar10 & mlp1 & 256 & test\_acc\_best & tanh+relu - relu & 20 & 0.250 & 0.067 & 0.442 & 13 & 7 & 0.019 & 0.114 \\
+cifar10 & mlp1 & 256 & test\_acc\_best & tanh+relu - tanh & 20 & 1.463 & 1.245 & 1.697 & 20 & 0 & 1.54e-10 & 1.39e-09 \\
+\bottomrule
+\end{tabular}}
+\end{table}

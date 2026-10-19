@@ -1,0 +1,101 @@
+\begin{table}[htbp]\centering\small
+\caption{T5 (CONFIRMATORY, seeds 11-30). Tuned accuracy: test accuracy at the best-validation checkpoint, each model at its own selected LR (chosen from seeds 1-10). grid\_edge = 'low' / 'high' when the selected LR is the smallest / largest LR of the Stage 2 grid, so the tuned optimum may lie outside the grid (censored).}
+\label{tab:T5_tuned_accuracy}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llrlrlrrrrr@{}}
+\toprule
+dataset & arch & hidden & model & selected\_lr & grid\_edge & n & test\_best\_mean & test\_best\_sd & final\_mean & n\_final\_lt15 \\
+\midrule
+mnist & cfg1 & 64 & relu & 3.0e-03 &  & 20 & 98.72 & 0.09 & 98.82 & 0 \\
+mnist & cfg1 & 64 & tanh+relu & 3.0e-03 &  & 20 & 98.68 & 0.08 & 98.80 & 0 \\
+mnist & cfg1 & 64 & tanh & 1.0e-03 & low & 20 & 98.64 & 0.10 & 98.83 & 0 \\
+mnist & cfg1 & 64 & leaky\_relu & 3.0e-03 &  & 20 & 98.72 & 0.09 & 98.83 & 0 \\
+mnist & cfg1 & 64 & sigmoid & 0.03 &  & 20 & 98.75 & 0.07 & 98.82 & 0 \\
+mnist & cfg1 & 128 & relu & 3.0e-03 &  & 20 & 98.79 & 0.06 & 98.88 & 0 \\
+mnist & cfg1 & 128 & tanh+relu & 0.01 &  & 20 & 98.79 & 0.10 & 98.88 & 0 \\
+mnist & cfg1 & 128 & tanh & 3.0e-03 &  & 20 & 98.75 & 0.08 & 98.91 & 0 \\
+mnist & cfg1 & 128 & leaky\_relu & 3.0e-03 &  & 20 & 98.78 & 0.09 & 98.88 & 0 \\
+mnist & cfg1 & 128 & sigmoid & 0.01 &  & 20 & 98.76 & 0.06 & 98.88 & 0 \\
+mnist & cfg1 & 256 & relu & 0.01 &  & 20 & 98.82 & 0.12 & 98.93 & 0 \\
+mnist & cfg1 & 256 & tanh+relu & 0.01 &  & 20 & 98.84 & 0.07 & 98.95 & 0 \\
+mnist & cfg1 & 256 & tanh & 0.01 &  & 20 & 98.83 & 0.08 & 98.96 & 0 \\
+mnist & cfg1 & 256 & leaky\_relu & 3.0e-03 &  & 20 & 98.79 & 0.07 & 98.92 & 0 \\
+mnist & cfg1 & 256 & sigmoid & 0.02 &  & 20 & 98.76 & 0.07 & 98.88 & 0 \\
+mnist & cfg2 & 64 & relu & 3.0e-03 &  & 20 & 98.84 & 0.06 & 98.93 & 0 \\
+mnist & cfg2 & 64 & tanh+relu & 3.0e-03 &  & 20 & 98.74 & 0.11 & 98.79 & 0 \\
+mnist & cfg2 & 64 & tanh & 0.01 &  & 20 & 98.80 & 0.06 & 98.90 & 0 \\
+mnist & cfg2 & 64 & leaky\_relu & 3.0e-03 &  & 20 & 98.80 & 0.08 & 98.92 & 0 \\
+mnist & cfg2 & 64 & sigmoid & 0.01 &  & 20 & 98.77 & 0.09 & 98.84 & 0 \\
+mnist & cfg2 & 128 & relu & 3.0e-03 &  & 20 & 98.86 & 0.05 & 98.94 & 0 \\
+mnist & cfg2 & 128 & tanh+relu & 0.01 &  & 20 & 98.87 & 0.05 & 98.94 & 0 \\
+mnist & cfg2 & 128 & tanh & 0.01 &  & 20 & 98.90 & 0.08 & 99.00 & 0 \\
+mnist & cfg2 & 128 & leaky\_relu & 3.0e-03 &  & 20 & 98.85 & 0.07 & 98.95 & 0 \\
+mnist & cfg2 & 128 & sigmoid & 0.01 &  & 20 & 98.81 & 0.07 & 98.91 & 0 \\
+mnist & cfg2 & 256 & relu & 3.0e-03 &  & 20 & 98.85 & 0.07 & 98.97 & 0 \\
+mnist & cfg2 & 256 & tanh+relu & 0.01 &  & 20 & 98.89 & 0.07 & 98.94 & 0 \\
+mnist & cfg2 & 256 & tanh & 0.01 &  & 20 & 98.92 & 0.07 & 99.02 & 0 \\
+mnist & cfg2 & 256 & leaky\_relu & 3.0e-03 &  & 20 & 98.84 & 0.05 & 98.96 & 0 \\
+mnist & cfg2 & 256 & sigmoid & 0.02 &  & 20 & 98.86 & 0.06 & 98.93 & 0 \\
+mnist & mlp1 & 64 & relu & 0.01 &  & 20 & 97.56 & 0.11 & 97.82 & 0 \\
+mnist & mlp1 & 64 & tanh+relu & 0.01 &  & 20 & 97.45 & 0.16 & 97.66 & 0 \\
+mnist & mlp1 & 64 & tanh & 0.01 &  & 20 & 97.19 & 0.15 & 97.47 & 0 \\
+mnist & mlp1 & 64 & leaky\_relu & 0.01 &  & 20 & 97.55 & 0.11 & 97.81 & 0 \\
+mnist & mlp1 & 64 & sigmoid & 0.03 &  & 20 & 97.28 & 0.11 & 97.53 & 0 \\
+mnist & mlp1 & 128 & relu & 0.01 &  & 20 & 97.96 & 0.09 & 98.21 & 0 \\
+mnist & mlp1 & 128 & tanh+relu & 0.02 &  & 20 & 97.90 & 0.11 & 98.15 & 0 \\
+mnist & mlp1 & 128 & tanh & 0.01 &  & 20 & 97.70 & 0.09 & 98.00 & 0 \\
+mnist & mlp1 & 128 & leaky\_relu & 0.01 &  & 20 & 97.91 & 0.12 & 98.15 & 0 \\
+mnist & mlp1 & 128 & sigmoid & 0.05 &  & 20 & 97.73 & 0.09 & 98.08 & 0 \\
+mnist & mlp1 & 256 & relu & 0.01 &  & 20 & 98.09 & 0.05 & 98.31 & 0 \\
+mnist & mlp1 & 256 & tanh+relu & 0.02 &  & 20 & 98.10 & 0.07 & 98.29 & 0 \\
+mnist & mlp1 & 256 & tanh & 0.02 &  & 20 & 97.82 & 0.08 & 98.12 & 0 \\
+mnist & mlp1 & 256 & leaky\_relu & 0.01 &  & 20 & 98.06 & 0.08 & 98.31 & 0 \\
+mnist & mlp1 & 256 & sigmoid & 0.05 &  & 20 & 97.84 & 0.07 & 98.20 & 0 \\
+cifar10 & cfg1 & 64 & relu & 3.0e-04 & low & 20 & 60.66 & 0.67 & 60.01 & 0 \\
+cifar10 & cfg1 & 64 & tanh+relu & 3.0e-04 & low & 20 & 59.94 & 0.62 & 59.06 & 0 \\
+cifar10 & cfg1 & 64 & tanh & 3.0e-04 & low & 20 & 59.66 & 0.71 & 58.41 & 0 \\
+cifar10 & cfg1 & 64 & leaky\_relu & 3.0e-04 & low & 20 & 61.08 & 0.73 & 60.21 & 0 \\
+cifar10 & cfg1 & 64 & sigmoid & 3.0e-03 &  & 20 & 59.75 & 0.69 & 58.01 & 0 \\
+cifar10 & cfg1 & 128 & relu & 3.0e-04 & low & 20 & 60.90 & 0.62 & 60.00 & 0 \\
+cifar10 & cfg1 & 128 & tanh+relu & 3.0e-04 & low & 20 & 60.44 & 0.43 & 59.15 & 0 \\
+cifar10 & cfg1 & 128 & tanh & 3.0e-04 & low & 20 & 60.56 & 0.63 & 59.25 & 0 \\
+cifar10 & cfg1 & 128 & leaky\_relu & 3.0e-04 & low & 20 & 61.34 & 0.72 & 60.45 & 0 \\
+cifar10 & cfg1 & 128 & sigmoid & 3.0e-03 &  & 20 & 60.91 & 0.65 & 59.31 & 0 \\
+cifar10 & cfg1 & 256 & relu & 1.0e-03 &  & 20 & 61.37 & 0.79 & 61.52 & 0 \\
+cifar10 & cfg1 & 256 & tanh+relu & 3.0e-04 & low & 20 & 61.44 & 0.67 & 60.26 & 0 \\
+cifar10 & cfg1 & 256 & tanh & 3.0e-04 & low & 20 & 61.85 & 0.61 & 60.65 & 0 \\
+cifar10 & cfg1 & 256 & leaky\_relu & 3.0e-04 & low & 20 & 61.72 & 0.61 & 60.65 & 0 \\
+cifar10 & cfg1 & 256 & sigmoid & 3.0e-03 &  & 20 & 61.17 & 0.67 & 59.87 & 0 \\
+cifar10 & cfg2 & 64 & relu & 3.0e-04 & low & 20 & 61.49 & 0.50 & 60.05 & 0 \\
+cifar10 & cfg2 & 64 & tanh+relu & 3.0e-04 & low & 20 & 60.57 & 0.54 & 59.60 & 0 \\
+cifar10 & cfg2 & 64 & tanh & 3.0e-04 & low & 20 & 60.24 & 0.84 & 59.35 & 0 \\
+cifar10 & cfg2 & 64 & leaky\_relu & 3.0e-04 & low & 20 & 61.56 & 0.57 & 60.59 & 0 \\
+cifar10 & cfg2 & 64 & sigmoid & 1.0e-03 &  & 20 & 60.05 & 0.59 & 59.53 & 0 \\
+cifar10 & cfg2 & 128 & relu & 3.0e-04 & low & 20 & 62.16 & 0.79 & 60.90 & 0 \\
+cifar10 & cfg2 & 128 & tanh+relu & 3.0e-04 & low & 20 & 61.38 & 0.66 & 59.78 & 0 \\
+cifar10 & cfg2 & 128 & tanh & 3.0e-04 & low & 20 & 61.66 & 0.79 & 60.47 & 0 \\
+cifar10 & cfg2 & 128 & leaky\_relu & 3.0e-04 & low & 20 & 62.19 & 0.77 & 61.06 & 0 \\
+cifar10 & cfg2 & 128 & sigmoid & 3.0e-03 &  & 20 & 61.19 & 0.63 & 59.66 & 0 \\
+cifar10 & cfg2 & 256 & relu & 1.0e-03 &  & 20 & 62.29 & 0.57 & 62.56 & 0 \\
+cifar10 & cfg2 & 256 & tanh+relu & 3.0e-04 & low & 20 & 62.32 & 0.71 & 61.14 & 0 \\
+cifar10 & cfg2 & 256 & tanh & 3.0e-04 & low & 20 & 62.75 & 0.91 & 61.65 & 0 \\
+cifar10 & cfg2 & 256 & leaky\_relu & 1.0e-03 &  & 20 & 62.60 & 0.55 & 62.77 & 0 \\
+cifar10 & cfg2 & 256 & sigmoid & 3.0e-03 &  & 20 & 61.22 & 0.76 & 60.21 & 0 \\
+cifar10 & mlp1 & 64 & relu & 3.0e-04 & low & 20 & 50.54 & 0.41 & 49.44 & 0 \\
+cifar10 & mlp1 & 64 & tanh+relu & 3.0e-04 & low & 20 & 50.33 & 0.56 & 49.28 & 0 \\
+cifar10 & mlp1 & 64 & tanh & 3.0e-04 & low & 20 & 49.51 & 0.40 & 48.61 & 0 \\
+cifar10 & mlp1 & 64 & leaky\_relu & 1.0e-03 &  & 20 & 49.70 & 0.46 & 48.49 & 0 \\
+cifar10 & mlp1 & 64 & sigmoid & 3.0e-03 &  & 20 & 49.46 & 0.42 & 48.52 & 0 \\
+cifar10 & mlp1 & 128 & relu & 3.0e-04 & low & 20 & 51.97 & 0.50 & 50.77 & 0 \\
+cifar10 & mlp1 & 128 & tanh+relu & 3.0e-04 & low & 20 & 51.94 & 0.47 & 51.02 & 0 \\
+cifar10 & mlp1 & 128 & tanh & 3.0e-04 & low & 20 & 51.25 & 0.63 & 50.35 & 0 \\
+cifar10 & mlp1 & 128 & leaky\_relu & 3.0e-04 & low & 20 & 51.64 & 0.50 & 50.49 & 0 \\
+cifar10 & mlp1 & 128 & sigmoid & 3.0e-03 &  & 20 & 51.27 & 0.42 & 50.13 & 0 \\
+cifar10 & mlp1 & 256 & relu & 3.0e-04 & low & 20 & 52.67 & 0.41 & 51.94 & 0 \\
+cifar10 & mlp1 & 256 & tanh+relu & 3.0e-04 & low & 20 & 52.92 & 0.38 & 52.02 & 0 \\
+cifar10 & mlp1 & 256 & tanh & 1.0e-03 &  & 20 & 51.46 & 0.45 & 50.20 & 0 \\
+cifar10 & mlp1 & 256 & leaky\_relu & 1.0e-03 &  & 20 & 52.27 & 0.62 & 51.08 & 0 \\
+cifar10 & mlp1 & 256 & sigmoid & 3.0e-03 &  & 20 & 52.39 & 0.36 & 51.31 & 0 \\
+\bottomrule
+\end{tabular}}
+\end{table}

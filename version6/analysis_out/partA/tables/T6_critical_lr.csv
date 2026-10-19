@@ -1,0 +1,70 @@
+outcome,source,dataset,arch,hidden,lr50_relu,lr50_tanh+relu,lr50_tanh,ratio_tanh+relu_relu,ratio_tanh_relu,fail_is_never_learned
+fail,v5 c10_lrsweep_128,cifar10,mlp2,128,"in [0.01, 0.1]","0.0356 [0.01, 0.1]","in [0.01, 0.1]","in [0.1, 10]","in [0.1, 10]",True
+fail,v5 lrsweep_128,mnist,mlp2,128,"non-monotone: first crossing in [0.02, 0.03]; falls from 0.03 to 0.05","0.159 [0.125, 0.202]","in [0.1, inf]","in [4.18, 10.1]",> 3.33,True
+fail,v5 lrsweep_64,mnist,mlp2,64,"non-monotone: first crossing in [0.05, 0.1]; falls from 0.03 to 0.05","0.215 [0.1, inf]","in [0.1, inf]",> 1,> 1,True
+fail,v6 stage0,mnist,mlp2,64,> 0.05,> 0.05,> 0.05,unbounded,unbounded,False
+fail,v6 stage0,mnist,mlp2,128,"non-monotone: first crossing in [0.02, 0.03]; falls from 0.03 to 0.05",> 0.05,> 0.05,> 1.67,> 1.67,False
+fail,v6 stage2,cifar10,cfg1,64,"non-monotone: first crossing in [0.01, 0.02]; falls from 0.02 to 0.05","0.0444 [0.0299, inf]","in [0.03, inf]",> 1.49,> 1.5,False
+fail,v6 stage2,cifar10,cfg1,128,"non-monotone: first crossing in [0.01, 0.02]; falls from 0.02 to 0.05","0.044 [0.03, inf]","in [0.02, 0.05]",> 1.5,"in [1, 5]",False
+fail,v6 stage2,cifar10,cfg1,256,"non-monotone: first crossing in [0.01, 0.02]; falls from 0.02 to 0.05","0.0325 [0.02, 0.05]","in [0.02, 0.05]","in [1, 5]","in [1, 5]",False
+fail,v6 stage2,cifar10,cfg2,64,"non-monotone: first crossing in [0.01, 0.02]; falls from 0.02 to 0.05","0.0359 [0.0273, inf]","0.0389 [0.02, inf]",> 1.37,> 1,False
+fail,v6 stage2,cifar10,cfg2,128,"non-monotone: first crossing in [0.01, 0.02]; falls from 0.02 to 0.05","0.0386 [0.0294, inf]","in [0.02, 0.05]",> 1.47,"in [1, 5]",False
+fail,v6 stage2,cifar10,cfg2,256,"non-monotone: first crossing in [0.01, 0.02]; falls from 0.02 to 0.05","0.0273 [0.0235, 0.0316]","in [0.02, 0.05]","in [1.18, 3.16]","in [1, 5]",False
+fail,v6 stage2,cifar10,mlp1,64,"in [0.01, 0.03]",> 0.05,> 0.05,> 1.67,> 1.67,True
+fail,v6 stage2,cifar10,mlp1,128,"in [0.01, 0.03]","in [0.03, inf]","in [0.03, inf]",> 1,> 1,True
+fail,v6 stage2,cifar10,mlp1,256,"in [0.01, 0.03]","0.0465 [0.03, inf]","0.0395 [0.02, inf]",> 1,> 0.667,True
+fail,v6 stage2,mnist,cfg1,64,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+fail,v6 stage2,mnist,cfg1,128,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+fail,v6 stage2,mnist,cfg1,256,"in [0.01, 0.02]","in [0.05, inf]","in [0.05, inf]",> 2.5,> 2.5,False
+fail,v6 stage2,mnist,cfg2,64,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+fail,v6 stage2,mnist,cfg2,128,"in [0.01, 0.02]","in [0.05, inf]",> 0.1,> 2.5,> 5,False
+fail,v6 stage2,mnist,cfg2,256,"in [0.01, 0.02]","in [0.05, inf]","in [0.05, inf]",> 2.5,> 2.5,False
+fail,v6 stage2,mnist,mlp1,64,> 0.1,> 0.1,> 0.1,unbounded,unbounded,False
+fail,v6 stage2,mnist,mlp1,128,> 0.1,> 0.1,> 0.1,unbounded,unbounded,False
+fail,v6 stage2,mnist,mlp1,256,> 0.1,> 0.1,> 0.1,unbounded,unbounded,False
+late_collapse,v5 c10_lrsweep_128,cifar10,mlp2,128,> 0.01,> 0.03,> 0.01,unbounded,unbounded,True
+late_collapse,v5 lrsweep_128,mnist,mlp2,128,"non-monotone: first crossing in [0.02, 0.03]; falls from 0.03 to 0.05","in [0.05, inf]",> 0.1,> 1.67,> 3.33,True
+late_collapse,v5 lrsweep_64,mnist,mlp2,64,"non-monotone: first crossing in [0.05, inf]; falls from 0.03 to 0.05","in [0.05, inf]",> 0.1,unbounded,unbounded,True
+late_collapse,v6 stage0,mnist,mlp2,64,> 0.05,> 0.05,> 0.05,unbounded,unbounded,False
+late_collapse,v6 stage0,mnist,mlp2,128,"non-monotone: first crossing in [0.02, 0.03]; falls from 0.03 to 0.05",> 0.05,> 0.05,> 1.67,> 1.67,False
+late_collapse,v6 stage2,cifar10,cfg1,64,"in [0.003, 0.02]",> 0.03,> 0.03,> 1.5,> 1.5,False
+late_collapse,v6 stage2,cifar10,cfg1,128,"in [0.003, 0.02]",> 0.03,> 0.02,> 1.5,> 1,False
+late_collapse,v6 stage2,cifar10,cfg1,256,"in [0.003, 0.02]",> 0.03,> 0.02,> 1.5,> 1,False
+late_collapse,v6 stage2,cifar10,cfg2,64,"in [0.01, 0.02]",> 0.03,> 0.03,> 1.5,> 1.5,False
+late_collapse,v6 stage2,cifar10,cfg2,128,"in [0.003, 0.02]",> 0.03,> 0.02,> 1.5,> 1,False
+late_collapse,v6 stage2,cifar10,cfg2,256,"in [0.003, 0.02]",> 0.03,> 0.02,> 1.5,> 1,False
+late_collapse,v6 stage2,cifar10,mlp1,64,> 0.01,> 0.05,> 0.05,unbounded,unbounded,True
+late_collapse,v6 stage2,cifar10,mlp1,128,> 0.01,> 0.05,> 0.03,unbounded,unbounded,True
+late_collapse,v6 stage2,cifar10,mlp1,256,> 0.01,"in [0.02, inf]",> 0.02,unbounded,unbounded,True
+late_collapse,v6 stage2,mnist,cfg1,64,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+late_collapse,v6 stage2,mnist,cfg1,128,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+late_collapse,v6 stage2,mnist,cfg1,256,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+late_collapse,v6 stage2,mnist,cfg2,64,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+late_collapse,v6 stage2,mnist,cfg2,128,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+late_collapse,v6 stage2,mnist,cfg2,256,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+late_collapse,v6 stage2,mnist,mlp1,64,> 0.1,> 0.1,> 0.1,unbounded,unbounded,False
+late_collapse,v6 stage2,mnist,mlp1,128,> 0.1,> 0.1,> 0.1,unbounded,unbounded,False
+late_collapse,v6 stage2,mnist,mlp1,256,> 0.1,> 0.1,> 0.1,unbounded,unbounded,False
+degraded,v5 c10_lrsweep_128,cifar10,mlp2,128,"in [0.01, 0.03]","in [0.003, 0.03]","in [0.01, 0.03]","in [0.1, 3]","in [0.333, 3]",True
+degraded,v5 lrsweep_128,mnist,mlp2,128,"in [0.02, 0.03]","in [0.05, 0.3]","in [0.05, 0.3]","in [1.67, 15]","in [1.67, 15]",True
+degraded,v5 lrsweep_64,mnist,mlp2,64,"in [0.02, 0.05]","in [0.05, 0.3]","in [0.1, 0.3]","in [1, 15]","in [2, 15]",True
+degraded,v6 stage0,mnist,mlp2,64,"in [0.02, 0.05]",> 0.05,> 0.05,> 1,> 1,False
+degraded,v6 stage0,mnist,mlp2,128,"in [0.02, 0.03]","in [0.03, inf]",> 0.05,> 1,> 1.67,False
+degraded,v6 stage2,cifar10,cfg1,64,"in [0.003, 0.02]","0.0289 [0.0242, 0.0336]","0.0256 [0.01, 0.05]","in [1.21, 11.2]","in [0.5, 16.7]",False
+degraded,v6 stage2,cifar10,cfg1,128,"in [0.003, 0.02]","0.0305 [0.02, 0.05]","in [0.01, 0.03]","in [1, 16.7]","in [0.5, 10]",False
+degraded,v6 stage2,cifar10,cfg1,256,"in [0.003, 0.02]","0.0245 [0.01, 0.05]","in [0.01, 0.03]","in [0.5, 16.7]","in [0.5, 10]",False
+degraded,v6 stage2,cifar10,cfg2,64,"in [0.01, 0.02]","0.0277 [0.02, 0.05]","in [0.01, 0.03]","in [1, 5]","in [0.5, 3]",False
+degraded,v6 stage2,cifar10,cfg2,128,"in [0.003, 0.02]","0.0257 [0.01, 0.03]","in [0.01, 0.03]","in [0.5, 10]","in [0.5, 10]",False
+degraded,v6 stage2,cifar10,cfg2,256,"in [0.003, 0.02]","in [0.01, 0.03]","in [0.01, 0.03]","in [0.5, 10]","in [0.5, 10]",False
+degraded,v6 stage2,cifar10,mlp1,64,"in [0.01, 0.02]","0.0389 [0.02, inf]","0.0332 [0.02, 0.05]",> 1,"in [1, 5]",True
+degraded,v6 stage2,cifar10,mlp1,128,"in [0.01, 0.02]","0.0261 [0.01, 0.05]","0.0215 [0.01, 0.03]","in [0.5, 5]","in [0.5, 3]",True
+degraded,v6 stage2,cifar10,mlp1,256,"in [0.01, 0.02]","in [0.01, 0.03]","0.016 [0.01, 0.03]","in [0.5, 3]","in [0.5, 3]",True
+degraded,v6 stage2,mnist,cfg1,64,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+degraded,v6 stage2,mnist,cfg1,128,"in [0.01, 0.02]",> 0.1,"in [0.05, inf]",> 5,> 2.5,False
+degraded,v6 stage2,mnist,cfg1,256,"in [0.01, 0.02]",> 0.1,"in [0.05, inf]",> 5,> 2.5,False
+degraded,v6 stage2,mnist,cfg2,64,"in [0.01, 0.02]",> 0.1,> 0.1,> 5,> 5,False
+degraded,v6 stage2,mnist,cfg2,128,"in [0.01, 0.02]",> 0.1,"in [0.05, inf]",> 5,> 2.5,False
+degraded,v6 stage2,mnist,cfg2,256,"in [0.01, 0.02]","in [0.05, inf]","in [0.05, inf]",> 2.5,> 2.5,False
+degraded,v6 stage2,mnist,mlp1,64,> 0.1,> 0.1,> 0.1,unbounded,unbounded,False
+degraded,v6 stage2,mnist,mlp1,128,> 0.1,> 0.1,> 0.1,unbounded,unbounded,False
+degraded,v6 stage2,mnist,mlp1,256,> 0.1,> 0.1,> 0.1,unbounded,unbounded,False

@@ -1,0 +1,19 @@
+\begin{table}[htbp]\centering\small
+\caption{T8b (Stage 1, seeds 101-103). Robustness of the pre-registered selection: the choice with all three seeds (reproduces results/stage1/selection.json) and with each seed left out; the margin of the chosen configuration over the runner-up (cfg1: ReLU mean best validation accuracy; cfg2: mean tanh+relu - relu final-accuracy difference at the stress LR).}
+\label{tab:T8_selection_robustness}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lllllrlr@{}}
+\toprule
+dataset & seeds & cfg1 & cfg2 & cfg1\_runner\_up & cfg1\_margin\_pp & cfg2\_runner\_up & cfg2\_margin\_pp \\
+\midrule
+mnist & 101-103 & random/none/K9 & bank\_init/sobel/K9 & random/none/K7 & 0.02 & bank\_init/sobel/K7 & 0.71 \\
+mnist & without 101 & random/none/K9 & bank\_init/sobel/K9 &  &  &  & 0.65 \\
+mnist & without 102 & random/none/K7 & bank\_init/sobel/K9 &  &  &  & 0.61 \\
+mnist & without 103 & random/none/K9 & bank\_init/sobel/K9 &  &  &  & 0.84 \\
+cifar10 & 101-103 & random/none/K9 & bank\_init/laplacian/K9 & random/none/K3 & 0.02 & bank\_init/gauss/K9 & 8.63 \\
+cifar10 & without 101 & random/none/K9 & bank\_init/laplacian/K9 &  &  &  & 13.94 \\
+cifar10 & without 102 & random/none/K3 & bank\_init/gabor/K9 &  &  &  & 1.53 \\
+cifar10 & without 103 & random/none/K9 & bank\_init/gabor/K7 &  &  &  & 0.58 \\
+\bottomrule
+\end{tabular}}
+\end{table}
