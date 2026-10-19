@@ -1,0 +1,46 @@
+{
+ "stage0": [
+  {
+   "variant": "full",
+   "runs": 240,
+   "epochs": 9600,
+   "hours_here": 0.05710218966471354,
+   "hours_aws": 0.05654325731369083,
+   "usd_aws": 0.14701246901559617
+  }
+ ],
+ "stage0_fits_here_in_full": true,
+ "stage1": [
+  {
+   "variant": "full",
+   "runs": 4554,
+   "epochs": 182160,
+   "hours_here": 4.18674473272461,
+   "hours_aws": 4.145763693462646,
+   "usd_aws": 10.77898560300288
+  }
+ ],
+ "stage1_fits_here_in_full": true,
+ "stage2": [
+  {
+   "variant": "full",
+   "runs": 12740,
+   "epochs": 509600,
+   "hours_here": 10.850972148780597,
+   "hours_aws": 10.744759770418026,
+   "usd_aws": 27.93637540308687
+  }
+ ],
+ "stage2_fits_here_in_full": true,
+ "stage3": [
+  {
+   "variant": "full",
+   "runs": 450,
+   "epochs": 18000,
+   "hours_here": 0.5939260238941334,
+   "hours_aws": 0.5881125083211246,
+   "usd_aws": 1.529092521634924
+  }
+ ],
+ "stage3_fits_here_in_full": true
+}

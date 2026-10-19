@@ -111,3 +111,41 @@ Extra cross-checks:
   (all stages on AWS, stats archives outside git, AWS runbook).
 - `version6/.cache/` removed from the index and ignored.
 - `python3 tests/test_selection.py`: PASS.
+
+## 2026-10-19 — the AWS run (stages 0–3)
+
+All times in this entry are UTC.
+
+- **Instance:** c8g.48xlarge (Graviton4, 192 vCPU), spot, eu-central-1a, 192 workers.
+  Build: commit `9f29a42`, `git_dirty 0`, GNU 13.3.0, `-O3 -march=native
+  -ffp-contract=off -fno-fast-math`, Linux 6.17 aarch64, glibc 2.39 (from
+  `results/bench_aws/bench.json` and every result row).
+- **Timeline** (`results/run_all_aws.log`, kept out of git):
+  - benchmark (`tools/bench.py`) started 2026-10-18 19:08 UTC, 21.8 min;
+  - Stage 0 started 2026-10-18 20:46:11 and finished 20:48:31;
+  - Stage 1 20:48:32 to 2026-10-19 00:24:38;
+  - Stage 2 sweep 00:24:50 to 08:01:09; Stage 2 extension 08:01:10 to 14:19:55;
+  - Stage 3 14:20:26 to 15:05:33;
+  - ALL STAGES COMPLETE at 2026-10-19 15:05:35.
+  The run log's START line reports `dirty=517`: that counts the server working tree
+  (regenerated job files, results), not the build. Every row has `git_dirty 0`.
+- **Totals:** 17,624 runs, 0 failures; every row has `status=ok`. Runs per stage:
+  240 / 4,554 / 12,380 (6,860 sweep + 5,520 extension) / 450. The extension has fewer than
+  the planned upper bound of 5,880 because duplicate LRs were removed (DECISIONS 34).
+- **Job files vs results:** the committed `results/stage2/jobs.jsonl`,
+  `results/stage2/jobs_ext.jsonl` and `results/stage3/jobs.jsonl` are the ones generated on
+  the server from the real selections (`results/stage1/selection.json`,
+  `results/stage2/selection.json`). Checked: for every stage, each job's canonical
+  `run_id` appears exactly once in the merged CSV and each row matches exactly one job.
+- **Benchmark on the instance** (`results/bench_aws/`): `bench.json`, `estimates.*` and
+  `raw/` are the AWS measurements (ratio this machine / version5 c8g reference = 1.01).
+  `bench.md` and `bench_log.txt` in that folder are byte-identical to the M1 files in
+  `results/bench/`; they were not regenerated on the instance and do not describe it.
+- **Diagnostics archives** (outside git, `~/Desktop/v6_archives/`):
+
+  | file | bytes | sha256 |
+  |---|---:|---|
+  | `stats_stage0.tar.gz` | 6,864,216 | `be94688a96a0c73c4f3fdb50243a1644acbc6dc3d6e81ac92da21c25b31f855b` |
+  | `stats_stage1.tar.gz` | 115,780,202 | `c65bd729441416333684ea7f693bce1ebfcb5245cf134eef0980d4f20b425c59` |
+  | `stats_stage2.tar.gz` | 313,297,751 | `c774aa194fc437f7d784123411338c32172499496f33fc700b57a33ce8c5fa44` |
+  | `stats_stage3.tar.gz` | 18,526,196 | `2d3f78654b07844cd7159853d6378854deeb4bc73675e0a80245eb7835004192` |

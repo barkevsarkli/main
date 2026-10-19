@@ -1,0 +1,422 @@
+{
+ "cifar10": {
+  "cfg1": {
+   "64": {
+    "selected_lr": {
+     "leaky_relu": 0.0003,
+     "relu": 0.0003,
+     "sigmoid": 0.003,
+     "tanh": 0.0003,
+     "tanh+relu": 0.0003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.0003": 60.266,
+     "0.001": 56.108,
+     "0.003": 52.574,
+     "0.01": 42.172,
+     "0.02": 9.786,
+     "0.03": 9.728,
+     "0.05": 13.734
+    }
+   },
+   "128": {
+    "selected_lr": {
+     "leaky_relu": 0.0003,
+     "relu": 0.0003,
+     "sigmoid": 0.003,
+     "tanh": 0.0003,
+     "tanh+relu": 0.0003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.0003": 60.334,
+     "0.001": 58.264,
+     "0.003": 53.586,
+     "0.01": 31.288,
+     "0.02": 9.786,
+     "0.03": 9.725999999999999,
+     "0.05": 12.898
+    }
+   },
+   "256": {
+    "selected_lr": {
+     "leaky_relu": 0.0003,
+     "relu": 0.001,
+     "sigmoid": 0.003,
+     "tanh": 0.0003,
+     "tanh+relu": 0.0003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.0003": 60.804,
+     "0.001": 61.71,
+     "0.003": 55.108,
+     "0.01": 34.496,
+     "0.02": 9.786,
+     "0.03": 9.728,
+     "0.05": 13.228
+    }
+   }
+  },
+  "cfg2": {
+   "64": {
+    "selected_lr": {
+     "leaky_relu": 0.0003,
+     "relu": 0.0003,
+     "sigmoid": 0.001,
+     "tanh": 0.0003,
+     "tanh+relu": 0.0003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.0003": 60.412,
+     "0.001": 56.88,
+     "0.003": 52.758,
+     "0.01": 42.294,
+     "0.02": 9.79,
+     "0.03": 11.596,
+     "0.05": 12.86
+    }
+   },
+   "128": {
+    "selected_lr": {
+     "leaky_relu": 0.0003,
+     "relu": 0.0003,
+     "sigmoid": 0.003,
+     "tanh": 0.0003,
+     "tanh+relu": 0.0003,
+     "tanh+relu@conv": 0.0003,
+     "tanh+relu@hidden": 0.0003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.0003": 60.366,
+     "0.001": 58.486000000000004,
+     "0.003": 53.976,
+     "0.01": 35.82,
+     "0.02": 9.778,
+     "0.03": 9.73,
+     "0.05": 13.41
+    }
+   },
+   "256": {
+    "selected_lr": {
+     "leaky_relu": 0.001,
+     "relu": 0.001,
+     "sigmoid": 0.003,
+     "tanh": 0.0003,
+     "tanh+relu": 0.0003,
+     "tanh+relu@conv": 0.0003,
+     "tanh+relu@hidden": 0.0003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.0003": 61.864,
+     "0.001": 62.664,
+     "0.003": 55.122,
+     "0.01": 37.84,
+     "0.02": 9.782,
+     "0.03": 9.725999999999999,
+     "0.05": 16.742
+    }
+   }
+  },
+  "mlp1": {
+   "64": {
+    "selected_lr": {
+     "leaky_relu": 0.001,
+     "relu": 0.0003,
+     "sigmoid": 0.003,
+     "tanh": 0.0003,
+     "tanh+relu": 0.0003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.0003": 49.628,
+     "0.001": 49.034,
+     "0.003": 45.168,
+     "0.01": 33.418,
+     "0.02": 16.323999999999998,
+     "0.03": 10.23,
+     "0.05": 9.798
+    }
+   },
+   "128": {
+    "selected_lr": {
+     "leaky_relu": 0.0003,
+     "relu": 0.0003,
+     "sigmoid": 0.003,
+     "tanh": 0.0003,
+     "tanh+relu": 0.0003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.0003": 51.182,
+     "0.001": 50.424,
+     "0.003": 46.338,
+     "0.01": 35.474000000000004,
+     "0.02": 15.688,
+     "0.03": 10.754,
+     "0.05": 9.836
+    }
+   },
+   "256": {
+    "selected_lr": {
+     "leaky_relu": 0.001,
+     "relu": 0.0003,
+     "sigmoid": 0.003,
+     "tanh": 0.001,
+     "tanh+relu": 0.0003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.0003": 52.132,
+     "0.001": 51.466,
+     "0.003": 47.646,
+     "0.01": 36.444,
+     "0.02": 18.012,
+     "0.03": 11.35,
+     "0.05": 9.898
+    }
+   }
+  }
+ },
+ "mnist": {
+  "cfg1": {
+   "64": {
+    "selected_lr": {
+     "leaky_relu": 0.003,
+     "relu": 0.003,
+     "sigmoid": 0.03,
+     "tanh": 0.001,
+     "tanh+relu": 0.003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.001": 98.782,
+     "0.003": 98.842,
+     "0.01": 98.06,
+     "0.02": 10.378,
+     "0.03": 10.206,
+     "0.05": 10.046,
+     "0.1": 10.042
+    }
+   },
+   "128": {
+    "selected_lr": {
+     "leaky_relu": 0.003,
+     "relu": 0.003,
+     "sigmoid": 0.01,
+     "tanh": 0.003,
+     "tanh+relu": 0.01
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.001": 98.78,
+     "0.003": 98.94,
+     "0.01": 98.142,
+     "0.02": 10.382,
+     "0.03": 10.206,
+     "0.05": 10.046,
+     "0.1": 10.042
+    }
+   },
+   "256": {
+    "selected_lr": {
+     "leaky_relu": 0.003,
+     "relu": 0.01,
+     "sigmoid": 0.02,
+     "tanh": 0.01,
+     "tanh+relu": 0.01
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.001": 98.848,
+     "0.003": 98.908,
+     "0.01": 98.842,
+     "0.02": 10.370000000000001,
+     "0.03": 10.206,
+     "0.05": 10.046,
+     "0.1": 10.042
+    }
+   }
+  },
+  "cfg2": {
+   "64": {
+    "selected_lr": {
+     "leaky_relu": 0.003,
+     "relu": 0.003,
+     "sigmoid": 0.01,
+     "tanh": 0.01,
+     "tanh+relu": 0.003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.001": 98.806,
+     "0.003": 98.904,
+     "0.01": 97.624,
+     "0.02": 10.374,
+     "0.03": 10.206,
+     "0.05": 10.046,
+     "0.1": 10.042
+    }
+   },
+   "128": {
+    "selected_lr": {
+     "leaky_relu": 0.003,
+     "relu": 0.003,
+     "sigmoid": 0.01,
+     "tanh": 0.01,
+     "tanh+relu": 0.01,
+     "tanh+relu@conv": 0.01,
+     "tanh+relu@hidden": 0.003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.001": 98.864,
+     "0.003": 98.958,
+     "0.01": 97.95400000000001,
+     "0.02": 10.378,
+     "0.03": 10.21,
+     "0.05": 10.048,
+     "0.1": 10.042
+    }
+   },
+   "256": {
+    "selected_lr": {
+     "leaky_relu": 0.003,
+     "relu": 0.003,
+     "sigmoid": 0.02,
+     "tanh": 0.01,
+     "tanh+relu": 0.01,
+     "tanh+relu@conv": 0.01,
+     "tanh+relu@hidden": 0.003
+    },
+    "stress_lr": 0.02,
+    "stress_found": true,
+    "below_stress_lr": 0.01,
+    "above_stress_lr": 0.03,
+    "relu_final_val_by_lr": {
+     "0.001": 98.87,
+     "0.003": 98.934,
+     "0.01": 98.75,
+     "0.02": 10.411999999999999,
+     "0.03": 10.206,
+     "0.05": 10.046,
+     "0.1": 10.042
+    }
+   }
+  },
+  "mlp1": {
+   "64": {
+    "selected_lr": {
+     "leaky_relu": 0.01,
+     "relu": 0.01,
+     "sigmoid": 0.03,
+     "tanh": 0.01,
+     "tanh+relu": 0.01
+    },
+    "stress_lr": 0.1,
+    "stress_found": false,
+    "below_stress_lr": 0.05,
+    "above_stress_lr": null,
+    "relu_final_val_by_lr": {
+     "0.001": 97.378,
+     "0.003": 97.59,
+     "0.01": 97.826,
+     "0.02": 96.784,
+     "0.03": 95.854,
+     "0.05": 94.938,
+     "0.1": 73.37
+    }
+   },
+   "128": {
+    "selected_lr": {
+     "leaky_relu": 0.01,
+     "relu": 0.01,
+     "sigmoid": 0.05,
+     "tanh": 0.01,
+     "tanh+relu": 0.02
+    },
+    "stress_lr": 0.1,
+    "stress_found": false,
+    "below_stress_lr": 0.05,
+    "above_stress_lr": null,
+    "relu_final_val_by_lr": {
+     "0.001": 97.828,
+     "0.003": 97.972,
+     "0.01": 98.164,
+     "0.02": 98.146,
+     "0.03": 96.908,
+     "0.05": 95.478,
+     "0.1": 75.274
+    }
+   },
+   "256": {
+    "selected_lr": {
+     "leaky_relu": 0.01,
+     "relu": 0.01,
+     "sigmoid": 0.05,
+     "tanh": 0.02,
+     "tanh+relu": 0.02
+    },
+    "stress_lr": 0.1,
+    "stress_found": false,
+    "below_stress_lr": 0.05,
+    "above_stress_lr": null,
+    "relu_final_val_by_lr": {
+     "0.001": 97.954,
+     "0.003": 98.126,
+     "0.01": 98.342,
+     "0.02": 98.336,
+     "0.03": 97.048,
+     "0.05": 96.072,
+     "0.1": 79.75
+    }
+   }
+  }
+ }
+}

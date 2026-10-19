@@ -58,3 +58,6 @@ version6/.cache/
 version6/results/stage*/rows/
 version6/results/stage*/stats/
 version6/results/run_all_aws.log
+
+# local monitoring of the AWS run
+_v6_monitor/
