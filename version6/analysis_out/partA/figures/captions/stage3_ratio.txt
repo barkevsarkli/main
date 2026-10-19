@@ -1,0 +1,1 @@
+Stage 3 (seeds 31-45, n = 15 per point; pre-registered slice with fresh seeds): mean final validation accuracy (top) and test accuracy at the best-validation checkpoint (bottom), +- 1 SD, versus the share of ReLU units rho in both the conv and hidden layer, at Stage 2's below-stress, stress and above-stress LR (cfg2, H = 128).

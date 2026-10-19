@@ -1,0 +1,1 @@
+CIFAR-10, Stage 2: runs with final validation accuracy < 15% out of n, per model and learning rate (shade = share, white = not run), one panel per architecture and width H. n = 20 (seeds 11-30, confirmatory) at the pre-registered LRs, n = 10 (seeds 1-10, exploratory) elsewhere.
