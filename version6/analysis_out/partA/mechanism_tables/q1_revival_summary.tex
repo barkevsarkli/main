@@ -1,0 +1,15 @@
+\begin{table}[htbp]\centering\small
+\caption{Q1. Revival summary (from q1\_revival\_runs): runs whose last hidden layer reached >= 99\% dead on the probe set, by status. 'Dead' means z <= 0 on all 1,000 probe (validation) inputs, not on the training set: a non-zero dw of the layer or of the conv layer below it means some units still fired on training inputs. Stage 2 seeds 1-30 pooled (descriptive).}
+\label{tab:q1_revival_summary}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llrrrrrrrrr@{}}
+\toprule
+dataset & status & n & n\_reach\_15\_after & epochs\_dead\_median & dw\_conv\_median & dw\_hidden\_median & dw\_output\_median & n\_dw\_conv\_zero & w\_conv\_ratio\_median & final\_val\_median \\
+\midrule
+cifar10 & revived & 39 & 39 & 1.0000 & 0.0982 & 0.1729 & 0.3993 & 0 & 1.0139 & 42.1000 \\
+cifar10 & revived, then died again & 103 & 103 & 1.0000 & 0.1609 & 0.2802 & 0.5260 & 0 & 1.0404 & 9.5800 \\
+cifar10 & stayed dead & 103 & 0 &  & 0.0089 & 0.0146 & 0.0199 & 17 & 1.0000 & 9.5800 \\
+mnist & stayed dead & 176 & 5 &  & 7.434e-05 & 0.0001 & 4.756e-05 & 56 & 1.0000 & 10.4000 \\
+\bottomrule
+\end{tabular}}
+\end{table}

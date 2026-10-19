@@ -1,0 +1,1199 @@
+\begin{table}[htbp]\centering\small
+\caption{Q6. Per-run lead times (epochs).}
+\label{tab:q6_lead_runs}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}rllrrlrllrrrrrrr@{}}
+\toprule
+stage & dataset & arch\_label & hidden & lr & model & seed & run\_id & outcome & failure\_epoch & e\_star & lead\_loss\_rise & lead\_zmax\_jump & lead\_dw\_spike & lead\_dead\_gt20 & lead\_loss\_rise\_to\_estar \\
+\midrule
+0 & mnist & mlp2 & 64 & 0.030 & leaky\_relu & 4 & 131e8944cb06e570 & late\_degradation & 27.000 &  & 5.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 64 & 0.030 & leaky\_relu & 9 & 1aded3a9e4a193dd & late\_degradation & 30.000 &  & 4.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 64 & 0.030 & leaky\_relu & 1 & 225a33fc910e59d5 & late\_degradation & 27.000 &  & 4.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 64 & 0.030 & leaky\_relu & 8 & 4764caf0fc2279cc & late\_degradation & 27.000 &  & 4.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 64 & 0.030 & leaky\_relu & 7 & 9148fcde47a06b1f & late\_degradation & 33.000 &  & 7.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 64 & 0.030 & leaky\_relu & 5 & a816ba93765ccd01 & late\_degradation & 27.000 &  & 5.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 64 & 0.030 & leaky\_relu & 6 & b50763679b7719f6 & late\_degradation & 28.000 &  & 5.000 & -1.000 & -1.000 &  &  \\
+0 & mnist & mlp2 & 64 & 0.030 & relu & 9 & 7120cda6d05eadb1 & late\_collapse & 29.000 & 30.000 & 2.000 & -1.000 &  & 0.000 & 3.000 \\
+0 & mnist & mlp2 & 64 & 0.030 & relu & 1 & ac3bae7c358c6c69 & late\_collapse & 27.000 & 29.000 & 1.000 & -1.000 &  & -1.000 & 3.000 \\
+0 & mnist & mlp2 & 64 & 0.030 & relu & 2 & dd0a25cd06e29ba6 & late\_collapse & 18.000 & 19.000 & 0.000 & 0.000 &  & 0.000 & 1.000 \\
+0 & mnist & mlp2 & 64 & 0.050 & leaky\_relu & 10 & 807868926b7d29ab & late\_degradation & 7.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 64 & 0.050 & leaky\_relu & 1 & ffe8555db6c54ee7 & late\_degradation & 8.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 5 & 16ace38575f60d5f & late\_degradation & 4.000 &  & -2.000 & 0.000 & -24.000 & 1.000 &  \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 10 & 3036ed692daa3daf & late\_degradation & 5.000 &  & -1.000 & 0.000 &  & 1.000 &  \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 2 & 6c3e8aeb005b9ddc & late\_degradation & 3.000 &  & -4.000 & -2.000 &  & 1.000 &  \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 7 & 86c2fcd1482360e1 & late\_degradation & 6.000 &  & 0.000 & -11.000 &  & 4.000 &  \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 9 & 9759a54c3b795633 & late\_degradation & 5.000 &  & -1.000 & -3.000 &  & 3.000 &  \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 6 & 992a43ef3c6a5cf0 & late\_degradation & 5.000 &  & -2.000 & -1.000 &  & 3.000 &  \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 1 & c140a70fc50d90eb & late\_degradation & 5.000 &  & -2.000 & -2.000 & -9.000 & 2.000 &  \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 4 & e18ee3265eb68c66 & late\_collapse & 5.000 & 20.000 & -2.000 & -1.000 &  & 3.000 & 13.000 \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 8 & e738b6b9d340c24a & late\_degradation & 4.000 &  & -3.000 & 0.000 &  & 1.000 &  \\
+0 & mnist & mlp2 & 64 & 0.050 & relu & 3 & ec7b2cb37b538c1d & late\_degradation & 5.000 &  & -2.000 & 3.000 &  & 2.000 &  \\
+0 & mnist & mlp2 & 64 & 0.050 & tanh+relu & 7 & d52adab1ab83e9b3 & late\_degradation & 20.000 &  & -1.000 & 18.000 &  & 16.000 &  \\
+0 & mnist & mlp2 & 128 & 0.020 & leaky\_relu & 5 & 40ccac8869b73311 & late\_degradation & 29.000 &  & 9.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.020 & leaky\_relu & 6 & 4fdc5f485463d400 & late\_degradation & 29.000 &  & 8.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.020 & leaky\_relu & 8 & 66bc27af760487ea & late\_degradation & 29.000 &  & 9.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.020 & leaky\_relu & 4 & 6bf7bfd7191cdec6 & late\_degradation & 29.000 &  & 8.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.020 & leaky\_relu & 10 & b183b9ae3cc60921 & late\_degradation & 29.000 &  & 6.000 & -1.000 & -1.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.020 & leaky\_relu & 7 & e5949be17852bbe3 & late\_degradation & 29.000 &  & 7.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.030 & leaky\_relu & 3 & 05916c5b71716e68 & late\_degradation & 14.000 &  & 2.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.030 & leaky\_relu & 6 & 70d4be010e6bc1e7 & late\_degradation & 15.000 &  & 2.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.030 & leaky\_relu & 2 & 876e83f7d1a88ff3 & late\_degradation & 14.000 &  & 2.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.030 & leaky\_relu & 1 & d57097df616f6ede & late\_degradation & 14.000 &  & 1.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.030 & leaky\_relu & 9 & e65c8b7453003e86 & late\_degradation & 15.000 &  & 3.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.030 & leaky\_relu & 7 & ec4d1b0b1a78f81c & late\_degradation & 14.000 &  & 2.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 7 & 15ce1a88f4c27928 & late\_collapse & 23.000 & 24.000 & 2.000 & 0.000 &  & 0.000 & 3.000 \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 6 & 2dd17b1b82342c1b & late\_collapse & 20.000 & 21.000 & 1.000 & 0.000 & 0.000 & 0.000 & 2.000 \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 5 & 50ed0bdb287561fe & late\_collapse & 21.000 & 22.000 & 2.000 & 0.000 &  & 0.000 & 3.000 \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 3 & 5149b4f8fe99c204 & late\_collapse & 20.000 & 20.000 & 1.000 & 0.000 &  & 1.000 & 1.000 \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 1 & 6b2a57c6850646ca & late\_collapse & 21.000 & 21.000 & 3.000 & 0.000 &  & 0.000 & 3.000 \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 4 & 8e4d1402aec828c9 & late\_collapse & 23.000 & 24.000 & 2.000 & 0.000 &  & 0.000 & 3.000 \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 9 & 9af973a091185b32 & late\_collapse & 18.000 & 25.000 & 1.000 & 0.000 &  & 0.000 & 8.000 \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 10 & acbfd020a9eb8a8e & late\_collapse & 22.000 & 23.000 & 1.000 & -1.000 & -1.000 & 0.000 & 2.000 \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 8 & be4a8098032a9c4d & late\_collapse & 19.000 & 21.000 & 0.000 & 17.000 &  & 0.000 & 2.000 \\
+0 & mnist & mlp2 & 128 & 0.030 & relu & 2 & ca54f44737624957 & late\_collapse & 25.000 & 25.000 & 7.000 & 0.000 &  & 0.000 & 7.000 \\
+0 & mnist & mlp2 & 128 & 0.050 & leaky\_relu & 9 & 6a846c448ab92bac & late\_degradation & 4.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 2 & 022674a970e78789 & late\_degradation & 8.000 &  & 1.000 & 0.000 &  & 2.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 9 & 0d059b5f667147f8 & late\_degradation & 9.000 &  & 0.000 & 2.000 &  & 5.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 10 & 37a6b9b4a98649ec & late\_degradation & 8.000 &  & -2.000 & -17.000 &  & 5.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 8 & 37b56af311504783 & late\_degradation & 7.000 &  & -1.000 & 2.000 &  & 2.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 3 & 4e6f54f7ed819846 & late\_degradation & 8.000 &  & 0.000 & 2.000 &  & 3.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 4 & 6282a7d95344aa97 & late\_degradation & 8.000 &  & -1.000 & -13.000 &  & 5.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 6 & 795d546c00b9a565 & late\_collapse & 8.000 & 28.000 & -2.000 & 5.000 &  & 4.000 & 18.000 \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 5 & 9d216d1b35329cdc & late\_degradation & 8.000 &  & -2.000 & 6.000 &  & 6.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 1 & be41287654eacfd0 & late\_degradation & 9.000 &  & -1.000 & 0.000 &  & 6.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & relu & 7 & ccbd031a90f10c62 & late\_collapse & 6.000 & 38.000 & -4.000 & 0.000 &  & 0.000 & 28.000 \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 8 & 056d4ad1094ad3bd & late\_degradation & 7.000 &  & -1.000 & 5.000 &  & 5.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 5 & 216d061928782456 & late\_degradation & 7.000 &  & -1.000 & 5.000 &  & 5.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 7 & 2216d6bcc869ea78 & late\_degradation & 5.000 &  & 0.000 & 3.000 & -27.000 & 3.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 2 & 28939424423e5f17 & late\_degradation & 10.000 &  & 0.000 & 8.000 &  & 7.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 9 & 48454f52bfa03a1a & late\_degradation & 11.000 &  & 0.000 & 9.000 & -27.000 & 9.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 10 & 4d6cbf0f1f077326 & late\_degradation & 14.000 &  & -1.000 & 12.000 &  & 12.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 4 & 713c234dc6579bc9 & late\_degradation & 6.000 &  & 0.000 & 1.000 &  & 4.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 1 & d520d4e492bceb32 & late\_degradation & 7.000 &  & -1.000 & 5.000 &  & 5.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 6 & d6f647c08237585b & late\_degradation & 7.000 &  & -1.000 & 5.000 &  & 5.000 &  \\
+0 & mnist & mlp2 & 128 & 0.050 & tanh+relu & 3 & ec64df940a2134f4 & late\_degradation & 8.000 &  & -1.000 & 6.000 & -6.000 & 6.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.010 & relu & 24 & 456fc908b684bbbf & late\_collapse & 8.000 & 40.000 &  & -32.000 &  & -32.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.010 & relu & 15 & a15f3d7b1f283fab & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 13 & 1b26bc08dcab5f88 & late\_degradation & 7.000 & 8.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 5 & 29be2eadfc9dbb5d & late\_collapse & 3.000 & 40.000 & 0.000 & 0.000 & 0.000 &  & 37.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 22 & 35e3109a22b17764 & late\_degradation & 7.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 18 & 5782265f9584b4ff & late\_degradation & 3.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 23 & 5782d9a0c54f7d8d & late\_degradation & 12.000 & 13.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 28 & 6e19fccfdf55847a & late\_degradation & 9.000 & 11.000 & 0.000 & 0.000 & 0.000 &  & 2.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 8 & 8366d1590f645130 & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 9 & 854fa3c1b9134979 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  &  & 0.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 25 & 914e986555b948a7 & late\_degradation & 5.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 7 & 95aff1f2895a04a3 & late\_degradation & 5.000 & 5.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 26 & 9fdd270209895b78 & late\_degradation & 2.000 & 3.000 & 0.000 & 0.000 &  &  & 1.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 14 & b186fa6a6cddeaa3 & late\_degradation & 2.000 & 2.000 & 0.000 & 0.000 &  &  & 0.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 24 & b2f521d515112ee6 & late\_degradation & 11.000 & 13.000 & 0.000 & 0.000 & 0.000 &  & 2.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 3 & bdb34bfb49bfa037 & late\_degradation & 4.000 & 39.000 & -4.000 & -4.000 & -4.000 &  & 31.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 27 & c86e123bc6a75ea1 & late\_degradation & 2.000 & 2.000 & 0.000 & 0.000 &  &  & 0.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 2 & cfa3c74695fa80b6 & late\_degradation & 4.000 & 4.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 10 & d98a54732d438637 & late\_degradation & 4.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 17 & dc6517d1ccf83a34 & late\_degradation & 2.000 & 5.000 & 0.000 & 0.000 &  &  & 3.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 15 & e2957579866af062 & late\_degradation & 4.000 & 19.000 & 0.000 & 0.000 & 0.000 &  & 15.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 20 & f23dfc54ebc26812 & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 1 & f88730d8c974feb1 & late\_degradation & 2.000 & 6.000 & 0.000 & 0.000 &  &  & 4.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 30 & fb952a4d2cf75dd9 & late\_degradation & 4.000 & 11.000 & 0.000 & 0.000 & 0.000 &  & 7.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & leaky\_relu & 29 & fbe84c5fc72129fb & late\_degradation & 4.000 & 4.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 19 & 04bb669089a13224 & late\_collapse & 12.000 & 12.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 21 & 0d28b5795d223665 & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 13 & 268078f94d7d1b5e & late\_collapse & 16.000 & 16.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 4 & 2900d0bf844f727a & late\_collapse & 9.000 & 9.000 &  & 6.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 6 & 2b9c1413d4b26058 & late\_collapse & 4.000 & 4.000 &  & 0.000 & -11.000 & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 29 & 360781da6072512d & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 24 & 37c591d159648a8c & late\_collapse & 11.000 & 11.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 18 & 551b39b5fbf69b41 & late\_collapse & 8.000 & 8.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 30 & 5db704c33d9dc873 & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 25 & 663efa24ccb4fb89 & late\_collapse & 7.000 & 7.000 &  & 4.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 28 & 6cf609e0c08d3990 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 23 & 7f76cd3aab2a84c7 & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 14 & 9a7e5b37aac30ab5 & late\_collapse & 12.000 & 12.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 16 & a63028b00e736917 & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 12 & aa633d243db0becb & late\_collapse & 14.000 & 14.000 &  & 10.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 26 & b679bed5f6c32d8e & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 22 & b9cb369b0b6f416a & late\_collapse & 11.000 & 11.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 10 & bce3da514e985599 & late\_collapse & 5.000 & 5.000 &  & 3.000 &  & 2.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 27 & c46cba0bd04680fb & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 9 & c64d3b5a96e5fa13 & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 7 & ce0304117e9964b5 & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 2 & ce3b3c6328be31dc & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 20 & d693a6172e976248 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 5 & d9b4d189e249c317 & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 1 & dde7e5fe118718cb & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 8 & e12dd7b3d9483086 & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 3 & f068832b226eaf99 & late\_collapse & 2.000 & 2.000 &  & 0.000 & -33.000 & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 17 & f57c27e5b079187a & late\_collapse & 15.000 & 15.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & relu & 15 & f8176b3a00dc0658 & late\_collapse & 13.000 & 13.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & tanh+relu & 23 & 30fb8007f89eeb8b & late\_collapse & 26.000 & 33.000 &  & -7.000 & -1.000 & 25.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & tanh+relu & 24 & 85134bdb23662484 & late\_collapse & 19.000 & 25.000 &  & 16.000 &  & 18.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & tanh+relu & 13 & 8f14264fa4195d4e & late\_collapse & 28.000 & 28.000 &  & 26.000 &  & 27.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.020 & tanh+relu & 1 & 9b288b143af60b0f & late\_collapse & 26.000 & 26.000 &  & 6.000 &  & 25.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.030 & tanh+relu & 9 & 134eab6c79e3c032 & late\_degradation & 9.000 & 22.000 &  & 6.000 &  & 8.000 &  \\
+2 & cifar10 & cfg1 & 64 & 0.030 & tanh+relu & 1 & ebb6f0bbaf76a36a & late\_collapse & 3.000 & 1.000 &  & 0.000 & -11.000 & 2.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 16 & 02b5d0857a5cf44f & late\_degradation & 24.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 17 & 075a7c57c79242c4 & late\_degradation & 14.000 & 25.000 & -10.000 & -10.000 & -10.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 29 & 165a602ac9f2604d & late\_degradation & 33.000 & 38.000 & 0.000 & 0.000 & 0.000 &  & 5.000 \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 5 & 306c6ccde13d224f & late\_collapse & 31.000 & 40.000 & -7.000 & -7.000 & -7.000 &  & 2.000 \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 19 & 37c2c396aa75e966 & late\_degradation & 28.000 & 36.000 & -7.000 & -7.000 & -7.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 10 & 7ee29d11b6a0cbd1 & late\_degradation & 25.000 &  & -15.000 & -15.000 & -15.000 &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 3 & ac99395a1d80f9d1 & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 30 & b2e04558261f4343 & late\_degradation & 33.000 &  & -6.000 & -6.000 & -6.000 &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 1 & c473df4c80fb2d5b & late\_degradation & 35.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 18 & cbd279dec729ea39 & late\_degradation & 33.000 &  &  & -5.000 &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 27 & e2f610bac42de54b & late\_degradation & 29.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 22 & e558457cec9668b4 & late\_degradation & 14.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 28 & ea7b56e2d2eae76a & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & leaky\_relu & 20 & f7ab1caec05d6842 & late\_degradation & 26.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & relu & 11 & 370d47259502430c & late\_collapse & 35.000 & 40.000 &  & -5.000 &  & -5.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & relu & 29 & 7829061c4271df3f & late\_degradation & 29.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & relu & 10 & 7df1c8d92ec36343 & late\_degradation & 39.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & relu & 14 & 91e0d243cdb736c7 & late\_degradation & 37.000 & 37.000 & -1.000 & 35.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg1 & 128 & 0.010 & relu & 2 & 97d231488a3d310c & late\_collapse & 27.000 & 40.000 &  & -13.000 &  & -13.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.010 & relu & 3 & deb6b2fc23fe5143 & late\_collapse & 14.000 & 40.000 & -26.000 & 12.000 &  & -26.000 & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.010 & relu & 7 & f2a5bc66c2f224c7 & late\_collapse & 39.000 & 39.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 4 & 04e2f96897cd3f81 & late\_degradation & 2.000 & 2.000 & -1.000 & 0.000 &  &  & -1.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 7 & 1362e89dbd83a668 & late\_degradation & 3.000 & 5.000 & -2.000 & -2.000 & -2.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 30 & 158f7017b6235efa & late\_degradation & 3.000 & 8.000 & 0.000 & 0.000 & 0.000 &  & 5.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 29 & 1b0007dcc391dee0 & late\_degradation & 6.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 5 & 280bb36914775d06 & late\_degradation & 2.000 & 3.000 & 0.000 & 0.000 &  &  & 1.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 18 & 2ecd59506ab1067c & late\_degradation & 5.000 & 7.000 & 0.000 & 0.000 & 0.000 &  & 2.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 25 & 3cc3637d5b89f104 & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 22 & 6971348305b67931 & late\_degradation & 4.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 26 & 6f43274ab9e86b8d & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 19 & 7829084e4063512f & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 21 & 78f237bf6e0b1658 & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 11 & 82ee3a9cc97faf27 & late\_degradation & 5.000 & 5.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 28 & 868c5c4badadb533 & late\_degradation & 4.000 & 4.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 23 & 86f9f68f07d07776 & late\_degradation & 2.000 &  & 0.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 24 & 8de1aab92f46ca17 & late\_degradation & 5.000 & 5.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 12 & 968e65426b23d032 & late\_degradation & 2.000 &  & 0.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 15 & a085f2a54093adbb & late\_degradation & 2.000 & 6.000 & 0.000 & 0.000 &  &  & 4.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 1 & c445018ad203fe32 & late\_degradation & 5.000 & 6.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 6 & ce3c8eeda773dbbb & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 3 & d26471397981a654 & late\_degradation & 2.000 &  & 0.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 8 & d6d09c1d28319a25 & late\_degradation & 3.000 & 6.000 & -1.000 & 0.000 & -1.000 &  & 2.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 17 & d72c5d2030ed1181 & late\_degradation & 3.000 & 4.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & leaky\_relu & 16 & fa551720ad972f06 & late\_degradation & 5.000 & 5.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 26 & 01beb5f2b0d2e97f & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 25 & 14f7bb9af9cda36a & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 4 & 16b47c81025d1f33 & late\_collapse & 9.000 & 9.000 &  & 4.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 24 & 2bb212d1a09e0a39 & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 22 & 2fd5ae6377bd01a3 & late\_collapse & 8.000 & 9.000 &  & -1.000 &  & -1.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 14 & 31d271e96e175abe & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 19 & 45ddd21ffe972a71 & late\_collapse & 9.000 & 9.000 &  & 0.000 & -1.000 & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 29 & 4a0fa2e1677a8f96 & late\_collapse & 5.000 & 6.000 &  & 0.000 &  & -1.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 3 & 5772c80e6d5ebb3a & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 6 & 5804b480a12cb1ed & late\_collapse & 15.000 & 15.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 12 & 5c9bb210d712ba30 & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 16 & 5d73c1074db6a134 & late\_collapse & 12.000 & 12.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 11 & 845719b31b2e1589 & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 28 & 89b83d801fb4a805 & late\_collapse & 3.000 & 3.000 &  & 1.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 8 & 8b5cefe080fb2337 & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 9 & 8ce11a1f68de38d8 & late\_collapse & 10.000 & 10.000 &  & 7.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 23 & 8fd55be8e8ee7e24 & late\_collapse & 6.000 & 6.000 &  & 2.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 7 & 92975c0c635248be & late\_collapse & 14.000 & 14.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 21 & a4475d997be73fae & late\_collapse & 12.000 & 16.000 &  & -4.000 &  & -4.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 17 & b5ef925e0d223133 & late\_collapse & 12.000 & 13.000 &  & 9.000 &  & -1.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 1 & bd609c33cc4da830 & late\_collapse & 12.000 & 13.000 &  & 1.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 5 & be38ab2a42f18f34 & late\_collapse & 13.000 & 13.000 &  & 0.000 & -18.000 & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 13 & c044d3bd60d17c8f & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 30 & d87b41516da60bb8 & late\_collapse & 14.000 & 14.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 20 & e38124bd2abdcd9d & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 2 & e51c03d610690389 & late\_collapse & 14.000 & 14.000 &  & 12.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 10 & f6adddeb7823cd3a & late\_collapse & 14.000 & 14.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 15 & f73fca5dabf1c3ed & late\_collapse & 11.000 & 11.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 27 & f95d63304e04b3e0 & late\_collapse & 6.000 & 1.000 &  & 0.000 &  & 5.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & relu & 18 & fc309ac47d1865c2 & late\_collapse & 13.000 & 13.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & tanh+relu & 1 & 70e2805222cfe9cc & late\_collapse & 25.000 & 40.000 &  & 23.000 &  & 24.000 &  \\
+2 & cifar10 & cfg1 & 128 & 0.020 & tanh+relu & 7 & cc697c54fc7d41f2 & late\_collapse & 40.000 & 40.000 &  & 30.000 &  & 39.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 20 & 024c05c1d4ae4a12 & late\_degradation & 12.000 &  & -14.000 & -18.000 & -18.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 3 & 0bdb00c09778bba1 & late\_degradation & 22.000 & 22.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 18 & 0e76e45d7ec39739 & late\_degradation & 22.000 & 28.000 & -5.000 & -6.000 & -6.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 13 & 106f33082372ca6c & late\_degradation & 7.000 & 17.000 & -10.000 & -10.000 & -10.000 & -10.000 & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 23 & 15e3e2ede7b081db & late\_degradation & 17.000 & 17.000 & -11.000 & -11.000 & -11.000 &  & -11.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 15 & 2c7ed51dadbcf9a2 & late\_degradation & 13.000 & 18.000 & 0.000 & 0.000 & 0.000 &  & 5.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 19 & 2e6357939a43af46 & late\_degradation & 14.000 &  & -6.000 & -6.000 & -6.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 21 & 364d5d20f9aa75f5 & late\_degradation & 10.000 &  & -17.000 & -18.000 & -18.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 9 & 44edd1113654a8af & late\_degradation & 21.000 & 22.000 & -1.000 & -1.000 & -1.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 26 & 4f0980b0b5b8fa9c & late\_degradation & 19.000 & 25.000 & -6.000 & -6.000 & -6.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 6 & 5a357166149d27a2 & late\_degradation & 22.000 &  & -3.000 & -5.000 & -5.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 12 & 724367ebc435c1b7 & late\_degradation & 17.000 & 21.000 & -4.000 & -4.000 & -4.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 17 & 805cd3ff8bd2bcb0 & late\_degradation & 17.000 &  & -8.000 & -8.000 & -8.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 22 & 8778c5ef5c14eaa0 & late\_degradation & 22.000 & 27.000 & 0.000 & 0.000 & 0.000 &  & 5.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 28 & 8ef172a36d5dc92a & late\_degradation & 17.000 & 26.000 & -9.000 & -9.000 & -9.000 & -9.000 & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 1 & 9ffa04342b15efb7 & late\_degradation & 25.000 & 31.000 & -1.000 & -1.000 & -1.000 &  & 5.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 14 & a331e10f6171afc5 & late\_degradation & 12.000 &  & -16.000 & -16.000 & -16.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 4 & ae137047f2b2eab0 & late\_degradation & 16.000 & 29.000 & -10.000 & -10.000 & -10.000 &  & 3.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 30 & b4693fd234955b8f & late\_degradation & 8.000 & 21.000 & -13.000 & -13.000 & -13.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 11 & bbf0e0f66d6f46ae & late\_degradation & 21.000 &  & -4.000 & -4.000 & -4.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 16 & ca2ec5e1a0a505eb & late\_degradation & 8.000 &  & -17.000 & -17.000 & -17.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 27 & cfbb2e76ec03e5e7 & late\_degradation & 17.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 7 & d0e87d57c851ddc5 & late\_collapse & 21.000 & 21.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 8 & d6d405cef22aaa44 & late\_degradation & 17.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 29 & d6efdbe482e9762d & late\_degradation & 11.000 & 19.000 & -8.000 & -8.000 & -8.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 10 & de24647830988da1 & late\_degradation & 15.000 &  & -6.000 & -5.000 & -6.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 24 & e123b83e5d05015e & late\_degradation & 18.000 & 19.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 2 & e9a77d3ed44f74ae & late\_degradation & 16.000 & 17.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 25 & f6fa9e490cbd8251 & late\_degradation & 22.000 & 24.000 & -1.000 & -1.000 & -1.000 &  & 1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & leaky\_relu & 5 & f7e5622a078533eb & late\_degradation & 24.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 26 & 1c0ff6e04f152d36 & late\_degradation & 21.000 & 21.000 & -15.000 & 12.000 &  & 0.000 & -15.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 11 & 1d7d7977bdd27cc8 & late\_collapse & 39.000 & 40.000 & 0.000 & -1.000 &  & -1.000 & 1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 16 & 49f045eccc55c561 & late\_collapse & 39.000 & 39.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 14 & 641e4ab376de7b33 & late\_collapse & 36.000 & 36.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 25 & 703f12e0155797ff & late\_collapse & 32.000 & 32.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 8 & 812b258e776e6cbe & late\_degradation & 30.000 & 30.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 22 & 932402261e8af95a & late\_collapse & 21.000 & 25.000 & -9.000 & 19.000 &  & 0.000 & -5.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 5 & aab5300fc190b361 & late\_collapse & 25.000 & 34.000 & -10.000 & -9.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 23 & aadf0955ebc76391 & late\_degradation & 34.000 & 34.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 7 & c4e334d66c196933 & late\_collapse & 33.000 & 33.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 21 & def15416449b8be3 & late\_collapse & 5.000 & 28.000 & -16.000 & -23.000 &  & 0.000 & 7.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & relu & 19 & e5bc254711106180 & late\_collapse & 28.000 & 28.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.010 & tanh & 27 & 77cea53c70627c67 & late\_degradation & 4.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 28 & 12dd966261b4ddbf & late\_degradation & 2.000 & 4.000 & 0.000 & 0.000 &  &  & 2.000 \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 18 & 134398f5b23f3ab8 & late\_degradation & 2.000 &  & 0.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 9 & 17a4b31141061f5a & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 26 & 2bd8c86f63303d6d & late\_degradation & 2.000 & 3.000 & 0.000 & 0.000 &  &  & 1.000 \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 11 & 560e11fb80593013 & late\_degradation & 3.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 2 & 83c4ae43e7395e13 & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 13 & b0b4ad0316181bbd & late\_degradation & 4.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 16 & b68f424ef7355fe6 & late\_degradation & 3.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 23 & d66382fc98649bd6 & late\_degradation & 3.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 8 & d727d75e39babdf5 & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 7 & e3bb14490bfefe54 & late\_degradation & 4.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 5 & e445de975e158de6 & late\_degradation & 2.000 & 2.000 & 0.000 & 0.000 &  &  & 0.000 \\
+2 & cifar10 & cfg1 & 256 & 0.020 & leaky\_relu & 20 & ff5d27c5c33db807 & late\_degradation & 3.000 & 7.000 & 0.000 & 0.000 & 0.000 &  & 4.000 \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 18 & 06d183d791694792 & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 26 & 0bd5d26fe34cb91b & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 20 & 0e8448d0f473d2fd & late\_collapse & 8.000 & 8.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 2 & 27c06e54c802b089 & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 15 & 2b832ac1993830cd & late\_collapse & 15.000 & 15.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 27 & 379f00f72d64af5c & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 3 & 3d3b46d14296817a & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 17 & 4240cc74c12959bf & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 14 & 43f3f180ff2f1d8e & late\_collapse & 8.000 & 8.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 9 & 49e86df1aced84c4 & late\_collapse & 14.000 & 14.000 &  & 2.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 5 & 60592b9cb2701120 & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 24 & 6e567d505837b739 & late\_collapse & 8.000 & 8.000 &  & 3.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 23 & 71185dd591c3d910 & late\_collapse & 14.000 & 14.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 28 & 7208acf20adfc655 & late\_collapse & 16.000 & 17.000 &  & -1.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 22 & 7753d2c73099de6f & late\_collapse & 13.000 & 13.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 12 & 7d7b79936b44df6c & late\_collapse & 14.000 & 14.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 21 & 80daf79aed2924be & late\_collapse & 7.000 & 7.000 &  & 2.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 6 & 8c4814e48e731ecd & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 30 & 9b3b452f43e62fa4 & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 4 & a305b697b66447bf & late\_collapse & 9.000 & 9.000 &  & 4.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 7 & a4b8dba3f46a0b8e & late\_collapse & 12.000 & 12.000 &  & 7.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 29 & b58e5db2d6da8bf6 & late\_collapse & 6.000 & 15.000 &  & -9.000 &  & -9.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 13 & b6afa0d997d4e92b & late\_collapse & 14.000 & 14.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 25 & b96dd75b9440852a & late\_collapse & 11.000 & 11.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 11 & c6fb8431d2c7c289 & late\_collapse & 11.000 & 11.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 19 & c7d4e6a68b22f9c1 & late\_collapse & 15.000 & 15.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 10 & dc765cae4d5b937a & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 1 & de4063b6607fcd6c & late\_collapse & 5.000 & 9.000 &  & 3.000 &  & -4.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 8 & df418209cee0d3e3 & late\_collapse & 8.000 & 8.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & relu & 16 & ff944179bd352320 & late\_collapse & 16.000 & 16.000 &  & 0.000 &  & 12.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & tanh & 1 & 66aeb96724ecd672 & late\_degradation & 16.000 & 5.000 &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & tanh+relu & 3 & 2c3175ca5e1cd13e & late\_collapse & 29.000 & 1.000 &  & 0.000 & 23.000 & 28.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.020 & tanh+relu & 8 & 341dc569a5a0e0f3 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 1.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.030 & relu & 4 & 9afcb1c3b47db03c & late\_collapse & 11.000 & 11.000 &  & 0.000 &  & 4.000 &  \\
+2 & cifar10 & cfg1 & 256 & 0.050 & leaky\_relu & 10 & 6e266a84e56e2325 & late\_degradation & 3.000 & 1.000 &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 64 & 0.010 & leaky\_relu & 16 & 07a0afcfa98d158b & late\_degradation & 24.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 64 & 0.010 & leaky\_relu & 10 & 552a7a7bca6a658d & late\_degradation & 3.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 64 & 0.010 & relu & 15 & a990b4a56e61af9a & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 28 & 00c2d7c3908e068f & late\_degradation & 10.000 & 11.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 24 & 11a3b0fea15bc313 & late\_degradation & 5.000 & 5.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 6 & 1ec6b2b051dfc097 & late\_degradation & 8.000 & 10.000 & -1.000 & -1.000 & -1.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 18 & 1f5b369eb421dffe & late\_degradation & 6.000 & 7.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 23 & 1f929868b67c8a28 & late\_degradation & 3.000 & 12.000 & 0.000 & 0.000 & 0.000 &  & 9.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 11 & 34b7f193a8267e23 & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 5 & 494cc9c14572c1b8 & late\_degradation & 2.000 & 5.000 & 0.000 & 0.000 &  &  & 3.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 19 & 5d5990ff819883ab & late\_collapse & 4.000 & 4.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 1 & 5eac1e356151cdb4 & late\_degradation & 2.000 &  & 0.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 20 & 68202c9090026b07 & late\_degradation & 7.000 & 38.000 & 0.000 & 0.000 & 0.000 &  & 31.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 21 & 6d631fd8c8cfd3ea & late\_degradation & 5.000 & 6.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 25 & 6d64f75ff90497a6 & late\_degradation & 10.000 & 12.000 & 0.000 & 0.000 & 0.000 &  & 2.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 10 & 6eaf5467f378d276 & late\_degradation & 3.000 &  & -1.000 & -1.000 & -1.000 &  &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 8 & 84f5de140c499721 & late\_degradation & 9.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 29 & 9a3073705948b5b2 & late\_degradation & 7.000 & 15.000 & 0.000 & 0.000 & 0.000 &  & 8.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 9 & a4bbc113ca7606dc & late\_collapse & 4.000 & 8.000 & 0.000 & 0.000 & 0.000 &  & 4.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 7 & b862e5771257fe3a & late\_degradation & 11.000 & 11.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 2 & bb4f8d3b79a9d823 & late\_degradation & 5.000 & 6.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 16 & c2b52e1973ef67b8 & late\_degradation & 2.000 & 2.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 17 & cf37d591df197b3d & late\_degradation & 5.000 & 10.000 & 0.000 & 0.000 & 0.000 &  & 5.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 22 & d44b975967c9e4ad & late\_degradation & 2.000 & 23.000 & 0.000 & 0.000 &  &  & 21.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 26 & d525990b05ca5789 & late\_degradation & 9.000 & 10.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 12 & d814828d8fce73b4 & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 13 & d8b0c856c76cb459 & late\_degradation & 5.000 & 5.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 3 & f546f00fc4fc2c76 & late\_degradation & 4.000 & 10.000 & -5.000 & -5.000 & -5.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 30 & f6018789d66aeb7c & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & leaky\_relu & 27 & f992c825b047bf24 & late\_degradation & 5.000 & 5.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 17 & 0131c2b2fccecdf7 & late\_collapse & 2.000 & 8.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 10 & 017aa5e412c0de9c & late\_collapse & 3.000 & 7.000 &  & -4.000 &  & -4.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 1 & 12a0580624a65bfa & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 3 & 1a85afd65d66789c & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 24 & 1b3ab12110a062e5 & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 22 & 283c3fbd0bb5f067 & late\_collapse & 5.000 & 5.000 &  & 3.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 25 & 2bea078c6b45494c & late\_collapse & 5.000 & 1.000 &  & 0.000 &  & 4.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 20 & 344364a1b775d7e9 & late\_collapse & 6.000 & 6.000 &  & 3.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 30 & 3975db9522b60322 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 18 & 4c03acd9bc8ea9a4 & late\_collapse & 19.000 & 19.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 16 & 5182354a96e038ce & late\_collapse & 2.000 & 2.000 &  & 0.000 & -12.000 & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 11 & 51848add523f4e35 & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 29 & 66f40274d991e368 & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 5 & 6a8d3f3ce185d2ce & late\_collapse & 8.000 & 8.000 &  & -7.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 2 & 6a8f94cf9ce4e835 & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 28 & 7e5e20cdb155aa91 & late\_collapse & 4.000 & 4.000 &  & 2.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 14 & 80ca15c9f15cc650 & late\_collapse & 12.000 & 12.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 8 & 867a98d7f3e0897b & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 26 & 8eb685c9fb34d923 & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 7 & 99d51fbc3c026050 & late\_collapse & 3.000 & 3.000 &  & 0.000 & -6.000 & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 27 & b59cf09fd487972a & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 9 & ca22f46d91d6e102 & late\_collapse & 5.000 & 5.000 &  & 3.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 15 & ca2652a121818a79 & late\_collapse & 8.000 & 8.000 &  & 5.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 6 & e3315c936c272479 & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 19 & eec6e8297d8cc59d & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & relu & 12 & f9954e13da00c1fa & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & tanh+relu & 3 & 2cb2d48f3f4971d4 & late\_collapse & 4.000 & 4.000 &  & -1.000 &  & 3.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & tanh+relu & 16 & e5e0b5d01fe6d77e & late\_degradation & 9.000 &  &  & 4.000 & 4.000 & 8.000 &  \\
+2 & cifar10 & cfg2 & 64 & 0.020 & tanh+relu & 28 & f37053c52065e35d & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 11 & 2682b5fa89c58505 & late\_degradation & 6.000 & 24.000 & -19.000 & -18.000 & -18.000 &  & -1.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 28 & 2f131935397e6159 & late\_degradation & 24.000 & 32.000 & -8.000 & -8.000 & -8.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 23 & 4e1ee53649a5f1a0 & late\_degradation & 34.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 17 & 4ea1f0e32ec51017 & late\_degradation & 15.000 & 16.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 19 & 4f60f1ddb957346d & late\_degradation & 24.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 8 & 5b42f2b971bf3923 & late\_degradation & 26.000 &  & -4.000 & -4.000 & -4.000 &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 22 & 662ecdd4d4f2b887 & late\_degradation & 25.000 &  & -15.000 & -15.000 & -15.000 &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 16 & 6de7ca70111ffb70 & late\_degradation & 33.000 & 39.000 & -6.000 & -6.000 & -6.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 14 & 7e78ff3c7a2c9eb2 & late\_degradation & 30.000 & 31.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 4 & 85996f0c30f6fe17 & late\_degradation & 27.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 18 & 9942700fe9b159be & late\_degradation & 34.000 &  & -3.000 & -3.000 & -3.000 &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 13 & 9c0d6c5b808e849b & late\_degradation & 33.000 & 33.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 9 & a50e1fc547c1887c & late\_degradation & 25.000 & 28.000 & -2.000 & -2.000 & -2.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 12 & c142b51560936014 & late\_degradation & 37.000 &  & -2.000 & -2.000 & -2.000 &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 15 & cea43e7839137821 & late\_degradation & 25.000 & 37.000 & -9.000 & -9.000 & -9.000 &  & 3.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 27 & e7e78f6581758d84 & late\_degradation & 21.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 20 & ee3d0399c2b12cd1 & late\_collapse & 5.000 & 40.000 & -35.000 & -35.000 & -35.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & leaky\_relu & 29 & ff1c64264534ab2a & late\_degradation & 39.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & relu & 23 & 011ef6c292c5b056 & late\_collapse & 37.000 & 37.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & relu & 6 & 20de0bfa729f6e53 & late\_collapse & 40.000 & 40.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & relu & 28 & 482e0b19cf00292b & late\_collapse & 35.000 & 40.000 &  & -5.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & relu & 10 & 78540be2ed41b624 & late\_collapse & 40.000 & 40.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & relu & 14 & 8b11c6bff39718b0 & late\_collapse & 38.000 & 38.000 & 0.000 & 35.000 &  & 0.000 & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & relu & 20 & dc91ed1b9ea96443 & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & relu & 16 & f52c583b6c118b26 & late\_collapse & 36.000 & 36.000 & 3.000 & 0.000 &  & 0.000 & 3.000 \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 15 & 046f7832617839cd & late\_degradation & 16.000 & 38.000 &  & -21.000 &  & 10.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 8 & 097530c00c519c2b & late\_degradation & 8.000 & 21.000 &  & 5.000 &  & 7.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 22 & 09b8234cbbac7ff7 & late\_collapse & 21.000 & 38.000 &  & 19.000 &  & 20.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 14 & 0bb35de12c3c0612 & late\_degradation & 11.000 &  &  & 8.000 &  & 10.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 20 & 0cf5758302e3147d & late\_degradation & 16.000 & 35.000 &  & 14.000 &  & 13.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 2 & 101372b2e3e31bc9 & late\_degradation & 11.000 &  &  & 8.000 &  & 10.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 27 & 1eacb838b4320360 & late\_degradation & 22.000 &  &  & -6.000 &  & 20.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 3 & 28a3518814bccc7e & late\_degradation & 9.000 & 38.000 &  &  &  & 7.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 1 & 45532faaa99ca4f0 & late\_collapse & 8.000 & 8.000 &  & 6.000 &  & 7.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 4 & 4ed05a82f566a087 & late\_collapse & 5.000 & 27.000 &  & 2.000 &  & 4.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 11 & 640b75f4c2793dc9 & late\_collapse & 12.000 & 12.000 &  & 0.000 &  & 10.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 19 & 6498bff15445ba51 & late\_collapse & 24.000 & 38.000 &  &  &  & 21.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 24 & 6c530c5627facdb9 & late\_degradation & 7.000 & 27.000 &  & -4.000 &  & 6.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 23 & 7660ef4172323684 & late\_collapse & 8.000 & 21.000 &  & 6.000 &  & 7.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 30 & 7c2525306b25d0f8 & late\_collapse & 34.000 & 40.000 &  &  &  & 32.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 10 & 7c9b54c9f352ee7e & late\_degradation & 12.000 & 24.000 &  & 9.000 &  & 11.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 16 & 7cd6f0f6feb817d4 & late\_degradation & 13.000 & 20.000 &  & 11.000 &  & 12.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 17 & a2c85dc4d3fcc287 & late\_degradation & 12.000 &  &  & 0.000 &  & 10.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 7 & b7bb5a9f4da5e412 & late\_collapse & 33.000 & 33.000 &  & 14.000 &  & 30.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.010 & tanh+relu@hidden & 13 & dabf1d06164ae663 & late\_degradation & 15.000 & 17.000 &  & 13.000 & -24.000 & 13.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 17 & 12fab7b58815ebe6 & late\_degradation & 6.000 & 6.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 9 & 19527bf8dbc7f289 & late\_degradation & 3.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 11 & 1a73c76512f61ae8 & late\_degradation & 2.000 & 2.000 & 0.000 & 0.000 &  &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 16 & 203fdd8e44ed264d & late\_degradation & 4.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 18 & 2080c580ae6bcfaf & late\_degradation & 2.000 &  & 0.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 3 & 21e33fbf9b8a3167 & late\_degradation & 3.000 & 10.000 & 0.000 & 0.000 & 0.000 &  & 7.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 20 & 32b0c95e012ea4e4 & late\_degradation & 6.000 & 12.000 & 0.000 & 0.000 & 0.000 &  & 6.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 25 & 36a310f8a7217d57 & late\_degradation & 4.000 & 5.000 & -1.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 13 & 40d37a692b855a7a & late\_degradation & 2.000 &  & 0.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 5 & 57375bb7471f144d & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 12 & 58783a2c42f0c601 & late\_degradation & 3.000 & 6.000 & 0.000 & 0.000 & 0.000 &  & 3.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 23 & 6c31b4d04819fbfd & late\_degradation & 2.000 & 4.000 & 0.000 & 0.000 &  &  & 2.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 29 & 8ab8c660a804be8b & late\_degradation & 3.000 & 17.000 & 0.000 & 0.000 & 0.000 &  & 14.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 22 & 8f53a9bae14a3216 & late\_degradation & 2.000 & 2.000 & 0.000 & 0.000 &  &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 1 & 8f6fb8554522b401 & late\_degradation & 3.000 & 3.000 & -1.000 & 0.000 & 0.000 & 0.000 & -1.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 26 & 9c33bccdf918f76a & late\_degradation & 4.000 & 6.000 & 0.000 & 0.000 & 0.000 &  & 2.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 7 & b1c271c85aa74d73 & late\_degradation & 5.000 & 5.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & leaky\_relu & 21 & bb89824c42d5f123 & late\_degradation & 2.000 & 2.000 & 0.000 & 0.000 &  &  & 0.000 \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 24 & 0b027b8f7b4cdd2e & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 26 & 14649fb4345abbe8 & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 5 & 23fd8d907fa3133f & late\_collapse & 7.000 & 7.000 &  & 3.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 22 & 303e7abe8e06cb44 & late\_collapse & 8.000 & 9.000 &  & 6.000 &  & -1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 15 & 32033df49212749a & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 12 & 3454f2ce9ea735b3 & late\_collapse & 8.000 & 8.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 8 & 50f77810ccc12560 & late\_collapse & 10.000 & 10.000 &  & 7.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 18 & 5324c081881938f1 & late\_collapse & 12.000 & 12.000 &  & 0.000 &  & 7.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 25 & 611daa2e77f1e079 & late\_collapse & 18.000 & 18.000 &  & 14.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 6 & 655f24a96977229a & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 1 & 67b0d983760be3b3 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 19 & 6e585e7db4be4cc6 & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 30 & 75229e3f92037afb & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 27 & 77ad56eac09474e3 & late\_collapse & 12.000 & 12.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 28 & 78e2d70ea8ee6b92 & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 23 & 797fe8365f4f01af & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 20 & 79b0598244a7f14a & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 13 & 88359da86744b738 & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 29 & 99c7fae7281767bd & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 11 & ad98e865063e0d3e & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 17 & b1843ade5fb31b94 & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 21 & c1b42efa2b992fb5 & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 14 & c9356754315d9245 & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 10 & cbaecb0c1a75d8c9 & late\_collapse & 11.000 & 11.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 9 & dc0c456553260b5b & late\_collapse & 15.000 & 15.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 2 & e0f4cf19dda2bb3e & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 4 & e4e021933717c994 & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 16 & f0a1a6dba83e653f & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 7 & fc914e0908c24045 & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & relu & 3 & ff0ab1c0f1da86c9 & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh & 22 & b266869aa357a376 & late\_degradation & 8.000 & 5.000 &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu & 19 & 288115318ea8fe7a & late\_degradation & 38.000 & 38.000 &  & 35.000 &  & 37.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu & 10 & 5fb945deb45c66a1 & late\_collapse & 12.000 & 12.000 &  & 0.000 & 0.000 & 11.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu & 3 & c40d9ac6aa2af4a1 & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 3.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@conv & 8 & 24d608a29a4535ee & late\_collapse & 23.000 & 23.000 &  & 0.000 &  & 22.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@conv & 26 & 3f41bec071f33e96 & late\_collapse & 35.000 & 35.000 &  & 0.000 &  & 34.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 9 & 04ec188f91471f15 & late\_collapse & 3.000 & 3.000 &  & 1.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 3 & 280bcf1e3a88fd57 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 4 & 2982a99e1ace126e & late\_collapse & 3.000 & 3.000 &  & 1.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 1 & 2cddc4e23431762d & late\_collapse & 3.000 & 3.000 &  & 1.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 5 & 380b04c961082831 & late\_collapse & 4.000 & 4.000 &  & 2.000 &  & 3.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 26 & 4121f62bb87eef4a & late\_collapse & 5.000 & 5.000 &  & 3.000 &  & 4.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 14 & 45fe4d04efb2bcbb & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 8 & 49aa169a8c508b02 & late\_collapse & 5.000 & 5.000 &  & 3.000 &  & 4.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 21 & 5b893c71eb00142b & late\_collapse & 2.000 & 3.000 &  & 0.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 17 & 7d7aacdff964346e & late\_collapse & 8.000 & 8.000 &  & 5.000 & -4.000 & 7.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 27 & 80810ec55941c71d & late\_collapse & 2.000 & 3.000 &  & 0.000 & -13.000 & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 16 & 8c03080b3f9e4a31 & late\_collapse & 3.000 & 3.000 &  & 1.000 & -19.000 & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 6 & 94f0e3ce0cda5c10 & late\_collapse & 3.000 & 3.000 &  & 1.000 &  & 2.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 25 & a39f3b055b0951c7 & late\_collapse & 6.000 & 6.000 &  & 3.000 &  & 4.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 23 & a799ac420da659e1 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 24 & b1a48f694ca6603c & late\_collapse & 4.000 & 4.000 &  & 1.000 &  & 2.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 22 & d1f670e95da6069e & late\_collapse & 5.000 & 6.000 &  & 3.000 & -2.000 & 4.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 20 & e3cc1c2b65d7b340 & late\_collapse & 2.000 & 3.000 &  & 0.000 & -11.000 & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 15 & e8e8e70feb707e10 & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 2.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 18 & f02ea2bfee020b9f & late\_collapse & 2.000 & 3.000 &  & 0.000 & -5.000 & 0.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 7 & f20649c3111c9abb & late\_collapse & 3.000 & 3.000 &  & 1.000 & -1.000 & 2.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 30 & f921ad811ee11c35 & late\_collapse & 3.000 & 3.000 &  & 1.000 & -16.000 & 2.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@hidden & 2 & fe3dd189776c3b0c & late\_collapse & 2.000 & 7.000 &  & 0.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 128 & 0.030 & leaky\_relu & 8 & f64f3c407a7a501d & late\_degradation & 38.000 & 1.000 &  & 20.000 &  &  &  \\
+2 & cifar10 & cfg2 & 128 & 0.050 & leaky\_relu & 8 & 746791daf6aac1b7 & late\_degradation & 13.000 & 1.000 &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 16 & 055e4859f54982ac & late\_degradation & 12.000 &  & -11.000 & -11.000 & -11.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 30 & 0905c6c4df173dd8 & late\_degradation & 20.000 &  & -4.000 & -4.000 & -4.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 4 & 0c697bd465a58a43 & late\_degradation & 16.000 &  & -5.000 & -5.000 & -5.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 11 & 0ed3256c74f0a355 & late\_degradation & 19.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 15 & 16fdaf6c7f340a31 & late\_degradation & 17.000 & 25.000 & -8.000 & -8.000 & -8.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 1 & 2b1826185852a680 & late\_degradation & 20.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 3 & 2c19554f474ec1d6 & late\_degradation & 22.000 &  & -1.000 & -1.000 & -1.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 5 & 3c55c682f77b70ac & late\_degradation & 19.000 & 23.000 & -2.000 & -2.000 & -2.000 &  & 2.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 29 & 4270d203753ee0ea & late\_degradation & 25.000 &  & -2.000 & -2.000 & -2.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 2 & 45caa39577229155 & late\_degradation & 19.000 & 32.000 & -4.000 & -4.000 & -4.000 &  & 9.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 20 & 4d7ecb003ca8eea1 & late\_degradation & 17.000 & 21.000 & 0.000 & 0.000 & 0.000 &  & 4.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 6 & 4df52d958165f831 & late\_degradation & 14.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 22 & 52b83bf4cd918df3 & late\_degradation & 21.000 & 21.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 28 & 71b783b3f1180e59 & late\_degradation & 19.000 &  & -6.000 & -6.000 & -6.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 13 & 7697bfada6cc1af7 & late\_degradation & 26.000 &  & -1.000 & -1.000 & -1.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 19 & 83a45241a69da14d & late\_degradation & 17.000 & 22.000 & -3.000 & -3.000 & -3.000 &  & 2.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 9 & 89845f6a8f4fbcb8 & late\_degradation & 14.000 & 21.000 & -7.000 & -7.000 & -7.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 8 & a2c1171d2a9c15ef & late\_degradation & 15.000 & 19.000 & -4.000 & -4.000 & -4.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 18 & ab63efa77ac91c8e & late\_degradation & 20.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 14 & b83880321d52ca42 & late\_degradation & 22.000 & 22.000 & -1.000 & 0.000 & 0.000 &  & -1.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 17 & d571fdab63739c43 & late\_degradation & 20.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 21 & d6b973a93340d472 & late\_degradation & 18.000 &  & -7.000 & -7.000 & -7.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 27 & e1905de6d3b22b70 & late\_degradation & 18.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 26 & e23e751d1e7bb567 & late\_degradation & 17.000 & 18.000 & -1.000 & -1.000 & -1.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 7 & ef2ffe5b1f84b842 & late\_degradation & 21.000 & 23.000 & -2.000 & -2.000 & -2.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 23 & ef6cf2e01dc3a61c & late\_degradation & 14.000 & 16.000 & -3.000 & -2.000 & -2.000 &  & -1.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 12 & f420a7ef5620b880 & late\_degradation & 21.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 10 & f521d726451cd3d6 & late\_degradation & 23.000 & 29.000 & -2.000 & -4.000 & -4.000 &  & 4.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 24 & fbf8775d0d570145 & late\_degradation & 21.000 &  & -4.000 & -4.000 & -4.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & leaky\_relu & 25 & fc02250ff8bfc506 & late\_degradation & 20.000 & 20.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 24 & 08ec290e6f3c3cb3 & late\_degradation & 32.000 & 32.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 17 & 18e84f605c37bd39 & late\_degradation & 32.000 &  &  & 27.000 &  & -8.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 15 & 282581debb20035f & late\_collapse & 34.000 & 36.000 & -2.000 & -2.000 &  & -2.000 & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 29 & 4080e44bffe4f294 & late\_degradation & 37.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 23 & 531b40c033fa88b6 & late\_collapse & 4.000 & 32.000 & -36.000 & -28.000 &  & 0.000 & -8.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 6 & 5b8168939284b15f & late\_collapse & 9.000 & 35.000 & -27.000 & 7.000 &  & -26.000 & -1.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 25 & 6473c3d42c862140 & late\_degradation & 32.000 & 32.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 16 & 7ab15699c5ed6b06 & late\_degradation & 36.000 & 36.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 12 & 7f759bbd614fda3a & late\_collapse & 13.000 & 35.000 & -22.000 & -22.000 &  & -22.000 & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 3 & 8cf2f4846d7bbf10 & late\_degradation & 25.000 & 26.000 & -2.000 & -1.000 &  & -1.000 & -1.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 14 & abf18e4287c93dec & late\_collapse & 31.000 & 31.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 26 & ac7fb5058a54bbdd & late\_collapse & 35.000 & 35.000 & -2.000 & 0.000 &  & 0.000 & -2.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 30 & c897b5e4607cf032 & late\_collapse & 33.000 & 33.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 27 & d26002ca6d4671aa & late\_collapse & 22.000 & 38.000 & -17.000 & -16.000 &  & -16.000 & -1.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 20 & de1ae795ad1f7c8f & late\_collapse & 5.000 & 38.000 & -35.000 & -33.000 &  & 0.000 & -2.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 21 & e66e6ffc9a62d8dc & late\_collapse & 38.000 & 38.000 &  &  &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & relu & 13 & eaee3339c124b42d & late\_collapse & 32.000 & 32.000 & -5.000 & 0.000 &  & 0.000 & -5.000 \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh & 16 & 328e4db0be133bfc & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 14 & 03a23e02b0107222 & late\_degradation & 24.000 & 38.000 &  & -13.000 & -15.000 & 9.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 5 & 12bb5b393bb0f340 & late\_degradation & 16.000 &  &  & -17.000 &  & 8.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 3 & 2e87bec58fdac64e & late\_collapse & 20.000 & 26.000 &  & 15.000 &  & 19.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 12 & 30c1b0d66c5c4e2c & late\_collapse & 13.000 & 31.000 &  & -17.000 &  & 8.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 20 & 37523c49f39e235d & late\_degradation & 13.000 & 33.000 &  & 11.000 &  & 11.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 4 & 3b59c8a2ee0575f3 & late\_collapse & 12.000 & 32.000 &  & -14.000 &  & 10.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 2 & 52b7dd319b7cc8c9 & late\_collapse & 23.000 & 36.000 &  & 21.000 &  & 20.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 27 & 5cee55ff9391fedc & late\_collapse & 9.000 & 28.000 &  & -30.000 &  & 3.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 16 & 66b35e7b1a471540 & late\_degradation & 12.000 &  &  &  &  & 9.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 23 & 7009bdc2c46ed470 & late\_degradation & 14.000 &  &  & 11.000 &  & 8.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 6 & 710cf0aa3bd92dad & late\_degradation & 16.000 & 27.000 &  & 14.000 &  & 14.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 25 & 77f8b54b8fa01ebe & late\_collapse & 22.000 & 29.000 &  & -6.000 &  & 17.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 10 & 827fc2076e70e84e & late\_collapse & 14.000 & 24.000 &  & -9.000 &  & 11.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 17 & 8f51cbe4cc9b97f3 & late\_collapse & 9.000 & 37.000 &  & -16.000 & -31.000 & 4.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 28 & 987159e7dbfaaef5 & late\_degradation & 12.000 & 32.000 &  & 10.000 &  & 6.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 11 & a6afe0737a12eac9 & late\_collapse & 6.000 & 40.000 &  &  &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 24 & aef776d4df947ab9 & late\_collapse & 9.000 & 25.000 &  & -16.000 &  & 4.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 30 & b3590b78b4c1a8e4 & late\_degradation & 18.000 & 31.000 &  & 16.000 &  & 14.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 21 & bf309c6d0fbc89d2 & late\_degradation & 33.000 &  &  &  &  & 29.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 19 & c3da8757ce3d7c21 & late\_collapse & 22.000 & 32.000 &  & -10.000 & -13.000 & 16.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 15 & c504f3ec1a6f4fad & late\_degradation & 8.000 & 20.000 &  & -9.000 &  & 3.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 1 & dcc9ad948dc62c2c & late\_degradation & 24.000 &  &  & 0.000 &  & 17.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 8 & edc36bbc83557e47 & late\_degradation & 19.000 &  &  & 0.000 &  & 11.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.010 & tanh+relu@hidden & 22 & ffb12ab8ea8cdea3 & late\_degradation & 15.000 &  &  & -3.000 &  & 10.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 21 & 0307a6affbb2cdef & late\_degradation & 2.000 &  & -1.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 15 & 1cc0c1c34c1be3a0 & late\_degradation & 3.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 25 & 36e16637b6320283 & late\_degradation & 5.000 & 5.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 6 & 53b83fec4e4dd1a0 & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 10 & 847616c726afe953 & late\_degradation & 3.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 23 & 968e7b9738d50add & late\_degradation & 3.000 & 3.000 & 0.000 & 0.000 & 0.000 &  & 0.000 \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 7 & a3b6ae14a987d2ff & late\_degradation & 2.000 &  & 0.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 3 & bb6d94f028e1d753 & late\_degradation & 3.000 & 21.000 & 0.000 & 0.000 & 0.000 &  & 18.000 \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 24 & c39b53af73120fc4 & late\_degradation & 2.000 &  & 0.000 & 0.000 &  &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 19 & c4a435f94b7c5a4c & late\_degradation & 3.000 & 4.000 & 0.000 & 0.000 & 0.000 &  & 1.000 \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 16 & e0d55947fde43c2d & late\_degradation & 3.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & leaky\_relu & 22 & fad2648c50aa2e76 & late\_degradation & 3.000 &  & 0.000 & 0.000 & 0.000 &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 10 & 0e53358ad20f85c9 & late\_collapse & 8.000 & 8.000 &  & 6.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 4 & 17be146d2ca52200 & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 5 & 2c24db8523cebedb & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 3 & 41af1c3fa97433c9 & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 2.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 13 & 4af5a1863d84db24 & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 19 & 570e381f791c11a6 & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 28 & 70d1b7302cc2d7a2 & late\_collapse & 8.000 & 8.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 15 & 7eb0d8afb45e925a & late\_collapse & 2.000 & 2.000 &  & 0.000 & -8.000 & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 23 & 82e70050639f734b & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 14 & 869e8348f772bc95 & late\_collapse & 11.000 & 11.000 &  & 9.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 8 & 8f3915d7ac2120dc & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 25 & a3c214ad2f8b8d79 & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 22 & a940d26652474530 & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 27 & ac90c2e4df4e68af & late\_collapse & 6.000 & 6.000 &  & 3.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 29 & ad4d395d30605b9d & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 6 & b20cbf648bc3405a & late\_collapse & 8.000 & 8.000 &  & 0.000 &  & 5.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 9 & b7926a4cfd40cdb7 & late\_collapse & 20.000 & 20.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 7 & b9fa69fdced76a95 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 20 & bcaf2bb9abd9118a & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 11 & bfba67fc9755d00e & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 12 & c0a62ce552ae5e3f & late\_collapse & 5.000 & 9.000 &  & -4.000 &  & -4.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 30 & c5b78ed70f325257 & late\_collapse & 11.000 & 11.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 18 & d51bd50814a50841 & late\_collapse & 7.000 & 7.000 &  & 4.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 17 & e4622db855407400 & late\_collapse & 2.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 26 & e4bccb5f82d613d4 & late\_collapse & 7.000 & 7.000 &  & 3.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 24 & e7961590ec8ec23e & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 21 & eedea6249a6a13c5 & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 2 & f3164eb16eba7e0e & late\_collapse & 15.000 & 15.000 &  & 13.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 1 & f402139a2a130c3f & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & relu & 16 & f8c8f4d04c6a10db & late\_collapse & 7.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh & 27 & a5c564750df2f881 & late\_degradation & 4.000 & 4.000 &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh & 3 & ce4c2460e752ac73 & late\_degradation & 21.000 &  &  &  &  &  &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 24 & 07ab8b540cd6f678 & late\_collapse & 8.000 & 9.000 &  & 4.000 & -17.000 & 3.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 6 & 160116e24715d24c & late\_collapse & 6.000 & 6.000 &  & 3.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 30 & 264c24ab8db20045 & late\_collapse & 5.000 & 5.000 &  & 1.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 3 & 284a245d49998283 & late\_collapse & 12.000 & 13.000 &  & 8.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 11 & 38a6071d7ed296c8 & late\_collapse & 9.000 & 9.000 &  & 7.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 21 & 3fd7776e6203f647 & late\_collapse & 12.000 & 12.000 &  & 4.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 16 & 46626cbb07e35681 & late\_collapse & 6.000 & 6.000 &  & 1.000 & -16.000 & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 23 & 4a1dd2d0df8d02f1 & late\_collapse & 7.000 & 9.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 29 & 5268c00e6091c05f & late\_collapse & 6.000 & 6.000 &  & 1.000 & -12.000 & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 15 & 69f91a2425abf44c & late\_collapse & 8.000 & 10.000 &  & 6.000 & -4.000 & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 8 & 6d1c90bb310e11d2 & late\_collapse & 5.000 & 8.000 &  & 1.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 7 & 702f03a7890a2517 & late\_collapse & 6.000 & 7.000 &  & 1.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 1 & 70ef0ed04bc05b0d & late\_collapse & 5.000 & 7.000 &  & 0.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 25 & 75dcb37504309633 & late\_collapse & 6.000 & 6.000 &  & 2.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 10 & 7c42279f282fa483 & late\_collapse & 7.000 & 7.000 &  & 2.000 &  & 2.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 26 & 8420c8631fb00f8a & late\_collapse & 6.000 & 6.000 &  & 1.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 4 & 85fea3a5bc04be7e & late\_collapse & 6.000 & 6.000 &  & 4.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 28 & 8b5bd00eac7fcf54 & late\_collapse & 5.000 & 5.000 &  & 3.000 & -33.000 & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 9 & 99acdc5ea20ff325 & late\_collapse & 6.000 & 6.000 &  & 1.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 20 & a196d34673c8423c & late\_collapse & 6.000 & 6.000 &  & 2.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 27 & ab8432d922f7cc7d & late\_collapse & 9.000 & 9.000 &  & 0.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 14 & c42706e967a04717 & late\_collapse & 7.000 & 7.000 &  & 4.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 12 & c4e712122a567d0d & late\_collapse & 7.000 & 7.000 &  & 1.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 17 & d9f6a6e79a9ae07e & late\_collapse & 7.000 & 7.000 &  & 1.000 &  & 2.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 2 & e4ae03dba03c74c8 & late\_collapse & 8.000 & 8.000 &  & 1.000 &  & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 22 & e866df09d3959b6e & late\_collapse & 8.000 & 9.000 &  & 3.000 &  & 2.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 13 & ebe9ca2af8af4a1a & late\_collapse & 6.000 & 6.000 &  & 0.000 & -5.000 & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 5 & f26a6979294d3481 & late\_collapse & 11.000 & 11.000 &  & 9.000 &  & 4.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 18 & f53b32d134cfb63b & late\_collapse & 9.000 & 9.000 &  & 3.000 & -28.000 & 1.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.020 & tanh+relu@hidden & 19 & ff656a7360316660 & late\_collapse & 5.000 & 5.000 &  & 3.000 &  & 0.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.030 & relu & 1 & 168e635a59ebc6f0 & late\_collapse & 8.000 & 8.000 &  & 0.000 &  & 7.000 &  \\
+2 & cifar10 & cfg2 & 256 & 0.030 & relu & 9 & e4884a539d7ef788 & late\_collapse & 6.000 & 6.000 &  & 0.000 & -11.000 & 0.000 &  \\
+2 & cifar10 & mlp1 & 64 & 0.020 & leaky\_relu & 5 & 613c4d26a0c2ba1c & late\_degradation & 33.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 64 & 0.020 & leaky\_relu & 27 & 74b358ad4cc74672 & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 64 & 0.020 & leaky\_relu & 9 & 82df0a74879caff8 & late\_degradation & 18.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 64 & 0.020 & leaky\_relu & 16 & 9361863daf727a36 & late\_degradation & 8.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 64 & 0.020 & leaky\_relu & 23 & a5fdc23b24a78926 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 64 & 0.030 & leaky\_relu & 2 & 5660cc2e750bbdf2 & late\_degradation & 14.000 & 36.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 64 & 0.030 & leaky\_relu & 5 & 982c6acb45667f19 & late\_degradation & 15.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 64 & 0.030 & leaky\_relu & 9 & fc1e0aec458bdc25 & late\_degradation & 13.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 64 & 0.050 & leaky\_relu & 7 & bf0691c6979fcbc5 & late\_collapse & 18.000 & 2.000 &  &  &  & 15.000 &  \\
+2 & cifar10 & mlp1 & 128 & 0.010 & leaky\_relu & 8 & 3500724ee00192a3 & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.010 & leaky\_relu & 16 & 43bcb706c65c6226 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.010 & sigmoid & 16 & c22d8699f5f5d6a8 & late\_degradation & 16.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.010 & sigmoid & 5 & d4fe0753b1cf404e & late\_degradation & 15.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.010 & tanh & 16 & 47984527f4ba7456 & late\_degradation & 32.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.020 & leaky\_relu & 23 & 05354363cd01d9d7 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.020 & leaky\_relu & 22 & 46277b1698e7cb14 & late\_degradation & 21.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.020 & leaky\_relu & 12 & 69b46a91ca73869b & late\_degradation & 29.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.020 & leaky\_relu & 16 & c409d4c5773cd1a7 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.020 & tanh & 16 & f91926acf0a48927 & late\_degradation & 20.000 & 1.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.030 & leaky\_relu & 4 & 2d2650883d30ee5d & late\_degradation & 3.000 & 3.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.030 & leaky\_relu & 1 & 8582fcf6e31a0356 & late\_degradation & 7.000 & 7.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.030 & leaky\_relu & 6 & cbe62c38a7aa17bf & late\_collapse & 8.000 & 40.000 &  &  &  & 0.000 &  \\
+2 & cifar10 & mlp1 & 128 & 0.030 & leaky\_relu & 7 & fb9b23a637220e74 & late\_degradation & 3.000 & 14.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.030 & sigmoid & 1 & 560db0c17cb0f2d8 & late\_degradation & 3.000 & 3.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.050 & leaky\_relu & 3 & 832b294f04ef9ac2 & late\_degradation & 2.000 & 2.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & 0.050 & sigmoid & 3 & bac901f7a72e0d24 & late\_degradation & 21.000 & 2.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & leaky\_relu & 16 & c941b56520384206 & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & leaky\_relu & 9 & f0a82c76a8259514 & late\_degradation & 32.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 6 & 0005a8da540221f7 & late\_degradation & 13.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 8 & 1346e8eeda23e201 & late\_degradation & 11.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 5 & 275e5616a58f665e & late\_degradation & 15.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 20 & 295f957196e5e4a9 & late\_degradation & 14.000 &  &  & 12.000 &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 7 & 2a5dd813e1904868 & late\_degradation & 15.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 25 & 2be57f5470da290e & late\_degradation & 12.000 &  &  & 10.000 &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 27 & 5525c02c1423e698 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 1 & 6d2bb4860c88471a & late\_degradation & 10.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 9 & 6e74ff7d0d0dcc62 & late\_degradation & 15.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 3 & 80cf23685a542654 & late\_degradation & 10.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 23 & 834035e41e142e44 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 17 & 8addf2a0022dd683 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 22 & ba2258b22dd90f33 & late\_degradation & 14.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 10 & bf4eb69d98fe539e & late\_degradation & 14.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 12 & c93d31bdf5c0f4a8 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 16 & d6e48cf7c20e6d94 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & sigmoid & 4 & eee3117135e40e7d & late\_degradation & 13.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & tanh & 16 & 99948f2595ef4cb6 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.010 & tanh+relu & 16 & 8172d2e0d6fe7914 & late\_degradation & 40.000 &  &  &  &  & 39.000 &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & leaky\_relu & 23 & 057398a2dc125f03 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & leaky\_relu & 27 & 369bd9087b68b367 & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & leaky\_relu & 7 & 6148f0bb2563ecb7 & late\_degradation & 15.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & leaky\_relu & 16 & 9729ac242e165293 & late\_degradation & 12.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & leaky\_relu & 4 & e7c9292fc7b2c58e & late\_degradation & 16.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & sigmoid & 7 & 1288334d2bc9cb69 & late\_degradation & 4.000 &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & sigmoid & 8 & 240af3ff5d27ef60 & late\_degradation & 5.000 & 18.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & sigmoid & 16 & 2d8b42e7201c34b5 & late\_degradation & 3.000 & 5.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & sigmoid & 19 & 37acbcda5379e2c4 & late\_degradation & 4.000 & 18.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & sigmoid & 12 & 613d8ec489918ea9 & late\_degradation & 4.000 & 6.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & sigmoid & 27 & 6bca96c906fe4999 & late\_degradation & 4.000 & 4.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & sigmoid & 1 & c86ce564a6feb81f & late\_degradation & 3.000 & 5.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & tanh & 27 & 138f530b959123b7 & late\_degradation & 36.000 & 1.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.020 & tanh & 7 & e20f82b62b6c34c7 & late\_degradation & 20.000 & 1.000 &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & 0.030 & leaky\_relu & 10 & 409cd1597d03da3a & late\_collapse & 7.000 & 29.000 & -6.000 & -10.000 &  &  & 16.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & leaky\_relu & 5 & 46ed5becadac17fa & late\_degradation & 7.000 & 19.000 & -6.000 &  &  &  & 6.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & leaky\_relu & 8 & 4e8ccbd8e55ccab1 & late\_degradation & 11.000 & 12.000 & -4.000 &  &  &  & -3.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & leaky\_relu & 9 & 6f41f76dbd5383fe & late\_collapse & 25.000 & 28.000 & 11.000 &  &  &  & 14.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & leaky\_relu & 4 & 9b899dd53bdea6bd & late\_degradation & 7.000 & 32.000 & -7.000 &  &  &  & 18.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & leaky\_relu & 3 & c7b8c961d184127c & late\_degradation & 17.000 & 17.000 & 3.000 &  &  &  & 3.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & leaky\_relu & 6 & d40d7a2d4bd5c35b & late\_degradation & 9.000 & 9.000 & -4.000 &  &  &  & -4.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & leaky\_relu & 1 & d77f46f4844edbb6 & late\_collapse & 7.000 & 18.000 & -8.000 &  &  &  & 3.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & leaky\_relu & 7 & ee60f9f4676bd760 & late\_degradation & 20.000 & 20.000 & 7.000 &  &  &  & 7.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & sigmoid & 1 & 13150493c0c03ec4 & late\_degradation & 3.000 & 3.000 & -1.000 &  &  &  & -1.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & sigmoid & 7 & 30fe527de396558e & late\_degradation & 2.000 & 3.000 & -2.000 &  &  &  & -1.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & sigmoid & 10 & 733620b3df7e5b38 & late\_degradation & 7.000 & 2.000 & 3.000 & 5.000 &  &  & -2.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & sigmoid & 4 & a2f5bccc705391d7 & late\_degradation & 16.000 & 3.000 & 12.000 & 13.000 &  &  & -1.000 \\
+2 & cifar10 & mlp1 & 256 & 0.030 & tanh+relu & 10 & d53c25ede3350d10 & late\_collapse & 16.000 & 1.000 &  &  &  & 15.000 &  \\
+2 & cifar10 & mlp1 & 256 & 0.050 & leaky\_relu & 9 & be2b30555d00f640 & late\_degradation & 11.000 & 11.000 &  &  &  &  &  \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 18 & 0d44172e8bc41f36 & late\_collapse & 21.000 & 22.000 & 9.000 & 0.000 &  & 0.000 & 10.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 25 & 15b0a1b41bddc082 & late\_collapse & 28.000 & 28.000 & 11.000 & 0.000 &  & 0.000 & 11.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 17 & 2cf1cd9f9898d3e5 & late\_collapse & 25.000 & 25.000 & 14.000 & 0.000 & 0.000 & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 28 & 391e2c7564b9958b & late\_collapse & 25.000 & 27.000 & 12.000 & -2.000 &  & -1.000 & 14.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 9 & 4c43dfde1ae5ebe6 & late\_collapse & 24.000 & 26.000 & 13.000 & 0.000 & -2.000 & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 3 & 50e0d43882f479bc & late\_collapse & 24.000 & 25.000 & 8.000 & 0.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 12 & 578ea9f794db280c & late\_collapse & 23.000 & 24.000 & 12.000 & 0.000 & -1.000 & 0.000 & 13.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 22 & 57a59d113a428901 & late\_collapse & 27.000 & 28.000 & 14.000 & -1.000 &  & -1.000 & 15.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 26 & 5eaa8db72212b1fd & late\_collapse & 25.000 & 26.000 & 12.000 & -1.000 &  & -1.000 & 13.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 4 & 5eb9353535431df7 & late\_collapse & 22.000 & 23.000 & 8.000 & 2.000 & -1.000 & 0.000 & 9.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 8 & 775f1506f16c2273 & late\_collapse & 29.000 & 30.000 & 14.000 & -1.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 21 & 8209877c30b49c46 & late\_collapse & 24.000 & 25.000 & 11.000 & 3.000 & -1.000 & 0.000 & 12.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 13 & 8608124b082b9909 & late\_collapse & 25.000 & 28.000 & 10.000 & 0.000 & -3.000 & -2.000 & 13.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 23 & 8c15ae38d644ffe4 & late\_collapse & 21.000 & 25.000 & 8.000 & -3.000 &  & -3.000 & 12.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 30 & 8d5009d706e5fda8 & late\_collapse & 24.000 & 25.000 & 8.000 & 2.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 29 & 8fd653064ea4d11e & late\_collapse & 28.000 & 29.000 & 16.000 & 0.000 &  & 0.000 & 17.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 5 & 915b6f02f153295a & late\_collapse & 23.000 & 23.000 & 9.000 & 0.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 15 & 9f3fe560e6a12247 & late\_collapse & 26.000 & 27.000 & 11.000 & 0.000 &  & 0.000 & 12.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 7 & a4dd2c7358ebb138 & late\_collapse & 25.000 & 28.000 & 11.000 & 0.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 2 & d2ad22b5d334c6f9 & late\_collapse & 26.000 & 29.000 & 9.000 & -1.000 &  & -1.000 & 12.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 27 & d4a7f3767f1bd9e0 & late\_collapse & 26.000 & 28.000 & 12.000 & 0.000 &  & -2.000 & 14.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 24 & d5a10a7be9f5765f & late\_collapse & 29.000 & 31.000 & 17.000 & -2.000 &  & -2.000 & 19.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 10 & d642d6fc3239cb0e & late\_collapse & 24.000 & 24.000 & 11.000 & 2.000 & 0.000 & 0.000 & 11.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 20 & d8ea91c1136f99d3 & late\_collapse & 27.000 & 29.000 & 15.000 & -1.000 &  & -1.000 & 17.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 14 & d9944ec146e5deea & late\_collapse & 27.000 & 29.000 & 9.000 & -2.000 &  & -2.000 & 11.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 19 & dfa3d46eaf9555c3 & late\_collapse & 27.000 & 27.000 & 14.000 & 0.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 11 & e435d2320bbd1e7b & late\_collapse & 27.000 & 27.000 & 14.000 & 0.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 6 & e7aa634d01a8b715 & late\_collapse & 31.000 & 31.000 & 16.000 & 0.000 & 0.000 & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 16 & f65cbe3d6a0dffc8 & late\_collapse & 25.000 & 26.000 & 10.000 & -1.000 &  & -1.000 & 11.000 \\
+2 & mnist & cfg1 & 64 & 0.020 & relu & 1 & fd3e5aff8e06c7be & late\_collapse & 27.000 & 28.000 & 14.000 & 3.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 10 & 27f30040cd717a2f & late\_collapse & 10.000 & 10.000 & 2.000 & 4.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 4 & 3c8c8673aec79b16 & late\_collapse & 9.000 & 9.000 & 1.000 & 0.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 5 & 4d5683f3403c603b & late\_collapse & 9.000 & 11.000 & 0.000 & 6.000 &  & -1.000 & 2.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 3 & 5318e531c9b17b6d & late\_collapse & 6.000 & 6.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 6 & 7d11960a27884444 & late\_collapse & 10.000 & 10.000 & 1.000 & 0.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 7 & b8c3682d27d98ef9 & late\_collapse & 8.000 & 8.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 1 & b8e1c0b00a67625f & late\_collapse & 7.000 & 8.000 & 1.000 & 0.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 2 & bec6e6fc0446e938 & late\_collapse & 7.000 & 9.000 & 0.000 & 0.000 &  & 4.000 & 2.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 9 & c95bc5eb61d06e87 & late\_collapse & 6.000 & 6.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.030 & relu & 8 & cd48c515899ec8b2 & late\_collapse & 8.000 & 9.000 & 1.000 & -1.000 &  & -1.000 & 2.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & relu & 8 & 0b225d6565556dac & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & relu & 9 & 26999e93917ad509 & late\_collapse & 2.000 & 3.000 & -1.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & relu & 10 & 347fcad90aede891 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & relu & 4 & 395c1e9bbbae0d38 & late\_collapse & 3.000 & 3.000 & 0.000 & 1.000 &  & 2.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & relu & 1 & 64f618dcbff5ed41 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & relu & 5 & 6e2cc87b07489b65 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & relu & 6 & b4e6c9170b6fbe0a & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & relu & 2 & c1f74ed3f7607716 & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 1.000 & -1.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & tanh+relu & 5 & 0dc4d14861ddcfe1 & late\_degradation & 7.000 &  & -2.000 & 5.000 &  & 6.000 &  \\
+2 & mnist & cfg1 & 64 & 0.050 & tanh+relu & 2 & 17e9089801a491e6 & late\_degradation & 9.000 &  & 1.000 & 3.000 &  & 8.000 &  \\
+2 & mnist & cfg1 & 64 & 0.050 & tanh+relu & 7 & 2e77fe43542ba47b & late\_degradation & 6.000 &  & 0.000 & 4.000 &  & 5.000 &  \\
+2 & mnist & cfg1 & 64 & 0.050 & tanh+relu & 8 & 6a1f982c754df024 & late\_collapse & 3.000 & 17.000 & -1.000 & 1.000 &  & 2.000 & 13.000 \\
+2 & mnist & cfg1 & 64 & 0.050 & tanh+relu & 10 & 7c3e9b578329015d & late\_degradation & 35.000 &  & 0.000 & 31.000 & 7.000 & 34.000 &  \\
+2 & mnist & cfg1 & 64 & 0.050 & tanh+relu & 1 & ac6492713f33ff8d & late\_degradation & 9.000 &  & -4.000 & 6.000 & -18.000 & 8.000 &  \\
+2 & mnist & cfg1 & 64 & 0.050 & tanh+relu & 9 & b4b3e3922cc45055 & late\_degradation & 3.000 &  & -1.000 & 0.000 &  & 2.000 &  \\
+2 & mnist & cfg1 & 64 & 0.100 & relu & 8 & ea9337b946203d00 & late\_collapse & 7.000 & 1.000 &  & 5.000 &  & 6.000 &  \\
+2 & mnist & cfg1 & 64 & 0.100 & tanh & 3 & 56c7da3ea4d45fa3 & late\_degradation & 6.000 &  &  &  &  &  &  \\
+2 & mnist & cfg1 & 128 & 0.010 & leaky\_relu & 19 & 3a7c37fa6369d653 & late\_degradation & 40.000 &  & 27.000 & 0.000 & 1.000 &  &  \\
+2 & mnist & cfg1 & 128 & 0.010 & leaky\_relu & 1 & 7a8850731df44810 & late\_degradation & 38.000 &  & 14.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg1 & 128 & 0.010 & leaky\_relu & 11 & 934327108d0cb5cb & late\_degradation & 40.000 &  & 23.000 &  & 0.000 &  &  \\
+2 & mnist & cfg1 & 128 & 0.010 & leaky\_relu & 8 & a31271da16677143 & late\_degradation & 40.000 &  & 23.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg1 & 128 & 0.010 & leaky\_relu & 23 & c1a7f09e0d2f69a6 & late\_degradation & 40.000 &  & 19.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg1 & 128 & 0.010 & leaky\_relu & 21 & d7b6552512507798 & late\_degradation & 40.000 &  & 22.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg1 & 128 & 0.010 & leaky\_relu & 18 & f2734cc55413a148 & late\_degradation & 40.000 &  & 23.000 & 0.000 & 1.000 &  &  \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 15 & 0926e4dff37c1ea4 & late\_collapse & 22.000 & 26.000 & 9.000 & -4.000 &  & -1.000 & 13.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 4 & 12fbce244d570b94 & late\_collapse & 28.000 & 29.000 & 14.000 & 0.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 24 & 1568a1e2503207dc & late\_collapse & 26.000 & 27.000 & 14.000 & -1.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 17 & 1d98e6908674e02e & late\_collapse & 26.000 & 29.000 & 14.000 & -2.000 &  & 0.000 & 17.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 1 & 271b4708e54f56ef & late\_collapse & 25.000 & 26.000 & 11.000 & 0.000 &  & 0.000 & 12.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 5 & 2b1e21c09cfdc693 & late\_collapse & 26.000 & 29.000 & 12.000 & -2.000 &  & -1.000 & 15.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 18 & 31ab1e0bd5f830a7 & late\_collapse & 25.000 & 25.000 & 13.000 & 0.000 & 0.000 & 0.000 & 13.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 29 & 337f638ad75668cf & late\_collapse & 30.000 & 32.000 & 17.000 & -2.000 &  & -2.000 & 19.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 27 & 3a567cc1c0f17715 & late\_collapse & 28.000 & 28.000 & 16.000 & 4.000 &  & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 21 & 3f65f5ce158f0177 & late\_collapse & 25.000 & 26.000 & 14.000 & 0.000 &  & -1.000 & 15.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 8 & 3f68e45bf548f9b8 & late\_collapse & 24.000 & 27.000 & 14.000 & -2.000 &  & -2.000 & 17.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 25 & 44a93441dcd3d1db & late\_collapse & 27.000 & 27.000 & 14.000 & 0.000 & 0.000 & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 30 & 4e8cf342eb493e7d & late\_collapse & 24.000 & 25.000 & 13.000 & -1.000 &  & -1.000 & 14.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 16 & 5cd2adb4354b6e1d & late\_collapse & 25.000 & 26.000 & 11.000 & 0.000 &  & 0.000 & 12.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 2 & 6253511e85a2421a & late\_collapse & 26.000 & 27.000 & 15.000 & 0.000 &  & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 7 & 667e904e5d9e0acd & late\_collapse & 25.000 & 28.000 & 14.000 & -3.000 &  & 0.000 & 17.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 6 & 68ebca03933fe29e & late\_collapse & 28.000 & 29.000 & 18.000 & 0.000 &  & 0.000 & 19.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 11 & 72aeec2758925460 & late\_collapse & 27.000 & 28.000 & 13.000 & 0.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 23 & 74fb892e29676ab1 & late\_collapse & 26.000 & 27.000 & 13.000 & -1.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 10 & 7b103ee9bb6089ff & late\_collapse & 28.000 & 29.000 & 14.000 & -1.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 13 & 8e494492045b43ea & late\_collapse & 28.000 & 29.000 & 18.000 & 0.000 &  & 0.000 & 19.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 3 & a3e43b71de65f8e9 & late\_collapse & 28.000 & 29.000 & 17.000 & -1.000 &  & 0.000 & 18.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 12 & a5039bc8ab2baab9 & late\_collapse & 25.000 & 27.000 & 12.000 & 0.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 14 & a927375a824aa223 & late\_collapse & 29.000 & 31.000 & 16.000 & 11.000 &  & 0.000 & 18.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 28 & b2a2980d1dbd7b70 & late\_collapse & 19.000 & 24.000 & 9.000 & -4.000 &  & -4.000 & 14.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 19 & b94af137f0eab588 & late\_collapse & 26.000 & 29.000 & 12.000 & -2.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 22 & c0a65db7ccbe2402 & late\_collapse & 29.000 & 30.000 & 18.000 & 0.000 &  & 0.000 & 19.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 20 & cd562aa85a190c18 & late\_collapse & 25.000 & 27.000 & 13.000 & 1.000 &  & 1.000 & 15.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 9 & e36b940e17c3f117 & late\_collapse & 27.000 & 27.000 & 16.000 & 0.000 & 0.000 & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 128 & 0.020 & relu & 26 & f62457e75b4b3626 & late\_collapse & 30.000 & 30.000 & 14.000 & 0.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 9 & 38f9deb0823e9764 & late\_collapse & 10.000 & 11.000 & 0.000 & 0.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 6 & 39ef450332deaf91 & late\_collapse & 8.000 & 8.000 & 2.000 & 2.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 5 & 82d07678054ee7a0 & late\_collapse & 8.000 & 8.000 & 1.000 & 0.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 4 & 957f1fab9ce27687 & late\_collapse & 8.000 & 8.000 & 2.000 & 4.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 1 & ae4a3c7571c60bdc & late\_collapse & 8.000 & 8.000 & 0.000 & 5.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 8 & b31e8211ca47078b & late\_collapse & 8.000 & 9.000 & 1.000 & 0.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 3 & c3f776d478c6ff56 & late\_collapse & 9.000 & 10.000 & 3.000 & 0.000 &  & 0.000 & 4.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 2 & c9de8689899e32cd & late\_collapse & 9.000 & 10.000 & 1.000 & 1.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 10 & f3773e192912176c & late\_collapse & 9.000 & 9.000 & 2.000 & 2.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg1 & 128 & 0.030 & relu & 7 & fef35ae359a21a1a & late\_collapse & 9.000 & 9.000 & 1.000 & 3.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 6 & 6d35a24e5191b1c3 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 4 & 7c900aee2de05ecd & late\_collapse & 2.000 & 3.000 & -1.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 10 & 8c54c857e69fc592 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 5 & a498a96d9b24deae & late\_collapse & 2.000 & 3.000 & -1.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 9 & b4d6a3d355fe37ea & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 8 & de7ea5ae7dd2e759 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 2 & e2cd9b46f8a04a87 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 1 & ec6bc9a387f0bbc2 & late\_collapse & 3.000 & 3.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 3 & f2393485dc742488 & late\_collapse & 3.000 & 3.000 & 0.000 & 1.000 &  & 2.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & relu & 7 & fcea53847d14b794 & late\_collapse & 3.000 & 3.000 & 0.000 & 0.000 &  & 2.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & tanh+relu & 8 & 3bdc1e11751e0471 & late\_collapse & 2.000 & 3.000 & -1.000 & 0.000 & -11.000 & 1.000 & 0.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & tanh+relu & 4 & 6a0cc0c89d4ed635 & late\_degradation & 6.000 &  & -1.000 & 4.000 & -13.000 & 5.000 &  \\
+2 & mnist & cfg1 & 128 & 0.050 & tanh+relu & 2 & abb5c7f12db80317 & late\_degradation & 3.000 & 20.000 & -3.000 & 1.000 & -23.000 & 2.000 & 14.000 \\
+2 & mnist & cfg1 & 128 & 0.050 & tanh+relu & 10 & e38a5778b31f4f06 & late\_degradation & 2.000 & 4.000 & 0.000 & 0.000 & -38.000 & 1.000 & 2.000 \\
+2 & mnist & cfg1 & 128 & 0.100 & relu & 3 & 739a9fdb6b1cd04e & late\_collapse & 2.000 & 2.000 &  &  &  & 1.000 &  \\
+2 & mnist & cfg1 & 128 & 0.100 & tanh & 5 & 5f811f1b7e04627a & late\_degradation & 6.000 &  &  &  &  &  &  \\
+2 & mnist & cfg1 & 128 & 0.100 & tanh & 8 & fc9e591c62d210c3 & late\_degradation & 5.000 &  &  &  &  &  &  \\
+2 & mnist & cfg1 & 128 & 0.100 & tanh+relu & 4 & 3751fdcbeeb18641 & late\_degradation & 7.000 & 1.000 &  &  &  & 6.000 &  \\
+2 & mnist & cfg1 & 128 & 0.100 & tanh+relu & 6 & 70ec8ecf7454ea13 & late\_degradation & 2.000 & 2.000 &  &  &  & 1.000 &  \\
+2 & mnist & cfg1 & 256 & 0.010 & leaky\_relu & 7 & 00a660472e4db582 & late\_degradation & 40.000 &  & 23.000 & 0.000 & 1.000 &  &  \\
+2 & mnist & cfg1 & 256 & 0.010 & leaky\_relu & 26 & 6856458e8f0937fd & late\_degradation & 40.000 &  & 24.000 & 0.000 & 2.000 &  &  \\
+2 & mnist & cfg1 & 256 & 0.010 & leaky\_relu & 25 & 69c4d3b0d3061508 & late\_degradation & 40.000 &  & 21.000 & 0.000 & 1.000 &  &  \\
+2 & mnist & cfg1 & 256 & 0.010 & leaky\_relu & 11 & 800844ccb4e2b667 & late\_degradation & 40.000 &  & 26.000 & 0.000 & 1.000 &  &  \\
+2 & mnist & cfg1 & 256 & 0.010 & leaky\_relu & 9 & 959ed6745d30b924 & late\_degradation & 40.000 &  & 21.000 & 0.000 & 1.000 &  &  \\
+2 & mnist & cfg1 & 256 & 0.010 & leaky\_relu & 15 & c630f943b08f525b & late\_degradation & 40.000 &  & 26.000 & 1.000 & 1.000 &  &  \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 8 & 0228e839cb891da4 & late\_collapse & 24.000 & 28.000 & 9.000 & -3.000 &  & -1.000 & 13.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 18 & 04caf56a8cd1b193 & late\_collapse & 31.000 & 33.000 & 17.000 & -2.000 &  & 0.000 & 19.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 25 & 202f592986ee9437 & late\_collapse & 26.000 & 27.000 & 14.000 & 0.000 &  & 4.000 & 15.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 7 & 27140c08169520ad & late\_collapse & 26.000 & 27.000 & 15.000 & -1.000 &  & 2.000 & 16.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 23 & 2f5aedddf1ac7701 & late\_collapse & 27.000 & 28.000 & 14.000 & 4.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 13 & 32bf60529ece25aa & late\_collapse & 24.000 & 29.000 & 12.000 & -5.000 & -5.000 & 0.000 & 17.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 21 & 355efd3a446f6023 & late\_collapse & 28.000 & 30.000 & 16.000 & 6.000 &  & 1.000 & 18.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 4 & 45d9c0fe42e46400 & late\_collapse & 25.000 & 27.000 & 13.000 & -2.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 28 & 4a1915f701e702ac & late\_collapse & 27.000 & 28.000 & 15.000 & 10.000 &  & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 9 & 6a3ba0d64c727d43 & late\_collapse & 25.000 & 28.000 & 12.000 & 0.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 5 & 6c26bfca0e00269f & late\_collapse & 27.000 & 27.000 & 14.000 & 0.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 30 & 78e9ba09dc044d5d & late\_collapse & 26.000 & 28.000 & 14.000 & -1.000 &  & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 26 & 7ba95645b5271606 & late\_collapse & 28.000 & 29.000 & 15.000 & 6.000 &  & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 6 & 7f5c3824092f776e & late\_collapse & 24.000 & 28.000 & 13.000 & -4.000 &  & 0.000 & 17.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 10 & 85275b66edda599b & late\_collapse & 25.000 & 27.000 & 13.000 & 2.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 16 & 87d5d1c7ff01737d & late\_collapse & 25.000 & 27.000 & 14.000 & 5.000 &  & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 24 & 98dd9d2e5dbed818 & late\_collapse & 28.000 & 29.000 & 14.000 & -1.000 &  & 1.000 & 15.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 19 & a7e629a1c9d3b574 & late\_collapse & 27.000 & 30.000 & 14.000 & 5.000 &  & 0.000 & 17.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 1 & a89e517a1f7cb38b & late\_collapse & 27.000 & 29.000 & 13.000 & 0.000 & -2.000 & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 2 & af00ebd9a7ee5fda & late\_collapse & 24.000 & 31.000 & 12.000 & -5.000 &  & -5.000 & 19.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 11 & b0f089ee37f24fdc & late\_collapse & 23.000 & 29.000 & 8.000 & -5.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 27 & cf174090d1ba4b25 & late\_collapse & 25.000 & 28.000 & 12.000 & 0.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 20 & d54c30ad9abd8a04 & late\_collapse & 21.000 & 28.000 & 9.000 & 3.000 &  & -4.000 & 16.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 22 & e418d7d8717baad2 & late\_collapse & 30.000 & 34.000 & 14.000 & -4.000 &  & 0.000 & 18.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 12 & e7a8064762c557b9 & late\_collapse & 28.000 & 32.000 & 16.000 & -2.000 &  & 0.000 & 20.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 15 & ea69e6cc9c517990 & late\_collapse & 25.000 & 25.000 & 13.000 & 0.000 & 0.000 & 0.000 & 13.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 14 & f0a55bbe3b277eef & late\_collapse & 29.000 & 30.000 & 14.000 & 0.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 3 & f5a44e39e8d5e269 & late\_collapse & 26.000 & 27.000 & 12.000 & 8.000 &  & 0.000 & 13.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 17 & fa2c8091f7b6c53e & late\_collapse & 27.000 & 28.000 & 15.000 & 6.000 &  & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 256 & 0.020 & relu & 29 & faf858e6fd9e7a6b & late\_collapse & 25.000 & 29.000 & 12.000 & 0.000 &  & 0.000 & 16.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 3 & 15f3c0d219fbd7b6 & late\_collapse & 7.000 & 8.000 & 2.000 & 0.000 & -1.000 & 0.000 & 3.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 5 & 241e8421d96c9c1c & late\_collapse & 11.000 & 11.000 & 3.000 & 0.000 &  & 0.000 & 3.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 1 & 31bf37c17f52dc18 & late\_collapse & 11.000 & 11.000 & 4.000 & 6.000 &  & 0.000 & 4.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 7 & 4ba0f59e7bee37da & late\_collapse & 9.000 & 9.000 & 2.000 & 1.000 & 0.000 & 0.000 & 2.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 4 & 82088dcb95814bf3 & late\_collapse & 8.000 & 8.000 & 2.000 & 1.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 10 & 89617c2ff160a628 & late\_collapse & 11.000 & 13.000 & 4.000 & 3.000 &  & 2.000 & 6.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 2 & 8a740243429548ad & late\_collapse & 11.000 & 12.000 & 5.000 & 0.000 &  & 0.000 & 6.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 6 & a8192f87a7469f61 & late\_collapse & 8.000 & 11.000 & 0.000 & 0.000 &  & -1.000 & 3.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 8 & b8d111fcb4877427 & late\_collapse & 8.000 & 9.000 & 1.000 & -1.000 & -1.000 & -1.000 & 2.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & relu & 9 & d94971636f144450 & late\_collapse & 8.000 & 9.000 & 2.000 & 0.000 &  & 0.000 & 3.000 \\
+2 & mnist & cfg1 & 256 & 0.030 & tanh+relu & 7 & 044dfa607bf4071e & late\_degradation & 23.000 &  & 2.000 & 13.000 &  & 21.000 &  \\
+2 & mnist & cfg1 & 256 & 0.030 & tanh+relu & 5 & 456a95cda8203478 & late\_degradation & 17.000 &  & 3.000 & 3.000 & -10.000 & 14.000 &  \\
+2 & mnist & cfg1 & 256 & 0.030 & tanh+relu & 10 & 52527564b2473684 & late\_degradation & 25.000 &  & 4.000 & 23.000 &  & 22.000 &  \\
+2 & mnist & cfg1 & 256 & 0.030 & tanh+relu & 4 & 8df156d620317b43 & late\_degradation & 11.000 &  & 0.000 & 9.000 &  & 9.000 &  \\
+2 & mnist & cfg1 & 256 & 0.030 & tanh+relu & 3 & 9d0845cfb315534a & late\_degradation & 31.000 &  & 5.000 & 12.000 &  & 28.000 &  \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 8 & 2123102d356c9459 & late\_collapse & 4.000 & 5.000 & -1.000 & 0.000 &  & 3.000 & 0.000 \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 7 & 2fc8465e72a21000 & late\_collapse & 3.000 & 4.000 & 0.000 & 0.000 &  & 2.000 & 1.000 \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 4 & 3d2586a7e6d774ad & late\_collapse & 5.000 & 5.000 & 0.000 & 3.000 &  & 4.000 & 0.000 \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 9 & 594cbf93f07119aa & late\_collapse & 4.000 & 5.000 & -1.000 & 0.000 &  & 3.000 & 0.000 \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 6 & 6ebe9cc86007ca0f & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 5 & 812c436f0c66c3be & late\_collapse & 3.000 & 3.000 & 0.000 & 1.000 &  & 2.000 & 0.000 \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 10 & 8443a8796a7431a2 & late\_collapse & 5.000 & 5.000 & 0.000 & 0.000 &  & 4.000 & 0.000 \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 2 & cf570966f13f1ff3 & late\_collapse & 2.000 & 5.000 & -2.000 & 0.000 &  & 1.000 & 1.000 \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 3 & e0d46cefb55d2474 & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 1.000 & -1.000 \\
+2 & mnist & cfg1 & 256 & 0.050 & relu & 1 & f70cb2b69c419d92 & late\_collapse & 3.000 & 3.000 & -1.000 & 0.000 &  & 2.000 & -1.000 \\
+2 & mnist & cfg1 & 256 & 0.100 & relu & 8 & 01b751a325003e45 & late\_collapse & 18.000 & 1.000 &  & 14.000 & 14.000 & 17.000 &  \\
+2 & mnist & cfg1 & 256 & 0.100 & tanh & 7 & 146ececf8b0b2c70 & late\_degradation & 7.000 &  &  &  &  &  &  \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 24 & 024739b132524bba & late\_collapse & 17.000 & 21.000 & 2.000 & 0.000 &  & -3.000 & 6.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 2 & 0714afc01830cb44 & late\_collapse & 24.000 & 26.000 & 10.000 & -2.000 &  & -2.000 & 12.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 7 & 1a62e611167acd99 & late\_collapse & 24.000 & 25.000 & 9.000 & -1.000 &  & -1.000 & 10.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 12 & 1bae1d790f23af85 & late\_collapse & 23.000 & 24.000 & 4.000 & 0.000 &  & 0.000 & 5.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 10 & 3066e8f85fb27e6f & late\_collapse & 21.000 & 22.000 & 8.000 & 0.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 9 & 315f0ed4e684e867 & late\_collapse & 22.000 & 24.000 & 10.000 & -2.000 &  & -1.000 & 12.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 15 & 3da7733e84f03aa2 & late\_collapse & 21.000 & 22.000 & 3.000 & 0.000 &  & 0.000 & 4.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 14 & 3efac47a0727e743 & late\_collapse & 23.000 & 23.000 & 7.000 & 0.000 & 0.000 & 0.000 & 7.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 16 & 462b10e5926a3c69 & late\_collapse & 22.000 & 22.000 & 10.000 & 4.000 &  & 0.000 & 10.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 25 & 48729bc512a1e89b & late\_collapse & 22.000 & 23.000 & 7.000 & 0.000 &  & -1.000 & 8.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 23 & 5215e431f1adca1d & late\_collapse & 23.000 & 23.000 & 9.000 & 0.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 18 & 548332f68c0a5637 & late\_collapse & 23.000 & 25.000 & 7.000 & 0.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 17 & 606d4fb97ae93df8 & late\_collapse & 23.000 & 23.000 & 13.000 & 0.000 &  & 0.000 & 13.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 26 & 635b39c9c92af1f0 & late\_collapse & 21.000 & 21.000 & 6.000 & 0.000 &  & 0.000 & 6.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 27 & 637d0905d4ee40c1 & late\_collapse & 22.000 & 22.000 & 7.000 & 0.000 &  & 0.000 & 7.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 22 & 653dd9b1e7dd6b8c & late\_collapse & 21.000 & 22.000 & 8.000 & -1.000 &  & -1.000 & 9.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 4 & 793c6e7eba520492 & late\_collapse & 20.000 & 22.000 & 6.000 & -1.000 &  & 0.000 & 8.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 20 & 81126f65df23f676 & late\_collapse & 19.000 & 20.000 & 5.000 & 0.000 &  & 0.000 & 6.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 1 & 881c4d6ed7ae601f & late\_collapse & 22.000 & 27.000 & 5.000 & 0.000 & -5.000 & -3.000 & 10.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 28 & 8f231a80a8aae9ae & late\_collapse & 23.000 & 25.000 & 6.000 & 10.000 & -2.000 & -1.000 & 8.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 3 & 947352914e82e275 & late\_collapse & 21.000 & 25.000 & 11.000 & -3.000 &  & -2.000 & 15.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 21 & 9a12aefbd32e2e07 & late\_collapse & 22.000 & 22.000 & 7.000 & 0.000 &  & 0.000 & 7.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 11 & 9a392a9186f3b19e & late\_collapse & 23.000 & 23.000 & 9.000 & 0.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 13 & a7f4ab9984c19114 & late\_collapse & 24.000 & 24.000 & 8.000 & 4.000 &  & 0.000 & 8.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 30 & abe497926096db09 & late\_collapse & 25.000 & 26.000 & 9.000 & -1.000 &  & 0.000 & 10.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 6 & bd98b4de7e7b28a8 & late\_collapse & 22.000 & 23.000 & 9.000 & 20.000 & -1.000 & -1.000 & 10.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 8 & be8ddac95d19dad6 & late\_collapse & 23.000 & 23.000 & 5.000 & 0.000 &  & 0.000 & 5.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 19 & d4f3c2368d75dda6 & late\_collapse & 24.000 & 24.000 & 10.000 & 0.000 &  & 0.000 & 10.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 29 & da93142f54e47b3f & late\_collapse & 23.000 & 23.000 & 4.000 & 0.000 &  & 0.000 & 4.000 \\
+2 & mnist & cfg2 & 64 & 0.020 & relu & 5 & e6e3f15918801273 & late\_collapse & 25.000 & 26.000 & 10.000 & 0.000 &  & 0.000 & 11.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 10 & 04a6ea7dbfad160a & late\_collapse & 5.000 & 5.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 4 & 265cb6e4ad9d5857 & late\_collapse & 8.000 & 8.000 & 1.000 & 0.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 2 & 4917ca03ba458599 & late\_collapse & 5.000 & 7.000 & 1.000 & -1.000 &  & -1.000 & 3.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 6 & 59ef249caf185fbd & late\_collapse & 5.000 & 5.000 & 0.000 & 2.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 8 & 73c07594231a9d8b & late\_collapse & 5.000 & 7.000 & 0.000 & 1.000 &  & -2.000 & 2.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 9 & 7fbced9efccdf6e2 & late\_collapse & 5.000 & 5.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 1 & 818d11e91828f7ba & late\_collapse & 5.000 & 6.000 & -1.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 3 & 88ff67e555756ae0 & late\_collapse & 6.000 & 6.000 & 0.000 & 4.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 5 & ccd3ae86b63b755e & late\_collapse & 6.000 & 6.000 & 0.000 & 1.000 & 0.000 & 0.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.030 & relu & 7 & d85fcbcd74661344 & late\_collapse & 6.000 & 6.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.050 & relu & 9 & 05595114e6b28d14 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.050 & relu & 1 & 9680da63e8f8a0cc & late\_collapse & 2.000 & 2.000 & -3.000 & 0.000 &  & 1.000 & -3.000 \\
+2 & mnist & cfg2 & 64 & 0.050 & relu & 10 & a1333b666482f21c & late\_collapse & 3.000 & 3.000 & 0.000 & 0.000 &  & 2.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.050 & relu & 4 & a78c549cce20e999 & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 1.000 & -1.000 \\
+2 & mnist & cfg2 & 64 & 0.050 & relu & 8 & be7105d42d568565 & late\_collapse & 3.000 & 3.000 & 0.000 & 0.000 &  & 2.000 & 0.000 \\
+2 & mnist & cfg2 & 64 & 0.050 & relu & 6 & cf484f033ad81d23 & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 1.000 & -1.000 \\
+2 & mnist & cfg2 & 64 & 0.050 & relu & 7 & ec12fff302abe892 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 1.000 &  \\
+2 & mnist & cfg2 & 64 & 0.050 & tanh+relu & 5 & 2446cc8201542f40 & late\_degradation & 4.000 &  & -1.000 & 2.000 & -12.000 & 3.000 &  \\
+2 & mnist & cfg2 & 64 & 0.050 & tanh+relu & 8 & 555de636999759e1 & late\_degradation & 4.000 &  & 0.000 & 2.000 &  & 3.000 &  \\
+2 & mnist & cfg2 & 64 & 0.050 & tanh+relu & 2 & 716926e304b3e95b & late\_degradation & 5.000 & 18.000 & 0.000 & 1.000 &  & 4.000 & 13.000 \\
+2 & mnist & cfg2 & 64 & 0.050 & tanh+relu & 10 & b0377c1257244354 & late\_degradation & 11.000 &  & -20.000 & 5.000 &  & 10.000 &  \\
+2 & mnist & cfg2 & 64 & 0.050 & tanh+relu & 6 & dd8841b1ec277ce7 & late\_degradation & 3.000 &  & -1.000 & 0.000 &  & 2.000 &  \\
+2 & mnist & cfg2 & 64 & 0.050 & tanh+relu & 9 & f1c126996987ea2c & late\_collapse & 4.000 & 4.000 & 0.000 & 2.000 & -2.000 & 3.000 & 0.000 \\
+2 & mnist & cfg2 & 128 & 0.010 & leaky\_relu & 26 & 2310243a9d4d87ce & late\_degradation & 40.000 &  & 21.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg2 & 128 & 0.010 & leaky\_relu & 7 & 73e6be34fe87b6ad & late\_degradation & 40.000 &  & 22.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg2 & 128 & 0.010 & leaky\_relu & 4 & 96fc2813b41f71d0 & late\_degradation & 39.000 &  & 21.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg2 & 128 & 0.010 & leaky\_relu & 8 & ae0edd272a1d16bc & late\_degradation & 40.000 &  & 22.000 & 0.000 & 1.000 &  &  \\
+2 & mnist & cfg2 & 128 & 0.010 & leaky\_relu & 12 & d2784864a7149de1 & late\_degradation & 40.000 &  & 20.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg2 & 128 & 0.010 & leaky\_relu & 29 & dca226da714b2993 & late\_degradation & 40.000 &  & 23.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg2 & 128 & 0.010 & leaky\_relu & 27 & f4ce064ea20742f5 & late\_degradation & 40.000 &  & 19.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 17 & 041ad7005fd64b0d & late\_collapse & 19.000 & 21.000 & 7.000 & -2.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 11 & 2854251b855de24f & late\_collapse & 23.000 & 25.000 & 12.000 & 0.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 24 & 3b0b108cb0f8fdf3 & late\_collapse & 21.000 & 22.000 & 13.000 & -1.000 &  & -1.000 & 14.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 21 & 3d8765a1248afde4 & late\_collapse & 21.000 & 23.000 & 10.000 & -2.000 &  & 0.000 & 12.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 25 & 466dea0b8a902180 & late\_collapse & 21.000 & 22.000 & 10.000 & 2.000 &  & 0.000 & 11.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 14 & 4c96547dbef7f208 & late\_collapse & 22.000 & 24.000 & 11.000 & -2.000 &  & -1.000 & 13.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 23 & 4e9320db08d8f246 & late\_collapse & 22.000 & 24.000 & 10.000 & -1.000 &  & 0.000 & 12.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 30 & 4f41bccd429c69ea & late\_collapse & 23.000 & 24.000 & 14.000 & -1.000 & -1.000 & 0.000 & 15.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 8 & 596285c1302d34c7 & late\_collapse & 22.000 & 24.000 & 10.000 & 3.000 &  & 0.000 & 12.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 18 & 605fee2b1e74e854 & late\_collapse & 24.000 & 24.000 & 12.000 & 0.000 &  & 0.000 & 12.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 4 & 6122b0a59744a96b & late\_collapse & 26.000 & 27.000 & 13.000 & -1.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 1 & 635400afe230471c & late\_collapse & 21.000 & 24.000 & 10.000 & 2.000 &  & 0.000 & 13.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 27 & 64095f7229e69e42 & late\_collapse & 22.000 & 24.000 & 12.000 & -2.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 2 & 65baf52b213c1491 & late\_collapse & 24.000 & 25.000 & 14.000 & 0.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 13 & 7e92b9233167c661 & late\_collapse & 23.000 & 25.000 & 11.000 & 0.000 &  & 0.000 & 13.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 9 & 855c60475bb63344 & late\_collapse & 26.000 & 26.000 & 15.000 & 0.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 28 & 9859010ab1f4f19f & late\_collapse & 25.000 & 26.000 & 15.000 & 0.000 &  & -1.000 & 16.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 3 & 9df32fc66a4120fe & late\_collapse & 22.000 & 25.000 & 10.000 & -1.000 &  & -1.000 & 13.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 19 & 9f8bbb96e39b6f57 & late\_collapse & 23.000 & 26.000 & 9.000 & 0.000 & -6.000 & -1.000 & 12.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 12 & b1a7bbbe08fea74e & late\_collapse & 21.000 & 22.000 & 10.000 & 0.000 &  & 0.000 & 11.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 7 & b806d4cc1df5b53a & late\_collapse & 22.000 & 23.000 & 12.000 & 4.000 &  & 0.000 & 13.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 10 & c1f9edb5768cdc2c & late\_collapse & 22.000 & 24.000 & 9.000 & -1.000 &  & 0.000 & 11.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 29 & c9c68769dddee93c & late\_collapse & 22.000 & 25.000 & 12.000 & 0.000 &  & -2.000 & 15.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 26 & cb2416c92bf6d465 & late\_collapse & 21.000 & 21.000 & 9.000 & 0.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 15 & cf9ed3117aefc97b & late\_collapse & 24.000 & 24.000 & 11.000 & 0.000 &  & 0.000 & 11.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 5 & d21b43f45c29c9b8 & late\_collapse & 20.000 & 23.000 & 8.000 & -3.000 &  & -2.000 & 11.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 20 & d4769f0e0d266f67 & late\_collapse & 20.000 & 21.000 & 8.000 & 3.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 16 & dabe90cf51eeb6ca & late\_collapse & 21.000 & 22.000 & 10.000 & 0.000 &  & 0.000 & 11.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 22 & e7f53563b8045d39 & late\_collapse & 26.000 & 26.000 & 13.000 & 0.000 &  & 0.000 & 13.000 \\
+2 & mnist & cfg2 & 128 & 0.020 & relu & 6 & ef3290f31dc14f7d & late\_collapse & 25.000 & 26.000 & 10.000 & -1.000 & -1.000 & 0.000 & 11.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 3 & 04825517fb22da15 & late\_collapse & 7.000 & 7.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 9 & 0d9d9a4d6ad7b93b & late\_collapse & 9.000 & 10.000 & 2.000 & 2.000 &  & 2.000 & 3.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 5 & 1e02d3065c446a8f & late\_collapse & 6.000 & 19.000 & 0.000 & 4.000 &  & 0.000 & 13.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 10 & 2e0663d295ce39c3 & late\_collapse & 5.000 & 6.000 & 1.000 & 0.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 7 & 3da39fdecfc56c91 & late\_collapse & 6.000 & 6.000 & 0.000 & 0.000 &  & 0.000 & 0.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 4 & 44f39d5f9ab732f4 & late\_collapse & 7.000 & 7.000 & 1.000 & 1.000 & 0.000 & 0.000 & 1.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 1 & 556577883cbf41f3 & late\_collapse & 7.000 & 8.000 & 0.000 & 3.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 8 & b56cd74a9c9e1370 & late\_collapse & 7.000 & 7.000 & 1.000 & 1.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 6 & c75a8714f6343166 & late\_collapse & 8.000 & 8.000 & 1.000 & 1.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & relu & 2 & e01e2a186f6c5d3a & late\_collapse & 9.000 & 9.000 & 3.000 & 0.000 & -15.000 & 2.000 & 3.000 \\
+2 & mnist & cfg2 & 128 & 0.030 & tanh+relu@hidden & 6 & 01e6cd0d2d31bf14 & late\_degradation & 29.000 &  & 17.000 & 27.000 &  & 25.000 &  \\
+2 & mnist & cfg2 & 128 & 0.030 & tanh+relu@hidden & 3 & 308f14b91739578b & late\_degradation & 18.000 &  & 5.000 & 16.000 &  & 14.000 &  \\
+2 & mnist & cfg2 & 128 & 0.030 & tanh+relu@hidden & 7 & c73c101432e1afbf & late\_degradation & 33.000 &  & 26.000 & 29.000 &  & 28.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & relu & 3 & 0d0e7a7034f74e57 & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 1.000 & -1.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & relu & 8 & 1676e7e944c97cae & late\_collapse & 3.000 & 4.000 & -1.000 & 1.000 &  & 2.000 & 0.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & relu & 4 & 3b89ac352d37493a & late\_collapse & 3.000 & 3.000 & -1.000 & 1.000 &  & 2.000 & -1.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & relu & 6 & 6f618bfb56c747e8 & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 1.000 & -1.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & relu & 5 & d848ed5906eb718d & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & relu & 7 & dd9fd93c8803156b & late\_collapse & 3.000 & 3.000 & -1.000 & 0.000 &  & 2.000 & -1.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & relu & 2 & e9881b42dcec46f4 & late\_collapse & 4.000 & 4.000 & 0.000 & 0.000 &  & 3.000 & 0.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & relu & 10 & f468577d073cfb49 & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 1.000 & -1.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu & 5 & 03e81a4bb46959f5 & late\_degradation & 6.000 &  & -1.000 & 4.000 & -31.000 & 5.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu & 3 & 06d5116f4f6b50a7 & late\_degradation & 4.000 &  & 0.000 & 2.000 & -1.000 & 3.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu & 10 & 1947be8832fcf121 & late\_degradation & 2.000 & 18.000 & -1.000 & 0.000 & -17.000 & 1.000 & 15.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu & 7 & 2d017164a892574b & late\_degradation & 5.000 &  & -1.000 & 2.000 & -13.000 & 4.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu & 8 & 51f09a43f9012762 & late\_degradation & 2.000 & 27.000 & 0.000 & 0.000 & -10.000 & 1.000 & 25.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu & 9 & f0cb09119f9c74d9 & late\_degradation & 13.000 &  & -1.000 & 8.000 & -24.000 & 12.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@conv & 5 & 0bfa7db9cb259cbb & late\_degradation & 2.000 & 10.000 &  &  &  & 1.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@conv & 9 & 68f1965cb4f5b967 & late\_collapse & 2.000 & 2.000 &  &  &  & 1.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@conv & 2 & 9d48871e7aaf5aca & late\_degradation & 2.000 & 6.000 &  &  &  & 1.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@conv & 1 & a103b3fd41e4e89f & late\_collapse & 2.000 & 8.000 &  &  &  & 1.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@conv & 6 & d39cee844d79aa96 & late\_degradation & 2.000 & 14.000 & -9.000 &  &  & 1.000 & 3.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@conv & 8 & dcc0c8e19fc46ac0 & late\_degradation & 2.000 & 5.000 &  &  &  & 1.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@conv & 7 & e740dc606c9611d5 & late\_collapse & 2.000 & 3.000 &  &  &  & 1.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@conv & 10 & ede0931a9ca519ef & late\_degradation & 3.000 & 4.000 &  &  &  & 2.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@conv & 4 & ffce72d4a9f3d054 & late\_degradation & 4.000 & 17.000 &  &  &  & 3.000 &  \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@hidden & 10 & 61644bf8dd9b25d7 & late\_collapse & 2.000 & 5.000 & 0.000 & 0.000 & -7.000 & 1.000 & 3.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@hidden & 7 & 7908772be96e2165 & late\_degradation & 7.000 & 2.000 & 5.000 & 5.000 & 2.000 & 6.000 & 0.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@hidden & 4 & a0b9eb5b5061b230 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg2 & 128 & 0.050 & tanh+relu@hidden & 3 & f4a91db890fecd89 & late\_collapse & 2.000 & 2.000 & 0.000 & 0.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg2 & 128 & 0.100 & tanh & 9 & 024936ac503ec6d9 & late\_degradation & 2.000 &  &  &  &  &  &  \\
+2 & mnist & cfg2 & 128 & 0.100 & tanh & 10 & 8477c9f4935dcbd1 & late\_degradation & 3.000 &  &  &  &  &  &  \\
+2 & mnist & cfg2 & 128 & 0.100 & tanh & 3 & d3e7fa5d4021e53b & late\_degradation & 5.000 & 1.000 &  &  &  &  &  \\
+2 & mnist & cfg2 & 128 & 0.100 & tanh+relu@hidden & 3 & afb6e8ff37a4b203 & late\_collapse & 33.000 & 1.000 &  & 1.000 & 26.000 & 32.000 &  \\
+2 & mnist & cfg2 & 256 & 0.010 & leaky\_relu & 30 & 006e2f03fb4733fd & late\_degradation & 40.000 &  & 24.000 & 0.000 & 1.000 &  &  \\
+2 & mnist & cfg2 & 256 & 0.010 & leaky\_relu & 23 & 24cc824b5a481859 & late\_degradation & 39.000 &  & 20.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg2 & 256 & 0.010 & leaky\_relu & 28 & 58b9512f9032b040 & late\_degradation & 39.000 &  & 24.000 & 0.000 & 1.000 &  &  \\
+2 & mnist & cfg2 & 256 & 0.010 & leaky\_relu & 26 & 757072fd910dadde & late\_degradation & 40.000 &  & 21.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg2 & 256 & 0.010 & leaky\_relu & 7 & b7f8082316169b8d & late\_degradation & 40.000 &  & 26.000 & 0.000 & 0.000 &  &  \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 12 & 04080a80fcbecd5e & late\_collapse & 22.000 & 24.000 & 11.000 & 0.000 & -5.000 & 0.000 & 13.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 25 & 062b253f19b6317c & late\_collapse & 22.000 & 24.000 & 10.000 & 0.000 &  & 0.000 & 12.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 6 & 198f57ba0e7c5e5d & late\_collapse & 27.000 & 29.000 & 16.000 & -1.000 &  & 0.000 & 18.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 16 & 1dbd6306b91fd70a & late\_collapse & 26.000 & 30.000 & 17.000 & -3.000 &  & 0.000 & 21.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 29 & 1fcd83549e0f7f78 & late\_collapse & 27.000 & 28.000 & 15.000 & -1.000 &  & 2.000 & 16.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 15 & 2033c3a8f81ea0d7 & late\_collapse & 22.000 & 28.000 & 11.000 & -3.000 &  & 0.000 & 17.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 13 & 2116dfb2034e6f71 & late\_collapse & 23.000 & 24.000 & 13.000 & -1.000 &  & 0.000 & 14.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 22 & 2a999fe26f9e0a39 & late\_collapse & 21.000 & 23.000 & 11.000 & 2.000 &  & 0.000 & 13.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 8 & 2b9ffe30d9547933 & late\_collapse & 26.000 & 26.000 & 15.000 & 0.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 24 & 2cff4cd8ffd9837f & late\_collapse & 25.000 & 27.000 & 13.000 & -2.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 23 & 3748fa7ccd36b726 & late\_collapse & 22.000 & 23.000 & 10.000 & 0.000 &  & 1.000 & 11.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 14 & 3b318ce797e0f1f4 & late\_collapse & 21.000 & 21.000 & 10.000 & 1.000 &  & 0.000 & 10.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 18 & 4a3c5baf3a03e5c0 & late\_collapse & 24.000 & 25.000 & 13.000 & 0.000 &  & 3.000 & 14.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 10 & 5d02f752875064e8 & late\_collapse & 23.000 & 28.000 & 13.000 & -5.000 &  & 0.000 & 18.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 20 & 6e00f43e9a7e1553 & late\_collapse & 23.000 & 23.000 & 9.000 & 0.000 &  & 0.000 & 9.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 27 & 6eaa48853e378012 & late\_collapse & 23.000 & 26.000 & 10.000 & 2.000 &  & 0.000 & 13.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 1 & 88936dbb271b6258 & late\_collapse & 24.000 & 24.000 & 14.000 & 0.000 &  & 1.000 & 14.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 5 & 94db47d23269eda4 & late\_collapse & 24.000 & 26.000 & 13.000 & -1.000 &  & 1.000 & 15.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 28 & 9d65911bf8c29c3b & late\_collapse & 21.000 & 27.000 & 9.000 & 2.000 &  & 0.000 & 15.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 7 & 9dcf538ef32d7b7a & late\_collapse & 26.000 & 28.000 & 15.000 & -2.000 &  & 1.000 & 17.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 19 & 9fca10d5f2abf483 & late\_collapse & 27.000 & 28.000 & 17.000 & 0.000 &  & 1.000 & 18.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 3 & a3d79d03e55f1ace & late\_collapse & 21.000 & 29.000 & 10.000 & -4.000 &  & 0.000 & 18.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 17 & c0b07825091e1ced & late\_collapse & 22.000 & 22.000 & 12.000 & 0.000 &  & 1.000 & 12.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 2 & d3e4dfaf95a40461 & late\_collapse & 24.000 & 26.000 & 14.000 & 0.000 &  & 0.000 & 16.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 21 & ddd6f8541160aad0 & late\_collapse & 23.000 & 26.000 & 11.000 & -2.000 &  & 1.000 & 14.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 11 & efcd1a77aba5f3eb & late\_collapse & 25.000 & 26.000 & 13.000 & -1.000 &  & 1.000 & 14.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 4 & f155a4cfc144a587 & late\_collapse & 22.000 & 24.000 & 10.000 & 0.000 &  & 0.000 & 12.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 30 & f3b7d88ddd0f4baa & late\_collapse & 25.000 & 28.000 & 15.000 & 0.000 &  & 1.000 & 18.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 26 & f42bca7846d34335 & late\_collapse & 22.000 & 25.000 & 11.000 & -3.000 &  & -2.000 & 14.000 \\
+2 & mnist & cfg2 & 256 & 0.020 & relu & 9 & fe5eb7ef1ff6ad30 & late\_collapse & 23.000 & 25.000 & 12.000 & -2.000 &  & 3.000 & 14.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 5 & 146da0229347d72b & late\_collapse & 8.000 & 10.000 & 1.000 & 1.000 &  & 1.000 & 3.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 10 & 2f8f5e4ca444520f & late\_collapse & 6.000 & 7.000 & 0.000 & 1.000 & -1.000 & 0.000 & 1.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 4 & 37b973adcb00fbe0 & late\_collapse & 8.000 & 9.000 & 1.000 & 0.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 1 & 4759b3d48b9fc77f & late\_collapse & 9.000 & 9.000 & 2.000 & 0.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 8 & 4ce3553480c79aac & late\_collapse & 8.000 & 10.000 & 2.000 & 6.000 &  & 1.000 & 4.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 9 & 8bc65431e2c54397 & late\_collapse & 9.000 & 9.000 & 1.000 & 0.000 &  & 0.000 & 1.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 3 & 994318e70bebae25 & late\_collapse & 8.000 & 11.000 & 1.000 & 6.000 &  & 0.000 & 4.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 7 & abcd8a63442d5c61 & late\_collapse & 7.000 & 7.000 & 2.000 & 0.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 6 & bdfb1b11e601f746 & late\_collapse & 10.000 & 10.000 & 2.000 & 3.000 &  & 0.000 & 2.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & relu & 2 & c5e6a8db44a4237a & late\_collapse & 9.000 & 9.000 & 3.000 & 0.000 &  & 1.000 & 3.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu & 9 & 4edf42920a5c18f7 & late\_degradation & 21.000 &  & 4.000 & 5.000 & -9.000 & 16.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu & 3 & 5d0a478187f81c1d & late\_degradation & 16.000 &  & 1.000 & 14.000 &  & 12.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu & 2 & 874b683614cd933e & late\_degradation & 25.000 &  & 12.000 & 22.000 &  & 20.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu & 6 & ca1aecda64c49cda & late\_degradation & 30.000 &  & 5.000 & 28.000 & -7.000 & 25.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 1 & 05040749f083954d & late\_degradation & 10.000 &  & 5.000 & 8.000 & -16.000 & 7.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 8 & 1d85e33cd21719e2 & late\_degradation & 8.000 & 15.000 & 2.000 & 4.000 & -5.000 & 5.000 & 9.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 2 & 26c0e462b7d00b6c & late\_degradation & 8.000 &  & 1.000 & 6.000 & -19.000 & 5.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 6 & 34c4bfe722bf1780 & late\_degradation & 6.000 &  & 0.000 & 3.000 & -5.000 & 3.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 3 & 3641a4a40179c427 & late\_degradation & 4.000 &  & -1.000 & 2.000 & -10.000 & 1.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 10 & a33c6b06dcd4d4dd & late\_degradation & 6.000 & 30.000 & 0.000 & 4.000 & -8.000 & 3.000 & 24.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 5 & b13c0203930918d1 & late\_degradation & 9.000 & 32.000 & 3.000 & 7.000 &  & 6.000 & 26.000 \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 4 & cf40ed9b5802975e & late\_degradation & 10.000 &  & 5.000 & 8.000 & -17.000 & 7.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 7 & cf635e08d70d5b5b & late\_degradation & 6.000 &  & 1.000 & 4.000 & -6.000 & 3.000 &  \\
+2 & mnist & cfg2 & 256 & 0.030 & tanh+relu@hidden & 9 & e6921154fc84c285 & late\_degradation & 9.000 &  & 3.000 & 6.000 & -25.000 & 5.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 3 & 0d4ccfaf4407d383 & late\_collapse & 4.000 & 4.000 & 0.000 & 0.000 &  & 3.000 & 0.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 4 & 21522af8026f0f7a & late\_collapse & 5.000 & 5.000 & 0.000 & 0.000 &  & 4.000 & 0.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 10 & 370cc1fbbed6a849 & late\_collapse & 3.000 & 3.000 & -1.000 & 1.000 &  & 2.000 & -1.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 6 & 3fb9b7a6a5429fd4 & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 1.000 & -1.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 7 & 6dd2cd66b2031187 & late\_collapse & 5.000 & 5.000 & 0.000 & 0.000 &  & 4.000 & 0.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 1 & 7561d8d7c7493bf9 & late\_collapse & 2.000 & 2.000 & -1.000 & 0.000 &  & 1.000 & -1.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 5 & 94de8e7db033436d & late\_collapse & 5.000 & 8.000 & -3.000 & -2.000 &  & 4.000 & 0.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 9 & c41810596fcaa371 & late\_collapse & 4.000 & 4.000 & 0.000 & 1.000 &  & 3.000 & 0.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 2 & dc4df1910d360fe0 & late\_collapse & 2.000 & 3.000 & -1.000 & -1.000 &  & 1.000 & 0.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & relu & 8 & f30a81eab60b61be & late\_collapse & 4.000 & 4.000 & 0.000 & 0.000 &  & 3.000 & 0.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh & 3 & deeb49b752691235 & late\_degradation & 40.000 &  &  &  &  &  &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 9 & 027beb8d424d5f53 & late\_degradation & 3.000 & 6.000 &  &  &  & 2.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 6 & 3f1ba955bcd9a6f6 & late\_degradation & 3.000 & 29.000 &  &  &  & 2.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 3 & 47d4a2dda0121ed9 & late\_degradation & 4.000 & 12.000 &  &  &  & 3.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 10 & 6f639d8bd6d2768b & late\_degradation & 2.000 & 27.000 &  &  &  & 1.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 5 & 8a23379e43132717 & late\_degradation & 3.000 &  &  &  &  & 2.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 8 & 9a8b7ffcadb4f9bc & late\_collapse & 3.000 & 5.000 &  &  &  & 2.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 1 & a610440e88b2933b & late\_degradation & 4.000 & 14.000 &  &  &  & 3.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 2 & e0475955e1e07b0a & late\_degradation & 4.000 & 5.000 &  &  &  & 3.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 4 & e9aae058c582cdc0 & late\_degradation & 2.000 &  &  &  &  & 1.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@conv & 7 & edcb024d8a5d8ee5 & late\_degradation & 2.000 &  &  &  &  & 1.000 &  \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@hidden & 3 & 374d883748987a89 & late\_collapse & 7.000 & 1.000 & 5.000 & 2.000 & 2.000 & 6.000 & -1.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@hidden & 7 & a2102adb044a9035 & late\_degradation & 3.000 & 4.000 & 0.000 & 1.000 & -2.000 & 2.000 & 1.000 \\
+2 & mnist & cfg2 & 256 & 0.050 & tanh+relu@hidden & 4 & c199b2dde493d76c & late\_collapse & 11.000 & 13.000 &  & 4.000 & 4.000 & 10.000 &  \\
+2 & mnist & cfg2 & 256 & 0.100 & relu & 8 & 29fa28b3e55616f2 & late\_collapse & 5.000 & 1.000 &  & 1.000 & 1.000 & 4.000 &  \\
+2 & mnist & cfg2 & 256 & 0.100 & tanh & 6 & 3b6fc5c1af43504a & late\_degradation & 3.000 &  &  &  &  &  &  \\
+2 & mnist & cfg2 & 256 & 0.100 & tanh & 1 & 3b9e64a522d516d1 & late\_degradation & 4.000 &  &  &  &  &  &  \\
+2 & mnist & mlp1 & 64 & 0.100 & relu & 23 & 82b288cc27eef796 & late\_degradation & 2.000 &  &  &  &  & 1.000 &  \\
+2 & mnist & mlp1 & 64 & 0.100 & relu & 25 & 933c06301a498ba0 & late\_degradation & 3.000 &  &  &  &  & 2.000 &  \\
+2 & mnist & mlp1 & 64 & 0.100 & relu & 18 & e4460c0d86fd6664 & late\_degradation & 2.000 &  &  &  &  & 1.000 &  \\
+2 & mnist & mlp1 & 128 & 0.100 & relu & 27 & 3e4c90c88e64c85b & late\_degradation & 4.000 &  &  & 2.000 &  & 3.000 &  \\
+2 & mnist & mlp1 & 128 & 0.100 & relu & 4 & 4c6632dc3dfb268a & late\_degradation & 9.000 &  &  &  &  & 8.000 &  \\
+2 & mnist & mlp1 & 128 & 0.100 & relu & 22 & 8c01f0ac0032dbfe & late\_degradation & 3.000 &  &  &  &  & 2.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.010 & relu & 34 & 05709e2bfcfa9c6e & late\_degradation & 40.000 &  &  &  &  &  &  \\
+3 & cifar10 & cfg2 & 128 & 0.010 & relu & 37 & 0ac084023482119b & late\_collapse & 24.000 & 37.000 & -14.000 & -13.000 &  & -13.000 & -1.000 \\
+3 & cifar10 & cfg2 & 128 & 0.010 & relu & 45 & 4cb3b68915ada192 & late\_degradation & 32.000 & 38.000 &  & -6.000 &  & -6.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.010 & relu & 40 & 604a42d4fa50d151 & late\_collapse & 34.000 & 36.000 & -2.000 & 31.000 &  & -2.000 & 0.000 \\
+3 & cifar10 & cfg2 & 128 & 0.010 & relu & 33 & 64307805982fa8ff & late\_collapse & 39.000 & 39.000 & -1.000 & 0.000 &  & 0.000 & -1.000 \\
+3 & cifar10 & cfg2 & 128 & 0.010 & relu & 31 & 9faeb280982b9b55 & late\_collapse & 29.000 & 37.000 & -9.000 & -8.000 &  & -8.000 & -1.000 \\
+3 & cifar10 & cfg2 & 128 & 0.010 & relu & 38 & f5a360debf9be89a & late\_degradation & 36.000 &  &  &  &  &  &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 36 & 0a97a60f5cc60ded & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 45 & 1bfeea943bbf5f2b & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 33 & 33fe24b7525f8ae6 & late\_collapse & 13.000 & 13.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 40 & 38a7cb716f6ca9cc & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 43 & 3a84d520b1eda3dd & late\_collapse & 3.000 & 3.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 44 & 3bbaa0905798b3f0 & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 31 & 44473e5bfc005480 & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 32 & 4b703f0516ba5c91 & late\_collapse & 4.000 & 4.000 &  & 2.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 41 & 5ac20f0034f8fbb7 & late\_collapse & 7.000 & 7.000 &  & 5.000 & -25.000 & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 42 & 93b6f7b50e933232 & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 38 & b122482fc8c43453 & late\_collapse & 6.000 & 1.000 &  & 3.000 &  & 5.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 35 & bb92574f97a0129c & late\_collapse & 13.000 & 13.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 39 & c802b3e64374e3d8 & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 37 & ce1ad4a743af4602 & late\_collapse & 6.000 & 6.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & relu & 34 & d42d45e1a95d8c87 & late\_collapse & 4.000 & 4.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu & 32 & 1331bab745e1cf49 & late\_collapse & 39.000 & 39.000 &  & 0.000 &  & 38.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu & 39 & 40b69d1e300fe5b4 & late\_collapse & 14.000 & 14.000 &  & 11.000 &  & 13.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@0.75 & 33 & 135a8e0814c8a234 & late\_degradation & 13.000 & 13.000 &  & 11.000 &  & 12.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@0.75 & 42 & 43ad35f873fc6d60 & late\_collapse & 8.000 & 8.000 &  & 1.000 &  & 7.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@0.75 & 41 & 83e46b42fc340d81 & late\_collapse & 14.000 & 14.000 &  & 0.000 &  & 13.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@0.75 & 43 & d13415147b06f0df & late\_collapse & 10.000 & 10.000 &  & 0.000 &  & 9.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.020 & tanh+relu@0.75 & 44 & d616a81eaa849b9e & late\_collapse & 10.000 & 27.000 &  & -17.000 &  & 9.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 42 & 17a582eca5efde01 & late\_collapse & 3.000 & 3.000 &  & 1.000 &  & 1.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 45 & 3ee67155ed957adc & late\_collapse & 3.000 & 3.000 &  & 0.000 & -5.000 & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 37 & 516e5d8e66bd6791 & late\_collapse & 4.000 & 4.000 &  & 2.000 & -17.000 & 2.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 31 & 592586f14a401aef & late\_collapse & 2.000 & 2.000 &  & 0.000 & -5.000 & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 33 & 789b44faafdba125 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 1.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 36 & 94b8ca9ff3c0378e & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 44 & b242b5dec63a95df & late\_collapse & 5.000 & 1.000 &  & 0.000 & -31.000 & 4.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 41 & c0bcab04e13063e8 & late\_collapse & 5.000 & 5.000 &  & 0.000 &  & 4.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 32 & c81cb61df3ac3b02 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 0.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & relu & 35 & ff6d3b2ebb1b49eb & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 1.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & tanh & 44 & 0b37c94d358cb60d & late\_degradation & 40.000 & 1.000 &  &  &  &  &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & tanh+relu & 36 & ed066722f9052ec2 & late\_collapse & 35.000 & 1.000 &  & 29.000 & 31.000 & 34.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & tanh+relu@0.25 & 32 & 2b5ee13421ea837c & late\_degradation & 35.000 &  &  &  &  & 34.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & tanh+relu@0.75 & 34 & 1e59cefb079d90c6 & late\_collapse & 2.000 & 2.000 &  & 0.000 &  & 1.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & tanh+relu@0.75 & 45 & 27c9d0e37ce12eea & late\_collapse & 3.000 & 1.000 &  & 0.000 & -13.000 & 2.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & tanh+relu@0.75 & 38 & 97125f987e733252 & late\_collapse & 7.000 & 7.000 &  & 5.000 &  & 6.000 &  \\
+3 & cifar10 & cfg2 & 128 & 0.030 & tanh+relu@0.75 & 32 & de02a8b8060e09b0 & late\_collapse & 19.000 & 19.000 &  & 15.000 & 3.000 & 18.000 &  \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 40 & 183629add3bab705 & late\_collapse & 21.000 & 22.000 & 9.000 & 0.000 &  & 0.000 & 10.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 36 & 1e3d044eb02d3acc & late\_collapse & 21.000 & 23.000 & 8.000 & 0.000 &  & 0.000 & 10.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 38 & 3963fcbbbb767492 & late\_collapse & 24.000 & 25.000 & 14.000 & -1.000 &  & 0.000 & 15.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 43 & 456bf93bffdab8a0 & late\_collapse & 22.000 & 23.000 & 11.000 & 1.000 &  & 0.000 & 12.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 45 & 4b00e7e3ba387866 & late\_collapse & 23.000 & 23.000 & 13.000 & 0.000 &  & 0.000 & 13.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 32 & 8294a940fe9560a8 & late\_collapse & 23.000 & 23.000 & 11.000 & 0.000 & -1.000 & 0.000 & 11.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 39 & 8f7b616cfcbb2d75 & late\_collapse & 24.000 & 26.000 & 11.000 & 0.000 &  & 0.000 & 13.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 35 & 906c51e09641c381 & late\_collapse & 22.000 & 22.000 & 9.000 & 0.000 &  & 0.000 & 9.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 33 & 985fe860fde9881b & late\_collapse & 24.000 & 25.000 & 10.000 & 0.000 &  & 0.000 & 11.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 44 & ae5a996e0921de59 & late\_collapse & 23.000 & 23.000 & 8.000 & 0.000 & 0.000 & 0.000 & 8.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 42 & bf4cb3b830a34c13 & late\_collapse & 25.000 & 26.000 & 12.000 & 0.000 &  & 0.000 & 13.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 31 & c2da7988a936072d & late\_collapse & 24.000 & 25.000 & 12.000 & 1.000 &  & 0.000 & 13.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 41 & d19484b4f3329362 & late\_collapse & 23.000 & 23.000 & 8.000 & 0.000 &  & 0.000 & 8.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 37 & d747fc72b318b1ef & late\_collapse & 24.000 & 24.000 & 12.000 & 0.000 &  & 0.000 & 12.000 \\
+3 & mnist & cfg2 & 128 & 0.020 & relu & 34 & d8245376bac5e66e & late\_collapse & 24.000 & 26.000 & 11.000 & -1.000 &  & -1.000 & 13.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 41 & 031bd0ad0b25b959 & late\_collapse & 7.000 & 8.000 & 1.000 & 0.000 & -12.000 & 0.000 & 2.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 38 & 04171da9cb474189 & late\_collapse & 9.000 & 9.000 & 1.000 & 0.000 &  & 0.000 & 1.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 39 & 0a3913c3a7bb7b5e & late\_collapse & 7.000 & 7.000 & 1.000 & 0.000 &  & 0.000 & 1.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 37 & 2773a4b3d88fd398 & late\_collapse & 7.000 & 10.000 & 0.000 & 0.000 &  & 0.000 & 3.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 43 & 2d8d1be5aabb73f7 & late\_collapse & 7.000 & 7.000 & 1.000 & 0.000 &  & 0.000 & 1.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 34 & 5ad2c340b0e75005 & late\_collapse & 7.000 & 7.000 & 2.000 & 2.000 &  & 0.000 & 2.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 36 & 6c0d2b8d12b2c763 & late\_collapse & 7.000 & 9.000 & 1.000 & 4.000 &  & 0.000 & 3.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 45 & 72d8f1c1e1c5967d & late\_collapse & 8.000 & 8.000 & 0.000 & 2.000 &  & 0.000 & 0.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 44 & 7cd34d75f12eb862 & late\_collapse & 8.000 & 9.000 & 1.000 & 6.000 & 0.000 & 1.000 & 2.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 35 & 8ab6a4c0c82131ea & late\_collapse & 6.000 & 7.000 & 1.000 & 0.000 &  & 0.000 & 2.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 40 & 9587b9e3dd994d6e & late\_collapse & 6.000 & 6.000 & 0.000 & 1.000 & 0.000 & 0.000 & 0.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 32 & b56806de6e0cbe3f & late\_collapse & 7.000 & 7.000 & 2.000 & 0.000 &  & 0.000 & 2.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 31 & c711d9f73bfefa56 & late\_collapse & 9.000 & 10.000 & 2.000 & 0.000 &  & 0.000 & 3.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 42 & ca1041361c8147bc & late\_collapse & 6.000 & 6.000 & 1.000 & 4.000 &  & 0.000 & 1.000 \\
+3 & mnist & cfg2 & 128 & 0.030 & relu & 33 & cc95fb2f5c03e724 & late\_collapse & 9.000 & 9.000 & 1.000 & 1.000 &  & 0.000 & 1.000 \\
+\bottomrule
+\end{tabular}}
+\end{table}

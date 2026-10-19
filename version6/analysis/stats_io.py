@@ -36,6 +36,7 @@ import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from load import load_rows  # noqa: E402  (model_label / config_label are applied there)
+from outcomes import classify  # noqa: E402
 
 V6 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARCHIVES = os.path.expanduser(os.environ.get("V6_ARCHIVES", "~/Desktop/v6_archives"))
@@ -76,10 +77,12 @@ def archive_sha256(stage):
 
 @functools.lru_cache(maxsize=None)
 def runs(stage):
-    """Merged result rows of a stage, with `model`, `config` and the outcome measures (load.py)."""
+    """Merged result rows of a stage, with `model`, `config`, the outcome measures (load.py) and
+    the `outcome` class (outcomes.py, reference = the stage's own LR grid)."""
     df = load_rows(os.path.join(V6, "results", f"stage{stage}"))
     df["seed_set"] = df["seed"].map(lambda s: seed_set(stage, s))
     df["arch_label"] = df.apply(arch_label, axis=1)
+    df["outcome"] = classify(df, ["dataset", "config", "hidden", "model"])    # outcomes.py taxonomy
     return df
 
 

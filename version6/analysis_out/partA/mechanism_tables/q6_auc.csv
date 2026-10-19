@@ -1,0 +1,13 @@
+stage,signal,pooling,n_cells,n_pos_epochs,n_neg_epochs,auc
+0,loss_rise,same cell incl. model,7,77,1672,0.493825
+0,zmax_jump,same cell incl. model,7,77,1672,0.648931
+0,dead_gt20,same cell incl. model,7,78,1716,0.649453
+0,dw_spike,same cell incl. model,7,76,1628,0.80955
+2,loss_rise,same cell incl. model,75,944,43776,0.599062
+2,zmax_jump,same cell incl. model,75,944,43776,0.626179
+2,dead_gt20,same cell incl. model,75,914,32058,0.519763
+2,dw_spike,same cell incl. model,75,847,42624,0.559897
+3,loss_rise,same cell incl. model,8,68,2394,0.623434
+3,zmax_jump,same cell incl. model,8,68,2394,0.534
+3,dead_gt20,same cell incl. model,8,75,2262,0.304459
+3,dw_spike,same cell incl. model,8,62,2331,0.541004

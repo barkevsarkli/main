@@ -1,0 +1,1248 @@
+{
+ "outcomes.depth.v5_c10_calib_12.cifar10.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_12",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_c10_calib_12.cifar10.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_12",
+  "unit": "",
+  "value": 78
+ },
+ "outcomes.depth.v5_c10_calib_12.cifar10.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_12",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_c10_calib_12.cifar10.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_12",
+  "unit": "",
+  "value": 18
+ },
+ "outcomes.depth.v5_c10_calib_128.cifar10.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_128",
+  "unit": "",
+  "value": 3
+ },
+ "outcomes.depth.v5_c10_calib_128.cifar10.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_128",
+  "unit": "",
+  "value": 92
+ },
+ "outcomes.depth.v5_c10_calib_128.cifar10.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_128",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_c10_calib_128.cifar10.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_128",
+  "unit": "",
+  "value": 18
+ },
+ "outcomes.depth.v5_c10_calib_256.cifar10.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_256",
+  "unit": "",
+  "value": 4
+ },
+ "outcomes.depth.v5_c10_calib_256.cifar10.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_256",
+  "unit": "",
+  "value": 93
+ },
+ "outcomes.depth.v5_c10_calib_256.cifar10.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_256",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_c10_calib_256.cifar10.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_256",
+  "unit": "",
+  "value": 18
+ },
+ "outcomes.depth.v5_c10_calib_32.cifar10.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_32",
+  "unit": "",
+  "value": 1
+ },
+ "outcomes.depth.v5_c10_calib_32.cifar10.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_32",
+  "unit": "",
+  "value": 78
+ },
+ "outcomes.depth.v5_c10_calib_32.cifar10.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_32",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_c10_calib_32.cifar10.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_32",
+  "unit": "",
+  "value": 18
+ },
+ "outcomes.depth.v5_c10_calib_512.cifar10.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_512",
+  "unit": "",
+  "value": 21
+ },
+ "outcomes.depth.v5_c10_calib_512.cifar10.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_512",
+  "unit": "",
+  "value": 92
+ },
+ "outcomes.depth.v5_c10_calib_512.cifar10.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_512",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_c10_calib_512.cifar10.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_512",
+  "unit": "",
+  "value": 18
+ },
+ "outcomes.depth.v5_c10_calib_64.cifar10.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_64",
+  "unit": "",
+  "value": 4
+ },
+ "outcomes.depth.v5_c10_calib_64.cifar10.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 c10_calib_64",
+  "unit": "",
+  "value": 82
+ },
+ "outcomes.depth.v5_c10_calib_64.cifar10.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_64",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_c10_calib_64.cifar10.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 c10_calib_64",
+  "unit": "",
+  "value": 18
+ },
+ "outcomes.depth.v5_c10_lrsweep_128.cifar10.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 1680,
+  "seed_set": "v5 c10_lrsweep_128",
+  "unit": "",
+  "value": 25
+ },
+ "outcomes.depth.v5_c10_lrsweep_128.cifar10.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 1680,
+  "seed_set": "v5 c10_lrsweep_128",
+  "unit": "",
+  "value": 458
+ },
+ "outcomes.depth.v5_c10_lrsweep_128.cifar10.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 240,
+  "seed_set": "v5 c10_lrsweep_128",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_c10_lrsweep_128.cifar10.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 240,
+  "seed_set": "v5 c10_lrsweep_128",
+  "unit": "",
+  "value": 90
+ },
+ "outcomes.depth.v5_calib_12.mnist.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_12",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_calib_12.mnist.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_12",
+  "unit": "",
+  "value": 15
+ },
+ "outcomes.depth.v5_calib_12.mnist.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_12",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_calib_12.mnist.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_12",
+  "unit": "",
+  "value": 12
+ },
+ "outcomes.depth.v5_calib_128.mnist.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_128",
+  "unit": "",
+  "value": 6
+ },
+ "outcomes.depth.v5_calib_128.mnist.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_128",
+  "unit": "",
+  "value": 30
+ },
+ "outcomes.depth.v5_calib_128.mnist.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_128",
+  "unit": "",
+  "value": 6
+ },
+ "outcomes.depth.v5_calib_128.mnist.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_128",
+  "unit": "",
+  "value": 12
+ },
+ "outcomes.depth.v5_calib_256.mnist.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_256",
+  "unit": "",
+  "value": 10
+ },
+ "outcomes.depth.v5_calib_256.mnist.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_256",
+  "unit": "",
+  "value": 27
+ },
+ "outcomes.depth.v5_calib_256.mnist.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_256",
+  "unit": "",
+  "value": 6
+ },
+ "outcomes.depth.v5_calib_256.mnist.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_256",
+  "unit": "",
+  "value": 12
+ },
+ "outcomes.depth.v5_calib_32.mnist.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_32",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_calib_32.mnist.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_32",
+  "unit": "",
+  "value": 25
+ },
+ "outcomes.depth.v5_calib_32.mnist.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_32",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v5_calib_32.mnist.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_32",
+  "unit": "",
+  "value": 12
+ },
+ "outcomes.depth.v5_calib_512.mnist.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_512",
+  "unit": "",
+  "value": 7
+ },
+ "outcomes.depth.v5_calib_512.mnist.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_512",
+  "unit": "",
+  "value": 33
+ },
+ "outcomes.depth.v5_calib_512.mnist.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_512",
+  "unit": "",
+  "value": 6
+ },
+ "outcomes.depth.v5_calib_512.mnist.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_512",
+  "unit": "",
+  "value": 12
+ },
+ "outcomes.depth.v5_calib_64.mnist.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_64",
+  "unit": "",
+  "value": 3
+ },
+ "outcomes.depth.v5_calib_64.mnist.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 336,
+  "seed_set": "v5 calib_64",
+  "unit": "",
+  "value": 25
+ },
+ "outcomes.depth.v5_calib_64.mnist.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_64",
+  "unit": "",
+  "value": 3
+ },
+ "outcomes.depth.v5_calib_64.mnist.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 48,
+  "seed_set": "v5 calib_64",
+  "unit": "",
+  "value": 12
+ },
+ "outcomes.depth.v5_lrsweep_128.mnist.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 2310,
+  "seed_set": "v5 lrsweep_128",
+  "unit": "",
+  "value": 34
+ },
+ "outcomes.depth.v5_lrsweep_128.mnist.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 2310,
+  "seed_set": "v5 lrsweep_128",
+  "unit": "",
+  "value": 144
+ },
+ "outcomes.depth.v5_lrsweep_128.mnist.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 330,
+  "seed_set": "v5 lrsweep_128",
+  "unit": "",
+  "value": 33
+ },
+ "outcomes.depth.v5_lrsweep_128.mnist.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 330,
+  "seed_set": "v5 lrsweep_128",
+  "unit": "",
+  "value": 60
+ },
+ "outcomes.depth.v5_lrsweep_64.mnist.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 2310,
+  "seed_set": "v5 lrsweep_64",
+  "unit": "",
+  "value": 15
+ },
+ "outcomes.depth.v5_lrsweep_64.mnist.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 2310,
+  "seed_set": "v5 lrsweep_64",
+  "unit": "",
+  "value": 129
+ },
+ "outcomes.depth.v5_lrsweep_64.mnist.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 330,
+  "seed_set": "v5 lrsweep_64",
+  "unit": "",
+  "value": 14
+ },
+ "outcomes.depth.v5_lrsweep_64.mnist.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 330,
+  "seed_set": "v5 lrsweep_64",
+  "unit": "",
+  "value": 60
+ },
+ "outcomes.depth.v6_stage0.mnist.mlp2.any.n_late_collapse": {
+  "desc": "",
+  "n": 240,
+  "seed_set": "v6 stage0",
+  "unit": "",
+  "value": 16
+ },
+ "outcomes.depth.v6_stage0.mnist.mlp2.any.n_never_learned": {
+  "desc": "",
+  "n": 240,
+  "seed_set": "v6 stage0",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage0.mnist.mlp2.relu.n_late_collapse": {
+  "desc": "",
+  "n": 60,
+  "seed_set": "v6 stage0",
+  "unit": "",
+  "value": 16
+ },
+ "outcomes.depth.v6_stage0.mnist.mlp2.relu.n_never_learned": {
+  "desc": "",
+  "n": 60,
+  "seed_set": "v6 stage0",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage1.cifar10.cnn.any.n_late_collapse": {
+  "desc": "",
+  "n": 2232,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 52
+ },
+ "outcomes.depth.v6_stage1.cifar10.cnn.any.n_never_learned": {
+  "desc": "",
+  "n": 2232,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 159
+ },
+ "outcomes.depth.v6_stage1.cifar10.cnn.relu.n_late_collapse": {
+  "desc": "",
+  "n": 720,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 46
+ },
+ "outcomes.depth.v6_stage1.cifar10.cnn.relu.n_never_learned": {
+  "desc": "",
+  "n": 720,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 45
+ },
+ "outcomes.depth.v6_stage1.cifar10.mlp1.any.n_late_collapse": {
+  "desc": "",
+  "n": 45,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage1.cifar10.mlp1.any.n_never_learned": {
+  "desc": "",
+  "n": 45,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 6
+ },
+ "outcomes.depth.v6_stage1.cifar10.mlp1.relu.n_late_collapse": {
+  "desc": "",
+  "n": 15,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage1.cifar10.mlp1.relu.n_never_learned": {
+  "desc": "",
+  "n": 15,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 3
+ },
+ "outcomes.depth.v6_stage1.mnist.cnn.any.n_late_collapse": {
+  "desc": "",
+  "n": 2232,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 75
+ },
+ "outcomes.depth.v6_stage1.mnist.cnn.any.n_never_learned": {
+  "desc": "",
+  "n": 2232,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 150
+ },
+ "outcomes.depth.v6_stage1.mnist.cnn.relu.n_late_collapse": {
+  "desc": "",
+  "n": 720,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 73
+ },
+ "outcomes.depth.v6_stage1.mnist.cnn.relu.n_never_learned": {
+  "desc": "",
+  "n": 720,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 76
+ },
+ "outcomes.depth.v6_stage1.mnist.mlp1.any.n_late_collapse": {
+  "desc": "",
+  "n": 45,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage1.mnist.mlp1.any.n_never_learned": {
+  "desc": "",
+  "n": 45,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage1.mnist.mlp1.relu.n_late_collapse": {
+  "desc": "",
+  "n": 15,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage1.mnist.mlp1.relu.n_never_learned": {
+  "desc": "",
+  "n": 15,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage2.cifar10.cnn.any.n_late_collapse": {
+  "desc": "",
+  "n": 4420,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 303
+ },
+ "outcomes.depth.v6_stage2.cifar10.cnn.any.n_never_learned": {
+  "desc": "",
+  "n": 4420,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 533
+ },
+ "outcomes.depth.v6_stage2.cifar10.cnn.relu.n_late_collapse": {
+  "desc": "",
+  "n": 780,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 209
+ },
+ "outcomes.depth.v6_stage2.cifar10.cnn.relu.n_never_learned": {
+  "desc": "",
+  "n": 780,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 122
+ },
+ "outcomes.depth.v6_stage2.cifar10.mlp1.any.n_late_collapse": {
+  "desc": "",
+  "n": 1950,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 6
+ },
+ "outcomes.depth.v6_stage2.cifar10.mlp1.any.n_never_learned": {
+  "desc": "",
+  "n": 1950,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 267
+ },
+ "outcomes.depth.v6_stage2.cifar10.mlp1.relu.n_late_collapse": {
+  "desc": "",
+  "n": 390,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage2.cifar10.mlp1.relu.n_never_learned": {
+  "desc": "",
+  "n": 390,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 150
+ },
+ "outcomes.depth.v6_stage2.mnist.cnn.any.n_late_collapse": {
+  "desc": "",
+  "n": 4100,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 310
+ },
+ "outcomes.depth.v6_stage2.mnist.cnn.any.n_never_learned": {
+  "desc": "",
+  "n": 4100,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 141
+ },
+ "outcomes.depth.v6_stage2.mnist.cnn.relu.n_late_collapse": {
+  "desc": "",
+  "n": 760,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 297
+ },
+ "outcomes.depth.v6_stage2.mnist.cnn.relu.n_never_learned": {
+  "desc": "",
+  "n": 760,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 63
+ },
+ "outcomes.depth.v6_stage2.mnist.mlp1.any.n_late_collapse": {
+  "desc": "",
+  "n": 1910,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage2.mnist.mlp1.any.n_never_learned": {
+  "desc": "",
+  "n": 1910,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage2.mnist.mlp1.relu.n_late_collapse": {
+  "desc": "",
+  "n": 390,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage2.mnist.mlp1.relu.n_never_learned": {
+  "desc": "",
+  "n": 390,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage3.cifar10.cnn.any.n_late_collapse": {
+  "desc": "",
+  "n": 225,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 40
+ },
+ "outcomes.depth.v6_stage3.cifar10.cnn.any.n_never_learned": {
+  "desc": "",
+  "n": 225,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 26
+ },
+ "outcomes.depth.v6_stage3.cifar10.cnn.relu.n_late_collapse": {
+  "desc": "",
+  "n": 45,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 29
+ },
+ "outcomes.depth.v6_stage3.cifar10.cnn.relu.n_never_learned": {
+  "desc": "",
+  "n": 45,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 4
+ },
+ "outcomes.depth.v6_stage3.mnist.cnn.any.n_late_collapse": {
+  "desc": "",
+  "n": 225,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 30
+ },
+ "outcomes.depth.v6_stage3.mnist.cnn.any.n_never_learned": {
+  "desc": "",
+  "n": 225,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.depth.v6_stage3.mnist.cnn.relu.n_late_collapse": {
+  "desc": "",
+  "n": 45,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 30
+ },
+ "outcomes.depth.v6_stage3.mnist.cnn.relu.n_never_learned": {
+  "desc": "",
+  "n": 45,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 0
+ },
+ "outcomes.n_rule_changes": {
+  "desc": "runs classed differently by the absolute rule",
+  "n": null,
+  "seed_set": "v6 stages 0-3 + version5",
+  "unit": "",
+  "value": 892
+ },
+ "outcomes.n_runs": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stages 0-3 + version5",
+  "unit": "",
+  "value": 27956
+ },
+ "outcomes.v5_c10_calib_12.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_12",
+  "unit": "",
+  "value": 1
+ },
+ "outcomes.v5_c10_calib_12.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_12",
+  "unit": "",
+  "value": 78
+ },
+ "outcomes.v5_c10_calib_12.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_12",
+  "unit": "",
+  "value": 257
+ },
+ "outcomes.v5_c10_calib_128.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_128",
+  "unit": "",
+  "value": 3
+ },
+ "outcomes.v5_c10_calib_128.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_128",
+  "unit": "",
+  "value": 7
+ },
+ "outcomes.v5_c10_calib_128.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_128",
+  "unit": "",
+  "value": 92
+ },
+ "outcomes.v5_c10_calib_128.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_128",
+  "unit": "",
+  "value": 234
+ },
+ "outcomes.v5_c10_calib_256.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_256",
+  "unit": "",
+  "value": 4
+ },
+ "outcomes.v5_c10_calib_256.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_256",
+  "unit": "",
+  "value": 14
+ },
+ "outcomes.v5_c10_calib_256.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_256",
+  "unit": "",
+  "value": 93
+ },
+ "outcomes.v5_c10_calib_256.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_256",
+  "unit": "",
+  "value": 225
+ },
+ "outcomes.v5_c10_calib_32.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_32",
+  "unit": "",
+  "value": 1
+ },
+ "outcomes.v5_c10_calib_32.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_32",
+  "unit": "",
+  "value": 1
+ },
+ "outcomes.v5_c10_calib_32.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_32",
+  "unit": "",
+  "value": 78
+ },
+ "outcomes.v5_c10_calib_32.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_32",
+  "unit": "",
+  "value": 256
+ },
+ "outcomes.v5_c10_calib_512.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_512",
+  "unit": "",
+  "value": 21
+ },
+ "outcomes.v5_c10_calib_512.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_512",
+  "unit": "",
+  "value": 14
+ },
+ "outcomes.v5_c10_calib_512.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_512",
+  "unit": "",
+  "value": 92
+ },
+ "outcomes.v5_c10_calib_512.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_512",
+  "unit": "",
+  "value": 209
+ },
+ "outcomes.v5_c10_calib_64.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_64",
+  "unit": "",
+  "value": 4
+ },
+ "outcomes.v5_c10_calib_64.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_64",
+  "unit": "",
+  "value": 1
+ },
+ "outcomes.v5_c10_calib_64.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_64",
+  "unit": "",
+  "value": 82
+ },
+ "outcomes.v5_c10_calib_64.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_calib_64",
+  "unit": "",
+  "value": 249
+ },
+ "outcomes.v5_c10_lrsweep_128.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_lrsweep_128",
+  "unit": "",
+  "value": 25
+ },
+ "outcomes.v5_c10_lrsweep_128.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_lrsweep_128",
+  "unit": "",
+  "value": 30
+ },
+ "outcomes.v5_c10_lrsweep_128.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_lrsweep_128",
+  "unit": "",
+  "value": 458
+ },
+ "outcomes.v5_c10_lrsweep_128.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 c10_lrsweep_128",
+  "unit": "",
+  "value": 1167
+ },
+ "outcomes.v5_calib_12.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_12",
+  "unit": "",
+  "value": 15
+ },
+ "outcomes.v5_calib_12.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_12",
+  "unit": "",
+  "value": 15
+ },
+ "outcomes.v5_calib_12.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_12",
+  "unit": "",
+  "value": 306
+ },
+ "outcomes.v5_calib_128.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_128",
+  "unit": "",
+  "value": 6
+ },
+ "outcomes.v5_calib_128.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_128",
+  "unit": "",
+  "value": 17
+ },
+ "outcomes.v5_calib_128.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_128",
+  "unit": "",
+  "value": 30
+ },
+ "outcomes.v5_calib_128.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_128",
+  "unit": "",
+  "value": 283
+ },
+ "outcomes.v5_calib_256.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_256",
+  "unit": "",
+  "value": 10
+ },
+ "outcomes.v5_calib_256.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_256",
+  "unit": "",
+  "value": 16
+ },
+ "outcomes.v5_calib_256.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_256",
+  "unit": "",
+  "value": 27
+ },
+ "outcomes.v5_calib_256.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_256",
+  "unit": "",
+  "value": 283
+ },
+ "outcomes.v5_calib_32.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_32",
+  "unit": "",
+  "value": 4
+ },
+ "outcomes.v5_calib_32.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_32",
+  "unit": "",
+  "value": 25
+ },
+ "outcomes.v5_calib_32.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_32",
+  "unit": "",
+  "value": 307
+ },
+ "outcomes.v5_calib_512.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_512",
+  "unit": "",
+  "value": 7
+ },
+ "outcomes.v5_calib_512.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_512",
+  "unit": "",
+  "value": 21
+ },
+ "outcomes.v5_calib_512.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_512",
+  "unit": "",
+  "value": 33
+ },
+ "outcomes.v5_calib_512.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_512",
+  "unit": "",
+  "value": 275
+ },
+ "outcomes.v5_calib_64.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_64",
+  "unit": "",
+  "value": 3
+ },
+ "outcomes.v5_calib_64.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_64",
+  "unit": "",
+  "value": 18
+ },
+ "outcomes.v5_calib_64.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_64",
+  "unit": "",
+  "value": 25
+ },
+ "outcomes.v5_calib_64.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 calib_64",
+  "unit": "",
+  "value": 290
+ },
+ "outcomes.v5_lrsweep_128.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 lrsweep_128",
+  "unit": "",
+  "value": 34
+ },
+ "outcomes.v5_lrsweep_128.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 lrsweep_128",
+  "unit": "",
+  "value": 181
+ },
+ "outcomes.v5_lrsweep_128.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 lrsweep_128",
+  "unit": "",
+  "value": 144
+ },
+ "outcomes.v5_lrsweep_128.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 lrsweep_128",
+  "unit": "",
+  "value": 1951
+ },
+ "outcomes.v5_lrsweep_64.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 lrsweep_64",
+  "unit": "",
+  "value": 15
+ },
+ "outcomes.v5_lrsweep_64.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 lrsweep_64",
+  "unit": "",
+  "value": 111
+ },
+ "outcomes.v5_lrsweep_64.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 lrsweep_64",
+  "unit": "",
+  "value": 129
+ },
+ "outcomes.v5_lrsweep_64.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v5 lrsweep_64",
+  "unit": "",
+  "value": 2055
+ },
+ "outcomes.v6_stage0.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage0",
+  "unit": "",
+  "value": 16
+ },
+ "outcomes.v6_stage0.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage0",
+  "unit": "",
+  "value": 50
+ },
+ "outcomes.v6_stage0.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage0",
+  "unit": "",
+  "value": 174
+ },
+ "outcomes.v6_stage1.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 127
+ },
+ "outcomes.v6_stage1.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 32
+ },
+ "outcomes.v6_stage1.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 315
+ },
+ "outcomes.v6_stage1.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage1",
+  "unit": "",
+  "value": 4080
+ },
+ "outcomes.v6_stage2.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 619
+ },
+ "outcomes.v6_stage2.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 427
+ },
+ "outcomes.v6_stage2.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 941
+ },
+ "outcomes.v6_stage2.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage2",
+  "unit": "",
+  "value": 10393
+ },
+ "outcomes.v6_stage3.late_collapse": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 70
+ },
+ "outcomes.v6_stage3.late_degradation": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 6
+ },
+ "outcomes.v6_stage3.never_learned": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 26
+ },
+ "outcomes.v6_stage3.stable": {
+  "desc": "",
+  "n": null,
+  "seed_set": "v6 stage3",
+  "unit": "",
+  "value": 348
+ }
+}

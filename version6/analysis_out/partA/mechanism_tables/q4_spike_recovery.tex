@@ -1,0 +1,24 @@
+\begin{table}[htbp]\centering\small
+\caption{Q4. Spiking leaky-ReLU runs (spike epoch >= 2): validation and training accuracy (\%) at the epoch before the spike, at the spike and at epoch 40, and the between-input logit std at the spike. Medians over runs. Stage 2 pools H 64/128/256 and seeds 1-30.}
+\label{tab:q4_spike_recovery}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}rllrlrrrrrrrrr@{}}
+\toprule
+stage & dataset & arch\_label & lr & seed\_set & n & spike\_epoch\_med & val\_before & val\_at & val\_final & train\_before & train\_at & train\_final & logit\_between\_std\_at \\
+\midrule
+0 & mnist & mlp2 & 0.020 & S0 seeds 1-10 (exploratory) & 10 & 29.000 & 90.460 & 79.270 & 86.460 & 93.180 & 77.093 & 85.380 & 9.93e+09 \\
+0 & mnist & mlp2 & 0.030 & S0 seeds 1-10 (exploratory) & 20 & 21.500 & 92.910 & 76.770 & 85.970 & 94.130 & 76.962 & 85.666 & 9.41e+10 \\
+0 & mnist & mlp2 & 0.050 & S0 seeds 1-10 (exploratory) & 20 & 6.000 & 91.080 & 78.320 & 85.840 & 92.379 & 79.382 & 86.396 & 2.26e+12 \\
+2 & cifar10 & cfg1 & 0.010 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 36 & 24.500 & 44.370 & 17.240 & 25.260 & 59.900 & 35.689 & 27.416 & 5.94e+12 \\
+2 & cifar10 & cfg1 & 0.020 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 79 & 3.000 & 39.460 & 16.580 & 25.680 & 38.742 & 25.693 & 27.522 & 2.91e+14 \\
+2 & cifar10 & cfg2 & 0.010 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 46 & 23.500 & 45.370 & 17.380 & 25.820 & 60.939 & 36.051 & 27.341 & 4.81e+12 \\
+2 & cifar10 & cfg2 & 0.020 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 78 & 3.000 & 39.420 & 16.960 & 26.880 & 38.616 & 27.800 & 27.524 & 3.37e+14 \\
+2 & mnist & cfg1 & 0.010 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 26 & 40.000 & 93.960 & 87.490 & 89.080 & 95.954 & 86.253 & 87.379 & 2.15e+09 \\
+2 & mnist & cfg1 & 0.020 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 90 & 8.000 & 95.140 & 88.560 & 96.500 & 96.504 & 86.902 & 97.420 & 3.71e+11 \\
+2 & mnist & cfg1 & 0.030 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 30 & 2.000 & 94.850 & 87.980 & 96.580 & 93.658 & 88.141 & 97.822 & 5.03e+12 \\
+2 & mnist & cfg2 & 0.010 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 23 & 39.000 & 95.300 & 84.280 & 90.680 & 96.562 & 88.569 & 89.271 & 1.28e+09 \\
+2 & mnist & cfg2 & 0.020 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 90 & 8.000 & 95.380 & 87.890 & 96.370 & 96.726 & 87.810 & 97.442 & 3.39e+11 \\
+2 & mnist & cfg2 & 0.030 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 30 & 2.000 & 94.670 & 87.580 & 96.540 & 93.619 & 87.720 & 97.713 & 4.87e+12 \\
+\bottomrule
+\end{tabular}}
+\end{table}

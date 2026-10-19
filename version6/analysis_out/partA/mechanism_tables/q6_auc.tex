@@ -1,0 +1,23 @@
+\begin{table}[htbp]\centering\small
+\caption{Q6. ROC AUC of each signal's value at epoch e for 'the failure epoch is e+1..e+3'. Positives: those epochs of failing runs; negatives: every epoch 1-39 of the stable runs (outcomes.py) of the same cell (dataset, arch, H, LR, model).}
+\label{tab:q6_auc}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}rllrrrr@{}}
+\toprule
+stage & signal & pooling & n\_cells & n\_pos\_epochs & n\_neg\_epochs & auc \\
+\midrule
+0 & loss\_rise & same cell incl. model & 7 & 77 & 1672 & 0.494 \\
+0 & zmax\_jump & same cell incl. model & 7 & 77 & 1672 & 0.649 \\
+0 & dead\_gt20 & same cell incl. model & 7 & 78 & 1716 & 0.649 \\
+0 & dw\_spike & same cell incl. model & 7 & 76 & 1628 & 0.810 \\
+2 & loss\_rise & same cell incl. model & 75 & 944 & 43776 & 0.599 \\
+2 & zmax\_jump & same cell incl. model & 75 & 944 & 43776 & 0.626 \\
+2 & dead\_gt20 & same cell incl. model & 75 & 914 & 32058 & 0.520 \\
+2 & dw\_spike & same cell incl. model & 75 & 847 & 42624 & 0.560 \\
+3 & loss\_rise & same cell incl. model & 8 & 68 & 2394 & 0.623 \\
+3 & zmax\_jump & same cell incl. model & 8 & 68 & 2394 & 0.534 \\
+3 & dead\_gt20 & same cell incl. model & 8 & 75 & 2262 & 0.304 \\
+3 & dw\_spike & same cell incl. model & 8 & 62 & 2331 & 0.541 \\
+\bottomrule
+\end{tabular}}
+\end{table}

@@ -1,0 +1,6 @@
+stage,dataset,arch_label,n_cells,n_spiking_runs,within_cell_sd,between_cell_sd_of_means,icc,within_cell_range_max
+0,mnist,mlp2,5,50,1.20277,11.3421,0.988879,6
+2,cifar10,cfg1,5,115,3.55931,14.541,0.943471,17
+2,cifar10,cfg2,5,124,3.77538,13.2839,0.925263,25
+2,mnist,cfg1,8,146,0.522349,16.0616,0.998943,2
+2,mnist,cfg2,8,143,0.483706,15.9815,0.999085,2

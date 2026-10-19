@@ -1,0 +1,259 @@
+stage,dataset,arch_label,hidden,lr,hybrid,layer,seed_set,lr_role,hybrid_relu_dead_final,relu_dead_final,hybrid_relu_dead_max,relu_dead_max,n_pairs,diff_mean_diff,diff_ci_lo,diff_ci_hi,diff_wins,diff_losses,diff_p_t,hybrid_tanh_sat_final,tanh_sat_final
+0,mnist,mlp2,64,0.02,tanh+relu,hidden1,S0 seeds 1-10 (exploratory),,0.01875,0.0234375,0.025,0.0484375,10,-0.0046875,-0.0171875,0.0078125,2,4,0.496102,0.801,0.794663
+0,mnist,mlp2,64,0.02,tanh+relu,hidden2,S0 seeds 1-10 (exploratory),,0,0.003125,0,0.0078125,10,-0.003125,-0.0078125,0,0,2,0.167851,0.844216,0.743251
+0,mnist,mlp2,64,0.03,tanh+relu,hidden1,S0 seeds 1-10 (exploratory),,0.01875,0.0625,0.04375,0.0734375,10,-0.04375,-0.065625,-0.0171875,1,9,0.0111129,0.865584,0.890061
+0,mnist,mlp2,64,0.03,tanh+relu,hidden2,S0 seeds 1-10 (exploratory),,0.003125,0.442188,0.015625,0.467187,10,-0.439063,-0.68125,-0.226562,0,10,0.00567052,0.922494,0.84938
+0,mnist,mlp2,64,0.05,tanh+relu,hidden1,S0 seeds 1-10 (exploratory),,0.10625,0.7125,0.128125,0.721875,10,-0.60625,-0.646875,-0.559375,0,10,9.52631e-10,0.942369,0.964834
+0,mnist,mlp2,64,0.05,tanh+relu,hidden2,S0 seeds 1-10 (exploratory),,0.853125,0.98125,0.93125,0.984375,10,-0.128125,-0.201563,-0.0593359,2,7,0.00870808,0.989287,0.937991
+0,mnist,mlp2,128,0.02,tanh+relu,hidden1,S0 seeds 1-10 (exploratory),,0.009375,0.0101563,0.015625,0.021875,10,-0.00078125,-0.00859375,0.00859375,3,5,0.863831,0.675153,0.687055
+0,mnist,mlp2,128,0.02,tanh+relu,hidden2,S0 seeds 1-10 (exploratory),,0,0.00234375,0,0.0101563,10,-0.00234375,-0.0046875,0,0,3,0.0811262,0.783119,0.705481
+0,mnist,mlp2,128,0.03,tanh+relu,hidden1,S0 seeds 1-10 (exploratory),,0.0265625,0.05,0.040625,0.0546875,10,-0.0234375,-0.0398437,-0.009375,1,9,0.0201123,0.835922,0.90427
+0,mnist,mlp2,128,0.03,tanh+relu,hidden2,S0 seeds 1-10 (exploratory),,0.040625,1,0.0625,1,10,-0.959375,-0.976562,-0.942187,0,10,3.09573e-15,0.924597,0.901437
+0,mnist,mlp2,128,0.05,tanh+relu,hidden1,S0 seeds 1-10 (exploratory),,0.154688,0.817969,0.160938,0.825781,10,-0.663281,-0.69375,-0.636719,0,10,9.93818e-12,0.902827,0.985573
+0,mnist,mlp2,128,0.05,tanh+relu,hidden2,S0 seeds 1-10 (exploratory),,1,0.970313,1,0.984375,10,0.0296875,0.0101563,0.0585938,10,0,0.0542653,0.999924,0.975861
+2,cifar10,cfg1,64,0.0003,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",sweep,0,0,0,0,30,0,0,0,0,0,1,0.182899,0.183247
+2,cifar10,cfg1,64,0.0003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",sweep,0,0.00104167,0.0291667,0.0625,30,-0.00104167,-0.00260417,0,0,2,0.160788,0.374005,0.295386
+2,cifar10,cfg1,64,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.348144,0.357924
+2,cifar10,cfg1,64,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0.01875,0.0640625,10,0,0,0,0,0,1,0.659263,0.617758
+2,cifar10,cfg1,64,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.597484,0.600414
+2,cifar10,cfg1,64,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0.034375,0.128125,10,0,0,0,0,0,1,0.836491,0.837855
+2,cifar10,cfg1,64,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0.00833333,0.00833333,30,0,0,0,0,0,1,0.852365,0.856597
+2,cifar10,cfg1,64,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.021875,0.0359375,0.228125,0.247917,30,-0.0140625,-0.0713542,0.01875,11,4,0.604134,0.949389,0.949498
+2,cifar10,cfg1,64,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.1,0.025,0.125,0.0291667,30,0.075,0.0125,0.15,9,5,0.0447934,0.925102,0.943683
+2,cifar10,cfg1,64,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.778125,1,0.935417,1,30,-0.221875,-0.295833,-0.15,0,22,2.24653e-06,0.982319,0.986139
+2,cifar10,cfg1,64,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.3,0.0875,0.3,0.0875,10,0.2125,0.0375,0.3875,6,3,0.0486808,0.946893,0.967482
+2,cifar10,cfg1,64,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.946875,0.998437,1,1,10,-0.0515625,-0.110937,-0.0046875,0,4,0.104199,0.990019,0.996372
+2,cifar10,cfg1,64,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.275,0.5,0.275,0.525,10,-0.225,-0.425,-0.0125,1,7,0.0709728,0.976502,0.974231
+2,cifar10,cfg1,64,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,1,0.871875,1,0.951562,10,0.128125,0.059375,0.201563,6,0,0.00905141,0.999081,0.999986
+2,cifar10,cfg1,128,0.0003,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0,0,0,30,0,0,0,0,0,1,0.218086,0.202835
+2,cifar10,cfg1,128,0.0003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0,0.0166667,0.0513021,30,0,0,0,0,0,1,0.39623,0.288445
+2,cifar10,cfg1,128,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.352347,0.338148
+2,cifar10,cfg1,128,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0.0078125,0.0398437,10,0,0,0,0,0,1,0.600626,0.539498
+2,cifar10,cfg1,128,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.58446,0.564468
+2,cifar10,cfg1,128,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0.0140625,0.06875,10,0,0,0,0,0,1,0.811088,0.806695
+2,cifar10,cfg1,128,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0.00416667,30,0,0,0,0,0,1,0.856755,0.859867
+2,cifar10,cfg1,128,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.0317708,0.153125,0.205208,0.393229,30,-0.121354,-0.253385,-0.0104102,9,18,0.0631974,0.941466,0.952477
+2,cifar10,cfg1,128,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.0583333,0.0208333,0.0916667,0.0375,30,0.0375,-0.00416667,0.0834375,6,4,0.118773,0.935291,0.951205
+2,cifar10,cfg1,128,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.757292,0.99974,0.939583,1,30,-0.242448,-0.305469,-0.182812,0,28,2.05656e-08,0.977072,0.989411
+2,cifar10,cfg1,128,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.4,0.1625,0.5,0.1625,10,0.2375,0,0.475,8,2,0.0973048,0.968911,0.980993
+2,cifar10,cfg1,128,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.940625,1,0.989062,1,10,-0.059375,-0.10625,-0.025,0,9,0.0260231,0.988928,0.998798
+2,cifar10,cfg1,128,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.2,0.5625,0.225,0.6,10,-0.3625,-0.55,-0.175,2,8,0.00706081,0.988607,0.974316
+2,cifar10,cfg1,128,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,1,0.884375,1,0.949219,10,0.115625,0.03125,0.214062,5,0,0.0422317,0.999669,1
+2,cifar10,cfg1,256,0.0003,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0,0,0,10,0,0,0,0,0,1,0.216589,0.201673
+2,cifar10,cfg1,256,0.0003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0.0015625,0.0169271,0.0453125,10,-0.0015625,-0.00351563,0,0,3,0.103888,0.370841,0.235849
+2,cifar10,cfg1,256,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.325666,0.294492
+2,cifar10,cfg1,256,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0.00078125,0.00546875,0.0264323,10,-0.00078125,-0.00195312,0,0,2,0.167851,0.494403,0.416725
+2,cifar10,cfg1,256,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),selected,0,0,0,0,10,0,0,0,0,0,1,0.481766,0.462048
+2,cifar10,cfg1,256,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0,0,0.0046875,0.0453125,10,0,0,0,0,0,1,0.678424,0.648752
+2,cifar10,cfg1,256,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0.00416667,30,0,0,0,0,0,1,0.87002,0.887617
+2,cifar10,cfg1,256,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.0328125,0.345964,0.288021,0.872656,30,-0.313151,-0.471094,-0.162891,5,23,0.000458752,0.942293,0.962482
+2,cifar10,cfg1,256,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.108333,0.0375,0.133333,0.0416667,30,0.0708333,0.0208333,0.120833,11,4,0.0105464,0.94916,0.970622
+2,cifar10,cfg1,256,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.815104,1,0.964323,1,30,-0.184896,-0.234635,-0.136458,0,27,5.14919e-08,0.979377,0.995495
+2,cifar10,cfg1,256,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.3,0.0375,0.325,0.05,10,0.2625,0.1125,0.425,6,0,0.0139801,0.972329,0.988785
+2,cifar10,cfg1,256,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.982031,1,0.996094,1,10,-0.0179687,-0.034375,-0.00546875,0,6,0.0530588,0.99383,0.999755
+2,cifar10,cfg1,256,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.175,0.5,0.175,0.5125,10,-0.325,-0.475,-0.187188,0,8,0.00272391,0.990086,0.973378
+2,cifar10,cfg1,256,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,1,0.888672,1,0.933594,10,0.111328,0.0398437,0.189453,5,0,0.0232664,0.999995,1
+2,cifar10,cfg2,64,0.0003,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0,0,0,30,0,0,0,0,0,1,0.128232,0.16002
+2,cifar10,cfg2,64,0.0003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0.0015625,0.00729167,0.059375,30,-0.0015625,-0.003125,0,0,3,0.0830747,0.374718,0.283936
+2,cifar10,cfg2,64,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),selected,0,0,0,0,10,0,0,0,0,0,1,0.293327,0.322833
+2,cifar10,cfg2,64,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0,0,0.00625,0.0296875,10,0,0,0,0,0,1,0.654372,0.608064
+2,cifar10,cfg2,64,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.55742,0.577389
+2,cifar10,cfg2,64,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0.00625,0.0859375,10,0,0,0,0,0,1,0.837709,0.83393
+2,cifar10,cfg2,64,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0,30,0,0,0,0,0,1,0.851276,0.854529
+2,cifar10,cfg2,64,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.0125,0.00364583,0.145833,0.176042,30,0.00885417,0.000520833,0.0182292,9,5,0.0640498,0.946881,0.948617
+2,cifar10,cfg2,64,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.05,0.0375,0.0916667,0.0583333,30,0.0125,-0.0291667,0.0583333,6,7,0.598545,0.928379,0.941514
+2,cifar10,cfg2,64,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.758333,0.999479,0.96875,1,30,-0.241146,-0.304688,-0.178646,0,25,4.65393e-08,0.980346,0.984898
+2,cifar10,cfg2,64,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.25,0.2,0.275,0.2,10,0.05,-0.0625,0.1625,5,2,0.443332,0.935865,0.96674
+2,cifar10,cfg2,64,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.978125,0.910937,1,1,10,0.0671875,-0.040625,0.257812,1,3,0.485135,0.991491,0.996239
+2,cifar10,cfg2,64,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.325,0.4875,0.35,0.525,10,-0.1625,-0.3125,0,2,6,0.0832915,0.981953,0.977725
+2,cifar10,cfg2,64,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,1,0.857812,1,0.9125,10,0.142187,0.046875,0.24375,5,0,0.0297663,0.999122,0.999952
+2,cifar10,cfg2,128,0.0003,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0,0,0,30,0,0,0,0,0,1,0.15916,0.169679
+2,cifar10,cfg2,128,0.0003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0.00078125,0.009375,0.0442708,30,-0.00078125,-0.00182292,0,0,3,0.0830747,0.394575,0.269616
+2,cifar10,cfg2,128,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.254945,0.290185
+2,cifar10,cfg2,128,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0.0015625,0.021875,10,0,0,0,0,0,1,0.583601,0.512994
+2,cifar10,cfg2,128,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.525068,0.513615
+2,cifar10,cfg2,128,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0.0015625,0.0476562,10,0,0,0,0,0,1,0.809856,0.790195
+2,cifar10,cfg2,128,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0.00833333,0.00416667,30,0,0,0,0,0,1,0.854004,0.860225
+2,cifar10,cfg2,128,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.0151042,0.213021,0.180208,0.581771,30,-0.197917,-0.348236,-0.0684831,6,19,0.0105357,0.939833,0.951024
+2,cifar10,cfg2,128,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.0833333,0.0541667,0.1,0.0666667,30,0.0291667,-0.025,0.0875,8,8,0.325582,0.936157,0.952201
+2,cifar10,cfg2,128,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.8875,0.99974,0.990625,1,30,-0.11224,-0.154688,-0.0747396,0,25,9.99845e-06,0.981915,0.990019
+2,cifar10,cfg2,128,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.225,0.125,0.25,0.125,10,0.1,-0.05,0.2875,4,3,0.309233,0.906783,0.978311
+2,cifar10,cfg2,128,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.98125,1,1,1,10,-0.01875,-0.0390625,-0.003125,0,4,0.0887457,0.993487,0.998513
+2,cifar10,cfg2,128,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.325,0.6,0.325,0.65,10,-0.275,-0.4625,-0.0875,2,8,0.0224768,0.984328,0.976939
+2,cifar10,cfg2,128,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,1,0.892969,1,0.921875,10,0.107031,0.0429688,0.176563,6,0,0.0164426,0.999547,1
+2,cifar10,cfg2,256,0.0003,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0,0,0,10,0,0,0,0,0,1,0.160536,0.172988
+2,cifar10,cfg2,256,0.0003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0.000390625,0.00625,0.0375,10,-0.000390625,-0.00117187,0,0,1,0.343436,0.358495,0.213937
+2,cifar10,cfg2,256,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),selected,0,0,0,0,10,0,0,0,0,0,1,0.231222,0.26458
+2,cifar10,cfg2,256,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0,0.00078125,0.0015625,0.0136719,10,-0.00078125,-0.00195312,0,0,2,0.167851,0.482964,0.395732
+2,cifar10,cfg2,256,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.390921,0.430862
+2,cifar10,cfg2,256,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0.003125,0.0339844,10,0,0,0,0,0,1,0.630629,0.633979
+2,cifar10,cfg2,256,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0,30,0,0,0,0,0,1,0.868716,0.88723
+2,cifar10,cfg2,256,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.0278646,0.42487,0.248698,0.921875,30,-0.397005,-0.558594,-0.238919,2,28,3.76449e-05,0.940664,0.962748
+2,cifar10,cfg2,256,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.108333,0.0291667,0.15,0.0333333,30,0.0791667,0.0166667,0.141667,11,3,0.0234358,0.945515,0.969104
+2,cifar10,cfg2,256,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.87474,0.99987,0.982031,0.99987,30,-0.12513,-0.17513,-0.0807292,0,22,2.48934e-05,0.984003,0.994725
+2,cifar10,cfg2,256,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.3,0.175,0.3,0.1875,10,0.125,-0.025,0.2875,5,4,0.177268,0.95494,0.991094
+2,cifar10,cfg2,256,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.996094,1,1,1,10,-0.00390625,-0.0101563,0,0,2,0.244333,0.9979,0.999952
+2,cifar10,cfg2,256,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.325,0.65,0.325,0.675,10,-0.325,-0.4875,-0.1625,1,8,0.00556257,0.983802,0.964606
+2,cifar10,cfg2,256,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,1,0.705078,1,0.852344,10,0.294922,0.187891,0.39376,9,0,0.000457716,0.999992,1
+2,cifar10,mlp1,64,0.0003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0.0229167,0.0302083,0.113542,0.104688,30,-0.00729167,-0.015625,0.0015625,7,17,0.119129,0.223895,0.21975
+2,cifar10,mlp1,64,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0.065625,0.0625,0.259375,0.239063,10,0.003125,-0.0265625,0.034375,4,6,0.851962,0.507456,0.519703
+2,cifar10,mlp1,64,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.253125,0.18125,0.61875,0.539062,10,0.071875,0.046875,0.1,10,0,0.000681664,0.901797,0.914876
+2,cifar10,mlp1,64,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.585417,0.6,0.866667,0.835938,30,-0.0145833,-0.04375,0.0145833,15,15,0.341361,0.954357,0.958938
+2,cifar10,mlp1,64,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.80625,0.901042,0.961458,0.952604,30,-0.0947917,-0.120313,-0.0697917,3,27,4.93388e-08,0.97638,0.984105
+2,cifar10,mlp1,64,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.91875,0.951562,0.984375,0.984375,10,-0.0328125,-0.0625,-0.0015625,3,6,0.0786369,0.988641,0.992298
+2,cifar10,mlp1,64,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.984375,0.99375,0.996875,0.998437,10,-0.009375,-0.0234375,0.003125,1,4,0.217195,0.995869,0.998059
+2,cifar10,mlp1,128,0.0003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0.0348958,0.0307292,0.0880208,0.0825521,30,0.00416667,-0.00338542,0.0122396,14,10,0.315772,0.190812,0.178558
+2,cifar10,mlp1,128,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.046875,0.0484375,0.157812,0.170313,10,-0.0015625,-0.015625,0.0148437,3,6,0.854867,0.492244,0.509113
+2,cifar10,mlp1,128,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0.160938,0.155469,0.482812,0.480469,10,0.00546875,-0.0195312,0.034375,4,6,0.717412,0.946858,0.944881
+2,cifar10,mlp1,128,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.511979,0.531771,0.834896,0.8125,30,-0.0197917,-0.0447917,0.00494792,11,17,0.140819,0.966696,0.970347
+2,cifar10,mlp1,128,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.790625,0.89375,0.941146,0.939844,30,-0.103125,-0.117708,-0.0882813,0,30,3.91593e-14,0.98484,0.9904
+2,cifar10,mlp1,128,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.923438,0.942187,0.9875,0.982031,10,-0.01875,-0.0367188,-0.00078125,2,7,0.0849376,0.992261,0.996645
+2,cifar10,mlp1,128,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.996875,0.992969,0.998437,1,10,0.00390625,-0.00234375,0.009375,6,2,0.244333,0.998294,0.999652
+2,cifar10,mlp1,256,0.0003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0.0348958,0.0334635,0.0684896,0.0645833,30,0.00143229,-0.00234375,0.00520833,16,11,0.468702,0.11743,0.118425
+2,cifar10,mlp1,256,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.0453125,0.0453125,0.136719,0.125,10,0,-0.0078125,0.00820313,5,5,1,0.372963,0.384684
+2,cifar10,mlp1,256,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.120313,0.128516,0.409375,0.394922,10,-0.00820313,-0.0242188,0.00664062,4,5,0.353598,0.962233,0.959608
+2,cifar10,mlp1,256,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.435937,0.501432,0.773698,0.777865,30,-0.0654948,-0.078125,-0.0529948,0,30,7.35905e-11,0.97891,0.9821
+2,cifar10,mlp1,256,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.76276,0.889974,0.91224,0.921484,30,-0.127214,-0.138281,-0.116927,0,30,3.09928e-20,0.991995,0.997051
+2,cifar10,mlp1,256,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.913281,0.938672,0.973437,0.966797,10,-0.0253906,-0.0378906,-0.0140625,0,9,0.00338731,0.997448,0.999337
+2,cifar10,mlp1,256,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.996875,0.991797,0.999219,0.997266,10,0.00507813,0.00234375,0.00742187,8,1,0.00626033,0.999663,0.999925
+2,mnist,cfg1,64,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),selected,0,0,0,0,10,0,0,0,0,0,1,0.0897684,0.121002
+2,mnist,cfg1,64,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0.009375,0.003125,0.0375,0.0328125,10,0.00625,-0.0015625,0.015625,3,1,0.222868,0.500641,0.221778
+2,mnist,cfg1,64,0.003,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0,0,0,30,0,0,0,0,0,1,0.105303,0.134806
+2,mnist,cfg1,64,0.003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0.00208333,0.00364583,0.00625,0.0125,30,-0.0015625,-0.00625,0.00416667,1,6,0.557456,0.55584,0.366106
+2,mnist,cfg1,64,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0,30,0,0,0,0,0,1,0.134863,0.150649
+2,mnist,cfg1,64,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.003125,0.000520833,0.009375,0.0182292,30,0.00260417,-0.000520833,0.00625,3,1,0.169362,0.725883,0.66463
+2,mnist,cfg1,64,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0,0.00833333,0,0.00833333,30,-0.00833333,-0.0208333,0,0,2,0.160788,0.38783,0.343954
+2,mnist,cfg1,64,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.00104167,0.998437,0.0145833,0.998958,30,-0.997396,-0.999479,-0.994792,0,30,7.20752e-64,0.930649,0.920991
+2,mnist,cfg1,64,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0.05,0,0.05,10,-0.05,-0.1,-0.0125,0,3,0.103888,0.489359,0.495661
+2,mnist,cfg1,64,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.175,1,0.225,1,10,-0.825,-0.884375,-0.75625,0,10,1.92212e-09,0.97675,0.970116
+2,mnist,cfg1,64,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.05,0.4,0.05,0.4,10,-0.35,-0.475,-0.225,0,9,0.000527697,0.825813,0.847982
+2,mnist,cfg1,64,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.99375,1,1,1,10,-0.00625,-0.01875,0,0,1,0.343436,0.998416,0.990669
+2,mnist,cfg1,64,0.1,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.8,0.9375,0.8,0.95,10,-0.1375,-0.375,0.0625,3,3,0.281297,0.967345,0.989214
+2,mnist,cfg1,64,0.1,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,1,1,1,1,10,0,0,0,0,0,1,0.997103,0.998225
+2,mnist,cfg1,128,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.0753532,0.123871
+2,mnist,cfg1,128,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.00625,0.0101563,0.0234375,0.0320312,10,-0.00390625,-0.00859375,0.0015625,3,7,0.177268,0.470519,0.146794
+2,mnist,cfg1,128,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),selected,0,0,0,0,10,0,0,0,0,0,1,0.0993429,0.134951
+2,mnist,cfg1,128,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0.00625,0.00286458,0.009375,0.00625,10,0.0015625,-0.00390625,0.0078125,2,1,0.619301,0.497183,0.255878
+2,mnist,cfg1,128,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0,30,0,0,0,0,0,1,0.122921,0.144695
+2,mnist,cfg1,128,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0.00104167,0.00572917,0.00989583,30,-0.00104167,-0.00234375,0,0,3,0.1033,0.632977,0.516267
+2,mnist,cfg1,128,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0,0.00833333,0,0.0125,30,-0.00833333,-0.0208333,0,0,2,0.160788,0.370742,0.311036
+2,mnist,cfg1,128,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0,0.999219,0.0130208,0.999219,30,-0.999219,-1,-0.998177,0,30,8.02112e-78,0.906591,0.885607
+2,mnist,cfg1,128,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0.025,0,0.025,10,-0.025,-0.075,0,0,1,0.343436,0.504249,0.622206
+2,mnist,cfg1,128,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.54375,1,0.570312,1,10,-0.45625,-0.657813,-0.246875,0,10,0.00248428,0.980761,0.978345
+2,mnist,cfg1,128,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.175,0.3875,0.175,0.4,10,-0.2125,-0.35,-0.075,1,7,0.0164977,0.820335,0.957599
+2,mnist,cfg1,128,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.985938,1,1,1,10,-0.0140625,-0.028125,-0.0015625,0,4,0.0811262,0.994147,0.994267
+2,mnist,cfg1,128,0.1,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.925,0.9,0.925,0.9,10,0.025,-0.0625,0.125,3,2,0.642415,0.979129,0.993701
+2,mnist,cfg1,128,0.1,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.998437,1,1,1,10,-0.0015625,-0.0046875,0,0,1,0.343436,0.997763,0.999461
+2,mnist,cfg1,256,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.0645571,0.123058
+2,mnist,cfg1,256,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.00390625,0.00585938,0.0195312,0.0246094,10,-0.00195312,-0.0078125,0.003125,4,3,0.529064,0.39441,0.0704562
+2,mnist,cfg1,256,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.0915074,0.136917
+2,mnist,cfg1,256,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.0015625,0.003125,0.003125,0.00546875,10,-0.0015625,-0.00390625,0.000390625,1,3,0.222868,0.386943,0.136212
+2,mnist,cfg1,256,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0,30,0,0,0,0,0,1,0.121864,0.147473
+2,mnist,cfg1,256,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.00104167,0.000911458,0.00182292,0.0046875,30,0.000130208,-0.00104167,0.00143229,4,6,0.84538,0.49821,0.345787
+2,mnist,cfg1,256,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0,0.00833333,0,0.0125,30,-0.00833333,-0.0208333,0,0,2,0.160788,0.375288,0.451129
+2,mnist,cfg1,256,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.00364583,0.999609,0.0153646,0.99987,30,-0.995964,-0.997656,-0.994141,0,30,5.2025e-68,0.887281,0.941575
+2,mnist,cfg1,256,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0.05,0,0.05,10,-0.05,-0.1,0,0,3,0.103888,0.643864,0.847266
+2,mnist,cfg1,256,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.924219,1,0.957031,1,10,-0.0757812,-0.196875,-0.003125,0,5,0.221937,0.994984,0.988418
+2,mnist,cfg1,256,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.45,0.45,0.5,0.4625,10,0,-0.1625,0.1625,6,4,1,0.944244,0.98482
+2,mnist,cfg1,256,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.973437,1,0.996094,1,10,-0.0265625,-0.040625,-0.0132812,0,8,0.00577293,0.992197,0.996898
+2,mnist,cfg1,256,0.1,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.825,0.9375,0.825,0.95,10,-0.1125,-0.3,0.05,3,3,0.261975,0.975876,0.881383
+2,mnist,cfg1,256,0.1,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.999219,1,1,1,10,-0.00078125,-0.00234375,0,0,1,0.343436,0.999363,0.999924
+2,mnist,cfg2,64,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.0904692,0.116148
+2,mnist,cfg2,64,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.003125,0.0046875,0.009375,0.0265625,10,-0.0015625,-0.009375,0.0078125,1,3,0.726314,0.493628,0.220728
+2,mnist,cfg2,64,0.003,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0,0,0,0,30,0,0,0,0,0,1,0.11378,0.132744
+2,mnist,cfg2,64,0.003,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0.00104167,0.00520833,0.00416667,0.0109375,30,-0.00416667,-0.0078125,-0.00104167,1,8,0.0181546,0.538721,0.358748
+2,mnist,cfg2,64,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0,30,0,0,0,0,0,1,0.151657,0.156639
+2,mnist,cfg2,64,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.00104167,0,0.00625,0.0109375,30,0.00104167,0,0.003125,1,0,0.325582,0.706077,0.658942
+2,mnist,cfg2,64,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0,0.00833333,0,0.00833333,30,-0.00833333,-0.0208333,0,0,2,0.160788,0.38243,0.331846
+2,mnist,cfg2,64,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.00104167,0.998958,0.0135417,0.998958,30,-0.997917,-1,-0.995313,0,30,1.23735e-64,0.927365,0.9149
+2,mnist,cfg2,64,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0.05,0,0.05,10,-0.05,-0.0875,-0.0125,0,4,0.0367875,0.480315,0.486644
+2,mnist,cfg2,64,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.075,0.998437,0.140625,0.998437,10,-0.923438,-0.953125,-0.895312,0,10,5.42043e-13,0.970944,0.967722
+2,mnist,cfg2,64,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.225,0.4875,0.225,0.4875,10,-0.2625,-0.3625,-0.175,0,9,0.000594165,0.852579,0.893084
+2,mnist,cfg2,64,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.984375,1,0.990625,1,10,-0.015625,-0.0375,0,0,2,0.177268,0.997475,0.990433
+2,mnist,cfg2,64,0.1,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.9,0.8875,0.9,0.8875,10,0.0125,-0.1375,0.15,5,3,0.879343,0.965361,0.989145
+2,mnist,cfg2,64,0.1,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.99375,0.998437,1,0.998437,10,-0.0046875,-0.01875,0.0046875,1,1,0.496102,0.996012,0.998428
+2,mnist,cfg2,128,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.083514,0.117749
+2,mnist,cfg2,128,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.00625,0.00703125,0.0140625,0.0148437,10,-0.00078125,-0.009375,0.0101563,2,6,0.885345,0.437923,0.133744
+2,mnist,cfg2,128,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),selected,0,0,0,0,10,0,0,0,0,0,1,0.107959,0.132859
+2,mnist,cfg2,128,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0.0015625,0.00442708,0.00625,0.00729167,10,-0.00234375,-0.0046875,0,0,3,0.0811262,0.464959,0.232953
+2,mnist,cfg2,128,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0,30,0,0,0,0,0,1,0.137701,0.147886
+2,mnist,cfg2,128,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.000520833,0.000520833,0.00260417,0.00572917,30,0,-0.0015625,0.0015625,1,1,1,0.597444,0.494084
+2,mnist,cfg2,128,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0,0.00416667,0,0.00416667,30,-0.00416667,-0.0125,0,0,1,0.325582,0.35761,0.293792
+2,mnist,cfg2,128,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0,0.999219,0.00885417,0.999219,30,-0.999219,-1,-0.998437,0,30,8.02112e-78,0.896141,0.871105
+2,mnist,cfg2,128,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0.2,0,0.2125,10,-0.2,-0.312812,-0.1,0,8,0.00838021,0.500927,0.639776
+2,mnist,cfg2,128,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.223438,0.999219,0.307812,0.999219,10,-0.775781,-0.810156,-0.7375,0,10,2.18063e-11,0.971617,0.978111
+2,mnist,cfg2,128,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.2,0.575,0.225,0.575,10,-0.375,-0.5625,-0.1875,1,7,0.00512107,0.903102,0.957137
+2,mnist,cfg2,128,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.990625,1,1,1,10,-0.009375,-0.0203125,0,0,3,0.111373,0.99592,0.994277
+2,mnist,cfg2,128,0.1,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.825,0.9125,0.875,0.9125,10,-0.0875,-0.2625,0.05,4,4,0.343436,0.969904,0.993656
+2,mnist,cfg2,128,0.1,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.998437,0.999219,1,0.999219,10,-0.00078125,-0.0046875,0.00234375,1,1,0.67831,0.998319,0.999589
+2,mnist,cfg2,256,0.001,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.0773387,0.11779
+2,mnist,cfg2,256,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.00390625,0.0046875,0.0078125,0.009375,10,-0.00078125,-0.00429688,0.00273437,3,4,0.692633,0.347479,0.0631024
+2,mnist,cfg2,256,0.003,tanh+relu,conv,S2 seeds 1-10 (exploratory),selected,0,0,0,0,10,0,0,0,0,0,1,0.101734,0.133762
+2,mnist,cfg2,256,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0.0015625,0.00221354,0.00390625,0.00390625,10,-0.00234375,-0.0046875,0,1,5,0.0811262,0.347041,0.121168
+2,mnist,cfg2,256,0.01,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0,0,0,0,30,0,0,0,0,0,1,0.134911,0.154169
+2,mnist,cfg2,256,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.000520833,0.000130208,0.00078125,0.00234375,30,0.000390625,-0.000260417,0.00130208,2,1,0.325582,0.458012,0.328035
+2,mnist,cfg2,256,0.02,tanh+relu,conv,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0,0.00833333,0,0.00833333,30,-0.00833333,-0.0208333,0,0,2,0.160788,0.331022,0.431633
+2,mnist,cfg2,256,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.00130208,0.999609,0.00729167,0.99974,30,-0.998307,-0.999479,-0.996745,0,30,1.64028e-71,0.849298,0.931317
+2,mnist,cfg2,256,0.03,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0,0.1125,0,0.1125,10,-0.1125,-0.1875,-0.05,0,6,0.0187194,0.625675,0.878192
+2,mnist,cfg2,256,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.94375,1,0.972656,1,10,-0.05625,-0.121094,0,0,3,0.102843,0.995736,0.988006
+2,mnist,cfg2,256,0.05,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.425,0.6375,0.5,0.6375,10,-0.2125,-0.3,-0.0875,1,9,0.00577293,0.96026,0.983025
+2,mnist,cfg2,256,0.05,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.978125,1,0.996094,1,10,-0.021875,-0.0375,-0.0101563,0,8,0.0155174,0.992387,0.997176
+2,mnist,cfg2,256,0.1,tanh+relu,conv,S2 seeds 1-10 (exploratory),sweep,0.825,0.9125,0.825,0.925,10,-0.0875,-0.25,0.05,3,4,0.321665,0.957063,0.945033
+2,mnist,cfg2,256,0.1,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,1,0.999609,1,0.999609,10,0.000390625,0,0.00117187,1,0,0.343436,0.999501,0.999943
+2,mnist,mlp1,64,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.207062,0.218591
+2,mnist,mlp1,64,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0,0,10,0,0,0,0,0,1,0.301637,0.317622
+2,mnist,mlp1,64,0.01,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0.00208333,0.00364583,0.003125,0.00885417,30,-0.0015625,-0.0046875,0.0015625,1,5,0.325582,0.449307,0.459754
+2,mnist,mlp1,64,0.02,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.00625,0.009375,0.015625,0.0296875,10,-0.003125,-0.0140625,0.0078125,2,4,0.591051,0.672009,0.653406
+2,mnist,mlp1,64,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0.015625,0.021875,0.034375,0.0546875,10,-0.00625,-0.0203125,0.00625,2,4,0.399361,0.853578,0.819194
+2,mnist,mlp1,64,0.05,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress,0.06875,0.0880208,0.125,0.133333,30,-0.0192708,-0.034375,-0.00364583,6,21,0.0213216,0.923153,0.936575
+2,mnist,mlp1,64,0.1,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.523958,0.633333,0.610417,0.65625,30,-0.109375,-0.138021,-0.0838542,0,30,1.3194e-08,0.974456,0.983293
+2,mnist,mlp1,128,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0.00078125,0.0015625,0.0015625,10,-0.00078125,-0.00234375,0,0,1,0.343436,0.125905,0.145718
+2,mnist,mlp1,128,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0,0,0.0015625,0.0015625,10,0,0,0,0,0,1,0.179609,0.219741
+2,mnist,mlp1,128,0.01,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0,0.00260417,0.0015625,0.00546875,10,-0.0015625,-0.00390625,0,0,2,0.167851,0.280897,0.318413
+2,mnist,mlp1,128,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0.00677083,0.0101563,0.015625,0.015625,10,-0.00546875,-0.0101563,-0.00078125,2,7,0.0662286,0.472569,0.482709
+2,mnist,mlp1,128,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.0125,0.0117188,0.0265625,0.03125,10,0.00078125,-0.00703125,0.00859375,5,3,0.853436,0.813245,0.783782
+2,mnist,mlp1,128,0.05,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress+selected,0.0609375,0.0976562,0.123438,0.135417,30,-0.0367188,-0.0489583,-0.025,2,25,2.10275e-06,0.934342,0.955534
+2,mnist,mlp1,128,0.1,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.604167,0.658854,0.676042,0.672656,30,-0.0546875,-0.0768229,-0.032806,6,24,4.88084e-05,0.982201,0.990216
+2,mnist,mlp1,256,0.001,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.00078125,0.00078125,0.00078125,0.00078125,10,0,-0.00117187,0.00117187,1,1,1,0.0490211,0.0831203
+2,mnist,mlp1,256,0.003,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.00078125,0.00078125,0.00078125,0.00078125,10,0,-0.00117187,0.00117187,1,1,1,0.0711273,0.129627
+2,mnist,mlp1,256,0.01,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),selected,0.00078125,0.00117187,0.00234375,0.00182292,10,-0.000390625,-0.00234375,0.00117187,1,1,0.67831,0.109853,0.181002
+2,mnist,mlp1,256,0.02,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",selected,0.00442708,0.00351563,0.00703125,0.00859375,10,0.000390625,-0.003125,0.00390625,3,4,0.840228,0.236127,0.284019
+2,mnist,mlp1,256,0.03,tanh+relu,hidden1,S2 seeds 1-10 (exploratory),sweep,0.00703125,0.0128906,0.0234375,0.021875,10,-0.00585938,-0.0105469,-0.00078125,2,7,0.0521772,0.800815,0.664622
+2,mnist,mlp1,256,0.05,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",below-stress+selected,0.101042,0.114844,0.149479,0.135677,30,-0.0138021,-0.0242188,-0.00299479,8,19,0.0175294,0.959677,0.973785
+2,mnist,mlp1,256,0.1,tanh+relu,hidden1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",stress,0.691406,0.710026,0.727604,0.721615,30,-0.0186198,-0.035026,-0.00195312,10,20,0.0360783,0.990353,0.994774
+3,cifar10,cfg2,128,0.01,tanh+relu@0.25,conv,S3 seeds 31-45 (ratio slice),,0,0,0.0333333,0.00833333,15,0,0,0,0,0,1,0.850368,0.86457
+3,cifar10,cfg2,128,0.01,tanh+relu@0.25,hidden1,S3 seeds 31-45 (ratio slice),,0.0270833,0.284896,0.197917,0.465625,15,-0.257812,-0.505208,-0.0578125,4,9,0.0431648,0.94415,0.952517
+3,cifar10,cfg2,128,0.01,tanh+relu,conv,S3 seeds 31-45 (ratio slice),,0,0,0,0.00833333,15,0,0,0,0,0,1,0.853668,0.86457
+3,cifar10,cfg2,128,0.01,tanh+relu,hidden1,S3 seeds 31-45 (ratio slice),,0.0145833,0.284896,0.190625,0.465625,15,-0.270313,-0.472396,-0.0739583,3,11,0.0330448,0.942762,0.952517
+3,cifar10,cfg2,128,0.01,tanh+relu@0.75,conv,S3 seeds 31-45 (ratio slice),,0,0,0,0.00833333,15,0,0,0,0,0,1,0.86827,0.86457
+3,cifar10,cfg2,128,0.01,tanh+relu@0.75,hidden1,S3 seeds 31-45 (ratio slice),,0.0180556,0.284896,0.140278,0.465625,15,-0.26684,-0.520833,-0.0692708,4,11,0.0365414,0.943019,0.952517
+3,cifar10,cfg2,128,0.02,tanh+relu@0.25,conv,S3 seeds 31-45 (ratio slice),,0.0333333,0.0166667,0.0333333,0.0166667,15,0.0166667,-0.0333333,0.0916667,1,2,0.653398,0.946723,0.952999
+3,cifar10,cfg2,128,0.02,tanh+relu@0.25,hidden1,S3 seeds 31-45 (ratio slice),,0.916667,1,0.995833,1,15,-0.0833333,-0.13125,-0.0395833,0,10,0.0041071,0.983735,0.989655
+3,cifar10,cfg2,128,0.02,tanh+relu,conv,S3 seeds 31-45 (ratio slice),,0.0166667,0.0166667,0.0166667,0.0166667,15,0,-0.0333333,0.0416667,1,2,1,0.934351,0.952999
+3,cifar10,cfg2,128,0.02,tanh+relu,hidden1,S3 seeds 31-45 (ratio slice),,0.85625,1,0.980208,1,15,-0.14375,-0.225,-0.06875,0,11,0.00398644,0.982375,0.989655
+3,cifar10,cfg2,128,0.02,tanh+relu@0.75,conv,S3 seeds 31-45 (ratio slice),,0.0222222,0.0166667,0.0444444,0.0166667,15,0.00555556,-0.0333333,0.0444444,2,2,0.788098,0.922987,0.952999
+3,cifar10,cfg2,128,0.02,tanh+relu@0.75,hidden1,S3 seeds 31-45 (ratio slice),,0.838889,1,0.9875,1,15,-0.161111,-0.264583,-0.0659722,0,9,0.00889134,0.988633,0.989655
+3,cifar10,cfg2,128,0.03,tanh+relu@0.25,conv,S3 seeds 31-45 (ratio slice),,0.5,0.166667,0.633333,0.175,15,0.333333,0.15,0.516667,11,3,0.00368098,0.969879,0.979168
+3,cifar10,cfg2,128,0.03,tanh+relu@0.25,hidden1,S3 seeds 31-45 (ratio slice),,0.989583,0.940104,1,1,15,0.0494792,-0.0182292,0.173958,1,4,0.425453,0.994919,0.998974
+3,cifar10,cfg2,128,0.03,tanh+relu,conv,S3 seeds 31-45 (ratio slice),,0.333333,0.166667,0.366667,0.175,15,0.166667,0.00833333,0.333333,9,3,0.0729728,0.954113,0.979168
+3,cifar10,cfg2,128,0.03,tanh+relu,hidden1,S3 seeds 31-45 (ratio slice),,0.969792,0.940104,0.995833,1,15,0.0296875,-0.0541667,0.165117,2,7,0.645889,0.99291,0.998974
+3,cifar10,cfg2,128,0.03,tanh+relu@0.75,conv,S3 seeds 31-45 (ratio slice),,0.211111,0.166667,0.211111,0.175,15,0.0444444,-0.0916667,0.188889,7,7,0.554906,0.948425,0.979168
+3,cifar10,cfg2,128,0.03,tanh+relu@0.75,hidden1,S3 seeds 31-45 (ratio slice),,0.995139,0.940104,1,1,15,0.0550347,-0.0105903,0.177778,2,3,0.372935,0.990731,0.998974
+3,mnist,cfg2,128,0.01,tanh+relu@0.25,conv,S3 seeds 31-45 (ratio slice),,0,0,0,0,15,0,0,0,0,0,1,0.138674,0.150091
+3,mnist,cfg2,128,0.01,tanh+relu@0.25,hidden1,S3 seeds 31-45 (ratio slice),,0,0,0.00208333,0.0046875,15,0,0,0,0,0,1,0.558302,0.500421
+3,mnist,cfg2,128,0.01,tanh+relu,conv,S3 seeds 31-45 (ratio slice),,0,0,0,0,15,0,0,0,0,0,1,0.137204,0.150091
+3,mnist,cfg2,128,0.01,tanh+relu,hidden1,S3 seeds 31-45 (ratio slice),,0.00208333,0,0.003125,0.0046875,15,0.00208333,0,0.00520833,2,0,0.164318,0.598087,0.500421
+3,mnist,cfg2,128,0.01,tanh+relu@0.75,conv,S3 seeds 31-45 (ratio slice),,0,0,0,0,15,0,0,0,0,0,1,0.0835005,0.150091
+3,mnist,cfg2,128,0.01,tanh+relu@0.75,hidden1,S3 seeds 31-45 (ratio slice),,0,0,0.00555556,0.0046875,15,0,0,0,0,0,1,0.677281,0.500421
+3,mnist,cfg2,128,0.02,tanh+relu@0.25,conv,S3 seeds 31-45 (ratio slice),,0,0.00833333,0,0.00833333,15,-0.00833333,-0.025,0,0,1,0.334282,0.329919,0.297166
+3,mnist,cfg2,128,0.02,tanh+relu@0.25,hidden1,S3 seeds 31-45 (ratio slice),,0,0.999479,0.00208333,0.999479,15,-0.999479,-1,-0.998437,0,15,2.40416e-39,0.885232,0.871518
+3,mnist,cfg2,128,0.02,tanh+relu,conv,S3 seeds 31-45 (ratio slice),,0,0.00833333,0,0.00833333,15,-0.00833333,-0.025,0,0,1,0.334282,0.352473,0.297166
+3,mnist,cfg2,128,0.02,tanh+relu,hidden1,S3 seeds 31-45 (ratio slice),,0,0.999479,0.00729167,0.999479,15,-0.999479,-1,-0.998437,0,15,2.40416e-39,0.892197,0.871518
+3,mnist,cfg2,128,0.02,tanh+relu@0.75,conv,S3 seeds 31-45 (ratio slice),,0,0.00833333,0,0.00833333,15,-0.00833333,-0.025,0,0,1,0.334282,0.429359,0.297166
+3,mnist,cfg2,128,0.02,tanh+relu@0.75,hidden1,S3 seeds 31-45 (ratio slice),,0.00208333,0.999479,0.0118056,0.999479,15,-0.997396,-1,-0.994097,0,15,1.01914e-32,0.93595,0.871518
+3,mnist,cfg2,128,0.03,tanh+relu@0.25,conv,S3 seeds 31-45 (ratio slice),,0,0.0833333,0,0.0833333,15,-0.0833333,-0.141667,-0.025,0,6,0.0191876,0.533619,0.661561
+3,mnist,cfg2,128,0.03,tanh+relu@0.25,hidden1,S3 seeds 31-45 (ratio slice),,0.391667,0.999479,0.535417,0.999479,15,-0.607812,-0.661992,-0.557813,0,15,3.18149e-12,0.978788,0.979619
+3,mnist,cfg2,128,0.03,tanh+relu,conv,S3 seeds 31-45 (ratio slice),,0,0.0833333,0,0.0833333,15,-0.0833333,-0.141667,-0.025,0,6,0.0191876,0.502369,0.661561
+3,mnist,cfg2,128,0.03,tanh+relu,hidden1,S3 seeds 31-45 (ratio slice),,0.257292,0.999479,0.31875,0.999479,15,-0.742188,-0.788021,-0.692708,0,15,5.53594e-14,0.972057,0.979619
+3,mnist,cfg2,128,0.03,tanh+relu@0.75,conv,S3 seeds 31-45 (ratio slice),,0,0.0833333,0,0.0833333,15,-0.0833333,-0.15,-0.025,0,6,0.0191876,0.509795,0.661561
+3,mnist,cfg2,128,0.03,tanh+relu@0.75,hidden1,S3 seeds 31-45 (ratio slice),,0.650694,0.999479,0.695833,0.999479,15,-0.348785,-0.505035,-0.203116,0,13,0.000606606,0.987019,0.979619

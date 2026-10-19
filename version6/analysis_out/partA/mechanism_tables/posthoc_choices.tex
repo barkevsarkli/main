@@ -1,0 +1,27 @@
+\begin{table}[htbp]\centering\small
+\caption{Post-hoc analysis choices: each definition changed after looking at the data, the reason, and the result under the definition used and under the original one.}
+\label{tab:posthoc_choices}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lllrrrr@{}}
+\toprule
+choice & reason & measure & value\_used & value\_original & n\_used & n\_original \\
+\midrule
+Q4 spike-epoch spread: spikes at epoch >= 2 only & a spike in epoch 1 is growth from the initialisation, with no epoch before it & ICC S0 mnist mlp2 & 0.989 & 0.989 & 50.000 & 50.000 \\
+Q4 spike-epoch spread: spikes at epoch >= 2 only & a spike in epoch 1 is growth from the initialisation, with no epoch before it & ICC S2 cifar10 cfg1 & 0.943 & 0.956 & 115.000 & 186.000 \\
+Q4 spike-epoch spread: spikes at epoch >= 2 only & a spike in epoch 1 is growth from the initialisation, with no epoch before it & ICC S2 cifar10 cfg2 & 0.925 & 0.943 & 124.000 & 196.000 \\
+Q4 spike-epoch spread: spikes at epoch >= 2 only & a spike in epoch 1 is growth from the initialisation, with no epoch before it & ICC S2 cifar10 mlp1 &  &  & 0.000 & 30.000 \\
+Q4 spike-epoch spread: spikes at epoch >= 2 only & a spike in epoch 1 is growth from the initialisation, with no epoch before it & ICC S2 mnist cfg1 & 0.999 & 0.999 & 146.000 & 206.000 \\
+Q4 spike-epoch spread: spikes at epoch >= 2 only & a spike in epoch 1 is growth from the initialisation, with no epoch before it & ICC S2 mnist cfg2 & 0.999 & 0.999 & 143.000 & 203.000 \\
+Q4 spike-epoch spread: spikes at epoch >= 2 only & a spike in epoch 1 is growth from the initialisation, with no epoch before it & ICC S2 mnist mlp1 &  &  & 0.000 & 90.000 \\
+Q6 zmax\_jump signal from epoch 2 & the max |z| always more than doubles in epoch 1 (growth from the initialisation) & median lead S0 & 0.000 & 13.000 &  &  \\
+Q6 zmax\_jump signal from epoch 2 & the max |z| always more than doubles in epoch 1 (growth from the initialisation) & AUC S0 & 0.649 & 0.637 &  &  \\
+Q6 zmax\_jump signal from epoch 2 & the max |z| always more than doubles in epoch 1 (growth from the initialisation) & median lead S2 & 0.000 & 9.000 &  &  \\
+Q6 zmax\_jump signal from epoch 2 & the max |z| always more than doubles in epoch 1 (growth from the initialisation) & AUC S2 & 0.626 & 0.652 &  &  \\
+Q6 zmax\_jump signal from epoch 2 & the max |z| always more than doubles in epoch 1 (growth from the initialisation) & median lead S3 & 0.000 & 7.500 &  &  \\
+Q6 zmax\_jump signal from epoch 2 & the max |z| always more than doubles in epoch 1 (growth from the initialisation) & AUC S3 & 0.534 & 0.579 &  &  \\
+Q1 event study: late\_collapse runs only & runs that dip below 15\% and recover made the median curve rise after e* & runs in the event study & 400.000 & 467.000 & 400.000 & 467.000 \\
+Q5 partial collapse = late\_degradation with final < 50\% & stable CIFAR-10 runs also end between 15\% and 50\% & runs & 381.000 & 3122.000 &  &  \\
+Q6 failing = late\_collapse or late\_degradation & the outcome taxonomy; drop > 10 pp also counted never\_learned runs & failing runs & 1188.000 & 1329.000 &  &  \\
+\bottomrule
+\end{tabular}}
+\end{table}

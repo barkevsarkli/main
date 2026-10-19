@@ -1,0 +1,24 @@
+stage,dataset,arch_label,lr,seed_set,n_runs,n_epochs,ratio_median,ratio_min,ratio_max,max_abs_dev
+0,mnist,mlp2,0.02,S0 seeds 1-10 (exploratory),10,110,1,0.999996,1,4.32011e-06
+0,mnist,mlp2,0.03,S0 seeds 1-10 (exploratory),20,372,1,0.999995,1,4.93041e-06
+0,mnist,mlp2,0.05,S0 seeds 1-10 (exploratory),20,671,1,0.999995,1,4.65611e-06
+2,cifar10,cfg1,0.01,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",35,550,1,0.999973,1,2.67691e-05
+2,cifar10,cfg1,0.02,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",90,3316,1,0.999966,1,3.35815e-05
+2,cifar10,cfg1,0.03,S2 seeds 1-10 (exploratory),30,1170,1,0.999997,1,3.01759e-06
+2,cifar10,cfg1,0.05,S2 seeds 1-10 (exploratory),30,1170,1,0.999968,1,3.21599e-05
+2,cifar10,cfg2,0.01,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",44,678,1,0.999997,1,3.04591e-06
+2,cifar10,cfg2,0.02,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",90,3292,1,0.999997,1,3.17769e-06
+2,cifar10,cfg2,0.03,S2 seeds 1-10 (exploratory),30,1170,1,0.99997,1,3.02666e-05
+2,cifar10,cfg2,0.05,S2 seeds 1-10 (exploratory),30,1170,1,0.999969,1,3.11876e-05
+2,cifar10,mlp1,0.05,S2 seeds 1-10 (exploratory),30,1170,0.999894,0.998859,1,0.00114083
+2,mnist,cfg1,0.01,"S2 seeds 1,2,3,14,19 (descriptive, pooled sweep+ext)",7,10,1,0.999999,1,3.87787e-06
+2,mnist,cfg1,0.02,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",90,2811,1,0.999979,1.00002,2.37519e-05
+2,mnist,cfg1,0.03,S2 seeds 1-10 (exploratory),30,1130,1,0.999971,1.00003,2.85178e-05
+2,mnist,cfg1,0.05,S2 seeds 1-10 (exploratory),30,1170,1,0.99997,1.00003,3.27532e-05
+2,mnist,cfg1,0.1,S2 seeds 1-10 (exploratory),30,1170,1,0.99997,1.00003,3.04603e-05
+2,mnist,cfg2,0.01,"S2 seeds 2,4,6,11,14,16,18,21,22,25,27,28,30 (descriptive, pooled sweep+ext)",15,17,0.999998,0.999994,1.00001,6.33064e-06
+2,mnist,cfg2,0.02,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",90,2836,1,0.999686,1.00002,0.000314004
+2,mnist,cfg2,0.03,S2 seeds 1-10 (exploratory),30,1134,1,0.999975,1.00003,3.01849e-05
+2,mnist,cfg2,0.05,S2 seeds 1-10 (exploratory),30,1170,1,0.999972,1.00003,2.81881e-05
+2,mnist,cfg2,0.1,S2 seeds 1-10 (exploratory),30,1170,1,0.999972,1.00004,3.54041e-05
+2,mnist,mlp1,0.1,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",90,3510,0.999959,0.997979,1.00001,0.00202086

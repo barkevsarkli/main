@@ -169,7 +169,7 @@ def events(stage):
         rows.append(d)
     ev = pd.DataFrame(rows)
     cols = ["run_id", "stage", "dataset", "arch", "arch_label", "config", "hidden", "model", "lr", "seed",
-            "seed_set", "final_val", "best_val", "drop", "final_lt15", "drop_gt10", "ever_lt15"]
+            "seed_set", "final_val", "best_val", "drop", "final_lt15", "drop_gt10", "ever_lt15", "outcome"]
     rr = runs(stage).copy()
     rr["stage"] = stage
     return rr[cols].merge(ev, on="run_id", how="left", validate="one_to_one")

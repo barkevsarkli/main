@@ -1,0 +1,11 @@
+group,n_failing,share_fires_before_failure,share_fires_ever,lead_to_failure_median,n_late_collapse,lead_to_estar_median,failure_before_estar_median,n_stable_same_cells,fpr_same_cells,n_stable_all_cells,fpr_all_cells
+all,1188,0.276936,0.597643,0,705,8,0,1259,0.168388,10915,0.116628
+S0 mnist mlp2,66,0.469697,1,0,16,3,1,44,0.818182,174,0.454023
+S2 cifar10 cfg1,227,0,0.480176,0,117,-1,0,244,0.143443,1510,0.0251656
+S2 cifar10 cfg2,331,0.00302115,0.359517,0,186,0,0,304,0.115132,1819,0.0247389
+S2 cifar10 mlp1,76,0.0657895,0.171053,-2,6,14,7,374,0.0187166,1607,0.0056005
+S2 mnist cfg1,186,0.698925,0.951613,10,153,13,1,86,0.476744,1601,0.217364
+S2 mnist cfg2,220,0.613636,0.872727,6,157,9,1,90,0.644444,1952,0.268443
+S2 mnist mlp1,6,0,0,,0,,,54,0,1904,0.0908613
+S3 cifar10 cfg2,46,0,0.0869565,-5.5,40,-1,0,63,0,153,0
+S3 mnist cfg2,30,0.9,1,5,30,5.5,0.5,0,,195,0.292308

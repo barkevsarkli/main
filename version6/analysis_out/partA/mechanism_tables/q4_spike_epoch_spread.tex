@@ -1,0 +1,16 @@
+\begin{table}[htbp]\centering\small
+\caption{Q4. Spread of the spike epoch among spiking leaky-ReLU runs with spike epoch >= 2: pooled within-cell SD (cells = H x LR with >= 2 spiking runs), SD of the cell means, and ICC = between / (between + within) variance.}
+\label{tab:q4_spike_epoch_spread}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}rllrrrrrr@{}}
+\toprule
+stage & dataset & arch\_label & n\_cells & n\_spiking\_runs & within\_cell\_sd & between\_cell\_sd\_of\_means & icc & within\_cell\_range\_max \\
+\midrule
+0 & mnist & mlp2 & 5 & 50 & 1.203 & 11.342 & 0.989 & 6.000 \\
+2 & cifar10 & cfg1 & 5 & 115 & 3.559 & 14.541 & 0.943 & 17.000 \\
+2 & cifar10 & cfg2 & 5 & 124 & 3.775 & 13.284 & 0.925 & 25.000 \\
+2 & mnist & cfg1 & 8 & 146 & 0.522 & 16.062 & 0.999 & 2.000 \\
+2 & mnist & cfg2 & 8 & 143 & 0.484 & 15.981 & 0.999 & 2.000 \\
+\bottomrule
+\end{tabular}}
+\end{table}

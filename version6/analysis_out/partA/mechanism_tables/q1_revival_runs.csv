@@ -1,0 +1,422 @@
+run_id,dataset,arch_label,hidden,lr,seed,outcome,revived,status,e_dead,e_revive,epochs_dead,val_at_dead,max_val_after,final_val,reaches_15_after,dw_conv,dw_hidden,dw_output,dw_conv_zero,w_conv_ratio
+011ef6c292c5b056,cifar10,cfg2,128,0.01,23,late_collapse,False,stayed dead,37,,,10.54,9.56,9.26,False,0.0458102,0.0357857,0.124446,False,1.00093
+0131c2b2fccecdf7,cifar10,cfg2,64,0.02,17,late_collapse,False,stayed dead,9,,,10.04,10.68,9.56,False,0,0,0,True,1
+017aa5e412c0de9c,cifar10,cfg2,64,0.02,10,late_collapse,False,"revived, then died again",7,8,1,10.68,35.94,10.2,True,0.204173,0.381489,0.533721,False,1.05219
+01beb5f2b0d2e97f,cifar10,cfg1,128,0.02,26,late_collapse,False,stayed dead,4,,,9.6,10.68,9.58,False,0.0214681,0.0205235,0.0440838,False,0.999864
+0228e839cb891da4,mnist,cfg1,256,0.02,8,late_collapse,False,stayed dead,28,,,12.44,11.86,9.94,False,0.0643948,0.090255,0.124216,False,0.997504
+024739b132524bba,mnist,cfg2,64,0.02,24,late_collapse,False,stayed dead,22,,,10.24,11.86,8.62,False,0,0,0,True,1
+04080a80fcbecd5e,mnist,cfg2,256,0.02,12,late_collapse,False,stayed dead,25,,,9.26,11.86,11.86,False,0.336484,0.237703,0.321324,False,1.04903
+041ad7005fd64b0d,mnist,cfg2,128,0.02,17,late_collapse,False,stayed dead,21,,,11.88,11.88,11.88,False,1.42681e-09,7.69593e-09,7.32489e-09,False,1
+04bb669089a13224,cifar10,cfg1,64,0.02,19,late_collapse,False,stayed dead,12,,,9.26,10.68,10.52,False,0.002313,0.00553054,0.0059784,False,1.00006
+04caf56a8cd1b193,mnist,cfg1,256,0.02,18,late_collapse,False,stayed dead,33,,,10.6,11.86,11.86,False,0.00768227,0.0296934,0.00813133,False,0.999631
+062b253f19b6317c,mnist,cfg2,256,0.02,25,late_collapse,False,stayed dead,24,,,11.88,11.86,10.24,False,0.00351243,0.00614408,0.0700675,False,0.999989
+06d183d791694792,cifar10,cfg1,256,0.02,18,late_collapse,False,"revived, then died again",7,9,2,9.56,37.94,10.04,True,0.180351,0.299443,0.541065,False,1.0689
+0714afc01830cb44,mnist,cfg2,64,0.02,2,late_collapse,False,stayed dead,27,,,9.68,11.86,11.86,False,0,2.59076e-11,0,True,1
+08ec290e6f3c3cb3,cifar10,cfg2,256,0.01,24,late_degradation,True,revived,32,34,2,10.14,42.92,35.68,True,0.0737994,0.109325,0.242306,False,1.01811
+0926e4dff37c1ea4,mnist,cfg1,128,0.02,15,late_collapse,False,stayed dead,26,,,9.94,11.86,11.86,False,0,0,0,True,1
+0b027b8f7b4cdd2e,cifar10,cfg2,128,0.02,24,late_collapse,False,"revived, then died again",6,7,1,10.22,38.12,10.08,True,0.230558,0.450261,0.576207,False,1.06933
+0bd5d26fe34cb91b,cifar10,cfg1,256,0.02,26,late_collapse,False,stayed dead,13,,,9.54,10.68,9.58,False,2.76471e-07,3.99708e-07,8.55994e-07,False,1
+0d28b5795d223665,cifar10,cfg1,64,0.02,21,late_collapse,False,"revived, then died again",6,7,1,9.6,36.6,9.58,True,0.186649,0.3498,0.503536,False,1.04133
+0e53358ad20f85c9,cifar10,cfg2,256,0.02,10,late_collapse,False,"revived, then died again",8,9,1,10.52,36.64,10.16,True,0.139168,0.148053,0.356834,False,1.01134
+0e8448d0f473d2fd,cifar10,cfg1,256,0.02,20,late_collapse,False,stayed dead,8,,,9.56,10.68,9.56,False,0,0,0,True,1
+12a0580624a65bfa,cifar10,cfg2,64,0.02,1,late_collapse,False,"revived, then died again",10,11,1,10.04,36.9,9.6,True,0.131931,0.192704,0.489525,False,1.01815
+12fbce244d570b94,mnist,cfg1,128,0.02,4,late_collapse,False,stayed dead,29,,,11.86,11.86,9.94,False,0.000116229,0.000149569,5.95615e-05,False,1.00001
+14649fb4345abbe8,cifar10,cfg2,128,0.02,26,late_collapse,False,stayed dead,10,,,10.52,10.68,9.58,False,0.00173263,0.00198799,0.00254466,False,1.00004
+14f7bb9af9cda36a,cifar10,cfg1,128,0.02,25,late_collapse,False,stayed dead,4,,,9.26,10.68,10.52,False,0.00773793,0.0216671,0.0471133,False,0.999801
+1568a1e2503207dc,mnist,cfg1,128,0.02,24,late_collapse,False,stayed dead,28,,,11.88,12.4,8.62,False,0.274333,0.207755,0.489339,False,1.02691
+15b0a1b41bddc082,mnist,cfg1,64,0.02,25,late_collapse,False,stayed dead,31,,,9.24,11.86,10.24,False,0,0,0,True,1
+16b47c81025d1f33,cifar10,cfg1,128,0.02,4,late_collapse,False,stayed dead,15,,,9.54,10.68,9.56,False,0.0464519,0.0472979,0.153257,False,1.00081
+17be146d2ca52200,cifar10,cfg2,256,0.02,4,late_collapse,False,"revived, then died again",7,8,1,10.54,38.5,9.56,True,0.193,0.335448,0.551977,False,1.05463
+198f57ba0e7c5e5d,mnist,cfg2,256,0.02,6,late_collapse,False,stayed dead,29,,,12.22,11.88,10.4,False,0.136696,0.125143,0.0704193,False,1.00433
+1a3ccca5477467f7,cifar10,cfg2,64,0.02,4,never_learned,False,stayed dead,3,,,9.26,10.68,9.56,False,0.00182915,0.00746009,0.00233584,False,1.00016
+1a62e611167acd99,mnist,cfg2,64,0.02,7,late_collapse,False,stayed dead,26,,,9.56,11.86,10.24,False,2.62684e-07,3.25343e-07,1.90846e-07,False,1
+1a85afd65d66789c,cifar10,cfg2,64,0.02,3,late_collapse,False,"revived, then died again",9,13,4,9.32,37.08,10.68,True,0.0165703,0.0250366,0.100967,False,1.04
+1b3ab12110a062e5,cifar10,cfg2,64,0.02,24,late_collapse,False,"revived, then died again",6,10,4,10.16,35.56,10.04,True,0.0173073,0.0145029,0.0228221,False,1.09714
+1bae1d790f23af85,mnist,cfg2,64,0.02,12,late_collapse,False,stayed dead,24,,,11.86,11.86,11.86,False,0.0608112,0.137673,0.0572981,False,0.997327
+1c0ff6e04f152d36,cifar10,cfg1,256,0.01,26,late_degradation,True,revived,21,22,1,10.54,45.62,39.74,True,0.129562,0.240818,0.437478,False,1.02456
+1d7d7977bdd27cc8,cifar10,cfg1,256,0.01,11,late_collapse,False,stayed dead,40,,,10.18,,10.18,False,,,,True,1
+1d98e6908674e02e,mnist,cfg1,128,0.02,17,late_collapse,False,stayed dead,29,,,11.86,11.86,11.86,False,0,0,0,True,1
+1dbd6306b91fd70a,mnist,cfg2,256,0.02,16,late_collapse,False,stayed dead,35,,,9.58,11.88,11.88,False,7.48502e-06,1.53369e-05,1.82695e-06,False,1
+1fcd83549e0f7f78,mnist,cfg2,256,0.02,29,late_collapse,False,stayed dead,29,,,10.02,16.38,11.86,True,0.122286,0.180885,0.258358,False,1.00198
+202f592986ee9437,mnist,cfg1,256,0.02,25,late_collapse,False,stayed dead,27,,,10.64,11.86,10.24,False,0.0292517,0.0630801,0.010688,False,0.995341
+2033c3a8f81ea0d7,mnist,cfg2,256,0.02,15,late_collapse,False,stayed dead,28,,,9.94,11.86,11.86,False,0,0,0,True,1
+2116dfb2034e6f71,mnist,cfg2,256,0.02,13,late_collapse,False,stayed dead,24,,,11.86,11.86,10.6,False,0,0,0,True,1
+236c9653beb10e0d,cifar10,cfg1,128,0.01,12,stable,True,revived,26,27,1,10.24,46.82,42.1,True,0.106449,0.180823,0.404808,False,1.01664
+23fd8d907fa3133f,cifar10,cfg2,128,0.02,5,late_collapse,False,"revived, then died again",16,18,2,10.52,35.78,10.12,True,0.0735503,0.141269,0.280214,False,1.02609
+268078f94d7d1b5e,cifar10,cfg1,64,0.02,13,late_collapse,False,stayed dead,16,,,10.52,10.68,9.26,False,0.01182,0.0196489,0.0433938,False,0.999788
+27140c08169520ad,mnist,cfg1,256,0.02,7,late_collapse,False,stayed dead,27,,,12.68,11.88,10.24,False,0.131885,0.121537,0.123136,False,1.00529
+271b4708e54f56ef,mnist,cfg1,128,0.02,1,late_collapse,False,stayed dead,27,,,10.68,11.94,9.32,False,0.00737213,0.0203249,0.0221535,False,0.999848
+27c06e54c802b089,cifar10,cfg1,256,0.02,2,late_collapse,False,"revived, then died again",9,10,1,9.56,36.94,10.12,True,0.190319,0.331336,0.555728,False,1.04045
+282581debb20035f,cifar10,cfg2,256,0.01,15,late_collapse,False,stayed dead,36,,,10.16,10.52,10.52,False,0.0121075,0.00684806,0.0157595,False,0.999931
+283c3fbd0bb5f067,cifar10,cfg2,64,0.02,22,late_collapse,False,"revived, then died again",5,10,5,9.26,34.7,9.58,True,0.00157459,0.00228341,0.0123723,False,1.04031
+2854251b855de24f,mnist,cfg2,128,0.02,11,late_collapse,False,stayed dead,26,,,10.24,11.86,10.4,False,0.0877336,0.106299,0.124515,False,0.997829
+2900d0bf844f727a,cifar10,cfg1,64,0.02,4,late_collapse,False,stayed dead,14,,,10.04,10.68,9.56,False,1.09201e-06,1.48761e-06,6.96217e-06,False,1
+2a999fe26f9e0a39,mnist,cfg2,256,0.02,22,late_collapse,False,stayed dead,23,,,12,16.44,9.86,True,0.08117,0.0724422,0.0756273,False,1.00292
+2b1e21c09cfdc693,mnist,cfg1,128,0.02,5,late_collapse,False,stayed dead,29,,,9.88,11.86,11.86,False,0.00453689,0.0137932,0.00651496,False,1.00011
+2b832ac1993830cd,cifar10,cfg1,256,0.02,15,late_collapse,False,"revived, then died again",16,17,1,10.56,35.22,9.64,True,0.137755,0.273073,0.524996,False,1.02886
+2b9c1413d4b26058,cifar10,cfg1,64,0.02,6,late_collapse,False,stayed dead,4,,,10.52,10.52,9.56,False,1.45206e-06,3.69139e-06,0.0116646,False,1
+2b9ffe30d9547933,mnist,cfg2,256,0.02,8,late_collapse,False,stayed dead,26,,,10.4,11.86,9.94,False,1.12296e-06,2.37458e-06,1.90247e-06,False,1
+2bb212d1a09e0a39,cifar10,cfg1,128,0.02,24,late_collapse,False,"revived, then died again",4,5,1,10.04,37.94,10.04,True,0.248932,0.463897,0.63819,False,1.08631
+2bea078c6b45494c,cifar10,cfg2,64,0.02,25,late_collapse,False,"revived, then died again",1,2,1,10.12,36.08,10.52,True,0.532263,0.804789,0.838325,False,1.26724
+2c24db8523cebedb,cifar10,cfg2,256,0.02,5,late_collapse,False,"revived, then died again",3,4,1,10.16,35.32,10.12,True,0.191623,0.256187,0.418285,False,1.03848
+2c7c461646040b47,cifar10,cfg2,256,0.01,28,stable,True,revived,31,32,1,10.12,43.18,42.56,True,0.11544,0.188814,0.417793,False,1.01442
+2cf1cd9f9898d3e5,mnist,cfg1,64,0.02,17,late_collapse,False,stayed dead,25,,,9.24,11.86,11.86,False,0.0190365,0.0297228,0.0715707,False,1.0017
+2cff4cd8ffd9837f,mnist,cfg2,256,0.02,24,late_collapse,False,stayed dead,27,,,11.86,11.86,8.62,False,0.150251,0.254371,1.4277,False,1.00367
+2f5aedddf1ac7701,mnist,cfg1,256,0.02,23,late_collapse,False,stayed dead,29,,,11.88,11.86,11.86,False,0.0368129,0.0490907,0.0376664,False,0.997395
+2fd5ae6377bd01a3,cifar10,cfg1,128,0.02,22,late_collapse,False,stayed dead,9,,,9.58,10.68,9.58,False,0.0199628,0.0237386,0.0199736,False,1.00077
+303e7abe8e06cb44,cifar10,cfg2,128,0.02,22,late_collapse,False,stayed dead,9,,,9.6,10.7,9.58,False,0.0285635,0.032889,0.0788354,False,0.999578
+3066e8f85fb27e6f,mnist,cfg2,64,0.02,10,late_collapse,False,stayed dead,22,,,9.56,11.86,10.24,False,8.58246e-06,2.02001e-05,5.59706e-05,False,1
+31ab1e0bd5f830a7,mnist,cfg1,128,0.02,18,late_collapse,False,stayed dead,25,,,9.56,11.86,11.86,False,0,0,0,True,1
+31d271e96e175abe,cifar10,cfg1,128,0.02,14,late_collapse,False,"revived, then died again",10,12,2,10.12,36.58,10.68,True,0.0965529,0.150442,0.306341,False,1.02989
+32033df49212749a,cifar10,cfg2,128,0.02,15,late_collapse,False,stayed dead,4,,,10.52,10.68,9.58,False,0.00830508,0.0190728,0.0419896,False,0.999491
+32bf60529ece25aa,mnist,cfg1,256,0.02,13,late_collapse,False,stayed dead,30,,,11.86,11.86,10.6,False,0,0,0,True,1
+337f638ad75668cf,mnist,cfg1,128,0.02,29,late_collapse,False,stayed dead,33,,,9.96,11.88,11.88,False,9.17552e-07,2.30459e-06,1.97112e-07,False,1
+33c2c3116d642a97,cifar10,cfg2,128,0.01,2,stable,True,revived,37,38,1,10.8,42.44,42.44,True,0.0871402,0.0933187,0.338192,False,1.00229
+344364a1b775d7e9,cifar10,cfg2,64,0.02,20,late_collapse,False,stayed dead,6,,,10.52,10.68,9.56,False,0,0,0,True,1
+3454f2ce9ea735b3,cifar10,cfg2,128,0.02,12,late_collapse,False,"revived, then died again",8,9,1,9.26,37.14,9.26,True,0.181985,0.312654,0.533586,False,1.03955
+355efd3a446f6023,mnist,cfg1,256,0.02,21,late_collapse,False,stayed dead,30,,,11.86,11.86,11.86,False,0.0245023,0.0379156,0.0393615,False,1.00039
+360781da6072512d,cifar10,cfg1,64,0.02,29,late_collapse,False,"revived, then died again",6,8,2,10.52,38.3,9.54,True,0.119477,0.228949,0.357953,False,1.07714
+36aeb09ec614f847,cifar10,cfg2,128,0.01,24,stable,True,revived,31,32,1,9.74,44.02,43.2,True,0.0975479,0.195579,0.484928,False,1.0189
+370d47259502430c,cifar10,cfg1,128,0.01,11,late_collapse,False,stayed dead,40,,,10.22,,10.22,False,,,,True,1
+3748fa7ccd36b726,mnist,cfg2,256,0.02,23,late_collapse,False,stayed dead,23,,,9.28,11.86,11.86,False,0.177721,0.176267,0.191238,False,1.00526
+379f00f72d64af5c,cifar10,cfg1,256,0.02,27,late_collapse,False,"revived, then died again",10,11,1,10.64,37.8,9.26,True,0.173558,0.341944,0.557763,False,1.05348
+37c591d159648a8c,cifar10,cfg1,64,0.02,24,late_collapse,False,stayed dead,11,,,10.04,10.68,10.04,False,0.00732393,0.0219195,0.039268,False,0.999969
+38607ea8fe4e03d4,cifar10,cfg1,256,0.01,28,stable,True,revived,28,29,1,10.2,43.64,42.54,True,0.106235,0.193757,0.40214,False,1.01902
+391e2c7564b9958b,mnist,cfg1,64,0.02,28,late_collapse,False,stayed dead,27,,,9.94,11.86,9.94,False,0,0,0,True,1
+3975db9522b60322,cifar10,cfg2,64,0.02,30,late_collapse,False,"revived, then died again",2,5,3,10.04,37.56,9.56,True,0.212634,0.465674,0.497348,False,1.17923
+3a567cc1c0f17715,mnist,cfg1,128,0.02,27,late_collapse,False,stayed dead,29,,,9.32,11.86,11.86,False,0.0409972,0.049661,0.0612101,False,0.999874
+3b0b108cb0f8fdf3,mnist,cfg2,128,0.02,24,late_collapse,False,stayed dead,22,,,10.24,11.86,8.62,False,0.00853755,0.0121851,0.112546,False,0.999841
+3b318ce797e0f1f4,mnist,cfg2,256,0.02,14,late_collapse,False,stayed dead,22,,,11.86,11.86,10.24,False,0,0,0,True,1
+3d3b46d14296817a,cifar10,cfg1,256,0.02,3,late_collapse,False,stayed dead,19,,,9.6,10.68,10.68,False,0.0307748,0.0271103,0.00327569,False,1.0002
+3d8765a1248afde4,mnist,cfg2,128,0.02,21,late_collapse,False,stayed dead,24,,,11.86,11.86,11.86,False,0,0,0,True,1
+3da7733e84f03aa2,mnist,cfg2,64,0.02,15,late_collapse,False,stayed dead,22,,,9.24,11.86,11.86,False,0,0,0,True,1
+3efac47a0727e743,mnist,cfg2,64,0.02,14,late_collapse,False,stayed dead,23,,,10.24,11.86,10.24,False,0,0,0,True,1
+3f65f5ce158f0177,mnist,cfg1,128,0.02,21,late_collapse,False,stayed dead,26,,,9.42,11.88,11.86,False,0.076744,0.0735855,0.13949,False,0.999639
+3f68e45bf548f9b8,mnist,cfg1,128,0.02,8,late_collapse,False,stayed dead,27,,,9.58,11.88,9.96,False,0,0,0,True,1
+40c7219b5d33cded,cifar10,cfg1,256,0.01,1,stable,True,revived,35,36,1,10.76,43.12,41.24,True,0.10054,0.176042,0.416185,False,1.01196
+41af1c3fa97433c9,cifar10,cfg2,256,0.02,3,late_collapse,False,"revived, then died again",3,4,1,9.58,38.66,10.68,True,0.309453,0.587112,0.657261,False,1.15338
+4240cc74c12959bf,cifar10,cfg1,256,0.02,17,late_collapse,False,"revived, then died again",10,11,1,9.28,37.64,9.56,True,0.179723,0.361145,0.57674,False,1.05084
+43f3f180ff2f1d8e,cifar10,cfg1,256,0.02,14,late_collapse,False,"revived, then died again",8,9,1,10.7,38.46,10.68,True,0.192613,0.389204,0.599354,False,1.05973
+44a93441dcd3d1db,mnist,cfg1,128,0.02,25,late_collapse,False,stayed dead,27,,,11.72,11.86,10.24,False,0.0901077,0.213444,0.0242558,False,1.00198
+45d9c0fe42e46400,mnist,cfg1,256,0.02,4,late_collapse,False,stayed dead,27,,,9.26,11.88,9.96,False,7.93323e-07,2.74802e-06,5.87713e-07,False,1
+45ddd21ffe972a71,cifar10,cfg1,128,0.02,19,late_collapse,False,"revived, then died again",9,10,1,10.52,35.66,10.52,True,1.36555,1.59384,1.83314,False,1.60953
+462b10e5926a3c69,mnist,cfg2,64,0.02,16,late_collapse,False,stayed dead,23,,,9.56,11.86,11.86,False,1.82811e-06,4.47348e-06,2.91542e-06,False,1
+466dea0b8a902180,mnist,cfg2,128,0.02,25,late_collapse,False,stayed dead,22,,,10.24,11.86,10.24,False,0,0,0,True,1
+48729bc512a1e89b,mnist,cfg2,64,0.02,25,late_collapse,False,stayed dead,24,,,11.86,11.86,10.24,False,0,0,0,True,1
+49e86df1aced84c4,cifar10,cfg1,256,0.02,9,late_collapse,False,"revived, then died again",14,15,1,9.54,36.12,9.26,True,0.128555,0.235645,0.545586,False,1.02477
+49f045eccc55c561,cifar10,cfg1,256,0.01,16,late_collapse,False,stayed dead,39,,,9.54,10.18,10.18,False,0.0166451,0.0195273,0.0596383,False,0.999839
+4a0fa2e1677a8f96,cifar10,cfg1,128,0.02,29,late_collapse,False,"revived, then died again",6,8,2,10.52,36.34,9.54,True,0.211989,0.421188,0.774265,False,1.14181
+4a1915f701e702ac,mnist,cfg1,256,0.02,28,late_collapse,False,stayed dead,28,,,12.02,11.86,9.94,False,0.0518439,0.0477377,0.0506198,False,1.00016
+4a3c5baf3a03e5c0,mnist,cfg2,256,0.02,18,late_collapse,False,stayed dead,25,,,9.64,11.88,11.88,False,0.0173831,0.0117378,0.0477,False,1.00038
+4af5a1863d84db24,cifar10,cfg2,256,0.02,13,late_collapse,False,stayed dead,13,,,10.52,10.68,9.26,False,0.0108432,0.0244152,0.0461449,False,0.999746
+4c03acd9bc8ea9a4,cifar10,cfg2,64,0.02,18,late_collapse,False,"revived, then died again",19,24,5,10.52,37.16,10.1,True,0.0169715,0.0149892,0.0731905,False,1.01617
+4c43dfde1ae5ebe6,mnist,cfg1,64,0.02,9,late_collapse,False,stayed dead,26,,,9.58,11.88,9.58,False,1.24683e-08,3.99282e-08,6.41484e-09,False,1
+4c443615339c6b39,cifar10,cfg2,256,0.01,4,stable,True,revived,38,40,2,10.2,39.82,39.82,True,0.0600615,0.0996425,0.24993,False,1.01586
+4c96547dbef7f208,mnist,cfg2,128,0.02,14,late_collapse,False,stayed dead,24,,,9.68,11.86,10.24,False,0.121345,0.202665,0.364743,False,1.00345
+4e8cf342eb493e7d,mnist,cfg1,128,0.02,30,late_collapse,False,stayed dead,25,,,10.4,11.86,9.94,False,0.00154746,0.00466651,0.000497387,False,1.00003
+4e9320db08d8f246,mnist,cfg2,128,0.02,23,late_collapse,False,stayed dead,25,,,11.86,11.86,11.86,False,0,0,0,True,1
+4f41bccd429c69ea,mnist,cfg2,128,0.02,30,late_collapse,False,stayed dead,25,,,10.4,11.86,9.94,False,0,0,0,True,1
+50e0d43882f479bc,mnist,cfg1,64,0.02,3,late_collapse,False,stayed dead,25,,,10.24,11.9,10.44,False,9.85434e-08,8.00018e-08,2.15362e-08,False,1
+50f77810ccc12560,cifar10,cfg2,128,0.02,8,late_collapse,False,stayed dead,10,,,10.54,10.68,9.54,False,0.00516723,0.00595376,0.00852421,False,1.00011
+5182354a96e038ce,cifar10,cfg2,64,0.02,16,late_collapse,False,"revived, then died again",5,7,2,9.26,36.6,10.18,True,0.211142,0.429811,0.597303,False,1.13516
+51848add523f4e35,cifar10,cfg2,64,0.02,11,late_collapse,False,stayed dead,3,,,10.12,10.68,10.18,False,0.215732,0.408693,0.575721,False,1.06044
+5215e431f1adca1d,mnist,cfg2,64,0.02,23,late_collapse,False,stayed dead,26,,,9.86,11.86,11.86,False,0,0,0,True,1
+531b40c033fa88b6,cifar10,cfg2,256,0.01,23,late_collapse,False,"revived, then died again",32,33,1,10.04,43.22,9.28,True,0.0937449,0.171384,0.396138,False,1.01275
+5324c081881938f1,cifar10,cfg2,128,0.02,18,late_collapse,False,stayed dead,12,,,9.58,10.68,10.04,False,0.179691,0.265835,0.49492,False,1.03104
+548332f68c0a5637,mnist,cfg2,64,0.02,18,late_collapse,False,stayed dead,25,,,9.58,11.88,11.88,False,5.71995e-05,5.2227e-05,4.92412e-05,False,1
+551550b5815d18f8,cifar10,cfg1,256,0.01,24,stable,True,revived,37,38,1,9.58,42.84,42.46,True,0.0876755,0.0886996,0.260492,False,1.0058
+551b39b5fbf69b41,cifar10,cfg1,64,0.02,18,late_collapse,False,"revived, then died again",8,9,1,9.58,38.18,10.04,True,0.164628,0.276821,0.526002,False,1.02943
+570e381f791c11a6,cifar10,cfg2,256,0.02,19,late_collapse,False,"revived, then died again",5,6,1,10.18,37.6,10.52,True,0.234345,0.450576,0.622478,False,1.09697
+5750e568adbd0992,cifar10,cfg2,256,0.01,9,stable,True,revived,22,23,1,10.08,45.82,43.2,True,0.11276,0.234616,0.410038,False,1.02413
+5772c80e6d5ebb3a,cifar10,cfg1,128,0.02,3,late_collapse,False,stayed dead,17,,,10.04,10.68,10.68,False,2.40273e-06,2.71335e-06,3.98723e-05,False,1
+578ea9f794db280c,mnist,cfg1,64,0.02,12,late_collapse,False,stayed dead,24,,,11.86,11.86,11.86,False,2.23519e-07,2.28839e-07,9.42049e-08,False,1
+57a59d113a428901,mnist,cfg1,64,0.02,22,late_collapse,False,stayed dead,28,,,10.4,11.86,9.86,False,9.99489e-11,3.25066e-10,0,False,1
+5804b480a12cb1ed,cifar10,cfg1,128,0.02,6,late_collapse,False,"revived, then died again",15,16,1,10.18,36.96,9.56,True,0.151078,0.25304,0.461928,False,1.01782
+587deb5ef964e5fe,cifar10,cfg2,64,0.02,23,never_learned,False,stayed dead,2,,,10.52,10.68,10.52,False,0,0,0,True,1
+596285c1302d34c7,mnist,cfg2,128,0.02,8,late_collapse,False,stayed dead,24,,,11.98,11.86,9.94,False,0.0706221,0.0941212,0.159695,False,1.00166
+59970dcf96171110,cifar10,cfg2,256,0.01,10,stable,True,revived,35,36,1,9.62,45.36,39.42,True,0.113882,0.171351,0.417691,False,1.01405
+5b8168939284b15f,cifar10,cfg2,256,0.01,6,late_collapse,False,stayed dead,35,,,10.52,10.12,9.56,False,0.0074918,0.00921284,0.00927914,False,0.999998
+5bbba00bd3abaef3,cifar10,cfg2,64,0.02,13,never_learned,False,stayed dead,2,,,9.26,10.7,9.28,False,0.0391416,0.105475,0.057649,False,0.998149
+5c9bb210d712ba30,cifar10,cfg1,128,0.02,12,late_collapse,False,"revived, then died again",10,11,1,10.54,36.7,9.26,True,0.156889,0.297582,0.554433,False,1.03191
+5cd2adb4354b6e1d,mnist,cfg1,128,0.02,16,late_collapse,False,stayed dead,26,,,11.86,11.86,11.86,False,1.60275e-07,4.24185e-07,7.83216e-07,False,1
+5d02f752875064e8,mnist,cfg2,256,0.02,10,late_collapse,False,stayed dead,28,,,11.96,11.98,10.26,False,0.000919796,0.00232916,3.64204e-05,False,1.00005
+5d73c1074db6a134,cifar10,cfg1,128,0.02,16,late_collapse,False,stayed dead,12,,,9.56,10.68,10.18,False,0.0187781,0.0269784,0.0769593,False,1
+5db704c33d9dc873,cifar10,cfg1,64,0.02,30,late_collapse,False,"revived, then died again",9,10,1,10.04,39.14,9.56,True,0.174746,0.336016,0.558887,False,1.04058
+5eaa8db72212b1fd,mnist,cfg1,64,0.02,26,late_collapse,False,stayed dead,27,,,10.24,11.86,11.86,False,0.0429873,0.0995458,0.118061,False,1.00113
+5eb9353535431df7,mnist,cfg1,64,0.02,4,late_collapse,False,stayed dead,23,,,11.9,11.86,9.94,False,0.247332,0.540242,0.0677035,False,1.0249
+60592b9cb2701120,cifar10,cfg1,256,0.02,5,late_collapse,False,stayed dead,14,,,10.12,10.68,10.12,False,0.000101151,0.00010557,0.000876324,False,1
+605fee2b1e74e854,mnist,cfg2,128,0.02,18,late_collapse,False,stayed dead,25,,,9.58,11.88,11.88,False,2.9756e-08,5.40245e-08,1.91645e-07,False,1
+606d4fb97ae93df8,mnist,cfg2,64,0.02,17,late_collapse,False,stayed dead,23,,,11.86,11.86,11.86,False,0,0,0,True,1
+611daa2e77f1e079,cifar10,cfg2,128,0.02,25,late_collapse,False,"revived, then died again",18,20,2,9.3,33.78,10.54,True,0.132359,0.242394,0.532504,False,1.05135
+6122b0a59744a96b,mnist,cfg2,128,0.02,4,late_collapse,False,stayed dead,27,,,9.26,11.88,9.94,False,0.00121007,0.00110262,0.000420121,False,1.00009
+6253511e85a2421a,mnist,cfg1,128,0.02,2,late_collapse,False,stayed dead,28,,,9.56,11.86,11.86,False,0,0,0,True,1
+635400afe230471c,mnist,cfg2,128,0.02,1,late_collapse,False,stayed dead,24,,,11.86,11.86,9.24,False,0.00827021,0.0380806,0.00157966,False,0.999845
+635b39c9c92af1f0,mnist,cfg2,64,0.02,26,late_collapse,False,stayed dead,23,,,9.24,11.86,11.86,False,0,0,0,True,1
+637d0905d4ee40c1,mnist,cfg2,64,0.02,27,late_collapse,False,stayed dead,22,,,10.44,11.86,11.86,False,0.0604015,0.135716,0.0342739,False,1.0006
+6392e49fbacfcc0b,cifar10,cfg1,128,0.01,18,stable,True,revived,32,33,1,10.08,44.1,42.84,True,0.109947,0.202765,0.453999,False,1.02014
+64095f7229e69e42,mnist,cfg2,128,0.02,27,late_collapse,False,stayed dead,24,,,10.6,11.86,11.86,False,0.0225356,0.0292582,0.100258,False,0.999745
+641e4ab376de7b33,cifar10,cfg1,256,0.01,14,late_collapse,False,stayed dead,40,,,10.76,,10.76,False,,,,True,1
+6473c3d42c862140,cifar10,cfg2,256,0.01,25,late_degradation,True,revived,32,34,2,10.84,42.46,38.04,True,0.120714,0.197408,0.43342,False,1.03607
+653dd9b1e7dd6b8c,mnist,cfg2,64,0.02,22,late_collapse,False,stayed dead,22,,,10.26,11.88,9.86,False,9.31791e-05,0.000168787,5.32834e-06,False,1
+655f24a96977229a,cifar10,cfg2,128,0.02,6,late_collapse,False,"revived, then died again",2,3,1,10.52,37.44,9.56,True,0.338852,0.661287,0.657602,False,1.1543
+65baf52b213c1491,mnist,cfg2,128,0.02,2,late_collapse,False,stayed dead,25,,,10.1,11.86,11.86,False,0.020554,0.0454842,0.00483438,False,1.00058
+663efa24ccb4fb89,cifar10,cfg1,64,0.02,25,late_collapse,False,stayed dead,9,,,10.18,10.7,10.52,False,0.0366153,0.0537771,0.0434192,False,1.00119
+667e904e5d9e0acd,mnist,cfg1,128,0.02,7,late_collapse,False,stayed dead,28,,,11.92,11.9,10.28,False,0.0194531,0.0311336,0.0213478,False,1.00106
+66f40274d991e368,cifar10,cfg2,64,0.02,29,late_collapse,False,"revived, then died again",9,10,1,10.68,35.22,9.54,True,0.123639,0.10265,0.380998,False,1.00585
+67b0d983760be3b3,cifar10,cfg2,128,0.02,1,late_collapse,False,"revived, then died again",3,5,2,10.04,34.1,9.58,True,0.163829,0.282235,0.341902,False,1.12995
+68ebca03933fe29e,mnist,cfg1,128,0.02,6,late_collapse,False,stayed dead,29,,,11.86,11.86,10.4,False,0,0,0,True,1
+6a3ba0d64c727d43,mnist,cfg1,256,0.02,9,late_collapse,False,stayed dead,28,,,12.16,11.86,9.56,False,0.262177,0.279932,0.49316,False,1.0244
+6a8d3f3ce185d2ce,cifar10,cfg2,64,0.02,5,late_collapse,False,stayed dead,16,,,10.52,10.68,10.12,False,0,0,0,True,1
+6a8f94cf9ce4e835,cifar10,cfg2,64,0.02,2,late_collapse,False,stayed dead,7,,,10.18,10.68,10.12,False,0.00590635,0.0100006,0.0293811,False,1.00002
+6c26bfca0e00269f,mnist,cfg1,256,0.02,5,late_collapse,False,stayed dead,27,,,10.52,11.86,11.86,False,0.106417,0.0809089,0.0279837,False,0.996884
+6cf609e0c08d3990,cifar10,cfg1,64,0.02,28,late_collapse,False,stayed dead,5,,,9.62,10.7,10.54,False,0.0158816,0.0239239,0.0570869,False,0.999873
+6e00f43e9a7e1553,mnist,cfg2,256,0.02,20,late_collapse,False,stayed dead,23,,,9.66,11.86,10.4,False,0.147604,0.116364,0.199971,False,1.01199
+6e567d505837b739,cifar10,cfg1,256,0.02,24,late_collapse,False,stayed dead,9,,,9.36,10.68,10.04,False,0.215399,0.2961,0.521965,False,1.04002
+6e585e7db4be4cc6,cifar10,cfg2,128,0.02,19,late_collapse,False,"revived, then died again",7,8,1,10.04,37.94,10.52,True,0.171296,0.205079,0.488951,False,1.01728
+6eaa48853e378012,mnist,cfg2,256,0.02,27,late_collapse,False,stayed dead,26,,,9.32,11.94,11.94,False,3.17388e-07,3.58154e-07,5.43281e-07,False,1
+703f12e0155797ff,cifar10,cfg1,256,0.01,25,late_collapse,False,"revived, then died again",32,34,2,10.06,42.34,11.1,True,0.0630804,0.0812261,0.207275,False,1.01489
+70d1b7302cc2d7a2,cifar10,cfg2,256,0.02,28,late_collapse,False,stayed dead,8,,,9.58,10.68,10.52,False,0.0233164,0.026748,0.00936999,False,1.00016
+71185dd591c3d910,cifar10,cfg1,256,0.02,23,late_collapse,False,stayed dead,16,,,10.68,10.52,10.52,False,0.167812,0.113834,0.244713,False,1.01354
+7208acf20adfc655,cifar10,cfg1,256,0.02,28,late_collapse,False,stayed dead,17,,,9.26,10.68,10.52,False,0.0285956,0.0250052,0.107288,False,1.00003
+72aeec2758925460,mnist,cfg1,128,0.02,11,late_collapse,False,stayed dead,28,,,10.4,11.86,10.4,False,0,0,0,True,1
+74fb892e29676ab1,mnist,cfg1,128,0.02,23,late_collapse,False,stayed dead,27,,,9.76,12.34,11.86,False,0.136952,0.149017,0.350427,False,1.00834
+75229e3f92037afb,cifar10,cfg2,128,0.02,30,late_collapse,False,"revived, then died again",8,9,1,9.54,37.26,9.56,True,0.11838,0.0965462,0.288278,False,1.00629
+7753d2c73099de6f,cifar10,cfg1,256,0.02,22,late_collapse,False,"revived, then died again",13,17,4,10.12,37.2,9.58,True,0.109488,0.181024,0.437596,False,1.0567
+775f1506f16c2273,mnist,cfg1,64,0.02,8,late_collapse,False,stayed dead,31,,,10.28,11.9,9.98,False,0.0187895,0.068653,0.0370403,False,0.998983
+77ad56eac09474e3,cifar10,cfg2,128,0.02,27,late_collapse,False,"revived, then died again",12,13,1,10.7,37.42,9.3,True,0.17012,0.280235,0.669875,False,1.03456
+78540be2ed41b624,cifar10,cfg2,128,0.01,10,late_collapse,False,stayed dead,40,,,10.2,,10.2,False,,,,True,1
+78e2d70ea8ee6b92,cifar10,cfg2,128,0.02,28,late_collapse,False,"revived, then died again",10,11,1,9.26,38.48,10.52,True,0.150693,0.277306,0.620837,False,1.02971
+78e9ba09dc044d5d,mnist,cfg1,256,0.02,30,late_collapse,False,stayed dead,28,,,10.32,16.12,9.94,True,0.0148193,0.0163241,0.020413,False,1.00001
+793c6e7eba520492,mnist,cfg2,64,0.02,4,late_collapse,False,stayed dead,22,,,8.68,11.92,10,False,2.70628e-05,4.38822e-05,1.53528e-05,False,1
+797fe8365f4f01af,cifar10,cfg2,128,0.02,23,late_collapse,False,stayed dead,15,,,10.12,10.68,10.52,False,0.00019314,0.000615917,0.00219785,False,1.00001
+79b0598244a7f14a,cifar10,cfg2,128,0.02,20,late_collapse,False,"revived, then died again",4,5,1,10.18,37.34,9.56,True,0.261761,0.55012,0.652197,False,1.12564
+7ab15699c5ed6b06,cifar10,cfg2,256,0.01,16,late_degradation,True,revived,36,38,2,10.04,42.68,40,True,0.0870803,0.124902,0.284312,False,1.02124
+7b103ee9bb6089ff,mnist,cfg1,128,0.02,10,late_collapse,False,stayed dead,32,,,11.86,11.86,10.24,False,0,0,0,True,1
+7ba95645b5271606,mnist,cfg1,256,0.02,26,late_collapse,False,stayed dead,29,,,12.36,11.86,11.86,False,0.315098,0.284897,0.879515,False,1.02432
+7d7b79936b44df6c,cifar10,cfg1,256,0.02,12,late_collapse,False,"revived, then died again",14,15,1,9.38,37.8,9.26,True,0.149753,0.289675,0.483529,False,1.04318
+7e5e20cdb155aa91,cifar10,cfg2,64,0.02,28,late_collapse,False,stayed dead,5,,,9.58,10.68,10.52,False,0,0,0,True,1
+7e92b9233167c661,mnist,cfg2,128,0.02,13,late_collapse,False,stayed dead,26,,,9.58,11.88,10.62,False,3.65732e-05,6.76983e-05,6.46296e-05,False,1
+7eb0d8afb45e925a,cifar10,cfg2,256,0.02,15,late_collapse,False,"revived, then died again",2,3,1,10.06,37.54,9.58,True,0.349268,0.586114,0.669752,False,1.14894
+7f5c3824092f776e,mnist,cfg1,256,0.02,6,late_collapse,False,stayed dead,28,,,9.68,11.86,10.4,False,0,0,0,True,1
+7f759bbd614fda3a,cifar10,cfg2,256,0.01,12,late_collapse,False,stayed dead,35,,,9.54,10.54,9.28,False,0.0387667,0.0243526,0.0345484,False,1.00023
+7f76cd3aab2a84c7,cifar10,cfg1,64,0.02,23,late_collapse,False,stayed dead,6,,,10.68,10.68,10.52,False,0,0,0,True,1
+80ca15c9f15cc650,cifar10,cfg2,64,0.02,14,late_collapse,False,stayed dead,12,,,10.52,10.68,10.68,False,0.0113511,0.00944473,0.0197993,False,1.00008
+80daf79aed2924be,cifar10,cfg1,256,0.02,21,late_collapse,False,"revived, then died again",7,8,1,10.58,38.78,9.58,True,0.167914,0.273631,0.506109,False,1.0301
+81126f65df23f676,mnist,cfg2,64,0.02,20,late_collapse,False,stayed dead,20,,,9.24,11.86,10.4,False,2.37152e-09,5.57476e-09,2.13383e-09,False,1
+812b258e776e6cbe,cifar10,cfg1,256,0.01,8,late_degradation,True,revived,30,31,1,9.56,43.34,36.3,True,0.105461,0.177242,0.401496,False,1.0138
+8209877c30b49c46,mnist,cfg1,64,0.02,21,late_collapse,False,stayed dead,25,,,10.24,11.86,11.86,False,4.28835e-06,8.62122e-06,6.30661e-06,False,1
+8222ee3e9999acfd,cifar10,cfg2,128,0.01,26,stable,True,revived,37,38,1,10.54,42.84,42.64,True,0.109794,0.17953,0.429412,False,1.01183
+82e70050639f734b,cifar10,cfg2,256,0.02,23,late_collapse,False,"revived, then died again",12,13,1,10.04,38.32,10.52,True,0.142432,0.235129,0.493388,False,1.02578
+845719b31b2e1589,cifar10,cfg1,128,0.02,11,late_collapse,False,stayed dead,7,,,10.12,10.68,10.18,False,0.0560028,0.0706647,0.540359,False,0.998742
+85275b66edda599b,mnist,cfg1,256,0.02,10,late_collapse,False,stayed dead,27,,,9.24,11.86,10.24,False,0.00633173,0.00869812,0.00455909,False,1.00039
+855c60475bb63344,mnist,cfg2,128,0.02,9,late_collapse,False,stayed dead,26,,,10.72,14.42,9.62,False,0.00867547,0.0153748,0.000412545,False,1.00083
+85fb9cfa1d909f7c,cifar10,cfg1,256,0.01,20,stable,True,revived,32,35,3,10.14,43.08,43.08,True,0.0261038,0.0165244,0.075642,False,1.01479
+8608124b082b9909,mnist,cfg1,64,0.02,13,late_collapse,False,stayed dead,28,,,11.86,11.86,10.6,False,0,0,0,True,1
+867a98d7f3e0897b,cifar10,cfg2,64,0.02,8,late_collapse,False,"revived, then died again",7,9,2,9.32,34.88,9.54,True,0.123924,0.226647,0.541951,False,1.03259
+869e8348f772bc95,cifar10,cfg2,256,0.02,14,late_collapse,False,"revived, then died again",11,12,1,9.26,35.16,10.68,True,0.160939,0.31465,0.685982,False,1.03783
+8701e668f23d5180,cifar10,cfg2,64,0.02,21,never_learned,False,stayed dead,2,,,10.52,10.68,9.58,False,0.0277854,0.0673454,0.0572314,False,0.998116
+8736e924caae08c3,cifar10,cfg2,256,0.01,11,stable,True,revived,27,28,1,10.08,44.88,44.12,True,0.108879,0.191453,0.395725,False,1.01285
+87d5d1c7ff01737d,mnist,cfg1,256,0.02,16,late_collapse,False,stayed dead,27,,,10.28,12.5,11.86,False,0.0337805,0.0544029,0.00648239,False,0.996425
+881c4d6ed7ae601f,mnist,cfg2,64,0.02,1,late_collapse,False,stayed dead,27,,,10.6,11.86,9.24,False,0.0912536,0.173041,0.109817,False,1.00448
+88359da86744b738,cifar10,cfg2,128,0.02,13,late_collapse,False,"revived, then died again",5,6,1,10.12,33.66,9.28,True,0.185041,0.212014,0.425657,False,1.02954
+88936dbb271b6258,mnist,cfg2,256,0.02,1,late_collapse,False,stayed dead,24,,,11.86,11.86,9.24,False,2.61859e-07,2.94968e-07,1.46874e-08,False,1
+89b83d801fb4a805,cifar10,cfg1,128,0.02,28,late_collapse,False,"revived, then died again",9,10,1,10.18,37.88,10.52,True,0.159226,0.219761,0.541788,False,1.01455
+8b11c6bff39718b0,cifar10,cfg2,128,0.01,14,late_collapse,False,stayed dead,38,,,9.62,10.72,10.72,False,0.00512407,0.00708661,0.0399767,False,0.999897
+8b5cefe080fb2337,cifar10,cfg1,128,0.02,8,late_collapse,False,stayed dead,5,,,10.18,10.68,9.54,False,0.0120611,0.0254659,0.0325075,False,0.999682
+8b6e3ae49ecdb385,cifar10,cfg1,256,0.01,9,stable,True,revived,38,39,1,9.6,42,41.46,True,0.105508,0.173906,0.40731,False,1.01167
+8c15ae38d644ffe4,mnist,cfg1,64,0.02,23,late_collapse,False,stayed dead,27,,,9.74,11.92,11.92,False,6.20386e-09,7.1638e-09,5.08977e-09,False,1
+8c4814e48e731ecd,cifar10,cfg1,256,0.02,6,late_collapse,False,"revived, then died again",6,7,1,10.5,37.04,9.56,True,0.20911,0.434588,0.608385,False,1.07909
+8ce11a1f68de38d8,cifar10,cfg1,128,0.02,9,late_collapse,False,"revived, then died again",10,11,1,10.16,38.62,9.26,True,0.159998,0.285136,0.529288,False,1.03172
+8cf2f4846d7bbf10,cifar10,cfg2,256,0.01,3,late_degradation,True,revived,26,27,1,9.62,45.32,39.76,True,0.0903005,0.0856494,0.248417,False,1.00171
+8d5009d706e5fda8,mnist,cfg1,64,0.02,30,late_collapse,False,stayed dead,25,,,10.42,11.88,9.96,False,0.018595,0.0286947,0.0800345,False,0.99999
+8e494492045b43ea,mnist,cfg1,128,0.02,13,late_collapse,False,stayed dead,29,,,9.68,11.86,10.6,False,0,0,0,True,1
+8eb685c9fb34d923,cifar10,cfg2,64,0.02,26,late_collapse,False,"revived, then died again",4,6,2,9.6,36.34,9.58,True,0.145514,0.215697,0.440546,False,1.03459
+8f231a80a8aae9ae,mnist,cfg2,64,0.02,28,late_collapse,False,stayed dead,25,,,9.94,11.86,9.94,False,0,0,0,True,1
+8f3915d7ac2120dc,cifar10,cfg2,256,0.02,8,late_collapse,False,"revived, then died again",9,10,1,9.34,36.66,9.54,True,0.179636,0.353054,0.566397,False,1.05705
+8fd55be8e8ee7e24,cifar10,cfg1,128,0.02,23,late_collapse,False,"revived, then died again",6,7,1,10.7,36.12,10.52,True,0.199826,0.378814,0.580221,False,1.05237
+8fd653064ea4d11e,mnist,cfg1,64,0.02,29,late_collapse,False,stayed dead,29,,,9.94,11.86,11.86,False,0.0174049,0.0307744,0.0917079,False,0.999805
+915b6f02f153295a,mnist,cfg1,64,0.02,5,late_collapse,False,stayed dead,23,,,10.4,11.86,11.86,False,0,0,0,True,1
+91e0d243cdb736c7,cifar10,cfg1,128,0.01,14,late_degradation,True,revived,37,39,2,9.62,42.52,26.44,True,0.0601906,0.0847952,0.245713,False,1.01005
+92975c0c635248be,cifar10,cfg1,128,0.02,7,late_collapse,False,stayed dead,14,,,10.54,10.68,9.26,False,0.0116918,0.0161125,0.0216382,False,0.999804
+929827049dc2bdfa,cifar10,cfg2,128,0.01,1,stable,True,revived,39,40,1,10.2,43.18,43.18,True,0.0980136,0.172921,0.423961,False,1.01314
+932402261e8af95a,cifar10,cfg1,256,0.01,22,late_collapse,False,"revived, then died again",25,26,1,9.66,45.1,9.58,True,0.114958,0.215095,0.437136,False,1.02141
+947352914e82e275,mnist,cfg2,64,0.02,3,late_collapse,False,stayed dead,25,,,10.24,11.86,10.4,False,7.68713e-09,1.08562e-08,1.37509e-09,False,1
+94db47d23269eda4,mnist,cfg2,256,0.02,5,late_collapse,False,stayed dead,26,,,10.24,11.86,11.86,False,3.36045e-05,3.70718e-05,4.5874e-05,False,1
+9859010ab1f4f19f,mnist,cfg2,128,0.02,28,late_collapse,False,stayed dead,26,,,9.24,11.86,9.94,False,0,0,0,True,1
+98dd9d2e5dbed818,mnist,cfg1,256,0.02,24,late_collapse,False,stayed dead,29,,,11.92,11.94,8.7,False,0.0155357,0.0326003,0.0862786,False,1.00127
+99c7fae7281767bd,cifar10,cfg2,128,0.02,29,late_collapse,False,stayed dead,8,,,9.6,10.7,9.54,False,0.000845404,0.000740151,0.00146479,False,1.00003
+99d51fbc3c026050,cifar10,cfg2,64,0.02,7,late_collapse,False,stayed dead,3,,,9.58,10.68,9.26,False,0.00624427,0.0038909,0.014718,False,0.999975
+9a12aefbd32e2e07,mnist,cfg2,64,0.02,21,late_collapse,False,stayed dead,24,,,11.86,11.86,11.86,False,0.250217,0.284278,0.360988,False,1.03268
+9a392a9186f3b19e,mnist,cfg2,64,0.02,11,late_collapse,False,stayed dead,24,,,9.94,11.86,10.4,False,0,7.36895e-12,0,True,1
+9a7e5b37aac30ab5,cifar10,cfg1,64,0.02,14,late_collapse,False,stayed dead,13,,,10.52,10.68,10.68,False,0,0,0,True,1
+9ab6938954e7d7dc,cifar10,cfg1,64,0.02,11,never_learned,False,stayed dead,3,,,10.12,10.68,10.18,False,0.0712991,0.119613,0.163268,False,1.00029
+9b3b452f43e62fa4,cifar10,cfg1,256,0.02,30,late_collapse,False,"revived, then died again",15,16,1,10.14,36.56,9.56,True,0.143135,0.233658,0.432129,False,1.02437
+9d65911bf8c29c3b,mnist,cfg2,256,0.02,28,late_collapse,False,stayed dead,27,,,10.62,12.42,9.94,False,0.173153,0.148938,0.21317,False,1.00518
+9dcf538ef32d7b7a,mnist,cfg2,256,0.02,7,late_collapse,False,stayed dead,28,,,11.86,11.86,10.24,False,5.94032e-05,0.000144082,0.000105593,False,1
+9df32fc66a4120fe,mnist,cfg2,128,0.02,3,late_collapse,False,stayed dead,25,,,10.24,11.86,10.4,False,0.0322226,0.036019,0.0657184,False,1.00108
+9f3fe560e6a12247,mnist,cfg1,64,0.02,15,late_collapse,False,stayed dead,27,,,9.96,11.88,11.88,False,9.19804e-06,1.07729e-05,5.18573e-06,False,1
+9f8bbb96e39b6f57,mnist,cfg2,128,0.02,19,late_collapse,False,stayed dead,30,,,10.4,11.86,8.62,False,0,0,0,True,1
+9fca10d5f2abf483,mnist,cfg2,256,0.02,19,late_collapse,False,stayed dead,29,,,9.58,11.86,8.62,False,0.000531637,0.000605292,1.35799e-05,False,1.00001
+a305b697b66447bf,cifar10,cfg1,256,0.02,4,late_collapse,False,"revived, then died again",9,10,1,9.6,35.62,9.56,True,0.204769,0.366499,0.552518,False,1.06099
+a3c214ad2f8b8d79,cifar10,cfg2,256,0.02,25,late_collapse,False,"revived, then died again",7,13,6,9.26,37.74,10.52,True,0.00748133,0.00809704,0.0108994,False,1.03154
+a3d79d03e55f1ace,mnist,cfg2,256,0.02,3,late_collapse,False,stayed dead,29,,,9.3,12.1,10.4,False,0.0200813,0.0208591,0.0323435,False,1.00053
+a3e43b71de65f8e9,mnist,cfg1,128,0.02,3,late_collapse,False,stayed dead,30,,,11.86,11.86,10.4,False,0.0922436,0.305587,0.010086,False,0.996542
+a4475d997be73fae,cifar10,cfg1,128,0.02,21,late_collapse,False,"revived, then died again",16,17,1,10.04,36.1,9.58,True,0.136869,0.230553,0.494133,False,1.01682
+a4b8dba3f46a0b8e,cifar10,cfg1,256,0.02,7,late_collapse,False,"revived, then died again",17,19,2,10.6,34.72,9.26,True,0.125038,0.204416,0.448213,False,1.0405
+a4dd2c7358ebb138,mnist,cfg1,64,0.02,7,late_collapse,False,stayed dead,30,,,10.4,11.86,10.24,False,0,0,0,True,1
+a5039bc8ab2baab9,mnist,cfg1,128,0.02,12,late_collapse,False,stayed dead,27,,,9.86,11.86,11.86,False,0,0,0,True,1
+a63028b00e736917,cifar10,cfg1,64,0.02,16,late_collapse,False,stayed dead,3,,,10.04,10.68,10.18,False,0.118987,0.292975,1.47909,False,1.01588
+a7e629a1c9d3b574,mnist,cfg1,256,0.02,19,late_collapse,False,stayed dead,31,,,10.36,11.98,8.62,False,0.10165,0.0640846,0.0331654,False,0.997524
+a82cd235bb02dd60,cifar10,cfg2,128,0.01,21,stable,True,revived,39,40,1,10.7,40.96,40.96,True,0.0987601,0.159485,0.405838,False,1.01049
+a89e517a1f7cb38b,mnist,cfg1,256,0.02,1,late_collapse,False,stayed dead,29,,,9.98,11.86,9.24,False,0.0369038,0.0512995,0.00421832,False,0.999621
+a927375a824aa223,mnist,cfg1,128,0.02,14,late_collapse,False,stayed dead,31,,,11.86,11.86,10.24,False,2.13875e-07,4.1789e-07,3.57037e-08,False,1
+a940d26652474530,cifar10,cfg2,256,0.02,22,late_collapse,False,"revived, then died again",10,11,1,10.24,38.08,9.58,True,0.160264,0.32526,0.523588,False,1.04878
+aa633d243db0becb,cifar10,cfg1,64,0.02,12,late_collapse,False,stayed dead,14,,,10.5,10.54,9.28,False,0.0185974,0.0261849,0.0845142,False,1.0003
+aab5300fc190b361,cifar10,cfg1,256,0.01,5,late_collapse,False,stayed dead,34,,,10.16,10.52,10.12,False,0.0218301,0.0199925,0.107673,False,0.999981
+aadf0955ebc76391,cifar10,cfg1,256,0.01,23,late_degradation,True,revived,35,37,2,9.62,40.92,35.58,True,0.0728616,0.106984,0.264888,False,1.01338
+abe497926096db09,mnist,cfg2,64,0.02,30,late_collapse,False,stayed dead,26,,,10.4,11.86,9.94,False,0,0,0,True,1
+abf18e4287c93dec,cifar10,cfg2,256,0.01,14,late_collapse,False,stayed dead,31,,,10.08,10.68,10.68,False,0.0190183,0.0137183,0.0309013,False,1.00036
+ac7fb5058a54bbdd,cifar10,cfg2,256,0.01,26,late_collapse,False,stayed dead,35,,,9.5,10.7,10.7,False,0.0888101,0.169449,0.384706,False,1.01351
+ac90c2e4df4e68af,cifar10,cfg2,256,0.02,27,late_collapse,False,"revived, then died again",6,8,2,10.52,38.54,9.26,True,0.189892,0.366309,0.568878,False,1.11664
+ad4d395d30605b9d,cifar10,cfg2,256,0.02,29,late_collapse,False,"revived, then died again",9,10,1,10.7,36.82,9.54,True,0.176817,0.347941,0.546473,False,1.0513
+ad98e865063e0d3e,cifar10,cfg2,128,0.02,11,late_collapse,False,"revived, then died again",11,12,1,9.56,36.74,10.2,True,0.132174,0.224726,0.536739,False,1.01461
+ae0d3d4e9d521906,cifar10,cfg2,256,0.01,5,stable,True,revived,35,37,2,9.66,42.54,42.54,True,0.102385,0.174672,0.421859,False,1.0297
+af00ebd9a7ee5fda,mnist,cfg1,256,0.02,2,late_collapse,False,stayed dead,31,,,10.42,11.86,11.86,False,0.0109108,0.0163084,0.00374438,False,0.999994
+b0f089ee37f24fdc,mnist,cfg1,256,0.02,11,late_collapse,False,stayed dead,29,,,10.24,11.86,10.4,False,0,0,0,True,1
+b1843ade5fb31b94,cifar10,cfg2,128,0.02,17,late_collapse,False,"revived, then died again",12,13,1,10.14,36.06,9.56,True,0.120809,0.144231,0.451367,False,1.01177
+b1a7bbbe08fea74e,mnist,cfg2,128,0.02,12,late_collapse,False,stayed dead,22,,,9.58,57.32,11.86,True,0.216354,0.190324,0.223637,False,1.00883
+b20cbf648bc3405a,cifar10,cfg2,256,0.02,6,late_collapse,False,stayed dead,8,,,10.04,10.52,9.56,False,0.00769941,0.0132928,0.0146519,False,0.999753
+b2403d1837dbaa28,cifar10,cfg2,256,0.01,18,stable,True,revived,32,33,1,10.16,43.38,42.04,True,0.112034,0.194581,0.407892,False,1.01838
+b2a2980d1dbd7b70,mnist,cfg1,128,0.02,28,late_collapse,False,stayed dead,24,,,10.4,11.86,9.94,False,0.0330004,0.0398357,0.230588,False,1.0015
+b2d1827238b4883a,cifar10,cfg2,256,0.01,1,stable,True,revived,22,24,2,9.58,45.46,40.96,True,0.0625822,0.0867268,0.193616,False,1.00881
+b58e5db2d6da8bf6,cifar10,cfg1,256,0.02,29,late_collapse,False,"revived, then died again",15,16,1,9.56,35.28,9.54,True,0.130248,0.161955,0.399269,False,1.01267
+b59cf09fd487972a,cifar10,cfg2,64,0.02,27,late_collapse,False,"revived, then died again",6,7,1,10.52,36.66,9.26,True,0.215215,0.420051,0.556308,False,1.06656
+b5ef925e0d223133,cifar10,cfg1,128,0.02,17,late_collapse,False,stayed dead,13,,,10.52,10.68,9.56,False,0.001319,0.00112998,0.00196253,False,1.00001
+b679bed5f6c32d8e,cifar10,cfg1,64,0.02,26,late_collapse,False,stayed dead,9,,,10.68,10.68,9.58,False,0,0,0,True,1
+b6afa0d997d4e92b,cifar10,cfg1,256,0.02,13,late_collapse,False,"revived, then died again",16,19,3,10.7,35.64,9.26,True,0.0286799,0.0317534,0.0831789,False,1.01391
+b7926a4cfd40cdb7,cifar10,cfg2,256,0.02,9,late_collapse,False,"revived, then died again",20,21,1,10.54,34.1,9.26,True,0.130015,0.179633,0.433658,False,1.01463
+b806d4cc1df5b53a,mnist,cfg2,128,0.02,7,late_collapse,False,stayed dead,25,,,10.3,11.86,10.24,False,0.0871015,0.156022,0.122155,False,1.00005
+b94af137f0eab588,mnist,cfg1,128,0.02,19,late_collapse,False,stayed dead,29,,,10.9,11.92,8.68,False,0.0907275,0.0937667,0.123281,False,1.0052
+b96dd75b9440852a,cifar10,cfg1,256,0.02,25,late_collapse,False,"revived, then died again",11,12,1,10.26,37.18,10.52,True,0.169818,0.343904,0.537803,False,1.04971
+b9cb369b0b6f416a,cifar10,cfg1,64,0.02,22,late_collapse,False,"revived, then died again",11,12,1,9.58,37.28,9.58,True,0.159815,0.301826,0.53888,False,1.02827
+b9fa69fdced76a95,cifar10,cfg2,256,0.02,7,late_collapse,False,stayed dead,11,,,10.68,10.68,9.26,False,0.00557286,0.00818573,0.011391,False,0.999904
+ba92cfd9a212b6c3,cifar10,cfg2,256,0.01,2,stable,True,revived,35,37,2,10.18,42.78,40.72,True,0.0643633,0.0766652,0.198119,False,1.00995
+bcaf2bb9abd9118a,cifar10,cfg2,256,0.02,20,late_collapse,False,"revived, then died again",9,10,1,9.54,36.24,9.56,True,0.137542,0.164262,0.415181,False,1.01134
+bce3da514e985599,cifar10,cfg1,64,0.02,10,late_collapse,False,stayed dead,6,,,9.26,10.68,10.18,False,0.000878356,0.00147181,0.000720009,False,1.00001
+bd16cc53cbe946c6,cifar10,cfg1,256,0.01,13,stable,True,revived,33,40,7,9.58,43.18,43.18,True,0.00666753,0.00400061,0.00669169,False,0.999729
+bd609c33cc4da830,cifar10,cfg1,128,0.02,1,late_collapse,False,stayed dead,13,,,10.16,10.68,9.58,False,0.0235178,0.0200464,0.0732428,False,1.00054
+bd98b4de7e7b28a8,mnist,cfg2,64,0.02,6,late_collapse,False,stayed dead,26,,,9.94,11.86,10.4,False,0,0,0,True,1
+be38ab2a42f18f34,cifar10,cfg1,128,0.02,5,late_collapse,False,stayed dead,13,,,10.04,10.68,10.12,False,0.000224683,0.000545262,0.00060468,False,1
+be8ddac95d19dad6,mnist,cfg2,64,0.02,8,late_collapse,False,stayed dead,23,,,10.4,11.86,9.94,False,0,0,0,True,1
+bfba67fc9755d00e,cifar10,cfg2,256,0.02,11,late_collapse,False,"revived, then died again",9,10,1,10.18,37.28,10.18,True,0.173168,0.36385,0.56048,False,1.05928
+c044d3bd60d17c8f,cifar10,cfg1,128,0.02,13,late_collapse,False,"revived, then died again",12,13,1,9.28,35.5,9.26,True,0.137081,0.180636,0.441569,False,1.00714
+c0a62ce552ae5e3f,cifar10,cfg2,256,0.02,12,late_collapse,False,"revived, then died again",9,12,3,10.68,39.46,9.26,True,0.0254598,0.0302582,0.0651513,False,1.02503
+c0a65db7ccbe2402,mnist,cfg1,128,0.02,22,late_collapse,False,stayed dead,30,,,9.9,11.9,9.9,False,0,0,0,True,1
+c0b07825091e1ced,mnist,cfg2,256,0.02,17,late_collapse,False,stayed dead,22,,,10.46,11.92,11.92,False,0,0,0,True,1
+c1b42efa2b992fb5,cifar10,cfg2,128,0.02,21,late_collapse,False,stayed dead,9,,,10.04,10.68,9.58,False,0.0053803,0.014387,0.0105486,False,0.999937
+c1f9edb5768cdc2c,mnist,cfg2,128,0.02,10,late_collapse,False,stayed dead,25,,,9.72,11.9,10.28,False,3.97972e-08,6.63273e-08,2.85764e-09,False,1
+c46cba0bd04680fb,cifar10,cfg1,64,0.02,27,late_collapse,False,"revived, then died again",10,17,7,10.5,36.42,9.26,True,0.000215817,0.00103233,0.0115112,False,1.01468
+c4e334d66c196933,cifar10,cfg1,256,0.01,7,late_collapse,False,stayed dead,33,,,9.56,10.68,9.26,False,0.0264724,0.0283844,0.0593616,False,1.00018
+c5b78ed70f325257,cifar10,cfg2,256,0.02,30,late_collapse,False,stayed dead,11,,,9.28,10.68,9.56,False,0.00749449,0.0205865,0.0178972,False,1.00027
+c64d3b5a96e5fa13,cifar10,cfg1,64,0.02,9,late_collapse,False,"revived, then died again",7,9,2,9.56,37.26,9.26,True,0.17349,0.34889,0.578518,False,1.09289
+c6763856dc1b80e6,cifar10,cfg1,128,0.01,13,stable,True,revived,33,34,1,9.6,44.04,42.52,True,0.110946,0.177102,0.389645,False,1.01491
+c6fb8431d2c7c289,cifar10,cfg1,256,0.02,11,late_collapse,False,stayed dead,11,,,9.58,10.68,10.18,False,0.00905284,0.0110372,0.0147927,False,0.999928
+c7d4e6a68b22f9c1,cifar10,cfg1,256,0.02,19,late_collapse,False,"revived, then died again",15,17,2,10.52,35.76,10.52,True,0.0770813,0.134636,0.294208,False,1.02648
+c897b5e4607cf032,cifar10,cfg2,256,0.01,30,late_collapse,False,stayed dead,33,,,9.56,10.68,9.56,False,0.00648403,0.0073366,0.0246196,False,1.00002
+c9356754315d9245,cifar10,cfg2,128,0.02,14,late_collapse,False,"revived, then died again",4,5,1,9.56,35.38,10.68,True,0.272654,0.540476,0.604405,False,1.1209
+c9c68769dddee93c,mnist,cfg2,128,0.02,29,late_collapse,False,stayed dead,25,,,9.94,12.06,11.88,False,0.166465,0.203257,0.455342,False,1.01944
+ca22f46d91d6e102,cifar10,cfg2,64,0.02,9,late_collapse,False,stayed dead,8,,,10.54,10.68,9.26,False,0.0161115,0.00908695,0.0435873,False,1.00023
+ca2652a121818a79,cifar10,cfg2,64,0.02,15,late_collapse,False,stayed dead,8,,,9.58,10.68,9.58,False,0.0309811,0.018206,0.0594842,False,1.00038
+cb2416c92bf6d465,mnist,cfg2,128,0.02,26,late_collapse,False,stayed dead,22,,,10.6,11.86,11.86,False,0,0,0,True,1
+cbaecb0c1a75d8c9,cifar10,cfg2,128,0.02,10,late_collapse,False,"revived, then died again",11,12,1,10.54,37.8,10.18,True,0.177008,0.351543,0.567135,False,1.04763
+cd562aa85a190c18,mnist,cfg1,128,0.02,20,late_collapse,False,stayed dead,27,,,9.24,11.86,10.4,False,0.000388048,0.000702387,0.000193951,False,1.00002
+ce0304117e9964b5,cifar10,cfg1,64,0.02,7,late_collapse,False,stayed dead,6,,,9.56,10.68,9.26,False,0,0,0,True,1
+ce3b3c6328be31dc,cifar10,cfg1,64,0.02,2,late_collapse,False,"revived, then died again",4,7,3,9.58,38.42,10.12,True,0.0301098,0.026046,0.0629665,False,1.07738
+cf174090d1ba4b25,mnist,cfg1,256,0.02,27,late_collapse,False,stayed dead,28,,,10.4,11.86,11.86,False,0,0,0,True,1
+cf9ed3117aefc97b,mnist,cfg2,128,0.02,15,late_collapse,False,stayed dead,24,,,10.24,11.86,11.86,False,0.0170072,0.0373965,0.0393279,False,0.999351
+d21b43f45c29c9b8,mnist,cfg2,128,0.02,5,late_collapse,False,stayed dead,23,,,10.4,11.86,11.86,False,0.0243533,0.0380818,0.0585228,False,1.00055
+d26002ca6d4671aa,cifar10,cfg2,256,0.01,27,late_collapse,False,stayed dead,38,,,9.26,10.04,9.26,False,0.000226691,0.000430286,0.000373131,False,1.00001
+d2ad22b5d334c6f9,mnist,cfg1,64,0.02,2,late_collapse,False,stayed dead,30,,,11.86,12.38,11.86,False,0.0149954,0.0205388,0.00117738,False,1.00074
+d3e4dfaf95a40461,mnist,cfg2,256,0.02,2,late_collapse,False,stayed dead,26,,,10.24,11.86,11.86,False,0,0,0,True,1
+d4769f0e0d266f67,mnist,cfg2,128,0.02,20,late_collapse,False,stayed dead,25,,,10.6,11.86,10.4,False,0,0,0,True,1
+d4a7f3767f1bd9e0,mnist,cfg1,64,0.02,27,late_collapse,False,stayed dead,29,,,9.26,11.88,11.88,False,1.08025e-05,1.95021e-05,3.27156e-05,False,1
+d4e3e654f2fe99ab,cifar10,cfg1,64,0.01,6,stable,True,revived,35,36,1,9.64,44.96,43.46,True,0.0981744,0.182875,0.412695,False,1.01863
+d4f3c2368d75dda6,mnist,cfg2,64,0.02,19,late_collapse,False,stayed dead,24,,,10.24,11.86,8.62,False,0,0,0,True,1
+d51bd50814a50841,cifar10,cfg2,256,0.02,18,late_collapse,False,stayed dead,11,,,10.18,10.68,10.04,False,0.0109994,0.0219218,0.00988415,False,0.999628
+d54c30ad9abd8a04,mnist,cfg1,256,0.02,20,late_collapse,False,stayed dead,28,,,9.96,21.8,10.4,True,0.187498,0.150937,0.795159,False,1.00657
+d5a10a7be9f5765f,mnist,cfg1,64,0.02,24,late_collapse,False,stayed dead,31,,,11.86,11.86,8.62,False,0,0,0,True,1
+d642d6fc3239cb0e,mnist,cfg1,64,0.02,10,late_collapse,False,stayed dead,24,,,10.24,11.86,10.24,False,1.68119e-07,3.87387e-07,4.81511e-08,False,1
+d693a6172e976248,cifar10,cfg1,64,0.02,20,late_collapse,False,stayed dead,15,,,10.54,10.68,9.56,False,0.0103557,0.0147899,0.0302101,False,0.999959
+d87b41516da60bb8,cifar10,cfg1,128,0.02,30,late_collapse,False,stayed dead,14,,,10.68,10.68,9.56,False,0.0231202,0.0470139,0.0224356,False,1.00042
+d8ea91c1136f99d3,mnist,cfg1,64,0.02,20,late_collapse,False,stayed dead,30,,,11.92,11.92,10.46,False,4.9784e-06,1.06055e-05,5.23039e-06,False,1
+d97cfea5a23f787b,cifar10,cfg2,256,0.01,19,stable,True,revived,33,34,1,10.7,43.3,42.14,True,0.103711,0.188332,0.407358,False,1.01878
+d9b4d189e249c317,cifar10,cfg1,64,0.02,5,late_collapse,False,"revived, then died again",6,7,1,9.56,37.56,10.12,True,0.222861,0.427092,0.572401,False,1.07372
+da93142f54e47b3f,mnist,cfg2,64,0.02,29,late_collapse,False,stayed dead,23,,,11.88,11.86,11.86,False,0.0228628,0.0741481,0.707904,False,0.996191
+dabe90cf51eeb6ca,mnist,cfg2,128,0.02,16,late_collapse,False,stayed dead,22,,,9.24,11.86,11.86,False,0,0,0,True,1
+dc0c456553260b5b,cifar10,cfg2,128,0.02,9,late_collapse,False,"revived, then died again",15,16,1,10.2,34.88,9.26,True,0.150272,0.281379,0.505119,False,1.0265
+dc765cae4d5b937a,cifar10,cfg1,256,0.02,10,late_collapse,False,"revived, then died again",10,11,1,10.56,37.5,10.18,True,0.146155,0.238636,0.489027,False,1.02083
+ddd6f8541160aad0,mnist,cfg2,256,0.02,21,late_collapse,False,stayed dead,27,,,11.86,11.86,11.86,False,0,0,0,True,1
+dde7e5fe118718cb,cifar10,cfg1,64,0.02,1,late_collapse,False,stayed dead,3,,,10.04,10.68,9.58,False,0.0044834,0.00789017,0.0135664,False,0.999961
+de1ae795ad1f7c8f,cifar10,cfg2,256,0.01,20,late_collapse,False,stayed dead,39,,,9.6,9.56,9.56,False,0.050704,0.0259572,0.0551943,False,1.00092
+de4063b6607fcd6c,cifar10,cfg1,256,0.02,1,late_collapse,False,stayed dead,9,,,9.6,10.68,9.58,False,0.164874,0.274942,1.51491,False,1.03423
+deb6b2fc23fe5143,cifar10,cfg1,128,0.01,3,late_collapse,False,stayed dead,40,,,10.68,,10.68,False,,,,True,1
+def15416449b8be3,cifar10,cfg1,256,0.01,21,late_collapse,False,"revived, then died again",28,29,1,9.6,44.84,9.58,True,0.121202,0.186058,0.38691,False,1.0153
+df418209cee0d3e3,cifar10,cfg1,256,0.02,8,late_collapse,False,"revived, then died again",11,12,1,9.56,37.34,9.54,True,0.1271,0.194992,0.420264,False,1.0151
+df4d74f75f2debec,cifar10,cfg2,256,0.01,7,stable,True,revived,32,33,1,10.04,43.56,40.06,True,0.0858851,0.102923,0.293079,False,1.00447
+dfa3d46eaf9555c3,mnist,cfg1,64,0.02,19,late_collapse,False,stayed dead,31,,,10.24,11.86,8.62,False,0,0,0,True,1
+e002377867f8dfed,cifar10,cfg1,256,0.01,12,stable,True,revived,31,38,7,9.36,41.6,41.46,True,0.0512059,0.0341441,0.134895,False,1.03398
+e03fad763274698f,cifar10,cfg1,256,0.01,3,stable,True,revived,38,39,1,10.04,40.56,40.56,True,0.117458,0.172892,0.399304,False,1.01386
+e0f4cf19dda2bb3e,cifar10,cfg2,128,0.02,2,late_collapse,False,"revived, then died again",3,4,1,10.18,37.62,10.04,True,0.174696,0.223651,0.459289,False,1.01692
+e12dd7b3d9483086,cifar10,cfg1,64,0.02,8,late_collapse,False,"revived, then died again",7,14,7,9.26,36.98,9.54,True,0.0623411,0.0591741,0.266561,False,1.0894
+e3315c936c272479,cifar10,cfg2,64,0.02,6,late_collapse,False,"revived, then died again",4,5,1,10.52,36.32,9.56,True,0.16362,0.158719,0.348216,False,1.01409
+e36b940e17c3f117,mnist,cfg1,128,0.02,9,late_collapse,False,stayed dead,27,,,9.96,11.86,9.56,False,0.000735769,0.00230974,0.000180229,False,0.999983
+e38124bd2abdcd9d,cifar10,cfg1,128,0.02,20,late_collapse,False,stayed dead,10,,,10.18,10.68,9.56,False,0.0402971,0.0291333,0.13386,False,1.00056
+e418d7d8717baad2,mnist,cfg1,256,0.02,22,late_collapse,False,stayed dead,34,,,11.98,11.86,9.86,False,0.111678,0.0629483,0.0911542,False,1.00029
+e435d2320bbd1e7b,mnist,cfg1,64,0.02,11,late_collapse,False,stayed dead,28,,,10.4,11.86,10.4,False,0,0,0,True,1
+e4622db855407400,cifar10,cfg2,256,0.02,17,late_collapse,False,"revived, then died again",6,7,1,9.64,37.8,9.56,True,0.221728,0.434092,0.606324,False,1.08458
+e4bccb5f82d613d4,cifar10,cfg2,256,0.02,26,late_collapse,False,stayed dead,7,,,10.68,10.68,9.58,False,0.00871581,0.0172763,0.011393,False,0.999948
+e4e021933717c994,cifar10,cfg2,128,0.02,4,late_collapse,False,stayed dead,11,,,9.58,10.68,9.56,False,0.00672963,0.00448371,0.0158591,False,0.999977
+e51966f1df9dd6ce,cifar10,cfg1,64,0.01,29,stable,True,revived,31,33,2,9.26,43.84,42.12,True,0.0864997,0.0999428,0.26996,False,1.01054
+e51c03d610690389,cifar10,cfg1,128,0.02,2,late_collapse,False,"revived, then died again",14,15,1,10.58,37.28,10.12,True,0.153315,0.294108,0.484397,False,1.04054
+e5bc254711106180,cifar10,cfg1,256,0.01,19,late_collapse,False,stayed dead,28,,,9.3,10.68,10.52,False,0.0187817,0.016856,0.0494764,False,0.999944
+e6e3f15918801273,mnist,cfg2,64,0.02,5,late_collapse,False,stayed dead,26,,,10.26,11.86,11.86,False,0.163819,0.154233,0.129973,False,1.00626
+e7961590ec8ec23e,cifar10,cfg2,256,0.02,24,late_collapse,False,"revived, then died again",9,11,2,9.58,38.62,10.04,True,0.170878,0.32445,0.57877,False,1.08096
+e7a8064762c557b9,mnist,cfg1,256,0.02,12,late_collapse,False,stayed dead,32,,,11.96,11.88,11.88,False,0.0991275,0.129842,0.411236,False,1.0068
+e7aa634d01a8b715,mnist,cfg1,64,0.02,6,late_collapse,False,stayed dead,32,,,11.86,11.86,10.4,False,0,0,0,True,1
+e7f53563b8045d39,mnist,cfg2,128,0.02,22,late_collapse,False,stayed dead,26,,,9.94,11.86,9.86,False,0,0,0,True,1
+e946ba44b9c7bc5d,cifar10,cfg1,256,0.01,27,stable,True,revived,35,37,2,10.16,43.54,42.16,True,0.0545551,0.0654422,0.183291,False,1.00568
+ea69e6cc9c517990,mnist,cfg1,256,0.02,15,late_collapse,False,stayed dead,25,,,10.26,11.88,11.88,False,0.000249314,0.000382431,7.47656e-06,False,1.00002
+eaee3339c124b42d,cifar10,cfg2,256,0.01,13,late_collapse,False,stayed dead,37,,,10.12,10.52,9.26,False,0.00270076,0.00331066,0.0146142,False,0.999983
+eec6e8297d8cc59d,cifar10,cfg2,64,0.02,19,late_collapse,False,stayed dead,12,,,9.26,10.68,10.52,False,0.0095994,0.0109714,0.00718601,False,0.999721
+eedea6249a6a13c5,cifar10,cfg2,256,0.02,21,late_collapse,False,"revived, then died again",3,4,1,9.28,38.02,9.58,True,0.279389,0.514473,0.659332,False,1.11209
+ef3290f31dc14f7d,mnist,cfg2,128,0.02,6,late_collapse,False,stayed dead,27,,,9.94,11.86,10.4,False,0,0,0,True,1
+efcd1a77aba5f3eb,mnist,cfg2,256,0.02,11,late_collapse,False,stayed dead,26,,,10.24,11.86,10.4,False,8.92824e-05,0.000223265,0.000136551,False,1.00001
+f068832b226eaf99,cifar10,cfg1,64,0.02,3,late_collapse,False,"revived, then died again",2,3,1,10.12,34.34,10.68,True,0.328466,0.56261,0.642356,False,1.12752
+f0a1a6dba83e653f,cifar10,cfg2,128,0.02,16,late_collapse,False,stayed dead,6,,,9.26,10.68,10.18,False,0.002092,0.00252104,0.00678472,False,1.00001
+f0a55bbe3b277eef,mnist,cfg1,256,0.02,14,late_collapse,False,stayed dead,30,,,10.86,11.9,10.24,False,0.125743,0.125964,0.160176,False,1.00972
+f155a4cfc144a587,mnist,cfg2,256,0.02,4,late_collapse,False,stayed dead,24,,,10.64,11.9,9.98,False,2.01718e-05,2.10519e-05,2.94476e-06,False,1
+f2a5bc66c2f224c7,cifar10,cfg1,128,0.01,7,late_collapse,False,stayed dead,39,,,9.3,9.28,9.28,False,0.0186244,0.023242,0.0257164,False,1.00061
+f3164eb16eba7e0e,cifar10,cfg2,256,0.02,2,late_collapse,False,stayed dead,15,,,10.18,10.68,10.12,False,0.0338861,0.0113397,0.196807,False,1.00122
+f3b7d88ddd0f4baa,mnist,cfg2,256,0.02,30,late_collapse,False,stayed dead,28,,,10.24,11.86,9.94,False,0,0,0,True,1
+f402139a2a130c3f,cifar10,cfg2,256,0.02,1,late_collapse,False,stayed dead,9,,,9.54,10.68,9.56,False,0.00310523,0.00465753,0.0450544,False,0.999821
+f42bca7846d34335,mnist,cfg2,256,0.02,26,late_collapse,False,stayed dead,25,,,12.02,11.86,11.86,False,0.0180558,0.0324713,0.0262496,False,1.00069
+f52c583b6c118b26,cifar10,cfg2,128,0.01,16,late_collapse,False,stayed dead,36,,,10.02,10.18,10.18,False,0.0107931,0.0149743,0.0793554,False,0.99985
+f57c27e5b079187a,cifar10,cfg1,64,0.02,17,late_collapse,False,stayed dead,18,,,9.26,10.68,9.56,False,0.000701181,0.000637971,0.00253085,False,0.999997
+f5a44e39e8d5e269,mnist,cfg1,256,0.02,3,late_collapse,False,stayed dead,27,,,10.4,12.5,10.4,False,0.193018,0.171543,0.40661,False,0.993108
+f62457e75b4b3626,mnist,cfg1,128,0.02,26,late_collapse,False,stayed dead,30,,,9.28,11.86,11.86,False,0.103501,0.193933,0.455932,False,1.00558
+f65cbe3d6a0dffc8,mnist,cfg1,64,0.02,16,late_collapse,False,stayed dead,27,,,10.24,11.86,11.86,False,0.000420633,0.00140194,0.000346223,False,1.00005
+f6adddeb7823cd3a,cifar10,cfg1,128,0.02,10,late_collapse,False,stayed dead,14,,,10.68,10.68,10.18,False,0.00835157,0.0169944,0.00887415,False,0.999899
+f73fca5dabf1c3ed,cifar10,cfg1,128,0.02,15,late_collapse,False,stayed dead,11,,,9.56,10.68,9.58,False,0,0,0,True,1
+f8176b3a00dc0658,cifar10,cfg1,64,0.02,15,late_collapse,False,"revived, then died again",13,14,1,9.58,37.12,9.58,True,0.155968,0.266628,0.508696,False,1.03142
+f8c8f4d04c6a10db,cifar10,cfg2,256,0.02,16,late_collapse,False,"revived, then died again",7,8,1,10.06,37.8,10.18,True,0.190098,0.403799,0.598007,False,1.07313
+f95d63304e04b3e0,cifar10,cfg1,128,0.02,27,late_collapse,False,"revived, then died again",6,7,1,10.52,37.16,9.26,True,0.192272,0.370182,0.970006,False,1.05818
+f9954e13da00c1fa,cifar10,cfg2,64,0.02,12,late_collapse,False,stayed dead,15,,,10.52,10.52,9.26,False,0.0066741,0.0151023,0.0100197,False,1.00007
+fa2c8091f7b6c53e,mnist,cfg1,256,0.02,17,late_collapse,False,stayed dead,29,,,12.2,12.74,11.86,False,0.0547305,0.0694614,0.131989,False,0.997614
+fa54278c46db9528,cifar10,cfg2,64,0.01,26,stable,True,revived,34,35,1,10.68,44.18,43.54,True,0.0901761,0.113289,0.374346,False,1.00319
+faf858e6fd9e7a6b,mnist,cfg1,256,0.02,29,late_collapse,False,stayed dead,30,,,11.9,11.88,11.88,False,0.0307333,0.0274297,0.124642,False,0.999364
+fc309ac47d1865c2,cifar10,cfg1,128,0.02,18,late_collapse,False,stayed dead,13,,,10.18,10.68,10.04,False,0.00131183,0.00172098,0.00197672,False,1.00003
+fc914e0908c24045,cifar10,cfg2,128,0.02,7,late_collapse,False,"revived, then died again",3,4,1,9.6,37.4,9.26,True,0.227085,0.407299,0.555348,False,1.0496
+fd3e5aff8e06c7be,mnist,cfg1,64,0.02,1,late_collapse,False,stayed dead,28,,,11.94,11.86,9.24,False,0.123155,0.139474,0.0984471,False,1.00607
+fe5eb7ef1ff6ad30,mnist,cfg2,256,0.02,9,late_collapse,False,stayed dead,25,,,12.2,11.94,9.94,False,0.209354,0.13018,0.566829,False,1.02228
+ff0ab1c0f1da86c9,cifar10,cfg2,128,0.02,3,late_collapse,False,stayed dead,11,,,9.58,10.68,10.68,False,0.0357498,0.0377206,0.114114,False,0.99951
+ff944179bd352320,cifar10,cfg1,256,0.02,16,late_collapse,False,stayed dead,16,,,9.56,10.68,10.18,False,0,0,0,True,1

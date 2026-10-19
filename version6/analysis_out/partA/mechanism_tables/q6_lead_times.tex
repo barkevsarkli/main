@@ -1,0 +1,23 @@
+\begin{table}[htbp]\centering\small
+\caption{Q6. Lead time = failure epoch - first epoch the signal fires (positive = warning before failure). Failing runs = late\_collapse or late\_degradation (outcomes.py); failure epoch = first epoch more than 10 pp below the running maximum (e* for a late collapse without one). Signals: loss\_rise = training loss > 2x its running minimum; zmax\_jump = a hidden layer's max |z| more than doubles in one epoch (from epoch 2 on); dead\_gt20 = a ReLU-type group crosses 20\% dead; dw\_spike = an epoch's relative weight change > 3x its running median.}
+\label{tab:q6_lead_times}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}rlrrrrrrrr@{}}
+\toprule
+stage & signal & n\_failing & n\_signal\_fired & n\_lead\_ge1 & n\_lead\_ge3 & n\_lead\_le0 & lead\_median & lead\_q25 & lead\_q75 \\
+\midrule
+0 & loss\_rise & 66 & 66 & 31 & 16 & 35 & 0.000 & -1.000 & 2.000 \\
+0 & zmax\_jump & 66 & 66 & 18 & 14 & 48 & 0.000 & 0.000 & 1.750 \\
+0 & dead\_gt20 & 66 & 44 & 31 & 22 & 13 & 2.500 & 0.000 & 5.000 \\
+0 & dw\_spike & 66 & 29 & 0 & 0 & 29 & 0.000 & -1.000 & 0.000 \\
+2 & loss\_rise & 1046 & 610 & 271 & 232 & 339 & 0.000 & 0.000 & 10.000 \\
+2 & zmax\_jump & 1046 & 905 & 226 & 150 & 679 & 0.000 & 0.000 & 0.000 \\
+2 & dead\_gt20 & 1046 & 718 & 265 & 141 & 453 & 0.000 & 0.000 & 2.000 \\
+2 & dw\_spike & 1046 & 289 & 20 & 6 & 269 & 0.000 & -6.000 & 0.000 \\
+3 & loss\_rise & 76 & 34 & 27 & 15 & 7 & 2.000 & 1.000 & 10.750 \\
+3 & zmax\_jump & 76 & 72 & 21 & 11 & 51 & 0.000 & 0.000 & 1.000 \\
+3 & dead\_gt20 & 76 & 73 & 21 & 14 & 52 & 0.000 & 0.000 & 1.000 \\
+3 & dw\_spike & 76 & 13 & 2 & 2 & 11 & -5.000 & -13.000 & 0.000 \\
+\bottomrule
+\end{tabular}}
+\end{table}

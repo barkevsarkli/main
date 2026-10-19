@@ -1,0 +1,56 @@
+\begin{table}[htbp]\centering\small
+\caption{Q4. Candidate threshold predictors measured at the epoch before the spike (spike epoch >= 2): coefficient of variation within cells (mean over cells), across cell means, and across all spiking runs. A quantity that triggers the spike at a fixed threshold would have a small CV across all runs.}
+\label{tab:q4_spike_predictors}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}rlllrrrrr@{}}
+\toprule
+stage & dataset & arch\_label & predictor & n\_runs & n\_cells & cv\_within\_cells\_mean & cv\_across\_cell\_means & cv\_all\_runs \\
+\midrule
+0 & mnist & mlp2 & w\_hidden1 at spike-1 & 50 & 5 & 0.121 & 0.322 & 0.333 \\
+0 & mnist & mlp2 & w\_hidden2 at spike-1 & 50 & 5 & 0.371 & 0.647 & 1.363 \\
+0 & mnist & mlp2 & zmax\_hidden1 at spike-1 & 50 & 5 & 0.273 & 0.294 & 0.491 \\
+0 & mnist & mlp2 & w\_output at spike-1 & 50 & 5 & 0.512 & 0.877 & 2.286 \\
+0 & mnist & mlp2 & w\_prod at spike-1 & 50 & 5 & 0.927 & 2.111 & 6.505 \\
+0 & mnist & mlp2 & lr\_w\_output2 at spike-1 & 50 & 5 & 0.872 & 1.980 & 6.214 \\
+0 & mnist & mlp2 & lr\_w\_last2 at spike-1 & 50 & 5 & 0.771 & 1.533 & 4.640 \\
+0 & mnist & mlp2 & zmax\_hidden2 at spike-1 & 50 & 5 & 0.829 & 1.236 & 3.562 \\
+0 & mnist & mlp2 & lr\_zmax\_last at spike-1 & 50 & 5 & 0.829 & 0.826 & 2.716 \\
+2 & cifar10 & cfg1 & w\_conv at spike-1 & 115 & 5 & 0.196 & 0.520 & 0.487 \\
+2 & cifar10 & cfg1 & w\_hidden1 at spike-1 & 115 & 5 & 0.220 & 0.733 & 0.731 \\
+2 & cifar10 & cfg1 & zmax\_conv at spike-1 & 115 & 5 & 0.203 & 0.198 & 0.280 \\
+2 & cifar10 & cfg1 & w\_output at spike-1 & 115 & 5 & 0.053 & 0.308 & 0.305 \\
+2 & cifar10 & cfg1 & w\_prod at spike-1 & 115 & 5 & 0.457 & 1.162 & 1.295 \\
+2 & cifar10 & cfg1 & lr\_w\_output2 at spike-1 & 115 & 5 & 0.106 & 0.255 & 0.278 \\
+2 & cifar10 & cfg1 & lr\_w\_last2 at spike-1 & 115 & 5 & 0.436 & 0.973 & 1.057 \\
+2 & cifar10 & cfg1 & zmax\_hidden1 at spike-1 & 115 & 5 & 0.212 & 0.442 & 0.416 \\
+2 & cifar10 & cfg1 & lr\_zmax\_last at spike-1 & 115 & 5 & 0.212 & 0.215 & 0.293 \\
+2 & cifar10 & cfg2 & w\_conv at spike-1 & 124 & 5 & 0.188 & 0.476 & 0.453 \\
+2 & cifar10 & cfg2 & w\_hidden1 at spike-1 & 124 & 5 & 0.209 & 0.683 & 0.651 \\
+2 & cifar10 & cfg2 & zmax\_conv at spike-1 & 124 & 5 & 0.120 & 0.191 & 0.201 \\
+2 & cifar10 & cfg2 & w\_output at spike-1 & 124 & 5 & 0.056 & 0.291 & 0.278 \\
+2 & cifar10 & cfg2 & w\_prod at spike-1 & 124 & 5 & 0.435 & 1.114 & 1.109 \\
+2 & cifar10 & cfg2 & lr\_w\_output2 at spike-1 & 124 & 5 & 0.112 & 0.228 & 0.242 \\
+2 & cifar10 & cfg2 & lr\_w\_last2 at spike-1 & 124 & 5 & 0.409 & 0.900 & 0.902 \\
+2 & cifar10 & cfg2 & zmax\_hidden1 at spike-1 & 124 & 5 & 0.165 & 0.425 & 0.398 \\
+2 & cifar10 & cfg2 & lr\_zmax\_last at spike-1 & 124 & 5 & 0.165 & 0.242 & 0.285 \\
+2 & mnist & cfg1 & w\_conv at spike-1 & 146 & 8 & 0.129 & 0.502 & 0.425 \\
+2 & mnist & cfg1 & w\_hidden1 at spike-1 & 146 & 8 & 0.137 & 0.539 & 0.458 \\
+2 & mnist & cfg1 & zmax\_conv at spike-1 & 146 & 8 & 0.172 & 0.464 & 0.433 \\
+2 & mnist & cfg1 & w\_output at spike-1 & 146 & 8 & 0.142 & 0.505 & 0.445 \\
+2 & mnist & cfg1 & w\_prod at spike-1 & 146 & 8 & 0.447 & 1.417 & 1.842 \\
+2 & mnist & cfg1 & lr\_w\_output2 at spike-1 & 146 & 8 & 0.304 & 0.534 & 0.619 \\
+2 & mnist & cfg1 & lr\_w\_last2 at spike-1 & 146 & 8 & 0.288 & 0.592 & 0.612 \\
+2 & mnist & cfg1 & zmax\_hidden1 at spike-1 & 146 & 8 & 0.353 & 0.843 & 0.951 \\
+2 & mnist & cfg1 & lr\_zmax\_last at spike-1 & 146 & 8 & 0.353 & 0.407 & 0.561 \\
+2 & mnist & cfg2 & w\_conv at spike-1 & 143 & 8 & 0.142 & 0.450 & 0.374 \\
+2 & mnist & cfg2 & w\_hidden1 at spike-1 & 143 & 8 & 0.145 & 0.477 & 0.391 \\
+2 & mnist & cfg2 & zmax\_conv at spike-1 & 143 & 8 & 0.181 & 0.384 & 0.364 \\
+2 & mnist & cfg2 & w\_output at spike-1 & 143 & 8 & 0.159 & 0.439 & 0.377 \\
+2 & mnist & cfg2 & w\_prod at spike-1 & 143 & 8 & 0.581 & 1.240 & 1.297 \\
+2 & mnist & cfg2 & lr\_w\_output2 at spike-1 & 143 & 8 & 0.368 & 0.375 & 0.501 \\
+2 & mnist & cfg2 & lr\_w\_last2 at spike-1 & 143 & 8 & 0.330 & 0.453 & 0.483 \\
+2 & mnist & cfg2 & zmax\_hidden1 at spike-1 & 143 & 8 & 0.489 & 0.706 & 0.807 \\
+2 & mnist & cfg2 & lr\_zmax\_last at spike-1 & 143 & 8 & 0.489 & 0.311 & 0.679 \\
+\bottomrule
+\end{tabular}}
+\end{table}

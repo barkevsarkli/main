@@ -1,0 +1,20 @@
+dataset,model,order,n_runs,n_death_at_or_before_failure,n_failing
+cifar10,relu,conv first,3,96,111
+cifar10,relu,hidden first,106,96,111
+cifar10,relu,neither layer >=50% dead,2,96,111
+cifar10,tanh+relu,hidden first,34,36,36
+cifar10,tanh+relu,same epoch,2,36,36
+cifar10,tanh+relu@conv,hidden first,42,42,42
+cifar10,tanh+relu@hidden,conv first,3,118,119
+cifar10,tanh+relu@hidden,hidden first,115,118,119
+cifar10,tanh+relu@hidden,same epoch,1,118,119
+mnist,relu,conv first,14,73,120
+mnist,relu,hidden first,82,73,120
+mnist,relu,same epoch,24,73,120
+mnist,tanh+relu,hidden first,12,17,17
+mnist,tanh+relu,same epoch,5,17,17
+mnist,tanh+relu@conv,hidden first,19,40,40
+mnist,tanh+relu@conv,same epoch,21,40,40
+mnist,tanh+relu@hidden,conv first,1,49,49
+mnist,tanh+relu@hidden,hidden first,27,49,49
+mnist,tanh+relu@hidden,same epoch,21,49,49

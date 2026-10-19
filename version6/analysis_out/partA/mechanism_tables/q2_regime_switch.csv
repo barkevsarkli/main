@@ -1,0 +1,27 @@
+stage,dataset,arch_label,hidden,hybrid,lrs_tested,lr_switch_relu_half_dead,lr_majority_carried,regime_at_switch
+0,mnist,mlp2,64,tanh+relu,0.02 0.03 0.05,0.05,0.05,carried
+0,mnist,mlp2,128,tanh+relu,0.02 0.03 0.05,0.05,0.05,carried
+2,cifar10,cfg1,64,tanh+relu,0.0003 0.001 0.003 0.01 0.02 0.03 0.05,0.02,0.02,carried
+2,cifar10,cfg1,128,tanh+relu,0.0003 0.001 0.003 0.01 0.02 0.03 0.05,0.02,0.02,carried
+2,cifar10,cfg1,256,tanh+relu,0.0003 0.001 0.003 0.01 0.02 0.03 0.05,0.02,0.02,carried
+2,cifar10,cfg2,64,tanh+relu,0.0003 0.001 0.003 0.01 0.02 0.03 0.05,0.02,0.02,carried
+2,cifar10,cfg2,128,tanh+relu,0.0003 0.001 0.003 0.01 0.02 0.03 0.05,0.02,0.02,carried
+2,cifar10,cfg2,256,tanh+relu,0.0003 0.001 0.003 0.01 0.02 0.03 0.05,0.02,0.02,carried
+2,cifar10,mlp1,64,tanh+relu,0.0003 0.001 0.003 0.01 0.02 0.03 0.05,0.01,0.01,carried
+2,cifar10,mlp1,128,tanh+relu,0.0003 0.001 0.003 0.01 0.02 0.03 0.05,0.01,0.01,carried
+2,cifar10,mlp1,256,tanh+relu,0.0003 0.001 0.003 0.01 0.02 0.03 0.05,0.02,0.02,carried
+2,mnist,cfg1,64,tanh+relu,0.001 0.003 0.01 0.02 0.03 0.05 0.1,0.05,0.05,carried
+2,mnist,cfg1,128,tanh+relu,0.001 0.003 0.01 0.02 0.03 0.05 0.1,0.05,0.05,carried
+2,mnist,cfg1,256,tanh+relu,0.001 0.003 0.01 0.02 0.03 0.05 0.1,0.03,0.03,carried
+2,mnist,cfg2,64,tanh+relu,0.001 0.003 0.01 0.02 0.03 0.05 0.1,0.05,0.05,carried
+2,mnist,cfg2,128,tanh+relu,0.001 0.003 0.01 0.02 0.03 0.05 0.1,0.05,0.05,carried
+2,mnist,cfg2,256,tanh+relu,0.001 0.003 0.01 0.02 0.03 0.05 0.1,0.03,0.03,carried
+2,mnist,mlp1,64,tanh+relu,0.001 0.003 0.01 0.02 0.03 0.05 0.1,0.1,0.1,carried
+2,mnist,mlp1,128,tanh+relu,0.001 0.003 0.01 0.02 0.03 0.05 0.1,0.1,0.1,carried
+2,mnist,mlp1,256,tanh+relu,0.001 0.003 0.01 0.02 0.03 0.05 0.1,0.1,0.1,carried
+3,cifar10,cfg2,128,tanh+relu,0.01 0.02 0.03,0.02,0.02,carried
+3,cifar10,cfg2,128,tanh+relu@0.25,0.01 0.02 0.03,0.02,0.02,carried
+3,cifar10,cfg2,128,tanh+relu@0.75,0.01 0.02 0.03,0.02,0.02,carried
+3,mnist,cfg2,128,tanh+relu,0.01 0.02 0.03,,,
+3,mnist,cfg2,128,tanh+relu@0.25,0.01 0.02 0.03,,,
+3,mnist,cfg2,128,tanh+relu@0.75,0.01 0.02 0.03,0.03,0.03,carried

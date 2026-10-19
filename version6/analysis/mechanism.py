@@ -38,7 +38,8 @@ from partA_common import (COLORS, INK, MARKERS, MUTED, Claims, add_caption, auc,
 from stats_io import stage2_lrs  # noqa: E402
 
 TAB = "mechanism_tables"
-LATE_PEAK = 30.0          # a collapse is "late" if val reached >= 30% before e*
+OUTCOMES = ["never_learned", "late_collapse", "late_degradation", "stable"]
+FAILING = ("late_collapse", "late_degradation")
 WINDOW = (-8, 3)
 CLAMP = -np.log(1e-12)      # loss of a sample clamped at p = 1e-12 (src/train_util.h)
 HYBRIDS = {0: ["tanh+relu"], 2: ["tanh+relu"], 3: ["tanh+relu@0.25", "tanh+relu", "tanh+relu@0.75"]}
@@ -110,7 +111,7 @@ def q1(ev):
         arch = g.arch.iloc[0]
         lh, fl = last_hidden(arch), first_layer(arch)
         col = g[g.e_star.notna()]
-        late = col[col.peak_before >= LATE_PEAK]
+        late = col[col.outcome != "never_learned"]          # fell below 15% after learning
         dur = late[f"e90|{lh}|relu"] - late[f"e10|{lh}|relu"]
         first = []
         for _, r in late.iterrows():
@@ -126,8 +127,8 @@ def q1(ev):
         rows.append(dict(zip(CELL, key)) | dict(
             seed_set=seed_label(key[0], g.seed), lr_role=g.lr_role.iloc[0], n=len(g),
             n_final_lt15=int(g.final_lt15.sum()), n_ever_lt15=int(col.shape[0]), n_late=len(late),
-            n_never_learned=int((col.peak_before.fillna(0) < LATE_PEAK).sum()),
             n_late_recovered=int((~late.final_lt15).sum()),
+            **{f"oc_{c}": int((g.outcome == c).sum()) for c in OUTCOMES},
             n_revived=int(((g[f"dmax|{lh}|relu"] >= 0.99) & (g[f"dfinal|{lh}|relu"] < 0.5)).sum()),
             e_star_med=med(col.e_star), e_lossrise_med=med(late.e_lossrise),
             lossrise_before_estar_med=med(late.e_star - late.e_lossrise),
@@ -140,7 +141,8 @@ def q1(ev):
     t = pd.DataFrame(rows)
     write_table(t, TAB, "q1_relu_collapse",
                 "Q1. Pure-ReLU collapse per cell (Stage 0 all cells; Stage 2 at the stress and below-stress LR, "
-                "seeds 1-30 pooled). Late = validation reached >= 30% before e*. Late recovered = late collapses "
+                "seeds 1-30 pooled). Late = runs with an e* that are not never_learned (outcomes.py). "
+                "oc_* = outcome classes of all runs of the cell. Late recovered = late runs "
                 "that end at >= 15%. Revived = the last hidden layer reached >= 99% dead (on the probe set) and "
                 "ended < 50% dead. Medians over runs.")
     # claims: Stage 0 H128 LR 0.03 and pooled CNN cells
@@ -148,7 +150,7 @@ def q1(ev):
     for k in ("n", "n_late", "e_star_med", "lossrise_before_estar_med", "lossmin_before_estar_med",
               "dead_last_final_med", "dead_first_final_med", "dur10_90_last_med", "n_abrupt_le1", "n_reach90"):
         C.put(f"q1.s0_h128_lr0.03.{k}", s0[k], s0.seed_set, n=s0.n)
-    late_all = rel[(rel.e_star.notna()) & (rel.peak_before >= LATE_PEAK)].copy()
+    late_all = rel[rel.e_star.notna() & (rel.outcome != "never_learned")].copy()
     late_all["lh"] = late_all.arch.map(last_hidden)
     late_all["dur"] = [r[f"e90|{r.lh}|relu"] - r[f"e10|{r.lh}|relu"] for _, r in late_all.iterrows()]
     late_all["grp"] = np.where(late_all.stage == 0, "s0_mlp2", late_all.dataset + "_" +
@@ -157,7 +159,7 @@ def q1(ev):
         ss = "S0 seeds 1-10 (exploratory)" if grp.startswith("s0") else "S2 seeds 1-30 at stress/below-stress LR (descriptive)"
         C.put(f"q1.{grp}.n_late", len(g), ss, n=len(g))
         C.put(f"q1.{grp}.n_late_recovered", int((~g.final_lt15).sum()), ss, n=len(g),
-              desc="late collapses (val < 15% after a >= 30% peak) that end at >= 15%")
+              desc="runs that fell below 15% after learning (not never_learned) and end at >= 15%")
         C.put(f"q1.{grp}.share_abrupt_le1", float((g.dur <= 1).mean()) if g.dur.notna().any() else np.nan, ss,
               n=int(g.dur.notna().sum()), desc="share of late collapses whose last hidden layer goes 10%->90% dead in <=1 epoch")
         C.put(f"q1.{grp}.share_reach90", float(g.dur.notna().mean()), ss, n=len(g))
@@ -179,7 +181,7 @@ def event_study(rel):
     rel_e = np.arange(WINDOW[0], WINDOW[1] + 1)
     summary = []
     for gi, (title, mask) in enumerate(groups):
-        g = rel[mask & rel.e_star.notna() & (rel.e_star >= 2) & rel.final_lt15]
+        g = rel[mask & rel.e_star.notna() & (rel.e_star >= 2) & (rel.outcome == "late_collapse")]
         mats = {p[0]: [] for p in panels}
         for _, r in g.iterrows():
             s = s_all[r.stage].loc[[r.run_id]].set_index("epoch")
@@ -221,13 +223,183 @@ def event_study(rel):
                 "(dashed line), window -8..+3 epochs. Line: median across runs; band: interquartile range. "
                 "Rows: Stage 0 mlp2 MNIST (seeds 1-10, all H and LR; exploratory) and Stage 2 at the stress and "
                 "below-stress LR (seeds 1-30 pooled, descriptive) for the CNN (cfg1 and cfg2, all H) and mlp1. "
-                "Only runs that end below 15% are shown; runs with e* = 1 have no pre-collapse window and are "
+                "Only late_collapse runs (outcomes.py) are shown; runs with e* = 1 have no pre-collapse window and are "
                 "excluded (n per row in the label). Runs that fall below 15% and recover are counted in "
                 "q1_relu_collapse (n_late_recovered, n_revived). "
                 "Dead fraction: share of ReLU units (channels in conv) with z <= 0 on all 1,000 probe inputs; "
                 "first layer = hidden1 (mlp2) or conv (CNN).")
     write_table(pd.DataFrame(summary), TAB, "q1_event_study_values",
                 "Values plotted in the Q1 event-study figure (median and IQR per relative epoch).")
+
+
+# ----------------------------------------------------------------------------- Q1 follow-ups
+
+SPEED_BINS = [("0", 0, 0), ("1", 1, 1), ("2", 2, 2), ("3", 3, 3), ("4", 4, 4), ("5-9", 5, 9), ("10+", 10, 99)]
+
+
+def collapse_speed(ev):
+    """Epochs from 10% to 90% dead in the last hidden layer, and e90 - e*, for every pure-ReLU
+    late_collapse run (all LRs), per (stage, dataset, arch, H)."""
+    x = ev[(ev.model == "relu") & (ev.outcome == "late_collapse")].copy()
+    x["lh"] = x.arch.map(last_hidden)
+    x["e10"] = [r[f"e10|{r.lh}|relu"] for _, r in x.iterrows()]
+    x["e90"] = [r[f"e90|{r.lh}|relu"] for _, r in x.iterrows()]
+    x["dur"] = x.e90 - x.e10
+    x["off"] = x.e90 - x.e_star
+    rows = []
+    for key, g in x.groupby(["stage", "dataset", "arch_label", "hidden"], sort=True):
+        d = dict(zip(["stage", "dataset", "arch_label", "hidden"], key)) | dict(
+            seed_set=seed_label(key[0], g.seed), lrs=" ".join(f"{v:g}" for v in sorted(g.lr.unique())),
+            n=len(g), layer=g.lh.iloc[0])
+        for lab, lo, hi in SPEED_BINS:
+            d[f"dur_{lab}"] = int(((g.dur >= lo) & (g.dur <= hi)).sum())
+        d["dur_no90"] = int(g.dur.isna().sum())
+        d |= dict(dur_q25=q25(g.dur), dur_median=med(g.dur), dur_q75=q75(g.dur), dur_max=g.dur.max(),
+                  off_median=med(g.off), off_q25=q25(g.off), off_q75=q75(g.off), off_min=g.off.min(), off_max=g.off.max(),
+                  n_e90_before_estar=int((g.off < 0).sum()), n_e90_at_estar=int((g.off == 0).sum()),
+                  n_e90_after_estar=int((g.off > 0).sum()))
+        rows.append(d)
+    t = pd.DataFrame(rows)
+    write_table(t, TAB, "q1_collapse_speed",
+                "Q1. Speed of ReLU death in pure-ReLU late collapses (outcomes.py), all LRs: number of runs by epochs "
+                "from 10% to 90% dead in the last hidden layer (dur_*; no90 = never reached 90%), quantiles, and the "
+                "offset e90 - e* (epoch reaching 90% dead minus first epoch with validation accuracy < 15%).")
+    for _, q in t.iterrows():
+        tag = f"q1.speed.s{q.stage}_{q.dataset}_{q.arch_label}_h{q.hidden}"
+        for f in ("n", "dur_median", "dur_q25", "dur_q75", "dur_max", "dur_0", "dur_1", "off_median",
+                  "n_e90_before_estar", "n_e90_at_estar", "n_e90_after_estar"):
+            C.put(f"{tag}.{f}", q[f], q.seed_set, n=q.n)
+    allx = x[x.dur.notna()]
+    C.put("q1.speed.all.share_le1", float((allx.dur <= 1).mean()), "S0 + S2 seeds 1-30 + S3", n=len(allx))
+    C.put("q1.speed.all.share_le3", float((allx.dur <= 3).mean()), "S0 + S2 seeds 1-30 + S3", n=len(allx))
+    C.put("q1.speed.all.dur_median", med(allx.dur), "S0 + S2 seeds 1-30 + S3", n=len(allx))
+    C.put("q1.speed.all.share_off_0", float((allx.off == 0).mean()), "S0 + S2 seeds 1-30 + S3", n=len(allx))
+    return t
+
+
+def revival(rel):
+    """Pure-ReLU runs of the Q1 cells whose last hidden layer reached >= 99% dead on the probe
+    set and ended < 50% dead. "Dead" = z <= 0 on all 1,000 probe (validation) inputs; units
+    can still fire on training inputs. dw_rel(e) is the relative weight change during epoch e,
+    so the epochs e_dead+1 .. e_revive are the ones in which the layer came back."""
+    s2 = series(2).set_index("run_id")
+    x = rel[rel.stage == 2].copy()
+    x["lh"] = x.arch.map(last_hidden)
+    rows = []
+    for _, r in x.iterrows():
+        g = s2.loc[[r.run_id]].set_index("epoch").loc[1:]
+        dead = g[f"dead|{r.lh}|relu"]
+        hit = dead.index[dead >= 0.99]
+        if not len(hit):
+            continue
+        ed = int(hit[0])
+        after = dead.loc[ed + 1:]
+        rv = after.index[after < 0.5]
+        came_back = bool(len(rv))
+        revived = came_back and dead.loc[EPOCHS] < 0.5
+        status = "revived" if revived else ("revived, then died again" if came_back else "stayed dead")
+        er = int(rv[0]) if came_back else np.nan
+        win = g.loc[ed + 1: er] if came_back else g.loc[ed + 1: ed + 1]
+        rows.append(dict(run_id=r.run_id, dataset=r.dataset, arch_label=r.arch_label, hidden=r.hidden, lr=r.lr,
+                         seed=r.seed, outcome=r.outcome, revived=revived, status=status, e_dead=ed, e_revive=er,
+                         epochs_dead=(er - ed) if came_back else np.nan, val_at_dead=g.at[ed, "val"],
+                         max_val_after=g.loc[ed + 1:, "val"].max() if ed < EPOCHS else np.nan,
+                         final_val=r.final_val, reaches_15_after=bool(g.loc[ed + 1:, "val"].max() > 15) if ed < EPOCHS else False,
+                         dw_conv=win["dw|conv"].median() if "dw|conv" in win else np.nan,
+                         dw_hidden=win[f"dw|{r.lh}"].median(), dw_output=win["dw|output"].median(),
+                         dw_conv_zero=bool((win["dw|conv"] == 0).all()) if "dw|conv" in win else np.nan,
+                         w_conv_ratio=(g.at[er, "w|conv"] / g.at[ed, "w|conv"]) if came_back else
+                         (g.at[min(ed + 1, EPOCHS), "w|conv"] / g.at[ed, "w|conv"])))
+    t = pd.DataFrame(rows)
+    write_table(t, TAB, "q1_revival_runs",
+                "Q1. Pure-ReLU runs of the Q1 cells (Stage 2, stress and below-stress LR, seeds 1-30) whose last hidden "
+                "layer reached >= 99% dead on the 1,000 probe inputs (e_dead). Revived = ended < 50% dead; e_revive = "
+                "first later epoch < 50% dead (status 'revived, then died again' if it ends >= 50% dead). dw_* = "
+                "median relative weight change in epochs e_dead+1..e_revive, or in epoch e_dead+1 for runs that "
+                "stayed dead; w_conv_ratio = conv weight norm at e_revive (or "
+                "e_dead+1) over e_dead.", digits=4)
+    summ = (t.groupby(["dataset", "status"], sort=True)
+            .agg(n=("run_id", "size"), n_reach_15_after=("reaches_15_after", "sum"),
+                 epochs_dead_median=("epochs_dead", "median"), dw_conv_median=("dw_conv", "median"),
+                 dw_hidden_median=("dw_hidden", "median"), dw_output_median=("dw_output", "median"),
+                 n_dw_conv_zero=("dw_conv_zero", "sum"), w_conv_ratio_median=("w_conv_ratio", "median"),
+                 final_val_median=("final_val", "median"))
+            .reset_index())
+    write_table(summ, TAB, "q1_revival_summary",
+                "Q1. Revival summary (from q1_revival_runs): runs whose last hidden layer reached >= 99% dead on the "
+                "probe set, by status. 'Dead' means z <= 0 on all 1,000 probe (validation) inputs, not on the "
+                "training set: a non-zero dw of the layer or of the conv layer below it means some units still "
+                "fired on training inputs. Stage 2 seeds 1-30 pooled (descriptive).", digits=4)
+    rv = t[t.revived]
+    nr = t[t.status == "stayed dead"]
+    for (ds, stt), q in summ.set_index(["dataset", "status"]).iterrows():
+        tag = f"q1.revival.{ds}.{stt.replace(' ', '_').replace(',', '')}"
+        for f in ("n", "dw_conv_median", "dw_hidden_median", "n_dw_conv_zero", "n_reach_15_after"):
+            C.put(f"{tag}.{f}", q[f], "S2 seeds 1-30 at stress/below-stress LR (descriptive)", n=q.n)
+    ss = "S2 seeds 1-30 at stress/below-stress LR (descriptive)"
+    C.put("q1.revival.n_revived", len(rv), ss, n=len(t))
+    C.put("q1.revival.n_revived_reach15", int(rv.reaches_15_after.sum()), ss, n=len(rv))
+    C.put("q1.revival.n_revived_final_ge15", int((rv.final_val >= 15).sum()), ss, n=len(rv))
+    C.put("q1.revival.epochs_dead_median", med(rv.epochs_dead), ss, n=len(rv))
+    C.put("q1.revival.dw_conv_median_revived", med(rv.dw_conv), ss, n=len(rv))
+    C.put("q1.revival.dw_conv_median_not_revived", med(nr.dw_conv), ss, n=len(nr))
+    C.put("q1.revival.n_dw_conv_zero_revived", int(rv.dw_conv_zero.sum()), ss, n=len(rv))
+    C.put("q1.revival.n_dw_conv_zero_not_revived", int(nr.dw_conv_zero.sum()), ss, n=len(nr))
+    return t, summ
+
+
+# ----------------------------------------------------------------------------- post-hoc choices
+
+def posthoc(ev, rel, sp):
+    """Each analysis choice made after looking at the data, with the result under the original
+    definition where it is cheap to compute."""
+    rows = []
+    # 1. Q4 spread: spike epoch >= 2 (used) vs >= 1 (original).
+    for key, g in sp[sp.spiked].groupby(["stage", "dataset", "arch_label"], sort=True):
+        g2 = g[g.spike_epoch >= 2]
+        a = spread_row(g2) if len(g2) else {}
+        b = spread_row(g)
+        rows.append(dict(choice="Q4 spike-epoch spread: spikes at epoch >= 2 only",
+                         reason="a spike in epoch 1 is growth from the initialisation, with no epoch before it",
+                         measure=f"ICC S{key[0]} {key[1]} {key[2]}", value_used=a.get("icc", np.nan),
+                         value_original=b["icc"], n_used=a.get("n_spiking_runs", 0), n_original=b["n_spiking_runs"]))
+    # 2. Q6 zmax_jump: from epoch 2 (used) vs epoch 1 (original).
+    lead1, P1, N1 = q6_collect(ev, zmax_from=1)
+    lead2, P2, N2 = q6_collect(ev, zmax_from=2)
+    lt1, au1 = q6_summaries(lead1, P1, N1, ["zmax_jump"])
+    lt2, au2 = q6_summaries(lead2, P2, N2, ["zmax_jump"])
+    for st in (0, 2, 3):
+        for meas, t1, t2, col in (("median lead", lt1, lt2, "lead_median"), ("AUC", au1, au2, "auc")):
+            rows.append(dict(choice="Q6 zmax_jump signal from epoch 2",
+                             reason="the max |z| always more than doubles in epoch 1 (growth from the initialisation)",
+                             measure=f"{meas} S{st}", value_used=float(t2[t2.stage == st][col].iloc[0]),
+                             value_original=float(t1[t1.stage == st][col].iloc[0]), n_used=np.nan, n_original=np.nan))
+    # 3. Q1 event-study filter: late_collapse runs only (used) vs every run with e* >= 2 (original).
+    used = rel[rel.e_star.notna() & (rel.e_star >= 2) & (rel.outcome == "late_collapse")]
+    orig = rel[rel.e_star.notna() & (rel.e_star >= 2)]
+    rows.append(dict(choice="Q1 event study: late_collapse runs only",
+                     reason="runs that dip below 15% and recover made the median curve rise after e*",
+                     measure="runs in the event study", value_used=len(used), value_original=len(orig),
+                     n_used=len(used), n_original=len(orig)))
+    # 4. Q5 partial collapse: late_degradation in [15, 50) (used) vs final in [15, 50) (original).
+    band = ev[(ev.final_val >= 15) & (ev.final_val < 50)]
+    rows.append(dict(choice="Q5 partial collapse = late_degradation with final < 50%",
+                     reason="stable CIFAR-10 runs also end between 15% and 50%",
+                     measure="runs", value_used=int((band.outcome == "late_degradation").sum()), value_original=len(band),
+                     n_used=np.nan, n_original=np.nan))
+    # 5. Q6 failing runs: taxonomy (used) vs drop > 10 pp (original).
+    rows.append(dict(choice="Q6 failing = late_collapse or late_degradation",
+                     reason="the outcome taxonomy; drop > 10 pp also counted never_learned runs",
+                     measure="failing runs", value_used=int(ev.outcome.isin(FAILING).sum()),
+                     value_original=int(ev.drop_gt10.sum()), n_used=np.nan, n_original=np.nan))
+    t = pd.DataFrame(rows)
+    write_table(t, TAB, "posthoc_choices",
+                "Post-hoc analysis choices: each definition changed after looking at the data, the reason, and the "
+                "result under the definition used and under the original one.")
+    for i, q in t.iterrows():
+        C.put(f"posthoc.{i}.value_used", q.value_used, "see table", desc=f"{q.choice}: {q.measure}")
+        C.put(f"posthoc.{i}.value_original", q.value_original, "see table", desc=f"{q.choice}: {q.measure}")
+    return t
 
 
 # ----------------------------------------------------------------------------- Q2
@@ -422,6 +594,22 @@ def cv(x):
     return float(x.std(ddof=1) / abs(x.mean())) if len(x) > 1 and x.mean() != 0 else np.nan
 
 
+def spread_row(g):
+    """Spike-epoch spread of one (stage, dataset, arch) group: pooled within-cell SD over cells
+    (H, LR) with >= 2 spiking runs, SD of the cell means, ICC = between / (between + within)."""
+    by = g.groupby(["hidden", "lr"])
+    sizes = by.size()
+    valid = sizes[sizes >= 2].index
+    gv = g.set_index(["hidden", "lr"]).loc[valid].reset_index() if len(valid) else g.iloc[0:0]
+    within = np.sqrt(gv.groupby(["hidden", "lr"]).spike_epoch.var(ddof=1).mean()) if len(valid) else np.nan
+    means = by.spike_epoch.mean()
+    between = means.std(ddof=1) if len(means) > 1 else np.nan
+    vb, vw = (between ** 2 if between == between else np.nan), (within ** 2 if within == within else np.nan)
+    return dict(n_cells=len(means), n_spiking_runs=len(g), within_cell_sd=within, between_cell_sd_of_means=between,
+                icc=vb / (vb + vw) if vb == vb and vw == vw and vb + vw > 0 else np.nan,
+                within_cell_range_max=float(by.spike_epoch.agg(lambda x: x.max() - x.min()).max()))
+
+
 def q4(ev):
     sp = pd.concat([spike_table(0, ev), spike_table(2, ev)], ignore_index=True)
     cells = []
@@ -452,14 +640,8 @@ def q4(ev):
         sizes = by.size()
         valid = sizes[sizes >= 2].index
         gv = g.set_index(["hidden", "lr"]).loc[valid].reset_index() if len(valid) else g.iloc[0:0]
-        within = np.sqrt(gv.groupby(["hidden", "lr"]).spike_epoch.var(ddof=1).mean()) if len(valid) else np.nan
         means = by.spike_epoch.mean()
-        between = means.std(ddof=1) if len(means) > 1 else np.nan
-        vb, vw = (between ** 2 if between == between else np.nan), (within ** 2 if within == within else np.nan)
-        spread.append(dict(zip(["stage", "dataset", "arch_label"], key)) | dict(
-            n_cells=len(means), n_spiking_runs=len(g), within_cell_sd=within, between_cell_sd_of_means=between,
-            icc=vb / (vb + vw) if vb == vb and vw == vw and vb + vw > 0 else np.nan,
-            within_cell_range_max=float(by.spike_epoch.agg(lambda x: x.max() - x.min()).max())))
+        spread.append(dict(zip(["stage", "dataset", "arch_label"], key)) | spread_row(g))
         lh = last_hidden(g.arch.iloc[0])
         cands = [f"w_{L}_before" for L in hidden_layers(g.arch.iloc[0]) + ["output"]] + [
             "w_prod_before", "lr_w_output2_before", "lr_w_last2_before", f"zmax_{lh}_before", "lr_zmax_last_before"]
@@ -570,7 +752,7 @@ def q5(ev):
     # CIFAR-10 runs that train normally also end below 50%, so a run counts as a partial
     # collapse only if it also lost more than 10 pp from its peak; n_band_only counts the rest.
     band = ev[(ev.final_val >= 15) & (ev.final_val < 50)]
-    p = band[band.drop_gt10]
+    p = band[band.outcome == "late_degradation"]
     rows = []
     for key, g in p.groupby(["stage", "dataset", "arch_label", "hidden", "model", "lr"], sort=True):
         f = fin[key[0]].reindex(g.run_id)
@@ -578,7 +760,8 @@ def q5(ev):
                    (ev.model == key[4]) & np.isclose(ev.lr, key[5])]
         d = dict(zip(["stage", "dataset", "arch_label", "hidden", "model", "lr"], key)) | dict(
             seed_set=seed_label(key[0], g.seed), n_partial=len(g), n_cell=len(total),
-            n_band_only=int(((total.final_val >= 15) & (total.final_val < 50) & ~total.drop_gt10).sum()),
+            n_band_only=int(((total.final_val >= 15) & (total.final_val < 50) &
+                             (total.outcome != "late_degradation")).sum()),
             final_val_mean=g.final_val.mean(), best_val_mean=g.best_val.mean(),
             n_pred_classes_med=med(f.npred), max_class_share_med=med(f.maxshare))
         for L in hidden_layers(g.arch.iloc[0]):
@@ -592,16 +775,16 @@ def q5(ev):
         rows.append(d)
     t = pd.DataFrame(rows)
     write_table(t, TAB, "q5_partial_collapse",
-                "Q5. Partial collapse: runs ending with 15% <= final validation accuracy < 50% after a peak-to-final "
-                "drop > 10 pp (n_band_only = runs of the cell in the same accuracy band without such a drop, i.e. "
-                "ordinary CIFAR-10 accuracy). Predicted classes and the final dead "
+                "Q5. Partial collapse: late_degradation runs (learned, final >= 15%, peak-to-final drop > 10 pp; "
+                "outcomes.py) that end below 50% (n_band_only = other runs of the cell in the same accuracy band: "
+                "stable CIFAR-10 runs or never_learned). Predicted classes and the final dead "
                 "fraction and number of surviving ReLU-type units per layer (conv units are channels), means over "
                 "the partial runs of each cell.")
     C.put("q5.n_partial_runs_s0", int((p.stage == 0).sum()), "S0 seeds 1-10")
     C.put("q5.n_partial_runs_s2", int((p.stage == 2).sum()), "S2 seeds 1-30")
     C.put("q5.n_partial_runs_s3", int((p.stage == 3).sum()), "S3 seeds 31-45")
     C.put("q5.n_band_only_runs", int(len(band) - len(p)), "S0 + S2 + S3",
-          desc="final in [15, 50) without a > 10 pp drop (excluded)")
+          desc="final in [15, 50) but not late_degradation (excluded)")
     return t
 
 
@@ -610,13 +793,16 @@ def q5(ev):
 SIGNALS = ["loss_rise", "zmax_jump", "dead_gt20", "dw_spike"]
 
 
-def signal_scores(g, arch):
+def signal_scores(g, arch, zmax_from=2):
     """Per-epoch continuous scores (index = epoch) and the first-crossing epoch of each signal.
 
     loss_rise  loss(e) / min(loss(1..e-1));                  fires at > 2
-    zmax_jump  max over hidden layers of zmax(e) / zmax(e-1);  fires at > 2 (e >= 2)
+    zmax_jump  max over hidden layers of zmax(e) / zmax(e-1);  fires at > 2 (e >= zmax_from)
     dead_gt20  max dead fraction over ReLU-type groups;        fires at > 0.2 (after <= 0.2)
     dw_spike   max over layers of dw_rel(e) / median(dw_rel(1..e-1)); fires at > 3 (e >= 3)
+
+    zmax_from = 2 (used): the first epoch's growth from the initialisation is not a warning
+    sign; zmax_from = 1 is the original definition, kept for the post-hoc table.
     """
     g = g.set_index("epoch").sort_index()
     e = g.index.to_numpy()
@@ -624,8 +810,7 @@ def signal_scores(g, arch):
     loss = g["loss"]
     sc["loss_rise"] = loss / loss.cummin().shift(1)
     zcols = [f"zmax|{L}" for L in hidden_layers(arch) if f"zmax|{L}" in g]
-    # From epoch 2 on: the first epoch's growth from the initialisation is not a warning sign.
-    sc["zmax_jump"] = pd.concat([g[c] / g[c].shift(1) for c in zcols], axis=1).max(axis=1).where(g.index >= 2)
+    sc["zmax_jump"] = pd.concat([g[c] / g[c].shift(1) for c in zcols], axis=1).max(axis=1).where(g.index >= zmax_from)
     dcols = [c for c in g.columns if c.startswith("dead|") and g[c].notna().any()]
     sc["dead_gt20"] = g[dcols].max(axis=1) if dcols else np.nan
     wcols = [c for c in g.columns if c.startswith("dw|") and g[c].notna().any()]
@@ -646,75 +831,130 @@ def signal_scores(g, arch):
     return sc, first
 
 
-def q6(ev):
-    cellkey = ["stage", "dataset", "arch_label", "hidden", "lr", "model"]
+Q6_CELL = ["stage", "dataset", "arch_label", "hidden", "lr", "model"]
+
+
+def failure_epoch(r):
+    """First epoch > 10 pp below the running maximum; e* for a late collapse without one."""
+    return r.e_fail if r.e_fail == r.e_fail else r.e_star
+
+
+def q6_collect(ev, zmax_from=2):
+    """Lead times of failing runs and per-epoch scores of positives / negatives.
+
+    Failing = late_collapse or late_degradation (outcomes.py), in cells (dataset, arch, H, LR,
+    model) that contain at least one failing run; negatives = the stable runs of those cells."""
     lead_rows, pos, neg = [], [], []
     for stage in (0, 2, 3):
         s = series(stage)
         e = ev[ev.stage == stage].copy()
-        e["failing"] = e.drop_gt10 & e.e_fail.notna()
-        cells_with_fail = e[e.failing].groupby(cellkey[1:]).size().index
-        e = e.set_index(cellkey[1:]).loc[cells_with_fail].reset_index() if len(cells_with_fail) else e.iloc[0:0]
+        e["failing"] = e.outcome.isin(FAILING)
+        cells_with_fail = e[e.failing].groupby(Q6_CELL[1:]).size().index
+        e = e.set_index(Q6_CELL[1:]).loc[cells_with_fail].reset_index() if len(cells_with_fail) else e.iloc[0:0]
         sg = s[s.run_id.isin(e.run_id)].groupby("run_id")
         for _, r in e.iterrows():
-            sc, first = signal_scores(sg.get_group(r.run_id), r.arch)
-            base = {k: r[k] for k in cellkey} | {"seed": r.seed, "run_id": r.run_id}
+            sc, first = signal_scores(sg.get_group(r.run_id), r.arch, zmax_from)
+            base = {k: r[k] for k in Q6_CELL} | {"seed": r.seed, "run_id": r.run_id, "outcome": r.outcome}
             if r.failing:
-                ef = r.e_fail
-                lead_rows.append(base | {"failure_epoch": ef} | {f"lead_{k}": ef - v for k, v in first.items()})
+                ef = failure_epoch(r)
+                lead_rows.append(base | {"failure_epoch": ef, "e_star": r.e_star} |
+                                 {f"lead_{k}": ef - v for k, v in first.items()} |
+                                 {"lead_loss_rise_to_estar": r.e_star - first["loss_rise"]})
                 win = sc.loc[(sc.index >= max(1, ef - 3)) & (sc.index <= ef - 1)]
                 for ep, row in win.iterrows():
                     pos.append(base | {"epoch": ep} | row.to_dict())
-            elif not r.drop_gt10 and not r.final_lt15:
+            elif r.outcome == "stable":
                 win = sc.loc[(sc.index >= 1) & (sc.index <= EPOCHS - 1)]
                 for ep, row in win.iterrows():
                     neg.append(base | {"epoch": ep} | row.to_dict())
-    lead = pd.DataFrame(lead_rows)
-    P, N = pd.DataFrame(pos), pd.DataFrame(neg)
-    lt = []
+    return pd.DataFrame(lead_rows), pd.DataFrame(pos), pd.DataFrame(neg)
+
+
+def q6_summaries(lead, P, N, signals=SIGNALS):
+    lt, au = [], []
     for (stage,), g in lead.groupby(["stage"]):
-        for k in SIGNALS:
+        for k in signals:
             x = g[f"lead_{k}"]
             lt.append(dict(stage=stage, signal=k, n_failing=len(g), n_signal_fired=int(x.notna().sum()),
                            n_lead_ge1=int((x >= 1).sum()), n_lead_ge3=int((x >= 3).sum()), n_lead_le0=int((x <= 0).sum()),
                            lead_median=med(x), lead_q25=q25(x), lead_q75=q75(x)))
-    lt = pd.DataFrame(lt)
-    write_table(lt, TAB, "q6_lead_times",
-                "Q6. Lead time = failure epoch - first epoch the signal fires (positive = warning before failure), "
-                "failing runs = peak-to-final drop > 10 pp, in cells (dataset, arch, H, LR, model) that also contain "
-                "the non-failing runs used as negatives in the AUC table. Signals: loss_rise = training loss > 2x its "
-                "running minimum; zmax_jump = a hidden layer's max |z| more than doubles in one epoch (from epoch 2 on); dead_gt20 = a "
-                "ReLU-type group crosses 20% dead; dw_spike = an epoch's relative weight change > 3x its running median.")
-    write_table(lead, TAB, "q6_lead_runs", "Q6. Per-run lead times (epochs).")
-    au = []
     for stage in (0, 2, 3):
-        for k in SIGNALS:
-            p_ = P[P.stage == stage] if len(P) else P
-            n_ = N[N.stage == stage] if len(N) else N
-            # same-model cells: only cells that have both failing and non-failing runs
-            both = set(map(tuple, p_[cellkey].drop_duplicates().to_numpy())) & set(map(tuple, n_[cellkey].drop_duplicates().to_numpy())) if len(p_) and len(n_) else set()
-            if both:
-                kp = p_[p_[cellkey].apply(tuple, axis=1).isin(both)]
-                kn = n_[n_[cellkey].apply(tuple, axis=1).isin(both)]
-            else:
-                kp, kn = p_.iloc[0:0], n_.iloc[0:0]
+        p_, n_ = P[P.stage == stage], N[N.stage == stage]
+        both = set(map(tuple, p_[Q6_CELL].drop_duplicates().to_numpy())) & set(
+            map(tuple, n_[Q6_CELL].drop_duplicates().to_numpy()))
+        kp = p_[p_[Q6_CELL].apply(tuple, axis=1).isin(both)] if both else p_.iloc[0:0]
+        kn = n_[n_[Q6_CELL].apply(tuple, axis=1).isin(both)] if both else n_.iloc[0:0]
+        for k in signals:
             au.append(dict(stage=stage, signal=k, pooling="same cell incl. model", n_cells=len(both),
                            n_pos_epochs=int(kp[k].notna().sum()) if len(kp) else 0,
                            n_neg_epochs=int(kn[k].notna().sum()) if len(kn) else 0,
                            auc=auc(kp[k], kn[k]) if len(kp) else np.nan))
-    au = pd.DataFrame(au)
+    return pd.DataFrame(lt), pd.DataFrame(au)
+
+
+def q6(ev):
+    lead, P, N = q6_collect(ev)
+    lt, au = q6_summaries(lead, P, N)
+    write_table(lt, TAB, "q6_lead_times",
+                "Q6. Lead time = failure epoch - first epoch the signal fires (positive = warning before failure). "
+                "Failing runs = late_collapse or late_degradation (outcomes.py); failure epoch = first epoch more than "
+                "10 pp below the running maximum (e* for a late collapse without one). Signals: loss_rise = training "
+                "loss > 2x its running minimum; zmax_jump = a hidden layer's max |z| more than doubles in one epoch "
+                "(from epoch 2 on); dead_gt20 = a ReLU-type group crosses 20% dead; dw_spike = an epoch's relative "
+                "weight change > 3x its running median.")
+    write_table(lead, TAB, "q6_lead_runs", "Q6. Per-run lead times (epochs).")
     write_table(au, TAB, "q6_auc",
                 "Q6. ROC AUC of each signal's value at epoch e for 'the failure epoch is e+1..e+3'. Positives: those "
-                "epochs of failing runs; negatives: every epoch 1-39 of the non-failing runs (final >= 15% and drop "
-                "<= 10 pp) of the same cell (dataset, arch, H, LR, model).")
+                "epochs of failing runs; negatives: every epoch 1-39 of the stable runs (outcomes.py) of the same cell "
+                "(dataset, arch, H, LR, model).")
     for _, q in lt.iterrows():
         C.put(f"q6.s{q.stage}.{q.signal}.lead_median", q.lead_median, f"S{q.stage}", n=q.n_failing, unit="epochs")
         C.put(f"q6.s{q.stage}.{q.signal}.n_lead_ge1", q.n_lead_ge1, f"S{q.stage}", n=q.n_failing)
         C.put(f"q6.s{q.stage}.{q.signal}.n_fired", q.n_signal_fired, f"S{q.stage}", n=q.n_failing)
     for _, q in au.iterrows():
         C.put(f"q6.s{q.stage}.{q.signal}.auc", q.auc, f"S{q.stage}", n=q.n_pos_epochs + q.n_neg_epochs)
+    loss_rise_reconcile(ev, lead)
     lead_fig(lead)
     return lead, lt, au
+
+
+def loss_rise_reconcile(ev, lead):
+    """Q1 vs Q6 for the loss-rise signal: hit rate and lead in failing runs, false-positive rate
+    (fires at any epoch) in the stable runs of the same cells and of all cells."""
+    rows = []
+    groups = [("all", lambda d: d.stage >= 0)] + [
+        (f"S{st} {ds} {al}", (lambda st, ds, al: lambda d: (d.stage == st) & (d.dataset == ds) & (d.arch_label == al))(st, ds, al))
+        for st, ds, al in sorted(set(zip(lead.stage, lead.dataset, lead.arch_label)))]
+    stable = ev[ev.outcome == "stable"]
+    fail_cells = set(map(tuple, lead[Q6_CELL].drop_duplicates().to_numpy()))
+    stable_same = stable[stable[Q6_CELL].apply(tuple, axis=1).isin(fail_cells)]
+    for name, f in groups:
+        g = lead[f(lead)]
+        lc = g[g.outcome == "late_collapse"]
+        ss, sa = stable_same[f(stable_same)], stable[f(stable)]
+        x = g.lead_loss_rise
+        rows.append(dict(group=name, n_failing=len(g), share_fires_before_failure=float((x >= 1).mean()) if len(g) else np.nan,
+                         share_fires_ever=float(x.notna().mean()) if len(g) else np.nan,
+                         lead_to_failure_median=med(x), n_late_collapse=len(lc),
+                         lead_to_estar_median=med(lc.lead_loss_rise_to_estar),
+                         failure_before_estar_median=med(lc.e_star - lc.failure_epoch),
+                         n_stable_same_cells=len(ss), fpr_same_cells=float(ss.e_lossrise.notna().mean()) if len(ss) else np.nan,
+                         n_stable_all_cells=len(sa), fpr_all_cells=float(sa.e_lossrise.notna().mean()) if len(sa) else np.nan))
+    t = pd.DataFrame(rows)
+    write_table(t, TAB, "q6_loss_rise_reconcile",
+                "Q6. The loss-rise signal (training loss > 2x its running minimum). Failing runs: share where it fires "
+                "at least one epoch before the failure epoch, share where it fires at all, median lead to the failure "
+                "epoch and (late collapses) to e*; median gap between the failure epoch and e*. False-positive rate = "
+                "share of stable runs (outcomes.py) in which it fires at any epoch, in the cells that contain failing "
+                "runs and in all cells. Stage 0 seeds 1-10, Stage 2 seeds 1-30 pooled, Stage 3 seeds 31-45 "
+                "(exploratory).")
+    for _, q in t.iterrows():
+        tag = "q6.lossrise." + q.group.replace(" ", "_")
+        for f in ("share_fires_before_failure", "lead_to_failure_median", "lead_to_estar_median",
+                  "failure_before_estar_median", "fpr_same_cells", "fpr_all_cells", "n_failing",
+                  "n_stable_same_cells", "n_stable_all_cells"):
+            C.put(f"{tag}.{f}", q[f], "S0 + S2 seeds 1-30 + S3")
+    return t
 
 
 def lead_fig(lead):
@@ -816,6 +1056,8 @@ def main():
     ev = all_events()
     t1, rel = q1(ev)
     event_study(rel)
+    collapse_speed(ev)
+    revival(rel)
     t2, r2, sw = q2(ev)
     q2_fig(t2)
     q3(ev)
@@ -823,6 +1065,7 @@ def main():
     q4_fig(sp, ev)
     q5(ev)
     q6(ev)
+    posthoc(ev, rel, sp)
     C.save()
     print("mechanism: wrote tables and figures")
 

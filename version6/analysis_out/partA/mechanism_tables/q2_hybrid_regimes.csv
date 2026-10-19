@@ -1,0 +1,151 @@
+stage,dataset,arch_label,hidden,lr,hybrid,seed_set,n,protected,carried,failed,last_layer,hybrid_relu_dead_last_med,hybrid_final_val,relu_final_val,relu_n_lt15
+0,mnist,mlp2,64,0.02,tanh+relu,S0 seeds 1-10 (exploratory),10,10,0,0,hidden2,0,96.748,95.338,0
+0,mnist,mlp2,64,0.03,tanh+relu,S0 seeds 1-10 (exploratory),10,10,0,0,hidden2,0,96.16,67.212,3
+0,mnist,mlp2,64,0.05,tanh+relu,S0 seeds 1-10 (exploratory),10,0,10,0,hidden2,0.828125,89.974,19.87,1
+0,mnist,mlp2,128,0.02,tanh+relu,S0 seeds 1-10 (exploratory),10,10,0,0,hidden2,0,97.61,96.182,0
+0,mnist,mlp2,128,0.03,tanh+relu,S0 seeds 1-10 (exploratory),10,10,0,0,hidden2,0.0390625,96.616,10.208,10
+0,mnist,mlp2,128,0.05,tanh+relu,S0 seeds 1-10 (exploratory),10,0,10,0,hidden2,1,65.928,19.048,2
+2,cifar10,cfg1,64,0.0003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,59.0887,60.094,0
+2,cifar10,cfg1,64,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,55.1,56.108,0
+2,cifar10,cfg1,64,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,52.504,52.574,0
+2,cifar10,cfg1,64,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,50.1373,41.054,1
+2,cifar10,cfg1,64,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,4,21,5,hidden1,0.796875,34.4713,9.84733,30
+2,cifar10,cfg1,64,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,7,3,hidden1,1,26.252,9.728,10
+2,cifar10,cfg1,64,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,5,5,hidden1,1,14.68,13.734,6
+2,cifar10,cfg1,128,0.0003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,59.3073,60.1133,0
+2,cifar10,cfg1,128,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,58.25,58.264,0
+2,cifar10,cfg1,128,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,53.882,53.586,0
+2,cifar10,cfg1,128,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0.015625,50.63,36.582,4
+2,cifar10,cfg1,128,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,2,26,2,hidden1,0.757812,37.9173,9.846,30
+2,cifar10,cfg1,128,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,10,0,hidden1,0.96875,30.384,9.726,10
+2,cifar10,cfg1,128,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,3,7,hidden1,1,12.888,12.898,6
+2,cifar10,cfg1,256,0.0003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,60.2187,60.804,0
+2,cifar10,cfg1,256,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,60.168,61.582,0
+2,cifar10,cfg1,256,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,58.816,55.108,0
+2,cifar10,cfg1,256,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0.0234375,50.2327,31.6293,9
+2,cifar10,cfg1,256,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,0,27,3,hidden1,0.847656,33.978,9.848,30
+2,cifar10,cfg1,256,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,8,2,hidden1,0.988281,23.46,9.728,10
+2,cifar10,cfg1,256,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,0,10,hidden1,1,10.36,13.228,6
+2,cifar10,cfg2,64,0.0003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,59.5853,60.1707,0
+2,cifar10,cfg2,64,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,55.28,56.88,0
+2,cifar10,cfg2,64,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,52.698,52.758,0
+2,cifar10,cfg2,64,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,50.2427,42.6127,0
+2,cifar10,cfg2,64,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,4,24,2,hidden1,0.765625,36.6253,9.85,30
+2,cifar10,cfg2,64,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,5,5,hidden1,1,20.854,11.596,9
+2,cifar10,cfg2,64,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,3,7,hidden1,1,13.18,12.86,6
+2,cifar10,cfg2,128,0.0003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,59.828,60.7213,0
+2,cifar10,cfg2,128,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,58.914,58.486,0
+2,cifar10,cfg2,128,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,55.592,53.976,0
+2,cifar10,cfg2,128,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0.015625,50.358,35.364,6
+2,cifar10,cfg2,128,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,0,28,2,hidden1,0.921875,34.1607,9.848,30
+2,cifar10,cfg2,128,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,5,5,hidden1,1,20.838,9.73,10
+2,cifar10,cfg2,128,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,4,6,hidden1,1,13.548,13.41,5
+2,cifar10,cfg2,256,0.0003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,61.0773,61.864,0
+2,cifar10,cfg2,256,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,61.16,62.5967,0
+2,cifar10,cfg2,256,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,59.868,55.122,0
+2,cifar10,cfg2,256,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0.015625,49.9387,28.836,11
+2,cifar10,cfg2,256,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,0,24,6,hidden1,0.902344,29.9727,9.84467,30
+2,cifar10,cfg2,256,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,5,5,hidden1,1,16.776,9.726,10
+2,cifar10,cfg2,256,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,0,10,hidden1,1,9.954,16.742,2
+2,cifar10,mlp1,64,0.0003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,49.232,49.5047,0
+2,cifar10,mlp1,64,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.0625,48.658,49.034,0
+2,cifar10,mlp1,64,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.234375,43.776,45.168,0
+2,cifar10,mlp1,64,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,4,26,0,hidden1,0.59375,37.3553,33.6853,0
+2,cifar10,mlp1,64,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,0,30,0,hidden1,0.8125,31.3527,16.0387,10
+2,cifar10,mlp1,64,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,10,0,hidden1,0.921875,27.432,10.23,10
+2,cifar10,mlp1,64,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,10,0,hidden1,1,21.618,9.798,10
+2,cifar10,mlp1,128,0.0003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0.03125,51.0947,50.906,0
+2,cifar10,mlp1,128,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.0390625,50.336,50.424,0
+2,cifar10,mlp1,128,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.140625,45.224,46.338,0
+2,cifar10,mlp1,128,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,11,19,0,hidden1,0.507812,37.3853,36.086,0
+2,cifar10,mlp1,128,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,0,30,0,hidden1,0.789062,30.0907,16.332,9
+2,cifar10,mlp1,128,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,10,0,hidden1,0.921875,23.524,10.754,10
+2,cifar10,mlp1,128,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,9,1,hidden1,1,17.946,9.836,10
+2,cifar10,mlp1,256,0.0003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0.0351562,52.074,52.006,0
+2,cifar10,mlp1,256,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.0390625,52.114,51.466,0
+2,cifar10,mlp1,256,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.117188,45.082,47.646,0
+2,cifar10,mlp1,256,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,29,1,0,hidden1,0.429688,35.0567,36.2773,0
+2,cifar10,mlp1,256,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,0,30,0,hidden1,0.765625,26.864,17.4247,4
+2,cifar10,mlp1,256,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,7,3,hidden1,0.917969,17.956,11.35,10
+2,cifar10,mlp1,256,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,5,5,hidden1,1,14.306,9.898,10
+2,mnist,cfg1,64,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.698,98.782,0
+2,mnist,cfg1,64,0.003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.8047,98.8287,0
+2,mnist,cfg1,64,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.7947,97.996,0
+2,mnist,cfg1,64,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.022,10.7207,30
+2,mnist,cfg1,64,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.125,97.286,10.206,10
+2,mnist,cfg1,64,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,9,1,hidden1,1,70.406,10.046,10
+2,mnist,cfg1,64,0.1,tanh+relu,S2 seeds 1-10 (exploratory),10,0,8,2,hidden1,1,67.828,10.042,10
+2,mnist,cfg1,128,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.75,98.78,0
+2,mnist,cfg1,128,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.82,98.9,0
+2,mnist,cfg1,128,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.886,98.372,0
+2,mnist,cfg1,128,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.1313,10.7133,30
+2,mnist,cfg1,128,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,6,4,0,hidden1,0.304688,96.058,10.206,10
+2,mnist,cfg1,128,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,8,2,hidden1,1,64.574,10.046,10
+2,mnist,cfg1,128,0.1,tanh+relu,S2 seeds 1-10 (exploratory),10,0,9,1,hidden1,1,73.48,10.042,10
+2,mnist,cfg1,256,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.00390625,98.848,98.848,0
+2,mnist,cfg1,256,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.886,98.908,0
+2,mnist,cfg1,256,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.96,98.8987,0
+2,mnist,cfg1,256,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.21,10.71,30
+2,mnist,cfg1,256,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,1,9,0,hidden1,0.996094,84.326,10.206,10
+2,mnist,cfg1,256,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,10,0,hidden1,0.980469,92.2,10.046,10
+2,mnist,cfg1,256,0.1,tanh+relu,S2 seeds 1-10 (exploratory),10,0,7,3,hidden1,1,55.57,10.042,10
+2,mnist,cfg2,64,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.7,98.806,0
+2,mnist,cfg2,64,0.003,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.818,98.922,0
+2,mnist,cfg2,64,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.842,97.5753,0
+2,mnist,cfg2,64,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.0433,10.708,30
+2,mnist,cfg2,64,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.078125,97.516,10.206,10
+2,mnist,cfg2,64,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,9,1,hidden1,1,63.34,10.046,10
+2,mnist,cfg2,64,0.1,tanh+relu,S2 seeds 1-10 (exploratory),10,0,9,1,hidden1,1,79.198,10.042,10
+2,mnist,cfg2,128,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.804,98.864,0
+2,mnist,cfg2,128,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.89,98.9487,0
+2,mnist,cfg2,128,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.9407,98.062,0
+2,mnist,cfg2,128,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.2487,10.7107,30
+2,mnist,cfg2,128,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.21875,97.104,10.21,10
+2,mnist,cfg2,128,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,10,0,hidden1,1,70.93,10.048,10
+2,mnist,cfg2,128,0.1,tanh+relu,S2 seeds 1-10 (exploratory),10,0,8,2,hidden1,1,67.246,10.042,10
+2,mnist,cfg2,256,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.824,98.87,0
+2,mnist,cfg2,256,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.946,98.9573,0
+2,mnist,cfg2,256,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.948,98.6427,0
+2,mnist,cfg2,256,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.4907,10.7253,30
+2,mnist,cfg2,256,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,0,10,0,hidden1,1,82.902,10.206,10
+2,mnist,cfg2,256,0.05,tanh+relu,S2 seeds 1-10 (exploratory),10,0,10,0,hidden1,0.980469,91.724,10.046,10
+2,mnist,cfg2,256,0.1,tanh+relu,S2 seeds 1-10 (exploratory),10,0,5,5,hidden1,1,43.78,10.042,10
+2,mnist,mlp1,64,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,97.362,97.378,0
+2,mnist,mlp1,64,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,97.438,97.59,0
+2,mnist,mlp1,64,0.01,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,97.634,97.822,0
+2,mnist,mlp1,64,0.02,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,97.598,96.784,0
+2,mnist,mlp1,64,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.015625,96.662,95.854,0
+2,mnist,mlp1,64,0.05,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0.0625,95.9533,94.9673,0
+2,mnist,mlp1,64,0.1,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,8,22,0,hidden1,0.53125,93.6693,71.3727,0
+2,mnist,mlp1,128,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,97.734,97.828,0
+2,mnist,mlp1,128,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,97.914,97.972,0
+2,mnist,mlp1,128,0.01,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.162,98.1927,0
+2,mnist,mlp1,128,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.1753,98.146,0
+2,mnist,mlp1,128,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.015625,97.294,96.908,0
+2,mnist,mlp1,128,0.05,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0.0625,96.2707,95.736,0
+2,mnist,mlp1,128,0.1,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,0,30,0,hidden1,0.617188,93.16,76.1153,0
+2,mnist,mlp1,256,0.001,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,97.912,97.954,0
+2,mnist,mlp1,256,0.003,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.116,98.126,0
+2,mnist,mlp1,256,0.01,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0,98.32,98.3233,0
+2,mnist,mlp1,256,0.02,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0,98.316,98.336,0
+2,mnist,mlp1,256,0.03,tanh+relu,S2 seeds 1-10 (exploratory),10,10,0,0,hidden1,0.0078125,96.864,97.048,0
+2,mnist,mlp1,256,0.05,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,30,0,0,hidden1,0.101562,96.3447,96.082,0
+2,mnist,mlp1,256,0.1,tanh+relu,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,0,30,0,hidden1,0.683594,92.3567,80.3313,0
+3,cifar10,cfg2,128,0.01,tanh+relu@0.25,S3 seeds 31-45 (ratio slice),15,15,0,0,hidden1,0.03125,50.8493,32.0227,4
+3,cifar10,cfg2,128,0.01,tanh+relu,S3 seeds 31-45 (ratio slice),15,15,0,0,hidden1,0.015625,50.3613,32.0227,4
+3,cifar10,cfg2,128,0.01,tanh+relu@0.75,S3 seeds 31-45 (ratio slice),15,15,0,0,hidden1,0.0104167,49.7653,32.0227,4
+3,cifar10,cfg2,128,0.02,tanh+relu@0.25,S3 seeds 31-45 (ratio slice),15,0,15,0,hidden1,0.96875,33.38,9.92933,15
+3,cifar10,cfg2,128,0.02,tanh+relu,S3 seeds 31-45 (ratio slice),15,0,13,2,hidden1,0.921875,33.5893,9.92933,15
+3,cifar10,cfg2,128,0.02,tanh+relu@0.75,S3 seeds 31-45 (ratio slice),15,1,10,4,hidden1,0.958333,28.3947,9.92933,15
+3,cifar10,cfg2,128,0.03,tanh+relu@0.25,S3 seeds 31-45 (ratio slice),15,0,13,2,hidden1,1,23.7853,10.9493,14
+3,cifar10,cfg2,128,0.03,tanh+relu,S3 seeds 31-45 (ratio slice),15,0,9,6,hidden1,1,22.8493,10.9493,14
+3,cifar10,cfg2,128,0.03,tanh+relu@0.75,S3 seeds 31-45 (ratio slice),15,0,7,8,hidden1,1,18.184,10.9493,14
+3,mnist,cfg2,128,0.01,tanh+relu@0.25,S3 seeds 31-45 (ratio slice),15,15,0,0,hidden1,0,99.004,98.1893,0
+3,mnist,cfg2,128,0.01,tanh+relu,S3 seeds 31-45 (ratio slice),15,15,0,0,hidden1,0,98.9373,98.1893,0
+3,mnist,cfg2,128,0.01,tanh+relu@0.75,S3 seeds 31-45 (ratio slice),15,15,0,0,hidden1,0,98.8787,98.1893,0
+3,mnist,cfg2,128,0.02,tanh+relu@0.25,S3 seeds 31-45 (ratio slice),15,15,0,0,hidden1,0,98.5173,10.4907,15
+3,mnist,cfg2,128,0.02,tanh+relu,S3 seeds 31-45 (ratio slice),15,15,0,0,hidden1,0,98.2907,10.4907,15
+3,mnist,cfg2,128,0.02,tanh+relu@0.75,S3 seeds 31-45 (ratio slice),15,15,0,0,hidden1,0,97.5627,10.4907,15
+3,mnist,cfg2,128,0.03,tanh+relu@0.25,S3 seeds 31-45 (ratio slice),15,13,2,0,hidden1,0.40625,96.64,10.1933,15
+3,mnist,cfg2,128,0.03,tanh+relu,S3 seeds 31-45 (ratio slice),15,14,1,0,hidden1,0.234375,97.1733,10.1933,15
+3,mnist,cfg2,128,0.03,tanh+relu@0.75,S3 seeds 31-45 (ratio slice),15,5,10,0,hidden1,0.760417,94.408,10.1933,15

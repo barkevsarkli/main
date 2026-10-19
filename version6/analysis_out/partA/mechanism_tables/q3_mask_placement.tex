@@ -1,0 +1,123 @@
+\begin{table}[htbp]\centering\small
+\caption{Q3. Mask placement, Stage 2 cfg2 H 128/256: failures and final dead fractions of the ReLU units in the conv layer (channels) and the hidden layer. Seeds 1-30 at the stress, below-stress and selected LRs, 1-10 elsewhere.}
+\label{tab:q3_mask_placement}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lrrlllrrrrrrrr@{}}
+\toprule
+dataset & hidden & lr & model & seed\_set & lr\_role & n & n\_final\_lt15 & n\_drop\_gt10 & final\_val & conv\_relu\_dead\_final & hidden\_relu\_dead\_final & conv\_relu\_dead\_max & hidden\_relu\_dead\_max \\
+\midrule
+cifar10 & 128 & 3.00e-04 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 60.721 & 0.000 & 7.81e-04 & 0.000 & 0.044 \\
+cifar10 & 128 & 3.00e-04 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 59.828 & 0.000 & 0.000 & 0.000 & 0.009 \\
+cifar10 & 128 & 3.00e-04 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 60.249 & 0.000 & 0.000 & 0.000 & 0.015 \\
+cifar10 & 128 & 3.00e-04 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 60.291 & 0.000 & 0.000 & 0.000 & 0.039 \\
+cifar10 & 128 & 0.001 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 58.486 & 0.000 & 0.000 & 0.000 & 0.022 \\
+cifar10 & 128 & 0.001 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 58.914 & 0.000 & 0.000 & 0.000 & 0.002 \\
+cifar10 & 128 & 0.001 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 58.982 & 0.000 & 0.000 & 0.000 & 0.002 \\
+cifar10 & 128 & 0.001 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 59.722 & 0.000 & 0.000 & 0.000 & 0.023 \\
+cifar10 & 128 & 0.003 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 53.976 & 0.000 & 0.000 & 0.000 & 0.048 \\
+cifar10 & 128 & 0.003 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 55.592 & 0.000 & 0.000 & 0.000 & 0.002 \\
+cifar10 & 128 & 0.003 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 54.388 & 0.000 & 0.000 & 0.000 & 0.003 \\
+cifar10 & 128 & 0.003 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 54.492 & 0.000 & 0.000 & 0.000 & 0.080 \\
+cifar10 & 128 & 0.010 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 6 & 7 & 35.364 & 0.000 & 0.213 & 0.004 & 0.582 \\
+cifar10 & 128 & 0.010 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 0 & 0 & 50.358 & 0.000 & 0.015 & 0.008 & 0.180 \\
+cifar10 & 128 & 0.010 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 0 & 0 & 47.658 & 0.008 & 0.003 & 0.008 & 0.097 \\
+cifar10 & 128 & 0.010 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 8 & 20 & 25.849 & 0.000 & 0.999 & 0.000 & 1.000 \\
+cifar10 & 128 & 0.020 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 30 & 30 & 9.848 & 0.054 & 1.000 & 0.067 & 1.000 \\
+cifar10 & 128 & 0.020 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 2 & 3 & 34.161 & 0.083 & 0.887 & 0.100 & 0.991 \\
+cifar10 & 128 & 0.020 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 2 & 2 & 31.099 & 0.017 & 0.421 & 0.025 & 0.666 \\
+cifar10 & 128 & 0.020 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 29 & 29 & 10.636 & 0.021 & 1.000 & 0.025 & 1.000 \\
+cifar10 & 128 & 0.030 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 10 & 9.730 & 0.125 & 1.000 & 0.125 & 1.000 \\
+cifar10 & 128 & 0.030 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 5 & 2 & 20.838 & 0.225 & 0.981 & 0.250 & 1.000 \\
+cifar10 & 128 & 0.030 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 0 & 10.096 & 0.125 & 0.969 & 0.125 & 0.993 \\
+cifar10 & 128 & 0.030 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 8 & 8 & 12.736 & 0.138 & 0.930 & 0.138 & 1.000 \\
+cifar10 & 128 & 0.050 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 5 & 3 & 13.410 & 0.600 & 0.893 & 0.650 & 0.922 \\
+cifar10 & 128 & 0.050 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 6 & 0 & 13.548 & 0.325 & 1.000 & 0.325 & 1.000 \\
+cifar10 & 128 & 0.050 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 0 & 9.774 & 0.075 & 1.000 & 0.075 & 1.000 \\
+cifar10 & 128 & 0.050 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 5 & 3 & 14.298 & 0.537 & 0.766 & 0.588 & 0.850 \\
+cifar10 & 256 & 3.00e-04 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 61.864 & 0.000 & 3.91e-04 & 0.000 & 0.037 \\
+cifar10 & 256 & 3.00e-04 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 61.077 & 0.000 & 0.000 & 0.000 & 0.006 \\
+cifar10 & 256 & 3.00e-04 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 61.062 & 0.000 & 0.000 & 0.000 & 0.013 \\
+cifar10 & 256 & 3.00e-04 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 61.639 & 0.000 & 7.81e-04 & 0.000 & 0.027 \\
+cifar10 & 256 & 0.001 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 62.597 & 0.000 & 7.81e-04 & 0.000 & 0.014 \\
+cifar10 & 256 & 0.001 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 61.160 & 0.000 & 0.000 & 0.000 & 0.002 \\
+cifar10 & 256 & 0.001 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 61.404 & 0.000 & 0.000 & 0.000 & 0.001 \\
+cifar10 & 256 & 0.001 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 61.868 & 0.000 & 0.000 & 0.000 & 0.014 \\
+cifar10 & 256 & 0.003 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 55.122 & 0.000 & 0.000 & 0.000 & 0.034 \\
+cifar10 & 256 & 0.003 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 59.868 & 0.000 & 0.000 & 0.000 & 0.003 \\
+cifar10 & 256 & 0.003 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 58.386 & 0.000 & 0.000 & 0.000 & 0.001 \\
+cifar10 & 256 & 0.003 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 55.840 & 0.000 & 0.000 & 0.000 & 0.043 \\
+cifar10 & 256 & 0.010 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 11 & 17 & 28.836 & 0.000 & 0.425 & 0.000 & 0.922 \\
+cifar10 & 256 & 0.010 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 0 & 0 & 49.939 & 0.000 & 0.028 & 0.000 & 0.249 \\
+cifar10 & 256 & 0.010 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 0 & 0 & 48.434 & 0.017 & 0.007 & 0.017 & 0.131 \\
+cifar10 & 256 & 0.010 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 11 & 24 & 24.685 & 0.008 & 0.989 & 0.008 & 0.998 \\
+cifar10 & 256 & 0.020 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 30 & 30 & 9.845 & 0.029 & 1.000 & 0.033 & 1.000 \\
+cifar10 & 256 & 0.020 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 6 & 7 & 29.973 & 0.108 & 0.875 & 0.150 & 0.982 \\
+cifar10 & 256 & 0.020 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 0 & 0 & 38.207 & 0.033 & 0.404 & 0.033 & 0.674 \\
+cifar10 & 256 & 0.020 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 30 & 30 & 10.107 & 0.033 & 1.000 & 0.046 & 1.000 \\
+cifar10 & 256 & 0.030 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 10 & 9.726 & 0.175 & 1.000 & 0.188 & 1.000 \\
+cifar10 & 256 & 0.030 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 5 & 0 & 16.776 & 0.300 & 0.996 & 0.300 & 1.000 \\
+cifar10 & 256 & 0.030 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 0 & 10.384 & 0.100 & 0.971 & 0.150 & 0.996 \\
+cifar10 & 256 & 0.030 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 1 & 1 & 21.670 & 0.200 & 0.178 & 0.263 & 0.423 \\
+cifar10 & 256 & 0.050 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 2 & 0 & 16.742 & 0.650 & 0.705 & 0.675 & 0.852 \\
+cifar10 & 256 & 0.050 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 0 & 9.954 & 0.325 & 1.000 & 0.325 & 1.000 \\
+cifar10 & 256 & 0.050 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 0 & 9.774 & 0.075 & 1.000 & 0.075 & 1.000 \\
+cifar10 & 256 & 0.050 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 2 & 0 & 16.132 & 0.600 & 0.524 & 0.675 & 0.787 \\
+mnist & 128 & 0.001 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.864 & 0.000 & 0.007 & 0.000 & 0.015 \\
+mnist & 128 & 0.001 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.804 & 0.000 & 0.006 & 0.000 & 0.014 \\
+mnist & 128 & 0.001 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.784 & 0.000 & 0.005 & 0.000 & 0.011 \\
+mnist & 128 & 0.001 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.866 & 0.000 & 0.006 & 0.000 & 0.014 \\
+mnist & 128 & 0.003 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 98.949 & 0.000 & 0.004 & 0.000 & 0.007 \\
+mnist & 128 & 0.003 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.890 & 0.000 & 0.002 & 0.000 & 0.006 \\
+mnist & 128 & 0.003 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.860 & 0.000 & 7.81e-04 & 0.000 & 0.005 \\
+mnist & 128 & 0.003 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 98.937 & 0.000 & 0.006 & 0.000 & 0.010 \\
+mnist & 128 & 0.010 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 0 & 0 & 98.062 & 0.000 & 5.21e-04 & 0.000 & 0.006 \\
+mnist & 128 & 0.010 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress+selected & 30 & 0 & 0 & 98.941 & 0.000 & 5.21e-04 & 0.000 & 0.003 \\
+mnist & 128 & 0.010 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress+selected & 30 & 0 & 0 & 98.909 & 0.000 & 5.21e-04 & 0.000 & 0.002 \\
+mnist & 128 & 0.010 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 0 & 0 & 98.927 & 0.000 & 0.005 & 0.000 & 0.010 \\
+mnist & 128 & 0.020 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 30 & 30 & 10.711 & 0.004 & 0.999 & 0.004 & 0.999 \\
+mnist & 128 & 0.020 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 0 & 0 & 98.249 & 0.000 & 0.000 & 0.000 & 0.009 \\
+mnist & 128 & 0.020 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 0 & 0 & 97.305 & 0.000 & 0.008 & 0.000 & 0.023 \\
+mnist & 128 & 0.020 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 0 & 0 & 96.862 & 0.000 & 0.230 & 0.000 & 0.258 \\
+mnist & 128 & 0.030 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 10 & 10.210 & 0.200 & 0.999 & 0.212 & 0.999 \\
+mnist & 128 & 0.030 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 97.104 & 0.000 & 0.223 & 0.000 & 0.308 \\
+mnist & 128 & 0.030 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 91.016 & 0.025 & 0.213 & 0.050 & 0.270 \\
+mnist & 128 & 0.030 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 3 & 83.996 & 0.013 & 1.000 & 0.013 & 1.000 \\
+mnist & 128 & 0.050 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 8 & 10.048 & 0.575 & 1.000 & 0.575 & 1.000 \\
+mnist & 128 & 0.050 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 6 & 70.930 & 0.200 & 0.991 & 0.225 & 1.000 \\
+mnist & 128 & 0.050 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 3 & 10 & 22.472 & 0.650 & 0.948 & 0.675 & 0.993 \\
+mnist & 128 & 0.050 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 4 & 6 & 35.418 & 0.350 & 1.000 & 0.362 & 1.000 \\
+mnist & 128 & 0.100 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 0 & 10.042 & 0.912 & 0.999 & 0.912 & 0.999 \\
+mnist & 128 & 0.100 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 2 & 0 & 67.246 & 0.825 & 0.998 & 0.875 & 1.000 \\
+mnist & 128 & 0.100 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 0 & 10.042 & 0.425 & 1.000 & 0.425 & 1.000 \\
+mnist & 128 & 0.100 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 1 & 10.118 & 0.938 & 1.000 & 0.938 & 1.000 \\
+mnist & 256 & 0.001 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.870 & 0.000 & 0.005 & 0.000 & 0.009 \\
+mnist & 256 & 0.001 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.824 & 0.000 & 0.004 & 0.000 & 0.008 \\
+mnist & 256 & 0.001 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.766 & 0.000 & 0.004 & 0.000 & 0.007 \\
+mnist & 256 & 0.001 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.912 & 0.000 & 0.006 & 0.000 & 0.013 \\
+mnist & 256 & 0.003 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 98.957 & 0.000 & 0.002 & 0.000 & 0.004 \\
+mnist & 256 & 0.003 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.946 & 0.000 & 0.002 & 0.000 & 0.004 \\
+mnist & 256 & 0.003 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 98.916 & 0.000 & 0.002 & 0.000 & 0.003 \\
+mnist & 256 & 0.003 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & selected & 30 & 0 & 0 & 98.972 & 0.000 & 0.003 & 0.000 & 0.004 \\
+mnist & 256 & 0.010 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 0 & 0 & 98.643 & 0.000 & 1.30e-04 & 0.000 & 0.002 \\
+mnist & 256 & 0.010 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress+selected & 30 & 0 & 0 & 98.948 & 0.000 & 5.21e-04 & 0.000 & 7.81e-04 \\
+mnist & 256 & 0.010 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress+selected & 30 & 0 & 0 & 98.965 & 0.000 & 2.60e-04 & 0.000 & 3.91e-04 \\
+mnist & 256 & 0.010 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & below-stress & 30 & 0 & 0 & 98.969 & 0.000 & 7.81e-04 & 0.000 & 0.003 \\
+mnist & 256 & 0.020 & relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 30 & 30 & 10.725 & 0.008 & 1.000 & 0.008 & 1.000 \\
+mnist & 256 & 0.020 & tanh+relu & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 0 & 0 & 98.491 & 0.000 & 0.001 & 0.000 & 0.007 \\
+mnist & 256 & 0.020 & tanh+relu@conv & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 0 & 0 & 97.167 & 0.008 & 0.030 & 0.008 & 0.052 \\
+mnist & 256 & 0.020 & tanh+relu@hidden & S2 seeds 1-30 (descriptive, pooled sweep+ext) & stress & 30 & 0 & 0 & 96.153 & 0.000 & 0.612 & 0.000 & 0.668 \\
+mnist & 256 & 0.030 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 10 & 10.206 & 0.113 & 1.000 & 0.113 & 1.000 \\
+mnist & 256 & 0.030 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 4 & 82.902 & 0.000 & 0.944 & 0.000 & 0.973 \\
+mnist & 256 & 0.030 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 93.620 & 0.025 & 0.285 & 0.025 & 0.355 \\
+mnist & 256 & 0.030 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 10 & 53.200 & 0.037 & 0.999 & 0.037 & 1.000 \\
+mnist & 256 & 0.050 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 10 & 10.046 & 0.637 & 1.000 & 0.637 & 1.000 \\
+mnist & 256 & 0.050 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 0 & 0 & 91.724 & 0.425 & 0.978 & 0.500 & 0.996 \\
+mnist & 256 & 0.050 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 1 & 10 & 27.974 & 0.775 & 0.955 & 0.775 & 0.988 \\
+mnist & 256 & 0.050 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 9 & 6 & 10.820 & 0.450 & 1.000 & 0.450 & 1.000 \\
+mnist & 256 & 0.100 & relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 1 & 10.042 & 0.912 & 1.000 & 0.925 & 1.000 \\
+mnist & 256 & 0.100 & tanh+relu & S2 seeds 1-10 (exploratory) & sweep & 10 & 5 & 1 & 43.780 & 0.825 & 1.000 & 0.825 & 1.000 \\
+mnist & 256 & 0.100 & tanh+relu@conv & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 0 & 10.042 & 0.550 & 1.000 & 0.550 & 1.000 \\
+mnist & 256 & 0.100 & tanh+relu@hidden & S2 seeds 1-10 (exploratory) & sweep & 10 & 10 & 4 & 10.042 & 0.988 & 1.000 & 0.988 & 1.000 \\
+\bottomrule
+\end{tabular}}
+\end{table}

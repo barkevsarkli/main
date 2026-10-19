@@ -1,0 +1,83 @@
+\begin{table}[htbp]\centering\small
+\caption{Q5. Partial collapse: late\_degradation runs (learned, final >= 15\%, peak-to-final drop > 10 pp; outcomes.py) that end below 50\% (n\_band\_only = other runs of the cell in the same accuracy band: stable CIFAR-10 runs or never\_learned). Predicted classes and the final dead fraction and number of surviving ReLU-type units per layer (conv units are channels), means over the partial runs of each cell.}
+\label{tab:q5_partial_collapse}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}rllrlrlrrrrrrrrrrrrrrrrrrrr@{}}
+\toprule
+stage & dataset & arch\_label & hidden & model & lr & seed\_set & n\_partial & n\_cell & n\_band\_only & final\_val\_mean & best\_val\_mean & n\_pred\_classes\_med & max\_class\_share\_med & hidden1\_relu\_dead & hidden1\_relu\_alive\_units & hidden2\_relu\_dead & hidden2\_relu\_alive\_units & hidden1\_tanh\_sat & hidden2\_tanh\_sat & conv\_leaky\_relu\_dead & conv\_leaky\_relu\_alive\_units & hidden1\_leaky\_relu\_dead & hidden1\_leaky\_relu\_alive\_units & conv\_relu\_dead & conv\_relu\_alive\_units & conv\_tanh\_sat \\
+\midrule
+0 & mnist & mlp2 & 64 & relu & 0.050 & S0 seeds 1,2,3,5,6,7,8,9,10 (exploratory) & 9 & 10 & 0 & 20.973 & 91.091 & 2.000 & 0.561 & 0.719 & 18.000 & 0.979 & 1.333 &  &  &  &  &  &  &  &  &  \\
+0 & mnist & mlp2 & 128 & relu & 0.050 & S0 seeds 1,2,3,4,5,8,9,10 (exploratory) & 8 & 10 & 0 & 21.197 & 92.633 & 3.000 & 0.555 & 0.822 & 22.750 & 0.966 & 4.375 &  &  &  &  &  &  &  &  &  \\
+0 & mnist & mlp2 & 128 & tanh+relu & 0.050 & S0 seeds 4-4 (exploratory) & 1 & 10 & 0 & 37.580 & 91.700 & 8.000 & 0.437 & 0.172 & 53.000 & 1.000 & 0.000 & 0.881 & 1.000 &  &  &  &  &  &  &  \\
+2 & cifar10 & cfg1 & 64 & leaky\_relu & 0.020 & S2 seeds 1,2,3,7,8,10,13,14,15,17,18,20,22,23,24,25,26,27,28,29,30 (descriptive, pooled sweep+ext) & 21 & 30 & 7 & 23.014 & 42.084 & 10.000 & 0.296 &  &  &  &  &  &  & 0.000 & 8.000 & 7.44e-04 & 63.952 &  &  &  \\
+2 & cifar10 & cfg1 & 64 & relu & 0.010 & S2 seeds 15-15 (confirmatory seeds) & 1 & 30 & 28 & 34.080 & 46.960 & 10.000 & 0.391 & 0.000 & 64.000 &  &  &  &  &  &  &  &  & 0.000 & 8.000 &  \\
+2 & cifar10 & cfg1 & 64 & tanh+relu & 0.030 & S2 seeds 9-9 (exploratory) & 1 & 10 & 6 & 24.240 & 35.120 & 10.000 & 0.321 & 1.000 & 0.000 &  &  & 0.993 &  &  &  &  &  & 0.000 & 4.000 & 0.956 \\
+2 & cifar10 & cfg1 & 128 & leaky\_relu & 0.010 & S2 seeds 1,3,10,16,17,18,19,20,22,27,28,29,30 (descriptive, pooled sweep+ext) & 13 & 30 & 16 & 33.612 & 53.277 & 10.000 & 0.315 &  &  &  &  &  &  & 0.000 & 8.000 & 6.01e-04 & 127.923 &  &  &  \\
+2 & cifar10 & cfg1 & 128 & leaky\_relu & 0.020 & S2 seeds 1,3,4,5,6,7,8,11,12,15,16,17,18,19,21,22,23,24,25,26,28,29,30 (descriptive, pooled sweep+ext) & 23 & 30 & 7 & 25.769 & 41.043 & 10.000 & 0.285 &  &  &  &  &  &  & 0.000 & 8.000 & 6.79e-04 & 127.913 &  &  &  \\
+2 & cifar10 & cfg1 & 128 & relu & 0.010 & S2 seeds 10,14,29 (descriptive, pooled sweep+ext) & 3 & 30 & 23 & 32.167 & 49.620 & 10.000 & 0.539 & 0.104 & 114.667 &  &  &  &  &  &  &  &  & 0.000 & 8.000 &  \\
+2 & cifar10 & cfg1 & 256 & leaky\_relu & 0.010 & S2 seeds 1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30 (descriptive, pooled sweep+ext) & 29 & 30 & 0 & 26.088 & 52.910 & 10.000 & 0.309 &  &  &  &  &  &  & 0.000 & 8.000 & 8.08e-04 & 255.793 &  &  &  \\
+2 & cifar10 & cfg1 & 256 & leaky\_relu & 0.020 & S2 seeds 2,5,7,8,9,11,13,16,18,20,23,26,28 (descriptive, pooled sweep+ext) & 13 & 30 & 17 & 26.740 & 40.211 & 10.000 & 0.251 &  &  &  &  &  &  & 0.000 & 8.000 & 0.000 & 256.000 &  &  &  \\
+2 & cifar10 & cfg1 & 256 & leaky\_relu & 0.050 & S2 seeds 10-10 (exploratory) & 1 & 10 & 9 & 17.100 & 35.700 & 10.000 & 0.749 &  &  &  &  &  &  & 0.000 & 8.000 & 0.008 & 254.000 &  &  &  \\
+2 & cifar10 & cfg1 & 256 & relu & 0.010 & S2 seeds 8,23,26 (descriptive, pooled sweep+ext) & 3 & 30 & 18 & 37.207 & 49.820 & 10.000 & 0.366 & 0.113 & 227.000 &  &  &  &  &  &  &  &  & 0.000 & 8.000 &  \\
+2 & cifar10 & cfg1 & 256 & tanh & 0.010 & S2 seeds 27-27 (confirmatory seeds) & 1 & 30 & 29 & 34.540 & 45.700 & 10.000 & 0.364 &  &  &  &  & 0.966 &  &  &  &  &  &  &  & 0.880 \\
+2 & cifar10 & cfg1 & 256 & tanh & 0.020 & S2 seeds 1-1 (exploratory) & 1 & 30 & 29 & 20.700 & 31.080 & 7.000 & 0.527 &  &  &  &  & 0.996 &  &  &  &  &  &  &  & 0.975 \\
+2 & cifar10 & cfg2 & 64 & leaky\_relu & 0.010 & S2 seeds 10,16 (descriptive, pooled sweep+ext) & 2 & 30 & 23 & 41.660 & 53.740 & 10.000 & 0.283 &  &  &  &  &  &  & 0.000 & 8.000 & 0.000 & 64.000 &  &  &  \\
+2 & cifar10 & cfg2 & 64 & leaky\_relu & 0.020 & S2 seeds 1,2,3,5,6,7,8,10,11,12,13,16,17,18,20,21,22,23,24,25,26,27,28,29,30 (descriptive, pooled sweep+ext) & 25 & 30 & 3 & 23.768 & 42.900 & 10.000 & 0.301 &  &  &  &  &  &  & 0.000 & 8.000 & 0.003 & 63.840 &  &  &  \\
+2 & cifar10 & cfg2 & 64 & relu & 0.010 & S2 seeds 15-15 (confirmatory seeds) & 1 & 30 & 29 & 39.340 & 49.460 & 10.000 & 0.378 & 0.000 & 64.000 &  &  &  &  &  &  &  &  & 0.000 & 8.000 &  \\
+2 & cifar10 & cfg2 & 64 & tanh+relu & 0.020 & S2 seeds 16-16 (confirmatory seeds) & 1 & 30 & 27 & 27.480 & 38.820 & 10.000 & 0.463 & 1.000 & 0.000 &  &  & 0.991 &  &  &  &  &  & 0.000 & 4.000 & 0.923 \\
+2 & cifar10 & cfg2 & 128 & leaky\_relu & 0.010 & S2 seeds 4,8,9,11,12,13,14,15,16,17,18,19,22,23,27,28,29 (descriptive, pooled sweep+ext) & 17 & 30 & 12 & 24.534 & 52.678 & 10.000 & 0.369 &  &  &  &  &  &  & 0.000 & 8.000 & 0.000 & 128.000 &  &  &  \\
+2 & cifar10 & cfg2 & 128 & leaky\_relu & 0.020 & S2 seeds 1,3,5,7,9,11,12,13,16,17,18,20,21,22,23,25,26,29 (descriptive, pooled sweep+ext) & 18 & 30 & 12 & 26.239 & 40.188 & 10.000 & 0.269 &  &  &  &  &  &  & 0.000 & 8.000 & 0.000 & 128.000 &  &  &  \\
+2 & cifar10 & cfg2 & 128 & leaky\_relu & 0.030 & S2 seeds 8-8 (exploratory) & 1 & 10 & 9 & 20.900 & 31.980 & 10.000 & 0.528 &  &  &  &  &  &  & 0.000 & 8.000 & 0.000 & 128.000 &  &  &  \\
+2 & cifar10 & cfg2 & 128 & leaky\_relu & 0.050 & S2 seeds 8-8 (exploratory) & 1 & 10 & 9 & 15.440 & 31.280 & 10.000 & 0.837 &  &  &  &  &  &  & 0.000 & 8.000 & 0.000 & 128.000 &  &  &  \\
+2 & cifar10 & cfg2 & 128 & relu & 0.010 & S2 seeds 20-20 (confirmatory seeds) & 1 & 30 & 23 & 36.960 & 49.040 & 10.000 & 0.311 & 0.055 & 121.000 &  &  &  &  &  &  &  &  & 0.000 & 8.000 &  \\
+2 & cifar10 & cfg2 & 128 & tanh & 0.020 & S2 seeds 22-22 (confirmatory seeds) & 1 & 30 & 29 & 22.820 & 32.880 & 9.000 & 0.536 &  &  &  &  & 0.989 &  &  &  &  &  &  &  & 0.952 \\
+2 & cifar10 & cfg2 & 128 & tanh+relu & 0.020 & S2 seeds 19-19 (confirmatory seeds) & 1 & 30 & 27 & 18.020 & 33.900 & 8.000 & 0.655 & 1.000 & 0.000 &  &  & 0.999 &  &  &  &  &  & 0.000 & 4.000 & 0.938 \\
+2 & cifar10 & cfg2 & 128 & tanh+relu@hidden & 0.010 & S2 seeds 2,3,8,10,13,14,15,16,17,20,24,27 (descriptive, pooled sweep+ext) & 12 & 30 & 10 & 26.028 & 43.043 & 9.500 & 0.361 & 1.000 & 0.000 &  &  & 0.999 &  &  &  &  &  & 0.000 & 8.000 &  \\
+2 & cifar10 & cfg2 & 256 & leaky\_relu & 0.010 & S2 seeds 1-30 (descriptive, pooled sweep+ext) & 30 & 30 & 0 & 26.881 & 52.596 & 10.000 & 0.266 &  &  &  &  &  &  & 0.000 & 8.000 & 0.000 & 256.000 &  &  &  \\
+2 & cifar10 & cfg2 & 256 & leaky\_relu & 0.020 & S2 seeds 3,6,7,10,15,16,19,21,22,23,24,25 (descriptive, pooled sweep+ext) & 12 & 30 & 18 & 28.115 & 41.085 & 10.000 & 0.264 &  &  &  &  &  &  & 0.000 & 8.000 & 0.000 & 256.000 &  &  &  \\
+2 & cifar10 & cfg2 & 256 & relu & 0.010 & S2 seeds 3,16,17,24,25,29 (descriptive, pooled sweep+ext) & 6 & 30 & 13 & 35.527 & 49.787 & 10.000 & 0.404 & 0.191 & 207.167 &  &  &  &  &  &  &  &  & 0.000 & 8.000 &  \\
+2 & cifar10 & cfg2 & 256 & tanh & 0.010 & S2 seeds 16-16 (confirmatory seeds) & 1 & 30 & 28 & 35.580 & 46.340 & 10.000 & 0.427 &  &  &  &  & 0.966 &  &  &  &  &  &  &  & 0.891 \\
+2 & cifar10 & cfg2 & 256 & tanh & 0.020 & S2 seeds 3,27 (descriptive, pooled sweep+ext) & 2 & 30 & 28 & 21.150 & 32.090 & 7.500 & 0.545 &  &  &  &  & 0.995 &  &  &  &  &  &  &  & 0.967 \\
+2 & cifar10 & cfg2 & 256 & tanh+relu@hidden & 0.010 & S2 seeds 1,5,6,8,14,15,16,20,21,22,23,28,30 (descriptive, pooled sweep+ext) & 13 & 30 & 6 & 28.472 & 46.731 & 10.000 & 0.362 & 0.997 & 0.385 &  &  & 0.998 &  &  &  &  &  & 0.000 & 8.000 &  \\
+2 & cifar10 & mlp1 & 64 & leaky\_relu & 0.020 & S2 seeds 5,9,16,23,27 (descriptive, pooled sweep+ext) & 5 & 30 & 25 & 26.300 & 38.356 & 10.000 & 0.574 &  &  &  &  &  &  &  &  & 0.009 & 63.400 &  &  &  \\
+2 & cifar10 & mlp1 & 64 & leaky\_relu & 0.030 & S2 seeds 2,5,9 (exploratory) & 3 & 10 & 7 & 21.933 & 33.987 & 10.000 & 0.599 &  &  &  &  &  &  &  &  & 0.036 & 61.667 &  &  &  \\
+2 & cifar10 & mlp1 & 128 & leaky\_relu & 0.010 & S2 seeds 8,16 (descriptive, pooled sweep+ext) & 2 & 30 & 28 & 32.990 & 43.810 & 10.000 & 0.445 &  &  &  &  &  &  &  &  & 0.000 & 128.000 &  &  &  \\
+2 & cifar10 & mlp1 & 128 & leaky\_relu & 0.020 & S2 seeds 12,16,22,23 (confirmatory seeds) & 4 & 30 & 26 & 26.780 & 38.690 & 10.000 & 0.627 &  &  &  &  &  &  &  &  & 0.006 & 127.250 &  &  &  \\
+2 & cifar10 & mlp1 & 128 & leaky\_relu & 0.030 & S2 seeds 1,4,7 (exploratory) & 3 & 10 & 6 & 18.773 & 32.280 & 10.000 & 0.751 &  &  &  &  &  &  &  &  & 0.036 & 123.333 &  &  &  \\
+2 & cifar10 & mlp1 & 128 & leaky\_relu & 0.050 & S2 seeds 3-3 (exploratory) & 1 & 10 & 8 & 15.160 & 27.040 & 9.000 & 0.764 &  &  &  &  &  &  &  &  & 0.016 & 126.000 &  &  &  \\
+2 & cifar10 & mlp1 & 128 & sigmoid & 0.010 & S2 seeds 5,16 (descriptive, pooled sweep+ext) & 2 & 30 & 28 & 31.210 & 42.340 & 10.000 & 0.416 &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & sigmoid & 0.030 & S2 seeds 1-1 (exploratory) & 1 & 10 & 9 & 25.140 & 36.860 & 10.000 & 0.564 &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & sigmoid & 0.050 & S2 seeds 3-3 (exploratory) & 1 & 10 & 9 & 25.940 & 36.260 & 10.000 & 0.499 &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & tanh & 0.010 & S2 seeds 16-16 (confirmatory seeds) & 1 & 30 & 29 & 25.560 & 37.480 & 9.000 & 0.596 &  &  &  &  & 0.968 &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 128 & tanh & 0.020 & S2 seeds 16-16 (confirmatory seeds) & 1 & 30 & 29 & 17.620 & 32.020 & 9.000 & 0.720 &  &  &  &  & 0.991 &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & leaky\_relu & 0.010 & S2 seeds 9,16 (descriptive, pooled sweep+ext) & 2 & 30 & 28 & 31.560 & 43.270 & 10.000 & 0.495 &  &  &  &  &  &  &  &  & 0.002 & 255.500 &  &  &  \\
+2 & cifar10 & mlp1 & 256 & leaky\_relu & 0.020 & S2 seeds 4,7,16,23,27 (descriptive, pooled sweep+ext) & 5 & 30 & 25 & 22.504 & 36.596 & 10.000 & 0.699 &  &  &  &  &  &  &  &  & 0.013 & 252.600 &  &  &  \\
+2 & cifar10 & mlp1 & 256 & leaky\_relu & 0.030 & S2 seeds 3-8 (exploratory) & 6 & 10 & 1 & 17.277 & 29.820 & 8.500 & 0.792 &  &  &  &  &  &  &  &  & 0.053 & 242.500 &  &  &  \\
+2 & cifar10 & mlp1 & 256 & leaky\_relu & 0.050 & S2 seeds 9-9 (exploratory) & 1 & 10 & 9 & 18.140 & 28.300 & 9.000 & 0.632 &  &  &  &  &  &  &  &  & 0.008 & 254.000 &  &  &  \\
+2 & cifar10 & mlp1 & 256 & sigmoid & 0.010 & S2 seeds 1,3,4,5,6,7,8,9,10,12,16,17,20,22,23,25,27 (descriptive, pooled sweep+ext) & 17 & 30 & 13 & 30.115 & 43.813 & 10.000 & 0.396 &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & sigmoid & 0.020 & S2 seeds 1,7,8,12,16,19,27 (descriptive, pooled sweep+ext) & 7 & 30 & 23 & 21.914 & 34.511 & 8.000 & 0.625 &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & sigmoid & 0.030 & S2 seeds 1,4,7,10 (exploratory) & 4 & 10 & 6 & 19.100 & 31.120 & 9.000 & 0.762 &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & tanh & 0.010 & S2 seeds 16-16 (confirmatory seeds) & 1 & 30 & 29 & 25.880 & 37.200 & 9.000 & 0.521 &  &  &  &  & 0.979 &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & tanh & 0.020 & S2 seeds 7,27 (descriptive, pooled sweep+ext) & 2 & 30 & 28 & 15.700 & 26.910 & 6.000 & 0.817 &  &  &  &  & 0.997 &  &  &  &  &  &  &  &  \\
+2 & cifar10 & mlp1 & 256 & tanh+relu & 0.010 & S2 seeds 16-16 (confirmatory seeds) & 1 & 30 & 29 & 28.180 & 38.520 & 10.000 & 0.572 & 0.469 & 68.000 &  &  & 0.980 &  &  &  &  &  &  &  &  \\
+2 & mnist & cfg1 & 128 & leaky\_relu & 0.010 & S2 seeds 8-8 (exploratory) & 1 & 30 & 0 & 45.940 & 98.880 & 9.000 & 0.321 &  &  &  &  &  &  & 0.000 & 8.000 & 0.031 & 124.000 &  &  &  \\
+2 & mnist & cfg1 & 128 & tanh & 0.100 & S2 seeds 5-5 (exploratory) & 1 & 10 & 0 & 48.740 & 72.960 & 9.000 & 0.461 &  &  &  &  & 1.000 &  &  &  &  &  &  &  & 0.995 \\
+2 & mnist & cfg1 & 128 & tanh+relu & 0.050 & S2 seeds 2,10 (exploratory) & 2 & 10 & 0 & 39.970 & 85.000 & 9.000 & 0.430 & 1.000 & 0.000 &  &  & 1.000 &  &  &  &  &  & 0.250 & 3.000 & 0.844 \\
+2 & mnist & cfg1 & 256 & tanh & 0.100 & S2 seeds 7-7 (exploratory) & 1 & 10 & 0 & 48.780 & 68.300 & 10.000 & 0.461 &  &  &  &  & 1.000 &  &  &  &  &  &  &  & 0.995 \\
+2 & mnist & cfg1 & 256 & tanh+relu & 0.030 & S2 seeds 7-7 (exploratory) & 1 & 10 & 0 & 49.400 & 96.300 & 10.000 & 0.374 & 1.000 & 0.000 &  &  & 1.000 &  &  &  &  &  & 0.000 & 4.000 & 0.617 \\
+2 & mnist & cfg2 & 64 & tanh+relu & 0.050 & S2 seeds 8-8 (exploratory) & 1 & 10 & 0 & 26.520 & 84.040 & 6.000 & 0.731 & 1.000 & 0.000 &  &  & 1.000 &  &  &  &  &  & 0.000 & 4.000 & 0.830 \\
+2 & mnist & cfg2 & 128 & tanh & 0.100 & S2 seeds 3-3 (exploratory) & 1 & 10 & 0 & 33.640 & 67.880 & 7.000 & 0.343 &  &  &  &  & 1.000 &  &  &  &  &  &  &  & 0.994 \\
+2 & mnist & cfg2 & 128 & tanh+relu & 0.050 & S2 seeds 7,10 (exploratory) & 2 & 10 & 0 & 35.350 & 83.580 & 9.000 & 0.496 & 1.000 & 0.000 &  &  & 1.000 &  &  &  &  &  & 0.125 & 3.500 & 0.932 \\
+2 & mnist & cfg2 & 128 & tanh+relu@conv & 0.050 & S2 seeds 2,4,5,6,8,10 (exploratory) & 6 & 10 & 1 & 28.960 & 61.643 & 6.000 & 0.823 & 0.921 & 10.167 &  &  &  &  &  &  &  &  & 0.708 & 1.167 & 0.974 \\
+2 & mnist & cfg2 & 128 & tanh+relu@hidden & 0.030 & S2 seeds 3-3 (exploratory) & 1 & 10 & 0 & 42.480 & 95.880 & 10.000 & 0.522 & 1.000 & 0.000 &  &  & 1.000 &  &  &  &  &  & 0.125 & 7.000 &  \\
+2 & mnist & cfg2 & 128 & tanh+relu@hidden & 0.050 & S2 seeds 7-7 (exploratory) & 1 & 10 & 1 & 22.000 & 61.860 & 5.000 & 0.642 & 1.000 & 0.000 &  &  & 1.000 &  &  &  &  &  & 0.250 & 6.000 &  \\
+2 & mnist & cfg2 & 256 & tanh+relu@conv & 0.050 & S2 seeds 1,2,3,4,5,6,7,9,10 (exploratory) & 9 & 10 & 0 & 30.020 & 63.107 & 7.000 & 0.808 & 0.950 & 12.889 &  &  &  &  &  &  &  &  & 0.778 & 0.889 & 0.965 \\
+2 & mnist & cfg2 & 256 & tanh+relu@hidden & 0.030 & S2 seeds 2,5,6,10 (exploratory) & 4 & 10 & 0 & 29.965 & 95.895 & 6.000 & 0.653 & 1.000 & 0.000 &  &  & 1.000 &  &  &  &  &  & 0.031 & 7.750 &  \\
+2 & mnist & cfg2 & 256 & tanh+relu@hidden & 0.050 & S2 seeds 7-7 (exploratory) & 1 & 10 & 0 & 16.160 & 72.020 & 6.000 & 0.840 & 1.000 & 0.000 &  &  & 1.000 &  &  &  &  &  & 0.250 & 6.000 &  \\
+3 & cifar10 & cfg2 & 128 & relu & 0.010 & S3 seeds 34,38,45 (ratio slice) & 3 & 15 & 8 & 37.153 & 48.220 & 10.000 & 0.365 & 0.026 & 124.667 &  &  &  &  &  &  &  &  & 0.000 & 8.000 &  \\
+3 & cifar10 & cfg2 & 128 & tanh & 0.030 & S3 seeds 44-44 (ratio slice) & 1 & 15 & 9 & 19.080 & 29.140 & 7.000 & 0.676 &  &  &  &  & 0.999 &  &  &  &  &  &  &  & 0.982 \\
+3 & cifar10 & cfg2 & 128 & tanh+relu@0.25 & 0.030 & S3 seeds 32-32 (ratio slice) & 1 & 15 & 12 & 23.540 & 33.980 & 9.000 & 0.421 & 1.000 & 0.000 &  &  & 0.994 &  &  &  &  &  & 0.500 & 1.000 & 0.974 \\
+3 & cifar10 & cfg2 & 128 & tanh+relu@0.75 & 0.020 & S3 seeds 33-33 (ratio slice) & 1 & 15 & 10 & 18.820 & 38.920 & 10.000 & 0.423 & 1.000 & 0.000 &  &  & 0.998 &  &  &  &  &  & 0.000 & 6.000 & 0.931 \\
+\bottomrule
+\end{tabular}}
+\end{table}

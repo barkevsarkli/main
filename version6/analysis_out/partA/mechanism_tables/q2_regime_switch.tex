@@ -1,0 +1,37 @@
+\begin{table}[htbp]\centering\small
+\caption{Q2. Smallest tested LR at which the median tanh+relu run has >= 50\% of its last-hidden-layer ReLU units dead (lr\_switch\_relu\_half\_dead), and the regime of the majority there.}
+\label{tab:q2_regime_switch}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}rllrllrrl@{}}
+\toprule
+stage & dataset & arch\_label & hidden & hybrid & lrs\_tested & lr\_switch\_relu\_half\_dead & lr\_majority\_carried & regime\_at\_switch \\
+\midrule
+0 & mnist & mlp2 & 64 & tanh+relu & 0.02 0.03 0.05 & 0.050 & 0.050 & carried \\
+0 & mnist & mlp2 & 128 & tanh+relu & 0.02 0.03 0.05 & 0.050 & 0.050 & carried \\
+2 & cifar10 & cfg1 & 64 & tanh+relu & 0.0003 0.001 0.003 0.01 0.02 0.03 0.05 & 0.020 & 0.020 & carried \\
+2 & cifar10 & cfg1 & 128 & tanh+relu & 0.0003 0.001 0.003 0.01 0.02 0.03 0.05 & 0.020 & 0.020 & carried \\
+2 & cifar10 & cfg1 & 256 & tanh+relu & 0.0003 0.001 0.003 0.01 0.02 0.03 0.05 & 0.020 & 0.020 & carried \\
+2 & cifar10 & cfg2 & 64 & tanh+relu & 0.0003 0.001 0.003 0.01 0.02 0.03 0.05 & 0.020 & 0.020 & carried \\
+2 & cifar10 & cfg2 & 128 & tanh+relu & 0.0003 0.001 0.003 0.01 0.02 0.03 0.05 & 0.020 & 0.020 & carried \\
+2 & cifar10 & cfg2 & 256 & tanh+relu & 0.0003 0.001 0.003 0.01 0.02 0.03 0.05 & 0.020 & 0.020 & carried \\
+2 & cifar10 & mlp1 & 64 & tanh+relu & 0.0003 0.001 0.003 0.01 0.02 0.03 0.05 & 0.010 & 0.010 & carried \\
+2 & cifar10 & mlp1 & 128 & tanh+relu & 0.0003 0.001 0.003 0.01 0.02 0.03 0.05 & 0.010 & 0.010 & carried \\
+2 & cifar10 & mlp1 & 256 & tanh+relu & 0.0003 0.001 0.003 0.01 0.02 0.03 0.05 & 0.020 & 0.020 & carried \\
+2 & mnist & cfg1 & 64 & tanh+relu & 0.001 0.003 0.01 0.02 0.03 0.05 0.1 & 0.050 & 0.050 & carried \\
+2 & mnist & cfg1 & 128 & tanh+relu & 0.001 0.003 0.01 0.02 0.03 0.05 0.1 & 0.050 & 0.050 & carried \\
+2 & mnist & cfg1 & 256 & tanh+relu & 0.001 0.003 0.01 0.02 0.03 0.05 0.1 & 0.030 & 0.030 & carried \\
+2 & mnist & cfg2 & 64 & tanh+relu & 0.001 0.003 0.01 0.02 0.03 0.05 0.1 & 0.050 & 0.050 & carried \\
+2 & mnist & cfg2 & 128 & tanh+relu & 0.001 0.003 0.01 0.02 0.03 0.05 0.1 & 0.050 & 0.050 & carried \\
+2 & mnist & cfg2 & 256 & tanh+relu & 0.001 0.003 0.01 0.02 0.03 0.05 0.1 & 0.030 & 0.030 & carried \\
+2 & mnist & mlp1 & 64 & tanh+relu & 0.001 0.003 0.01 0.02 0.03 0.05 0.1 & 0.100 & 0.100 & carried \\
+2 & mnist & mlp1 & 128 & tanh+relu & 0.001 0.003 0.01 0.02 0.03 0.05 0.1 & 0.100 & 0.100 & carried \\
+2 & mnist & mlp1 & 256 & tanh+relu & 0.001 0.003 0.01 0.02 0.03 0.05 0.1 & 0.100 & 0.100 & carried \\
+3 & cifar10 & cfg2 & 128 & tanh+relu & 0.01 0.02 0.03 & 0.020 & 0.020 & carried \\
+3 & cifar10 & cfg2 & 128 & tanh+relu@0.25 & 0.01 0.02 0.03 & 0.020 & 0.020 & carried \\
+3 & cifar10 & cfg2 & 128 & tanh+relu@0.75 & 0.01 0.02 0.03 & 0.020 & 0.020 & carried \\
+3 & mnist & cfg2 & 128 & tanh+relu & 0.01 0.02 0.03 &  &  &  \\
+3 & mnist & cfg2 & 128 & tanh+relu@0.25 & 0.01 0.02 0.03 &  &  &  \\
+3 & mnist & cfg2 & 128 & tanh+relu@0.75 & 0.01 0.02 0.03 & 0.030 & 0.030 & carried \\
+\bottomrule
+\end{tabular}}
+\end{table}

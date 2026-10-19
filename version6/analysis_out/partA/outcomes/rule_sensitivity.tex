@@ -1,0 +1,39 @@
+\begin{table}[htbp]\centering\small
+\caption{Runs whose class differs between the relative never\_learned rule (used) and the absolute rule (best validation accuracy < 50\% on MNIST, < 20\% on CIFAR-10).}
+\label{tab:rule_sensitivity}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llllr@{}}
+\toprule
+source & dataset & outcome & outcome\_abs & n \\
+\midrule
+v5 c10\_calib\_12 & cifar10 & never\_learned & stable & 1 \\
+v5 c10\_calib\_128 & cifar10 & never\_learned & late\_collapse & 11 \\
+v5 c10\_calib\_128 & cifar10 & never\_learned & stable & 26 \\
+v5 c10\_calib\_256 & cifar10 & never\_learned & late\_collapse & 14 \\
+v5 c10\_calib\_256 & cifar10 & never\_learned & late\_degradation & 1 \\
+v5 c10\_calib\_256 & cifar10 & never\_learned & stable & 20 \\
+v5 c10\_calib\_32 & cifar10 & never\_learned & late\_collapse & 1 \\
+v5 c10\_calib\_32 & cifar10 & never\_learned & stable & 2 \\
+v5 c10\_calib\_512 & cifar10 & never\_learned & late\_collapse & 6 \\
+v5 c10\_calib\_512 & cifar10 & never\_learned & late\_degradation & 2 \\
+v5 c10\_calib\_512 & cifar10 & never\_learned & stable & 19 \\
+v5 c10\_calib\_64 & cifar10 & never\_learned & late\_collapse & 2 \\
+v5 c10\_calib\_64 & cifar10 & never\_learned & stable & 14 \\
+v5 c10\_lrsweep\_128 & cifar10 & never\_learned & late\_collapse & 78 \\
+v5 c10\_lrsweep\_128 & cifar10 & never\_learned & stable & 107 \\
+v5 calib\_12 & mnist & stable & never\_learned & 1 \\
+v5 calib\_256 & mnist & stable & never\_learned & 1 \\
+v5 lrsweep\_64 & mnist & late\_collapse & never\_learned & 1 \\
+v6 stage1 & cifar10 & never\_learned & late\_collapse & 50 \\
+v6 stage1 & cifar10 & never\_learned & late\_degradation & 1 \\
+v6 stage1 & cifar10 & never\_learned & stable & 53 \\
+v6 stage2 & cifar10 & never\_learned & late\_collapse & 133 \\
+v6 stage2 & cifar10 & never\_learned & late\_degradation & 6 \\
+v6 stage2 & cifar10 & never\_learned & stable & 325 \\
+v6 stage2 & mnist & late\_collapse & never\_learned & 1 \\
+v6 stage2 & mnist & late\_degradation & never\_learned & 1 \\
+v6 stage3 & cifar10 & never\_learned & late\_collapse & 9 \\
+v6 stage3 & cifar10 & never\_learned & stable & 6 \\
+\bottomrule
+\end{tabular}}
+\end{table}

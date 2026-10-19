@@ -1,0 +1,14 @@
+stage,dataset,arch_label,lr,seed_set,n,spike_epoch_med,val_before,val_at,val_final,train_before,train_at,train_final,logit_between_std_at
+0,mnist,mlp2,0.02,S0 seeds 1-10 (exploratory),10,29,90.46,79.27,86.46,93.18,77.0933,85.38,9.93106e+09
+0,mnist,mlp2,0.03,S0 seeds 1-10 (exploratory),20,21.5,92.91,76.77,85.97,94.13,76.9623,85.6655,9.40736e+10
+0,mnist,mlp2,0.05,S0 seeds 1-10 (exploratory),20,6,91.08,78.32,85.84,92.3789,79.3822,86.3956,2.2629e+12
+2,cifar10,cfg1,0.01,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",36,24.5,44.37,17.24,25.26,59.9,35.6889,27.4155,5.94491e+12
+2,cifar10,cfg1,0.02,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",79,3,39.46,16.58,25.68,38.7422,25.6933,27.5222,2.9146e+14
+2,cifar10,cfg2,0.01,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",46,23.5,45.37,17.38,25.82,60.9389,36.0511,27.3411,4.806e+12
+2,cifar10,cfg2,0.02,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",78,3,39.42,16.96,26.88,38.6155,27.8,27.5245,3.37064e+14
+2,mnist,cfg1,0.01,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",26,40,93.96,87.49,89.08,95.9545,86.2533,87.3789,2.15194e+09
+2,mnist,cfg1,0.02,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",90,8,95.14,88.56,96.5,96.5044,86.9023,97.42,3.70956e+11
+2,mnist,cfg1,0.03,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,2,94.85,87.98,96.58,93.6578,88.1411,97.8222,5.02852e+12
+2,mnist,cfg2,0.01,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",23,39,95.3,84.28,90.68,96.5622,88.5689,89.2711,1.27709e+09
+2,mnist,cfg2,0.02,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",90,8,95.38,87.89,96.37,96.7255,87.81,97.4422,3.38964e+11
+2,mnist,cfg2,0.03,"S2 seeds 1-30 (descriptive, pooled sweep+ext)",30,2,94.67,87.58,96.54,93.6188,87.72,97.7133,4.87128e+12

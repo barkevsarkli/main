@@ -1,0 +1,1 @@
+Lead time of four candidate warning signals before the failure epoch (first epoch more than 10 pp below the running maximum of validation accuracy), per stage (Stage 0 seeds 1-10, Stage 2 seeds 1-30 where available, Stage 3 seeds 31-45; all exploratory). Positive = the signal fired before failure. Runs where a signal never fired are counted in the legend.

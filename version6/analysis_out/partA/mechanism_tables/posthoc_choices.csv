@@ -1,0 +1,17 @@
+choice,reason,measure,value_used,value_original,n_used,n_original
+Q4 spike-epoch spread: spikes at epoch >= 2 only,"a spike in epoch 1 is growth from the initialisation, with no epoch before it",ICC S0 mnist mlp2,0.988879,0.988879,50,50
+Q4 spike-epoch spread: spikes at epoch >= 2 only,"a spike in epoch 1 is growth from the initialisation, with no epoch before it",ICC S2 cifar10 cfg1,0.943471,0.956422,115,186
+Q4 spike-epoch spread: spikes at epoch >= 2 only,"a spike in epoch 1 is growth from the initialisation, with no epoch before it",ICC S2 cifar10 cfg2,0.925263,0.943364,124,196
+Q4 spike-epoch spread: spikes at epoch >= 2 only,"a spike in epoch 1 is growth from the initialisation, with no epoch before it",ICC S2 cifar10 mlp1,,,0,30
+Q4 spike-epoch spread: spikes at epoch >= 2 only,"a spike in epoch 1 is growth from the initialisation, with no epoch before it",ICC S2 mnist cfg1,0.998943,0.999153,146,206
+Q4 spike-epoch spread: spikes at epoch >= 2 only,"a spike in epoch 1 is growth from the initialisation, with no epoch before it",ICC S2 mnist cfg2,0.999085,0.999261,143,203
+Q4 spike-epoch spread: spikes at epoch >= 2 only,"a spike in epoch 1 is growth from the initialisation, with no epoch before it",ICC S2 mnist mlp1,,,0,90
+Q6 zmax_jump signal from epoch 2,the max |z| always more than doubles in epoch 1 (growth from the initialisation),median lead S0,0,13,,
+Q6 zmax_jump signal from epoch 2,the max |z| always more than doubles in epoch 1 (growth from the initialisation),AUC S0,0.648931,0.63664,,
+Q6 zmax_jump signal from epoch 2,the max |z| always more than doubles in epoch 1 (growth from the initialisation),median lead S2,0,9,,
+Q6 zmax_jump signal from epoch 2,the max |z| always more than doubles in epoch 1 (growth from the initialisation),AUC S2,0.626179,0.652288,,
+Q6 zmax_jump signal from epoch 2,the max |z| always more than doubles in epoch 1 (growth from the initialisation),median lead S3,0,7.5,,
+Q6 zmax_jump signal from epoch 2,the max |z| always more than doubles in epoch 1 (growth from the initialisation),AUC S3,0.534,0.579245,,
+Q1 event study: late_collapse runs only,runs that dip below 15% and recover made the median curve rise after e*,runs in the event study,400,467,400,467
+Q5 partial collapse = late_degradation with final < 50%,stable CIFAR-10 runs also end between 15% and 50%,runs,381,3122,,
+Q6 failing = late_collapse or late_degradation,the outcome taxonomy; drop > 10 pp also counted never_learned runs,failing runs,1188,1329,,

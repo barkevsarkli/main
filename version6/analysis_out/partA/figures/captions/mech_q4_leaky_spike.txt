@@ -1,0 +1,1 @@
+Leaky-ReLU weight explosion in Stage 0 mlp2 MNIST (seeds 1-10, exploratory). Left and middle: weight norms of the second hidden layer and the output layer, aligned at each run's spike epoch (largest one-epoch growth of the output weight norm, >= 10x). Right: spike epoch of every spiking run per (H, LR) cell.

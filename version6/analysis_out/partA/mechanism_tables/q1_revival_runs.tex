@@ -1,0 +1,432 @@
+\begin{table}[htbp]\centering\small
+\caption{Q1. Pure-ReLU runs of the Q1 cells (Stage 2, stress and below-stress LR, seeds 1-30) whose last hidden layer reached >= 99\% dead on the 1,000 probe inputs (e\_dead). Revived = ended < 50\% dead; e\_revive = first later epoch < 50\% dead (status 'revived, then died again' if it ends >= 50\% dead). dw\_* = median relative weight change in epochs e\_dead+1..e\_revive, or in epoch e\_dead+1 for runs that stayed dead; w\_conv\_ratio = conv weight norm at e\_revive (or e\_dead+1) over e\_dead.}
+\label{tab:q1_revival_runs}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lllrrrlllrrrrrrlrrrlr@{}}
+\toprule
+run\_id & dataset & arch\_label & hidden & lr & seed & outcome & revived & status & e\_dead & e\_revive & epochs\_dead & val\_at\_dead & max\_val\_after & final\_val & reaches\_15\_after & dw\_conv & dw\_hidden & dw\_output & dw\_conv\_zero & w\_conv\_ratio \\
+\midrule
+011ef6c292c5b056 & cifar10 & cfg2 & 128 & 0.0100 & 23 & late\_collapse & no & stayed dead & 37 &  &  & 10.5400 & 9.5600 & 9.2600 & no & 0.0458 & 0.0358 & 0.1244 & no & 1.0009 \\
+0131c2b2fccecdf7 & cifar10 & cfg2 & 64 & 0.0200 & 17 & late\_collapse & no & stayed dead & 9 &  &  & 10.0400 & 10.6800 & 9.5600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+017aa5e412c0de9c & cifar10 & cfg2 & 64 & 0.0200 & 10 & late\_collapse & no & revived, then died again & 7 & 8.0000 & 1.0000 & 10.6800 & 35.9400 & 10.2000 & yes & 0.2042 & 0.3815 & 0.5337 & no & 1.0522 \\
+01beb5f2b0d2e97f & cifar10 & cfg1 & 128 & 0.0200 & 26 & late\_collapse & no & stayed dead & 4 &  &  & 9.6000 & 10.6800 & 9.5800 & no & 0.0215 & 0.0205 & 0.0441 & no & 0.9999 \\
+0228e839cb891da4 & mnist & cfg1 & 256 & 0.0200 & 8 & late\_collapse & no & stayed dead & 28 &  &  & 12.4400 & 11.8600 & 9.9400 & no & 0.0644 & 0.0903 & 0.1242 & no & 0.9975 \\
+024739b132524bba & mnist & cfg2 & 64 & 0.0200 & 24 & late\_collapse & no & stayed dead & 22 &  &  & 10.2400 & 11.8600 & 8.6200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+04080a80fcbecd5e & mnist & cfg2 & 256 & 0.0200 & 12 & late\_collapse & no & stayed dead & 25 &  &  & 9.2600 & 11.8600 & 11.8600 & no & 0.3365 & 0.2377 & 0.3213 & no & 1.0490 \\
+041ad7005fd64b0d & mnist & cfg2 & 128 & 0.0200 & 17 & late\_collapse & no & stayed dead & 21 &  &  & 11.8800 & 11.8800 & 11.8800 & no & 1.427e-09 & 7.696e-09 & 7.325e-09 & no & 1.0000 \\
+04bb669089a13224 & cifar10 & cfg1 & 64 & 0.0200 & 19 & late\_collapse & no & stayed dead & 12 &  &  & 9.2600 & 10.6800 & 10.5200 & no & 0.0023 & 0.0055 & 0.0060 & no & 1.0001 \\
+04caf56a8cd1b193 & mnist & cfg1 & 256 & 0.0200 & 18 & late\_collapse & no & stayed dead & 33 &  &  & 10.6000 & 11.8600 & 11.8600 & no & 0.0077 & 0.0297 & 0.0081 & no & 0.9996 \\
+062b253f19b6317c & mnist & cfg2 & 256 & 0.0200 & 25 & late\_collapse & no & stayed dead & 24 &  &  & 11.8800 & 11.8600 & 10.2400 & no & 0.0035 & 0.0061 & 0.0701 & no & 1.0000 \\
+06d183d791694792 & cifar10 & cfg1 & 256 & 0.0200 & 18 & late\_collapse & no & revived, then died again & 7 & 9.0000 & 2.0000 & 9.5600 & 37.9400 & 10.0400 & yes & 0.1804 & 0.2994 & 0.5411 & no & 1.0689 \\
+0714afc01830cb44 & mnist & cfg2 & 64 & 0.0200 & 2 & late\_collapse & no & stayed dead & 27 &  &  & 9.6800 & 11.8600 & 11.8600 & no & 0.0000 & 2.591e-11 & 0.0000 & yes & 1.0000 \\
+08ec290e6f3c3cb3 & cifar10 & cfg2 & 256 & 0.0100 & 24 & late\_degradation & yes & revived & 32 & 34.0000 & 2.0000 & 10.1400 & 42.9200 & 35.6800 & yes & 0.0738 & 0.1093 & 0.2423 & no & 1.0181 \\
+0926e4dff37c1ea4 & mnist & cfg1 & 128 & 0.0200 & 15 & late\_collapse & no & stayed dead & 26 &  &  & 9.9400 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+0b027b8f7b4cdd2e & cifar10 & cfg2 & 128 & 0.0200 & 24 & late\_collapse & no & revived, then died again & 6 & 7.0000 & 1.0000 & 10.2200 & 38.1200 & 10.0800 & yes & 0.2306 & 0.4503 & 0.5762 & no & 1.0693 \\
+0bd5d26fe34cb91b & cifar10 & cfg1 & 256 & 0.0200 & 26 & late\_collapse & no & stayed dead & 13 &  &  & 9.5400 & 10.6800 & 9.5800 & no & 2.765e-07 & 3.997e-07 & 8.560e-07 & no & 1.0000 \\
+0d28b5795d223665 & cifar10 & cfg1 & 64 & 0.0200 & 21 & late\_collapse & no & revived, then died again & 6 & 7.0000 & 1.0000 & 9.6000 & 36.6000 & 9.5800 & yes & 0.1866 & 0.3498 & 0.5035 & no & 1.0413 \\
+0e53358ad20f85c9 & cifar10 & cfg2 & 256 & 0.0200 & 10 & late\_collapse & no & revived, then died again & 8 & 9.0000 & 1.0000 & 10.5200 & 36.6400 & 10.1600 & yes & 0.1392 & 0.1481 & 0.3568 & no & 1.0113 \\
+0e8448d0f473d2fd & cifar10 & cfg1 & 256 & 0.0200 & 20 & late\_collapse & no & stayed dead & 8 &  &  & 9.5600 & 10.6800 & 9.5600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+12a0580624a65bfa & cifar10 & cfg2 & 64 & 0.0200 & 1 & late\_collapse & no & revived, then died again & 10 & 11.0000 & 1.0000 & 10.0400 & 36.9000 & 9.6000 & yes & 0.1319 & 0.1927 & 0.4895 & no & 1.0181 \\
+12fbce244d570b94 & mnist & cfg1 & 128 & 0.0200 & 4 & late\_collapse & no & stayed dead & 29 &  &  & 11.8600 & 11.8600 & 9.9400 & no & 0.0001 & 0.0001 & 5.956e-05 & no & 1.0000 \\
+14649fb4345abbe8 & cifar10 & cfg2 & 128 & 0.0200 & 26 & late\_collapse & no & stayed dead & 10 &  &  & 10.5200 & 10.6800 & 9.5800 & no & 0.0017 & 0.0020 & 0.0025 & no & 1.0000 \\
+14f7bb9af9cda36a & cifar10 & cfg1 & 128 & 0.0200 & 25 & late\_collapse & no & stayed dead & 4 &  &  & 9.2600 & 10.6800 & 10.5200 & no & 0.0077 & 0.0217 & 0.0471 & no & 0.9998 \\
+1568a1e2503207dc & mnist & cfg1 & 128 & 0.0200 & 24 & late\_collapse & no & stayed dead & 28 &  &  & 11.8800 & 12.4000 & 8.6200 & no & 0.2743 & 0.2078 & 0.4893 & no & 1.0269 \\
+15b0a1b41bddc082 & mnist & cfg1 & 64 & 0.0200 & 25 & late\_collapse & no & stayed dead & 31 &  &  & 9.2400 & 11.8600 & 10.2400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+16b47c81025d1f33 & cifar10 & cfg1 & 128 & 0.0200 & 4 & late\_collapse & no & stayed dead & 15 &  &  & 9.5400 & 10.6800 & 9.5600 & no & 0.0465 & 0.0473 & 0.1533 & no & 1.0008 \\
+17be146d2ca52200 & cifar10 & cfg2 & 256 & 0.0200 & 4 & late\_collapse & no & revived, then died again & 7 & 8.0000 & 1.0000 & 10.5400 & 38.5000 & 9.5600 & yes & 0.1930 & 0.3354 & 0.5520 & no & 1.0546 \\
+198f57ba0e7c5e5d & mnist & cfg2 & 256 & 0.0200 & 6 & late\_collapse & no & stayed dead & 29 &  &  & 12.2200 & 11.8800 & 10.4000 & no & 0.1367 & 0.1251 & 0.0704 & no & 1.0043 \\
+1a3ccca5477467f7 & cifar10 & cfg2 & 64 & 0.0200 & 4 & never\_learned & no & stayed dead & 3 &  &  & 9.2600 & 10.6800 & 9.5600 & no & 0.0018 & 0.0075 & 0.0023 & no & 1.0002 \\
+1a62e611167acd99 & mnist & cfg2 & 64 & 0.0200 & 7 & late\_collapse & no & stayed dead & 26 &  &  & 9.5600 & 11.8600 & 10.2400 & no & 2.627e-07 & 3.253e-07 & 1.908e-07 & no & 1.0000 \\
+1a85afd65d66789c & cifar10 & cfg2 & 64 & 0.0200 & 3 & late\_collapse & no & revived, then died again & 9 & 13.0000 & 4.0000 & 9.3200 & 37.0800 & 10.6800 & yes & 0.0166 & 0.0250 & 0.1010 & no & 1.0400 \\
+1b3ab12110a062e5 & cifar10 & cfg2 & 64 & 0.0200 & 24 & late\_collapse & no & revived, then died again & 6 & 10.0000 & 4.0000 & 10.1600 & 35.5600 & 10.0400 & yes & 0.0173 & 0.0145 & 0.0228 & no & 1.0971 \\
+1bae1d790f23af85 & mnist & cfg2 & 64 & 0.0200 & 12 & late\_collapse & no & stayed dead & 24 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 0.0608 & 0.1377 & 0.0573 & no & 0.9973 \\
+1c0ff6e04f152d36 & cifar10 & cfg1 & 256 & 0.0100 & 26 & late\_degradation & yes & revived & 21 & 22.0000 & 1.0000 & 10.5400 & 45.6200 & 39.7400 & yes & 0.1296 & 0.2408 & 0.4375 & no & 1.0246 \\
+1d7d7977bdd27cc8 & cifar10 & cfg1 & 256 & 0.0100 & 11 & late\_collapse & no & stayed dead & 40 &  &  & 10.1800 &  & 10.1800 & no &  &  &  & yes & 1.0000 \\
+1d98e6908674e02e & mnist & cfg1 & 128 & 0.0200 & 17 & late\_collapse & no & stayed dead & 29 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+1dbd6306b91fd70a & mnist & cfg2 & 256 & 0.0200 & 16 & late\_collapse & no & stayed dead & 35 &  &  & 9.5800 & 11.8800 & 11.8800 & no & 7.485e-06 & 1.534e-05 & 1.827e-06 & no & 1.0000 \\
+1fcd83549e0f7f78 & mnist & cfg2 & 256 & 0.0200 & 29 & late\_collapse & no & stayed dead & 29 &  &  & 10.0200 & 16.3800 & 11.8600 & yes & 0.1223 & 0.1809 & 0.2584 & no & 1.0020 \\
+202f592986ee9437 & mnist & cfg1 & 256 & 0.0200 & 25 & late\_collapse & no & stayed dead & 27 &  &  & 10.6400 & 11.8600 & 10.2400 & no & 0.0293 & 0.0631 & 0.0107 & no & 0.9953 \\
+2033c3a8f81ea0d7 & mnist & cfg2 & 256 & 0.0200 & 15 & late\_collapse & no & stayed dead & 28 &  &  & 9.9400 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+2116dfb2034e6f71 & mnist & cfg2 & 256 & 0.0200 & 13 & late\_collapse & no & stayed dead & 24 &  &  & 11.8600 & 11.8600 & 10.6000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+236c9653beb10e0d & cifar10 & cfg1 & 128 & 0.0100 & 12 & stable & yes & revived & 26 & 27.0000 & 1.0000 & 10.2400 & 46.8200 & 42.1000 & yes & 0.1064 & 0.1808 & 0.4048 & no & 1.0166 \\
+23fd8d907fa3133f & cifar10 & cfg2 & 128 & 0.0200 & 5 & late\_collapse & no & revived, then died again & 16 & 18.0000 & 2.0000 & 10.5200 & 35.7800 & 10.1200 & yes & 0.0736 & 0.1413 & 0.2802 & no & 1.0261 \\
+268078f94d7d1b5e & cifar10 & cfg1 & 64 & 0.0200 & 13 & late\_collapse & no & stayed dead & 16 &  &  & 10.5200 & 10.6800 & 9.2600 & no & 0.0118 & 0.0196 & 0.0434 & no & 0.9998 \\
+27140c08169520ad & mnist & cfg1 & 256 & 0.0200 & 7 & late\_collapse & no & stayed dead & 27 &  &  & 12.6800 & 11.8800 & 10.2400 & no & 0.1319 & 0.1215 & 0.1231 & no & 1.0053 \\
+271b4708e54f56ef & mnist & cfg1 & 128 & 0.0200 & 1 & late\_collapse & no & stayed dead & 27 &  &  & 10.6800 & 11.9400 & 9.3200 & no & 0.0074 & 0.0203 & 0.0222 & no & 0.9998 \\
+27c06e54c802b089 & cifar10 & cfg1 & 256 & 0.0200 & 2 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 9.5600 & 36.9400 & 10.1200 & yes & 0.1903 & 0.3313 & 0.5557 & no & 1.0404 \\
+282581debb20035f & cifar10 & cfg2 & 256 & 0.0100 & 15 & late\_collapse & no & stayed dead & 36 &  &  & 10.1600 & 10.5200 & 10.5200 & no & 0.0121 & 0.0068 & 0.0158 & no & 0.9999 \\
+283c3fbd0bb5f067 & cifar10 & cfg2 & 64 & 0.0200 & 22 & late\_collapse & no & revived, then died again & 5 & 10.0000 & 5.0000 & 9.2600 & 34.7000 & 9.5800 & yes & 0.0016 & 0.0023 & 0.0124 & no & 1.0403 \\
+2854251b855de24f & mnist & cfg2 & 128 & 0.0200 & 11 & late\_collapse & no & stayed dead & 26 &  &  & 10.2400 & 11.8600 & 10.4000 & no & 0.0877 & 0.1063 & 0.1245 & no & 0.9978 \\
+2900d0bf844f727a & cifar10 & cfg1 & 64 & 0.0200 & 4 & late\_collapse & no & stayed dead & 14 &  &  & 10.0400 & 10.6800 & 9.5600 & no & 1.092e-06 & 1.488e-06 & 6.962e-06 & no & 1.0000 \\
+2a999fe26f9e0a39 & mnist & cfg2 & 256 & 0.0200 & 22 & late\_collapse & no & stayed dead & 23 &  &  & 12.0000 & 16.4400 & 9.8600 & yes & 0.0812 & 0.0724 & 0.0756 & no & 1.0029 \\
+2b1e21c09cfdc693 & mnist & cfg1 & 128 & 0.0200 & 5 & late\_collapse & no & stayed dead & 29 &  &  & 9.8800 & 11.8600 & 11.8600 & no & 0.0045 & 0.0138 & 0.0065 & no & 1.0001 \\
+2b832ac1993830cd & cifar10 & cfg1 & 256 & 0.0200 & 15 & late\_collapse & no & revived, then died again & 16 & 17.0000 & 1.0000 & 10.5600 & 35.2200 & 9.6400 & yes & 0.1378 & 0.2731 & 0.5250 & no & 1.0289 \\
+2b9c1413d4b26058 & cifar10 & cfg1 & 64 & 0.0200 & 6 & late\_collapse & no & stayed dead & 4 &  &  & 10.5200 & 10.5200 & 9.5600 & no & 1.452e-06 & 3.691e-06 & 0.0117 & no & 1.0000 \\
+2b9ffe30d9547933 & mnist & cfg2 & 256 & 0.0200 & 8 & late\_collapse & no & stayed dead & 26 &  &  & 10.4000 & 11.8600 & 9.9400 & no & 1.123e-06 & 2.375e-06 & 1.902e-06 & no & 1.0000 \\
+2bb212d1a09e0a39 & cifar10 & cfg1 & 128 & 0.0200 & 24 & late\_collapse & no & revived, then died again & 4 & 5.0000 & 1.0000 & 10.0400 & 37.9400 & 10.0400 & yes & 0.2489 & 0.4639 & 0.6382 & no & 1.0863 \\
+2bea078c6b45494c & cifar10 & cfg2 & 64 & 0.0200 & 25 & late\_collapse & no & revived, then died again & 1 & 2.0000 & 1.0000 & 10.1200 & 36.0800 & 10.5200 & yes & 0.5323 & 0.8048 & 0.8383 & no & 1.2672 \\
+2c24db8523cebedb & cifar10 & cfg2 & 256 & 0.0200 & 5 & late\_collapse & no & revived, then died again & 3 & 4.0000 & 1.0000 & 10.1600 & 35.3200 & 10.1200 & yes & 0.1916 & 0.2562 & 0.4183 & no & 1.0385 \\
+2c7c461646040b47 & cifar10 & cfg2 & 256 & 0.0100 & 28 & stable & yes & revived & 31 & 32.0000 & 1.0000 & 10.1200 & 43.1800 & 42.5600 & yes & 0.1154 & 0.1888 & 0.4178 & no & 1.0144 \\
+2cf1cd9f9898d3e5 & mnist & cfg1 & 64 & 0.0200 & 17 & late\_collapse & no & stayed dead & 25 &  &  & 9.2400 & 11.8600 & 11.8600 & no & 0.0190 & 0.0297 & 0.0716 & no & 1.0017 \\
+2cff4cd8ffd9837f & mnist & cfg2 & 256 & 0.0200 & 24 & late\_collapse & no & stayed dead & 27 &  &  & 11.8600 & 11.8600 & 8.6200 & no & 0.1503 & 0.2544 & 1.4277 & no & 1.0037 \\
+2f5aedddf1ac7701 & mnist & cfg1 & 256 & 0.0200 & 23 & late\_collapse & no & stayed dead & 29 &  &  & 11.8800 & 11.8600 & 11.8600 & no & 0.0368 & 0.0491 & 0.0377 & no & 0.9974 \\
+2fd5ae6377bd01a3 & cifar10 & cfg1 & 128 & 0.0200 & 22 & late\_collapse & no & stayed dead & 9 &  &  & 9.5800 & 10.6800 & 9.5800 & no & 0.0200 & 0.0237 & 0.0200 & no & 1.0008 \\
+303e7abe8e06cb44 & cifar10 & cfg2 & 128 & 0.0200 & 22 & late\_collapse & no & stayed dead & 9 &  &  & 9.6000 & 10.7000 & 9.5800 & no & 0.0286 & 0.0329 & 0.0788 & no & 0.9996 \\
+3066e8f85fb27e6f & mnist & cfg2 & 64 & 0.0200 & 10 & late\_collapse & no & stayed dead & 22 &  &  & 9.5600 & 11.8600 & 10.2400 & no & 8.582e-06 & 2.020e-05 & 5.597e-05 & no & 1.0000 \\
+31ab1e0bd5f830a7 & mnist & cfg1 & 128 & 0.0200 & 18 & late\_collapse & no & stayed dead & 25 &  &  & 9.5600 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+31d271e96e175abe & cifar10 & cfg1 & 128 & 0.0200 & 14 & late\_collapse & no & revived, then died again & 10 & 12.0000 & 2.0000 & 10.1200 & 36.5800 & 10.6800 & yes & 0.0966 & 0.1504 & 0.3063 & no & 1.0299 \\
+32033df49212749a & cifar10 & cfg2 & 128 & 0.0200 & 15 & late\_collapse & no & stayed dead & 4 &  &  & 10.5200 & 10.6800 & 9.5800 & no & 0.0083 & 0.0191 & 0.0420 & no & 0.9995 \\
+32bf60529ece25aa & mnist & cfg1 & 256 & 0.0200 & 13 & late\_collapse & no & stayed dead & 30 &  &  & 11.8600 & 11.8600 & 10.6000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+337f638ad75668cf & mnist & cfg1 & 128 & 0.0200 & 29 & late\_collapse & no & stayed dead & 33 &  &  & 9.9600 & 11.8800 & 11.8800 & no & 9.176e-07 & 2.305e-06 & 1.971e-07 & no & 1.0000 \\
+33c2c3116d642a97 & cifar10 & cfg2 & 128 & 0.0100 & 2 & stable & yes & revived & 37 & 38.0000 & 1.0000 & 10.8000 & 42.4400 & 42.4400 & yes & 0.0871 & 0.0933 & 0.3382 & no & 1.0023 \\
+344364a1b775d7e9 & cifar10 & cfg2 & 64 & 0.0200 & 20 & late\_collapse & no & stayed dead & 6 &  &  & 10.5200 & 10.6800 & 9.5600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+3454f2ce9ea735b3 & cifar10 & cfg2 & 128 & 0.0200 & 12 & late\_collapse & no & revived, then died again & 8 & 9.0000 & 1.0000 & 9.2600 & 37.1400 & 9.2600 & yes & 0.1820 & 0.3127 & 0.5336 & no & 1.0395 \\
+355efd3a446f6023 & mnist & cfg1 & 256 & 0.0200 & 21 & late\_collapse & no & stayed dead & 30 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 0.0245 & 0.0379 & 0.0394 & no & 1.0004 \\
+360781da6072512d & cifar10 & cfg1 & 64 & 0.0200 & 29 & late\_collapse & no & revived, then died again & 6 & 8.0000 & 2.0000 & 10.5200 & 38.3000 & 9.5400 & yes & 0.1195 & 0.2289 & 0.3580 & no & 1.0771 \\
+36aeb09ec614f847 & cifar10 & cfg2 & 128 & 0.0100 & 24 & stable & yes & revived & 31 & 32.0000 & 1.0000 & 9.7400 & 44.0200 & 43.2000 & yes & 0.0975 & 0.1956 & 0.4849 & no & 1.0189 \\
+370d47259502430c & cifar10 & cfg1 & 128 & 0.0100 & 11 & late\_collapse & no & stayed dead & 40 &  &  & 10.2200 &  & 10.2200 & no &  &  &  & yes & 1.0000 \\
+3748fa7ccd36b726 & mnist & cfg2 & 256 & 0.0200 & 23 & late\_collapse & no & stayed dead & 23 &  &  & 9.2800 & 11.8600 & 11.8600 & no & 0.1777 & 0.1763 & 0.1912 & no & 1.0053 \\
+379f00f72d64af5c & cifar10 & cfg1 & 256 & 0.0200 & 27 & late\_collapse & no & revived, then died again & 10 & 11.0000 & 1.0000 & 10.6400 & 37.8000 & 9.2600 & yes & 0.1736 & 0.3419 & 0.5578 & no & 1.0535 \\
+37c591d159648a8c & cifar10 & cfg1 & 64 & 0.0200 & 24 & late\_collapse & no & stayed dead & 11 &  &  & 10.0400 & 10.6800 & 10.0400 & no & 0.0073 & 0.0219 & 0.0393 & no & 1.0000 \\
+38607ea8fe4e03d4 & cifar10 & cfg1 & 256 & 0.0100 & 28 & stable & yes & revived & 28 & 29.0000 & 1.0000 & 10.2000 & 43.6400 & 42.5400 & yes & 0.1062 & 0.1938 & 0.4021 & no & 1.0190 \\
+391e2c7564b9958b & mnist & cfg1 & 64 & 0.0200 & 28 & late\_collapse & no & stayed dead & 27 &  &  & 9.9400 & 11.8600 & 9.9400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+3975db9522b60322 & cifar10 & cfg2 & 64 & 0.0200 & 30 & late\_collapse & no & revived, then died again & 2 & 5.0000 & 3.0000 & 10.0400 & 37.5600 & 9.5600 & yes & 0.2126 & 0.4657 & 0.4973 & no & 1.1792 \\
+3a567cc1c0f17715 & mnist & cfg1 & 128 & 0.0200 & 27 & late\_collapse & no & stayed dead & 29 &  &  & 9.3200 & 11.8600 & 11.8600 & no & 0.0410 & 0.0497 & 0.0612 & no & 0.9999 \\
+3b0b108cb0f8fdf3 & mnist & cfg2 & 128 & 0.0200 & 24 & late\_collapse & no & stayed dead & 22 &  &  & 10.2400 & 11.8600 & 8.6200 & no & 0.0085 & 0.0122 & 0.1125 & no & 0.9998 \\
+3b318ce797e0f1f4 & mnist & cfg2 & 256 & 0.0200 & 14 & late\_collapse & no & stayed dead & 22 &  &  & 11.8600 & 11.8600 & 10.2400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+3d3b46d14296817a & cifar10 & cfg1 & 256 & 0.0200 & 3 & late\_collapse & no & stayed dead & 19 &  &  & 9.6000 & 10.6800 & 10.6800 & no & 0.0308 & 0.0271 & 0.0033 & no & 1.0002 \\
+3d8765a1248afde4 & mnist & cfg2 & 128 & 0.0200 & 21 & late\_collapse & no & stayed dead & 24 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+3da7733e84f03aa2 & mnist & cfg2 & 64 & 0.0200 & 15 & late\_collapse & no & stayed dead & 22 &  &  & 9.2400 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+3efac47a0727e743 & mnist & cfg2 & 64 & 0.0200 & 14 & late\_collapse & no & stayed dead & 23 &  &  & 10.2400 & 11.8600 & 10.2400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+3f65f5ce158f0177 & mnist & cfg1 & 128 & 0.0200 & 21 & late\_collapse & no & stayed dead & 26 &  &  & 9.4200 & 11.8800 & 11.8600 & no & 0.0767 & 0.0736 & 0.1395 & no & 0.9996 \\
+3f68e45bf548f9b8 & mnist & cfg1 & 128 & 0.0200 & 8 & late\_collapse & no & stayed dead & 27 &  &  & 9.5800 & 11.8800 & 9.9600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+40c7219b5d33cded & cifar10 & cfg1 & 256 & 0.0100 & 1 & stable & yes & revived & 35 & 36.0000 & 1.0000 & 10.7600 & 43.1200 & 41.2400 & yes & 0.1005 & 0.1760 & 0.4162 & no & 1.0120 \\
+41af1c3fa97433c9 & cifar10 & cfg2 & 256 & 0.0200 & 3 & late\_collapse & no & revived, then died again & 3 & 4.0000 & 1.0000 & 9.5800 & 38.6600 & 10.6800 & yes & 0.3095 & 0.5871 & 0.6573 & no & 1.1534 \\
+4240cc74c12959bf & cifar10 & cfg1 & 256 & 0.0200 & 17 & late\_collapse & no & revived, then died again & 10 & 11.0000 & 1.0000 & 9.2800 & 37.6400 & 9.5600 & yes & 0.1797 & 0.3611 & 0.5767 & no & 1.0508 \\
+43f3f180ff2f1d8e & cifar10 & cfg1 & 256 & 0.0200 & 14 & late\_collapse & no & revived, then died again & 8 & 9.0000 & 1.0000 & 10.7000 & 38.4600 & 10.6800 & yes & 0.1926 & 0.3892 & 0.5994 & no & 1.0597 \\
+44a93441dcd3d1db & mnist & cfg1 & 128 & 0.0200 & 25 & late\_collapse & no & stayed dead & 27 &  &  & 11.7200 & 11.8600 & 10.2400 & no & 0.0901 & 0.2134 & 0.0243 & no & 1.0020 \\
+45d9c0fe42e46400 & mnist & cfg1 & 256 & 0.0200 & 4 & late\_collapse & no & stayed dead & 27 &  &  & 9.2600 & 11.8800 & 9.9600 & no & 7.933e-07 & 2.748e-06 & 5.877e-07 & no & 1.0000 \\
+45ddd21ffe972a71 & cifar10 & cfg1 & 128 & 0.0200 & 19 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 10.5200 & 35.6600 & 10.5200 & yes & 1.3656 & 1.5938 & 1.8331 & no & 1.6095 \\
+462b10e5926a3c69 & mnist & cfg2 & 64 & 0.0200 & 16 & late\_collapse & no & stayed dead & 23 &  &  & 9.5600 & 11.8600 & 11.8600 & no & 1.828e-06 & 4.473e-06 & 2.915e-06 & no & 1.0000 \\
+466dea0b8a902180 & mnist & cfg2 & 128 & 0.0200 & 25 & late\_collapse & no & stayed dead & 22 &  &  & 10.2400 & 11.8600 & 10.2400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+48729bc512a1e89b & mnist & cfg2 & 64 & 0.0200 & 25 & late\_collapse & no & stayed dead & 24 &  &  & 11.8600 & 11.8600 & 10.2400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+49e86df1aced84c4 & cifar10 & cfg1 & 256 & 0.0200 & 9 & late\_collapse & no & revived, then died again & 14 & 15.0000 & 1.0000 & 9.5400 & 36.1200 & 9.2600 & yes & 0.1286 & 0.2356 & 0.5456 & no & 1.0248 \\
+49f045eccc55c561 & cifar10 & cfg1 & 256 & 0.0100 & 16 & late\_collapse & no & stayed dead & 39 &  &  & 9.5400 & 10.1800 & 10.1800 & no & 0.0166 & 0.0195 & 0.0596 & no & 0.9998 \\
+4a0fa2e1677a8f96 & cifar10 & cfg1 & 128 & 0.0200 & 29 & late\_collapse & no & revived, then died again & 6 & 8.0000 & 2.0000 & 10.5200 & 36.3400 & 9.5400 & yes & 0.2120 & 0.4212 & 0.7743 & no & 1.1418 \\
+4a1915f701e702ac & mnist & cfg1 & 256 & 0.0200 & 28 & late\_collapse & no & stayed dead & 28 &  &  & 12.0200 & 11.8600 & 9.9400 & no & 0.0518 & 0.0477 & 0.0506 & no & 1.0002 \\
+4a3c5baf3a03e5c0 & mnist & cfg2 & 256 & 0.0200 & 18 & late\_collapse & no & stayed dead & 25 &  &  & 9.6400 & 11.8800 & 11.8800 & no & 0.0174 & 0.0117 & 0.0477 & no & 1.0004 \\
+4af5a1863d84db24 & cifar10 & cfg2 & 256 & 0.0200 & 13 & late\_collapse & no & stayed dead & 13 &  &  & 10.5200 & 10.6800 & 9.2600 & no & 0.0108 & 0.0244 & 0.0461 & no & 0.9997 \\
+4c03acd9bc8ea9a4 & cifar10 & cfg2 & 64 & 0.0200 & 18 & late\_collapse & no & revived, then died again & 19 & 24.0000 & 5.0000 & 10.5200 & 37.1600 & 10.1000 & yes & 0.0170 & 0.0150 & 0.0732 & no & 1.0162 \\
+4c43dfde1ae5ebe6 & mnist & cfg1 & 64 & 0.0200 & 9 & late\_collapse & no & stayed dead & 26 &  &  & 9.5800 & 11.8800 & 9.5800 & no & 1.247e-08 & 3.993e-08 & 6.415e-09 & no & 1.0000 \\
+4c443615339c6b39 & cifar10 & cfg2 & 256 & 0.0100 & 4 & stable & yes & revived & 38 & 40.0000 & 2.0000 & 10.2000 & 39.8200 & 39.8200 & yes & 0.0601 & 0.0996 & 0.2499 & no & 1.0159 \\
+4c96547dbef7f208 & mnist & cfg2 & 128 & 0.0200 & 14 & late\_collapse & no & stayed dead & 24 &  &  & 9.6800 & 11.8600 & 10.2400 & no & 0.1213 & 0.2027 & 0.3647 & no & 1.0035 \\
+4e8cf342eb493e7d & mnist & cfg1 & 128 & 0.0200 & 30 & late\_collapse & no & stayed dead & 25 &  &  & 10.4000 & 11.8600 & 9.9400 & no & 0.0015 & 0.0047 & 0.0005 & no & 1.0000 \\
+4e9320db08d8f246 & mnist & cfg2 & 128 & 0.0200 & 23 & late\_collapse & no & stayed dead & 25 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+4f41bccd429c69ea & mnist & cfg2 & 128 & 0.0200 & 30 & late\_collapse & no & stayed dead & 25 &  &  & 10.4000 & 11.8600 & 9.9400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+50e0d43882f479bc & mnist & cfg1 & 64 & 0.0200 & 3 & late\_collapse & no & stayed dead & 25 &  &  & 10.2400 & 11.9000 & 10.4400 & no & 9.854e-08 & 8.000e-08 & 2.154e-08 & no & 1.0000 \\
+50f77810ccc12560 & cifar10 & cfg2 & 128 & 0.0200 & 8 & late\_collapse & no & stayed dead & 10 &  &  & 10.5400 & 10.6800 & 9.5400 & no & 0.0052 & 0.0060 & 0.0085 & no & 1.0001 \\
+5182354a96e038ce & cifar10 & cfg2 & 64 & 0.0200 & 16 & late\_collapse & no & revived, then died again & 5 & 7.0000 & 2.0000 & 9.2600 & 36.6000 & 10.1800 & yes & 0.2111 & 0.4298 & 0.5973 & no & 1.1352 \\
+51848add523f4e35 & cifar10 & cfg2 & 64 & 0.0200 & 11 & late\_collapse & no & stayed dead & 3 &  &  & 10.1200 & 10.6800 & 10.1800 & no & 0.2157 & 0.4087 & 0.5757 & no & 1.0604 \\
+5215e431f1adca1d & mnist & cfg2 & 64 & 0.0200 & 23 & late\_collapse & no & stayed dead & 26 &  &  & 9.8600 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+531b40c033fa88b6 & cifar10 & cfg2 & 256 & 0.0100 & 23 & late\_collapse & no & revived, then died again & 32 & 33.0000 & 1.0000 & 10.0400 & 43.2200 & 9.2800 & yes & 0.0937 & 0.1714 & 0.3961 & no & 1.0127 \\
+5324c081881938f1 & cifar10 & cfg2 & 128 & 0.0200 & 18 & late\_collapse & no & stayed dead & 12 &  &  & 9.5800 & 10.6800 & 10.0400 & no & 0.1797 & 0.2658 & 0.4949 & no & 1.0310 \\
+548332f68c0a5637 & mnist & cfg2 & 64 & 0.0200 & 18 & late\_collapse & no & stayed dead & 25 &  &  & 9.5800 & 11.8800 & 11.8800 & no & 5.720e-05 & 5.223e-05 & 4.924e-05 & no & 1.0000 \\
+551550b5815d18f8 & cifar10 & cfg1 & 256 & 0.0100 & 24 & stable & yes & revived & 37 & 38.0000 & 1.0000 & 9.5800 & 42.8400 & 42.4600 & yes & 0.0877 & 0.0887 & 0.2605 & no & 1.0058 \\
+551b39b5fbf69b41 & cifar10 & cfg1 & 64 & 0.0200 & 18 & late\_collapse & no & revived, then died again & 8 & 9.0000 & 1.0000 & 9.5800 & 38.1800 & 10.0400 & yes & 0.1646 & 0.2768 & 0.5260 & no & 1.0294 \\
+570e381f791c11a6 & cifar10 & cfg2 & 256 & 0.0200 & 19 & late\_collapse & no & revived, then died again & 5 & 6.0000 & 1.0000 & 10.1800 & 37.6000 & 10.5200 & yes & 0.2343 & 0.4506 & 0.6225 & no & 1.0970 \\
+5750e568adbd0992 & cifar10 & cfg2 & 256 & 0.0100 & 9 & stable & yes & revived & 22 & 23.0000 & 1.0000 & 10.0800 & 45.8200 & 43.2000 & yes & 0.1128 & 0.2346 & 0.4100 & no & 1.0241 \\
+5772c80e6d5ebb3a & cifar10 & cfg1 & 128 & 0.0200 & 3 & late\_collapse & no & stayed dead & 17 &  &  & 10.0400 & 10.6800 & 10.6800 & no & 2.403e-06 & 2.713e-06 & 3.987e-05 & no & 1.0000 \\
+578ea9f794db280c & mnist & cfg1 & 64 & 0.0200 & 12 & late\_collapse & no & stayed dead & 24 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 2.235e-07 & 2.288e-07 & 9.420e-08 & no & 1.0000 \\
+57a59d113a428901 & mnist & cfg1 & 64 & 0.0200 & 22 & late\_collapse & no & stayed dead & 28 &  &  & 10.4000 & 11.8600 & 9.8600 & no & 9.995e-11 & 3.251e-10 & 0.0000 & no & 1.0000 \\
+5804b480a12cb1ed & cifar10 & cfg1 & 128 & 0.0200 & 6 & late\_collapse & no & revived, then died again & 15 & 16.0000 & 1.0000 & 10.1800 & 36.9600 & 9.5600 & yes & 0.1511 & 0.2530 & 0.4619 & no & 1.0178 \\
+587deb5ef964e5fe & cifar10 & cfg2 & 64 & 0.0200 & 23 & never\_learned & no & stayed dead & 2 &  &  & 10.5200 & 10.6800 & 10.5200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+596285c1302d34c7 & mnist & cfg2 & 128 & 0.0200 & 8 & late\_collapse & no & stayed dead & 24 &  &  & 11.9800 & 11.8600 & 9.9400 & no & 0.0706 & 0.0941 & 0.1597 & no & 1.0017 \\
+59970dcf96171110 & cifar10 & cfg2 & 256 & 0.0100 & 10 & stable & yes & revived & 35 & 36.0000 & 1.0000 & 9.6200 & 45.3600 & 39.4200 & yes & 0.1139 & 0.1714 & 0.4177 & no & 1.0141 \\
+5b8168939284b15f & cifar10 & cfg2 & 256 & 0.0100 & 6 & late\_collapse & no & stayed dead & 35 &  &  & 10.5200 & 10.1200 & 9.5600 & no & 0.0075 & 0.0092 & 0.0093 & no & 1.0000 \\
+5bbba00bd3abaef3 & cifar10 & cfg2 & 64 & 0.0200 & 13 & never\_learned & no & stayed dead & 2 &  &  & 9.2600 & 10.7000 & 9.2800 & no & 0.0391 & 0.1055 & 0.0576 & no & 0.9981 \\
+5c9bb210d712ba30 & cifar10 & cfg1 & 128 & 0.0200 & 12 & late\_collapse & no & revived, then died again & 10 & 11.0000 & 1.0000 & 10.5400 & 36.7000 & 9.2600 & yes & 0.1569 & 0.2976 & 0.5544 & no & 1.0319 \\
+5cd2adb4354b6e1d & mnist & cfg1 & 128 & 0.0200 & 16 & late\_collapse & no & stayed dead & 26 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 1.603e-07 & 4.242e-07 & 7.832e-07 & no & 1.0000 \\
+5d02f752875064e8 & mnist & cfg2 & 256 & 0.0200 & 10 & late\_collapse & no & stayed dead & 28 &  &  & 11.9600 & 11.9800 & 10.2600 & no & 0.0009 & 0.0023 & 3.642e-05 & no & 1.0001 \\
+5d73c1074db6a134 & cifar10 & cfg1 & 128 & 0.0200 & 16 & late\_collapse & no & stayed dead & 12 &  &  & 9.5600 & 10.6800 & 10.1800 & no & 0.0188 & 0.0270 & 0.0770 & no & 1.0000 \\
+5db704c33d9dc873 & cifar10 & cfg1 & 64 & 0.0200 & 30 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 10.0400 & 39.1400 & 9.5600 & yes & 0.1747 & 0.3360 & 0.5589 & no & 1.0406 \\
+5eaa8db72212b1fd & mnist & cfg1 & 64 & 0.0200 & 26 & late\_collapse & no & stayed dead & 27 &  &  & 10.2400 & 11.8600 & 11.8600 & no & 0.0430 & 0.0995 & 0.1181 & no & 1.0011 \\
+5eb9353535431df7 & mnist & cfg1 & 64 & 0.0200 & 4 & late\_collapse & no & stayed dead & 23 &  &  & 11.9000 & 11.8600 & 9.9400 & no & 0.2473 & 0.5402 & 0.0677 & no & 1.0249 \\
+60592b9cb2701120 & cifar10 & cfg1 & 256 & 0.0200 & 5 & late\_collapse & no & stayed dead & 14 &  &  & 10.1200 & 10.6800 & 10.1200 & no & 0.0001 & 0.0001 & 0.0009 & no & 1.0000 \\
+605fee2b1e74e854 & mnist & cfg2 & 128 & 0.0200 & 18 & late\_collapse & no & stayed dead & 25 &  &  & 9.5800 & 11.8800 & 11.8800 & no & 2.976e-08 & 5.402e-08 & 1.916e-07 & no & 1.0000 \\
+606d4fb97ae93df8 & mnist & cfg2 & 64 & 0.0200 & 17 & late\_collapse & no & stayed dead & 23 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+611daa2e77f1e079 & cifar10 & cfg2 & 128 & 0.0200 & 25 & late\_collapse & no & revived, then died again & 18 & 20.0000 & 2.0000 & 9.3000 & 33.7800 & 10.5400 & yes & 0.1324 & 0.2424 & 0.5325 & no & 1.0513 \\
+6122b0a59744a96b & mnist & cfg2 & 128 & 0.0200 & 4 & late\_collapse & no & stayed dead & 27 &  &  & 9.2600 & 11.8800 & 9.9400 & no & 0.0012 & 0.0011 & 0.0004 & no & 1.0001 \\
+6253511e85a2421a & mnist & cfg1 & 128 & 0.0200 & 2 & late\_collapse & no & stayed dead & 28 &  &  & 9.5600 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+635400afe230471c & mnist & cfg2 & 128 & 0.0200 & 1 & late\_collapse & no & stayed dead & 24 &  &  & 11.8600 & 11.8600 & 9.2400 & no & 0.0083 & 0.0381 & 0.0016 & no & 0.9998 \\
+635b39c9c92af1f0 & mnist & cfg2 & 64 & 0.0200 & 26 & late\_collapse & no & stayed dead & 23 &  &  & 9.2400 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+637d0905d4ee40c1 & mnist & cfg2 & 64 & 0.0200 & 27 & late\_collapse & no & stayed dead & 22 &  &  & 10.4400 & 11.8600 & 11.8600 & no & 0.0604 & 0.1357 & 0.0343 & no & 1.0006 \\
+6392e49fbacfcc0b & cifar10 & cfg1 & 128 & 0.0100 & 18 & stable & yes & revived & 32 & 33.0000 & 1.0000 & 10.0800 & 44.1000 & 42.8400 & yes & 0.1099 & 0.2028 & 0.4540 & no & 1.0201 \\
+64095f7229e69e42 & mnist & cfg2 & 128 & 0.0200 & 27 & late\_collapse & no & stayed dead & 24 &  &  & 10.6000 & 11.8600 & 11.8600 & no & 0.0225 & 0.0293 & 0.1003 & no & 0.9997 \\
+641e4ab376de7b33 & cifar10 & cfg1 & 256 & 0.0100 & 14 & late\_collapse & no & stayed dead & 40 &  &  & 10.7600 &  & 10.7600 & no &  &  &  & yes & 1.0000 \\
+6473c3d42c862140 & cifar10 & cfg2 & 256 & 0.0100 & 25 & late\_degradation & yes & revived & 32 & 34.0000 & 2.0000 & 10.8400 & 42.4600 & 38.0400 & yes & 0.1207 & 0.1974 & 0.4334 & no & 1.0361 \\
+653dd9b1e7dd6b8c & mnist & cfg2 & 64 & 0.0200 & 22 & late\_collapse & no & stayed dead & 22 &  &  & 10.2600 & 11.8800 & 9.8600 & no & 9.318e-05 & 0.0002 & 5.328e-06 & no & 1.0000 \\
+655f24a96977229a & cifar10 & cfg2 & 128 & 0.0200 & 6 & late\_collapse & no & revived, then died again & 2 & 3.0000 & 1.0000 & 10.5200 & 37.4400 & 9.5600 & yes & 0.3389 & 0.6613 & 0.6576 & no & 1.1543 \\
+65baf52b213c1491 & mnist & cfg2 & 128 & 0.0200 & 2 & late\_collapse & no & stayed dead & 25 &  &  & 10.1000 & 11.8600 & 11.8600 & no & 0.0206 & 0.0455 & 0.0048 & no & 1.0006 \\
+663efa24ccb4fb89 & cifar10 & cfg1 & 64 & 0.0200 & 25 & late\_collapse & no & stayed dead & 9 &  &  & 10.1800 & 10.7000 & 10.5200 & no & 0.0366 & 0.0538 & 0.0434 & no & 1.0012 \\
+667e904e5d9e0acd & mnist & cfg1 & 128 & 0.0200 & 7 & late\_collapse & no & stayed dead & 28 &  &  & 11.9200 & 11.9000 & 10.2800 & no & 0.0195 & 0.0311 & 0.0213 & no & 1.0011 \\
+66f40274d991e368 & cifar10 & cfg2 & 64 & 0.0200 & 29 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 10.6800 & 35.2200 & 9.5400 & yes & 0.1236 & 0.1027 & 0.3810 & no & 1.0059 \\
+67b0d983760be3b3 & cifar10 & cfg2 & 128 & 0.0200 & 1 & late\_collapse & no & revived, then died again & 3 & 5.0000 & 2.0000 & 10.0400 & 34.1000 & 9.5800 & yes & 0.1638 & 0.2822 & 0.3419 & no & 1.1300 \\
+68ebca03933fe29e & mnist & cfg1 & 128 & 0.0200 & 6 & late\_collapse & no & stayed dead & 29 &  &  & 11.8600 & 11.8600 & 10.4000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+6a3ba0d64c727d43 & mnist & cfg1 & 256 & 0.0200 & 9 & late\_collapse & no & stayed dead & 28 &  &  & 12.1600 & 11.8600 & 9.5600 & no & 0.2622 & 0.2799 & 0.4932 & no & 1.0244 \\
+6a8d3f3ce185d2ce & cifar10 & cfg2 & 64 & 0.0200 & 5 & late\_collapse & no & stayed dead & 16 &  &  & 10.5200 & 10.6800 & 10.1200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+6a8f94cf9ce4e835 & cifar10 & cfg2 & 64 & 0.0200 & 2 & late\_collapse & no & stayed dead & 7 &  &  & 10.1800 & 10.6800 & 10.1200 & no & 0.0059 & 0.0100 & 0.0294 & no & 1.0000 \\
+6c26bfca0e00269f & mnist & cfg1 & 256 & 0.0200 & 5 & late\_collapse & no & stayed dead & 27 &  &  & 10.5200 & 11.8600 & 11.8600 & no & 0.1064 & 0.0809 & 0.0280 & no & 0.9969 \\
+6cf609e0c08d3990 & cifar10 & cfg1 & 64 & 0.0200 & 28 & late\_collapse & no & stayed dead & 5 &  &  & 9.6200 & 10.7000 & 10.5400 & no & 0.0159 & 0.0239 & 0.0571 & no & 0.9999 \\
+6e00f43e9a7e1553 & mnist & cfg2 & 256 & 0.0200 & 20 & late\_collapse & no & stayed dead & 23 &  &  & 9.6600 & 11.8600 & 10.4000 & no & 0.1476 & 0.1164 & 0.2000 & no & 1.0120 \\
+6e567d505837b739 & cifar10 & cfg1 & 256 & 0.0200 & 24 & late\_collapse & no & stayed dead & 9 &  &  & 9.3600 & 10.6800 & 10.0400 & no & 0.2154 & 0.2961 & 0.5220 & no & 1.0400 \\
+6e585e7db4be4cc6 & cifar10 & cfg2 & 128 & 0.0200 & 19 & late\_collapse & no & revived, then died again & 7 & 8.0000 & 1.0000 & 10.0400 & 37.9400 & 10.5200 & yes & 0.1713 & 0.2051 & 0.4890 & no & 1.0173 \\
+6eaa48853e378012 & mnist & cfg2 & 256 & 0.0200 & 27 & late\_collapse & no & stayed dead & 26 &  &  & 9.3200 & 11.9400 & 11.9400 & no & 3.174e-07 & 3.582e-07 & 5.433e-07 & no & 1.0000 \\
+703f12e0155797ff & cifar10 & cfg1 & 256 & 0.0100 & 25 & late\_collapse & no & revived, then died again & 32 & 34.0000 & 2.0000 & 10.0600 & 42.3400 & 11.1000 & yes & 0.0631 & 0.0812 & 0.2073 & no & 1.0149 \\
+70d1b7302cc2d7a2 & cifar10 & cfg2 & 256 & 0.0200 & 28 & late\_collapse & no & stayed dead & 8 &  &  & 9.5800 & 10.6800 & 10.5200 & no & 0.0233 & 0.0267 & 0.0094 & no & 1.0002 \\
+71185dd591c3d910 & cifar10 & cfg1 & 256 & 0.0200 & 23 & late\_collapse & no & stayed dead & 16 &  &  & 10.6800 & 10.5200 & 10.5200 & no & 0.1678 & 0.1138 & 0.2447 & no & 1.0135 \\
+7208acf20adfc655 & cifar10 & cfg1 & 256 & 0.0200 & 28 & late\_collapse & no & stayed dead & 17 &  &  & 9.2600 & 10.6800 & 10.5200 & no & 0.0286 & 0.0250 & 0.1073 & no & 1.0000 \\
+72aeec2758925460 & mnist & cfg1 & 128 & 0.0200 & 11 & late\_collapse & no & stayed dead & 28 &  &  & 10.4000 & 11.8600 & 10.4000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+74fb892e29676ab1 & mnist & cfg1 & 128 & 0.0200 & 23 & late\_collapse & no & stayed dead & 27 &  &  & 9.7600 & 12.3400 & 11.8600 & no & 0.1370 & 0.1490 & 0.3504 & no & 1.0083 \\
+75229e3f92037afb & cifar10 & cfg2 & 128 & 0.0200 & 30 & late\_collapse & no & revived, then died again & 8 & 9.0000 & 1.0000 & 9.5400 & 37.2600 & 9.5600 & yes & 0.1184 & 0.0965 & 0.2883 & no & 1.0063 \\
+7753d2c73099de6f & cifar10 & cfg1 & 256 & 0.0200 & 22 & late\_collapse & no & revived, then died again & 13 & 17.0000 & 4.0000 & 10.1200 & 37.2000 & 9.5800 & yes & 0.1095 & 0.1810 & 0.4376 & no & 1.0567 \\
+775f1506f16c2273 & mnist & cfg1 & 64 & 0.0200 & 8 & late\_collapse & no & stayed dead & 31 &  &  & 10.2800 & 11.9000 & 9.9800 & no & 0.0188 & 0.0687 & 0.0370 & no & 0.9990 \\
+77ad56eac09474e3 & cifar10 & cfg2 & 128 & 0.0200 & 27 & late\_collapse & no & revived, then died again & 12 & 13.0000 & 1.0000 & 10.7000 & 37.4200 & 9.3000 & yes & 0.1701 & 0.2802 & 0.6699 & no & 1.0346 \\
+78540be2ed41b624 & cifar10 & cfg2 & 128 & 0.0100 & 10 & late\_collapse & no & stayed dead & 40 &  &  & 10.2000 &  & 10.2000 & no &  &  &  & yes & 1.0000 \\
+78e2d70ea8ee6b92 & cifar10 & cfg2 & 128 & 0.0200 & 28 & late\_collapse & no & revived, then died again & 10 & 11.0000 & 1.0000 & 9.2600 & 38.4800 & 10.5200 & yes & 0.1507 & 0.2773 & 0.6208 & no & 1.0297 \\
+78e9ba09dc044d5d & mnist & cfg1 & 256 & 0.0200 & 30 & late\_collapse & no & stayed dead & 28 &  &  & 10.3200 & 16.1200 & 9.9400 & yes & 0.0148 & 0.0163 & 0.0204 & no & 1.0000 \\
+793c6e7eba520492 & mnist & cfg2 & 64 & 0.0200 & 4 & late\_collapse & no & stayed dead & 22 &  &  & 8.6800 & 11.9200 & 10.0000 & no & 2.706e-05 & 4.388e-05 & 1.535e-05 & no & 1.0000 \\
+797fe8365f4f01af & cifar10 & cfg2 & 128 & 0.0200 & 23 & late\_collapse & no & stayed dead & 15 &  &  & 10.1200 & 10.6800 & 10.5200 & no & 0.0002 & 0.0006 & 0.0022 & no & 1.0000 \\
+79b0598244a7f14a & cifar10 & cfg2 & 128 & 0.0200 & 20 & late\_collapse & no & revived, then died again & 4 & 5.0000 & 1.0000 & 10.1800 & 37.3400 & 9.5600 & yes & 0.2618 & 0.5501 & 0.6522 & no & 1.1256 \\
+7ab15699c5ed6b06 & cifar10 & cfg2 & 256 & 0.0100 & 16 & late\_degradation & yes & revived & 36 & 38.0000 & 2.0000 & 10.0400 & 42.6800 & 40.0000 & yes & 0.0871 & 0.1249 & 0.2843 & no & 1.0212 \\
+7b103ee9bb6089ff & mnist & cfg1 & 128 & 0.0200 & 10 & late\_collapse & no & stayed dead & 32 &  &  & 11.8600 & 11.8600 & 10.2400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+7ba95645b5271606 & mnist & cfg1 & 256 & 0.0200 & 26 & late\_collapse & no & stayed dead & 29 &  &  & 12.3600 & 11.8600 & 11.8600 & no & 0.3151 & 0.2849 & 0.8795 & no & 1.0243 \\
+7d7b79936b44df6c & cifar10 & cfg1 & 256 & 0.0200 & 12 & late\_collapse & no & revived, then died again & 14 & 15.0000 & 1.0000 & 9.3800 & 37.8000 & 9.2600 & yes & 0.1498 & 0.2897 & 0.4835 & no & 1.0432 \\
+7e5e20cdb155aa91 & cifar10 & cfg2 & 64 & 0.0200 & 28 & late\_collapse & no & stayed dead & 5 &  &  & 9.5800 & 10.6800 & 10.5200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+7e92b9233167c661 & mnist & cfg2 & 128 & 0.0200 & 13 & late\_collapse & no & stayed dead & 26 &  &  & 9.5800 & 11.8800 & 10.6200 & no & 3.657e-05 & 6.770e-05 & 6.463e-05 & no & 1.0000 \\
+7eb0d8afb45e925a & cifar10 & cfg2 & 256 & 0.0200 & 15 & late\_collapse & no & revived, then died again & 2 & 3.0000 & 1.0000 & 10.0600 & 37.5400 & 9.5800 & yes & 0.3493 & 0.5861 & 0.6698 & no & 1.1489 \\
+7f5c3824092f776e & mnist & cfg1 & 256 & 0.0200 & 6 & late\_collapse & no & stayed dead & 28 &  &  & 9.6800 & 11.8600 & 10.4000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+7f759bbd614fda3a & cifar10 & cfg2 & 256 & 0.0100 & 12 & late\_collapse & no & stayed dead & 35 &  &  & 9.5400 & 10.5400 & 9.2800 & no & 0.0388 & 0.0244 & 0.0345 & no & 1.0002 \\
+7f76cd3aab2a84c7 & cifar10 & cfg1 & 64 & 0.0200 & 23 & late\_collapse & no & stayed dead & 6 &  &  & 10.6800 & 10.6800 & 10.5200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+80ca15c9f15cc650 & cifar10 & cfg2 & 64 & 0.0200 & 14 & late\_collapse & no & stayed dead & 12 &  &  & 10.5200 & 10.6800 & 10.6800 & no & 0.0114 & 0.0094 & 0.0198 & no & 1.0001 \\
+80daf79aed2924be & cifar10 & cfg1 & 256 & 0.0200 & 21 & late\_collapse & no & revived, then died again & 7 & 8.0000 & 1.0000 & 10.5800 & 38.7800 & 9.5800 & yes & 0.1679 & 0.2736 & 0.5061 & no & 1.0301 \\
+81126f65df23f676 & mnist & cfg2 & 64 & 0.0200 & 20 & late\_collapse & no & stayed dead & 20 &  &  & 9.2400 & 11.8600 & 10.4000 & no & 2.372e-09 & 5.575e-09 & 2.134e-09 & no & 1.0000 \\
+812b258e776e6cbe & cifar10 & cfg1 & 256 & 0.0100 & 8 & late\_degradation & yes & revived & 30 & 31.0000 & 1.0000 & 9.5600 & 43.3400 & 36.3000 & yes & 0.1055 & 0.1772 & 0.4015 & no & 1.0138 \\
+8209877c30b49c46 & mnist & cfg1 & 64 & 0.0200 & 21 & late\_collapse & no & stayed dead & 25 &  &  & 10.2400 & 11.8600 & 11.8600 & no & 4.288e-06 & 8.621e-06 & 6.307e-06 & no & 1.0000 \\
+8222ee3e9999acfd & cifar10 & cfg2 & 128 & 0.0100 & 26 & stable & yes & revived & 37 & 38.0000 & 1.0000 & 10.5400 & 42.8400 & 42.6400 & yes & 0.1098 & 0.1795 & 0.4294 & no & 1.0118 \\
+82e70050639f734b & cifar10 & cfg2 & 256 & 0.0200 & 23 & late\_collapse & no & revived, then died again & 12 & 13.0000 & 1.0000 & 10.0400 & 38.3200 & 10.5200 & yes & 0.1424 & 0.2351 & 0.4934 & no & 1.0258 \\
+845719b31b2e1589 & cifar10 & cfg1 & 128 & 0.0200 & 11 & late\_collapse & no & stayed dead & 7 &  &  & 10.1200 & 10.6800 & 10.1800 & no & 0.0560 & 0.0707 & 0.5404 & no & 0.9987 \\
+85275b66edda599b & mnist & cfg1 & 256 & 0.0200 & 10 & late\_collapse & no & stayed dead & 27 &  &  & 9.2400 & 11.8600 & 10.2400 & no & 0.0063 & 0.0087 & 0.0046 & no & 1.0004 \\
+855c60475bb63344 & mnist & cfg2 & 128 & 0.0200 & 9 & late\_collapse & no & stayed dead & 26 &  &  & 10.7200 & 14.4200 & 9.6200 & no & 0.0087 & 0.0154 & 0.0004 & no & 1.0008 \\
+85fb9cfa1d909f7c & cifar10 & cfg1 & 256 & 0.0100 & 20 & stable & yes & revived & 32 & 35.0000 & 3.0000 & 10.1400 & 43.0800 & 43.0800 & yes & 0.0261 & 0.0165 & 0.0756 & no & 1.0148 \\
+8608124b082b9909 & mnist & cfg1 & 64 & 0.0200 & 13 & late\_collapse & no & stayed dead & 28 &  &  & 11.8600 & 11.8600 & 10.6000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+867a98d7f3e0897b & cifar10 & cfg2 & 64 & 0.0200 & 8 & late\_collapse & no & revived, then died again & 7 & 9.0000 & 2.0000 & 9.3200 & 34.8800 & 9.5400 & yes & 0.1239 & 0.2266 & 0.5420 & no & 1.0326 \\
+869e8348f772bc95 & cifar10 & cfg2 & 256 & 0.0200 & 14 & late\_collapse & no & revived, then died again & 11 & 12.0000 & 1.0000 & 9.2600 & 35.1600 & 10.6800 & yes & 0.1609 & 0.3146 & 0.6860 & no & 1.0378 \\
+8701e668f23d5180 & cifar10 & cfg2 & 64 & 0.0200 & 21 & never\_learned & no & stayed dead & 2 &  &  & 10.5200 & 10.6800 & 9.5800 & no & 0.0278 & 0.0673 & 0.0572 & no & 0.9981 \\
+8736e924caae08c3 & cifar10 & cfg2 & 256 & 0.0100 & 11 & stable & yes & revived & 27 & 28.0000 & 1.0000 & 10.0800 & 44.8800 & 44.1200 & yes & 0.1089 & 0.1915 & 0.3957 & no & 1.0129 \\
+87d5d1c7ff01737d & mnist & cfg1 & 256 & 0.0200 & 16 & late\_collapse & no & stayed dead & 27 &  &  & 10.2800 & 12.5000 & 11.8600 & no & 0.0338 & 0.0544 & 0.0065 & no & 0.9964 \\
+881c4d6ed7ae601f & mnist & cfg2 & 64 & 0.0200 & 1 & late\_collapse & no & stayed dead & 27 &  &  & 10.6000 & 11.8600 & 9.2400 & no & 0.0913 & 0.1730 & 0.1098 & no & 1.0045 \\
+88359da86744b738 & cifar10 & cfg2 & 128 & 0.0200 & 13 & late\_collapse & no & revived, then died again & 5 & 6.0000 & 1.0000 & 10.1200 & 33.6600 & 9.2800 & yes & 0.1850 & 0.2120 & 0.4257 & no & 1.0295 \\
+88936dbb271b6258 & mnist & cfg2 & 256 & 0.0200 & 1 & late\_collapse & no & stayed dead & 24 &  &  & 11.8600 & 11.8600 & 9.2400 & no & 2.619e-07 & 2.950e-07 & 1.469e-08 & no & 1.0000 \\
+89b83d801fb4a805 & cifar10 & cfg1 & 128 & 0.0200 & 28 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 10.1800 & 37.8800 & 10.5200 & yes & 0.1592 & 0.2198 & 0.5418 & no & 1.0146 \\
+8b11c6bff39718b0 & cifar10 & cfg2 & 128 & 0.0100 & 14 & late\_collapse & no & stayed dead & 38 &  &  & 9.6200 & 10.7200 & 10.7200 & no & 0.0051 & 0.0071 & 0.0400 & no & 0.9999 \\
+8b5cefe080fb2337 & cifar10 & cfg1 & 128 & 0.0200 & 8 & late\_collapse & no & stayed dead & 5 &  &  & 10.1800 & 10.6800 & 9.5400 & no & 0.0121 & 0.0255 & 0.0325 & no & 0.9997 \\
+8b6e3ae49ecdb385 & cifar10 & cfg1 & 256 & 0.0100 & 9 & stable & yes & revived & 38 & 39.0000 & 1.0000 & 9.6000 & 42.0000 & 41.4600 & yes & 0.1055 & 0.1739 & 0.4073 & no & 1.0117 \\
+8c15ae38d644ffe4 & mnist & cfg1 & 64 & 0.0200 & 23 & late\_collapse & no & stayed dead & 27 &  &  & 9.7400 & 11.9200 & 11.9200 & no & 6.204e-09 & 7.164e-09 & 5.090e-09 & no & 1.0000 \\
+8c4814e48e731ecd & cifar10 & cfg1 & 256 & 0.0200 & 6 & late\_collapse & no & revived, then died again & 6 & 7.0000 & 1.0000 & 10.5000 & 37.0400 & 9.5600 & yes & 0.2091 & 0.4346 & 0.6084 & no & 1.0791 \\
+8ce11a1f68de38d8 & cifar10 & cfg1 & 128 & 0.0200 & 9 & late\_collapse & no & revived, then died again & 10 & 11.0000 & 1.0000 & 10.1600 & 38.6200 & 9.2600 & yes & 0.1600 & 0.2851 & 0.5293 & no & 1.0317 \\
+8cf2f4846d7bbf10 & cifar10 & cfg2 & 256 & 0.0100 & 3 & late\_degradation & yes & revived & 26 & 27.0000 & 1.0000 & 9.6200 & 45.3200 & 39.7600 & yes & 0.0903 & 0.0856 & 0.2484 & no & 1.0017 \\
+8d5009d706e5fda8 & mnist & cfg1 & 64 & 0.0200 & 30 & late\_collapse & no & stayed dead & 25 &  &  & 10.4200 & 11.8800 & 9.9600 & no & 0.0186 & 0.0287 & 0.0800 & no & 1.0000 \\
+8e494492045b43ea & mnist & cfg1 & 128 & 0.0200 & 13 & late\_collapse & no & stayed dead & 29 &  &  & 9.6800 & 11.8600 & 10.6000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+8eb685c9fb34d923 & cifar10 & cfg2 & 64 & 0.0200 & 26 & late\_collapse & no & revived, then died again & 4 & 6.0000 & 2.0000 & 9.6000 & 36.3400 & 9.5800 & yes & 0.1455 & 0.2157 & 0.4405 & no & 1.0346 \\
+8f231a80a8aae9ae & mnist & cfg2 & 64 & 0.0200 & 28 & late\_collapse & no & stayed dead & 25 &  &  & 9.9400 & 11.8600 & 9.9400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+8f3915d7ac2120dc & cifar10 & cfg2 & 256 & 0.0200 & 8 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 9.3400 & 36.6600 & 9.5400 & yes & 0.1796 & 0.3531 & 0.5664 & no & 1.0570 \\
+8fd55be8e8ee7e24 & cifar10 & cfg1 & 128 & 0.0200 & 23 & late\_collapse & no & revived, then died again & 6 & 7.0000 & 1.0000 & 10.7000 & 36.1200 & 10.5200 & yes & 0.1998 & 0.3788 & 0.5802 & no & 1.0524 \\
+8fd653064ea4d11e & mnist & cfg1 & 64 & 0.0200 & 29 & late\_collapse & no & stayed dead & 29 &  &  & 9.9400 & 11.8600 & 11.8600 & no & 0.0174 & 0.0308 & 0.0917 & no & 0.9998 \\
+915b6f02f153295a & mnist & cfg1 & 64 & 0.0200 & 5 & late\_collapse & no & stayed dead & 23 &  &  & 10.4000 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+91e0d243cdb736c7 & cifar10 & cfg1 & 128 & 0.0100 & 14 & late\_degradation & yes & revived & 37 & 39.0000 & 2.0000 & 9.6200 & 42.5200 & 26.4400 & yes & 0.0602 & 0.0848 & 0.2457 & no & 1.0100 \\
+92975c0c635248be & cifar10 & cfg1 & 128 & 0.0200 & 7 & late\_collapse & no & stayed dead & 14 &  &  & 10.5400 & 10.6800 & 9.2600 & no & 0.0117 & 0.0161 & 0.0216 & no & 0.9998 \\
+929827049dc2bdfa & cifar10 & cfg2 & 128 & 0.0100 & 1 & stable & yes & revived & 39 & 40.0000 & 1.0000 & 10.2000 & 43.1800 & 43.1800 & yes & 0.0980 & 0.1729 & 0.4240 & no & 1.0131 \\
+932402261e8af95a & cifar10 & cfg1 & 256 & 0.0100 & 22 & late\_collapse & no & revived, then died again & 25 & 26.0000 & 1.0000 & 9.6600 & 45.1000 & 9.5800 & yes & 0.1150 & 0.2151 & 0.4371 & no & 1.0214 \\
+947352914e82e275 & mnist & cfg2 & 64 & 0.0200 & 3 & late\_collapse & no & stayed dead & 25 &  &  & 10.2400 & 11.8600 & 10.4000 & no & 7.687e-09 & 1.086e-08 & 1.375e-09 & no & 1.0000 \\
+94db47d23269eda4 & mnist & cfg2 & 256 & 0.0200 & 5 & late\_collapse & no & stayed dead & 26 &  &  & 10.2400 & 11.8600 & 11.8600 & no & 3.360e-05 & 3.707e-05 & 4.587e-05 & no & 1.0000 \\
+9859010ab1f4f19f & mnist & cfg2 & 128 & 0.0200 & 28 & late\_collapse & no & stayed dead & 26 &  &  & 9.2400 & 11.8600 & 9.9400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+98dd9d2e5dbed818 & mnist & cfg1 & 256 & 0.0200 & 24 & late\_collapse & no & stayed dead & 29 &  &  & 11.9200 & 11.9400 & 8.7000 & no & 0.0155 & 0.0326 & 0.0863 & no & 1.0013 \\
+99c7fae7281767bd & cifar10 & cfg2 & 128 & 0.0200 & 29 & late\_collapse & no & stayed dead & 8 &  &  & 9.6000 & 10.7000 & 9.5400 & no & 0.0008 & 0.0007 & 0.0015 & no & 1.0000 \\
+99d51fbc3c026050 & cifar10 & cfg2 & 64 & 0.0200 & 7 & late\_collapse & no & stayed dead & 3 &  &  & 9.5800 & 10.6800 & 9.2600 & no & 0.0062 & 0.0039 & 0.0147 & no & 1.0000 \\
+9a12aefbd32e2e07 & mnist & cfg2 & 64 & 0.0200 & 21 & late\_collapse & no & stayed dead & 24 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 0.2502 & 0.2843 & 0.3610 & no & 1.0327 \\
+9a392a9186f3b19e & mnist & cfg2 & 64 & 0.0200 & 11 & late\_collapse & no & stayed dead & 24 &  &  & 9.9400 & 11.8600 & 10.4000 & no & 0.0000 & 7.369e-12 & 0.0000 & yes & 1.0000 \\
+9a7e5b37aac30ab5 & cifar10 & cfg1 & 64 & 0.0200 & 14 & late\_collapse & no & stayed dead & 13 &  &  & 10.5200 & 10.6800 & 10.6800 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+9ab6938954e7d7dc & cifar10 & cfg1 & 64 & 0.0200 & 11 & never\_learned & no & stayed dead & 3 &  &  & 10.1200 & 10.6800 & 10.1800 & no & 0.0713 & 0.1196 & 0.1633 & no & 1.0003 \\
+9b3b452f43e62fa4 & cifar10 & cfg1 & 256 & 0.0200 & 30 & late\_collapse & no & revived, then died again & 15 & 16.0000 & 1.0000 & 10.1400 & 36.5600 & 9.5600 & yes & 0.1431 & 0.2337 & 0.4321 & no & 1.0244 \\
+9d65911bf8c29c3b & mnist & cfg2 & 256 & 0.0200 & 28 & late\_collapse & no & stayed dead & 27 &  &  & 10.6200 & 12.4200 & 9.9400 & no & 0.1732 & 0.1489 & 0.2132 & no & 1.0052 \\
+9dcf538ef32d7b7a & mnist & cfg2 & 256 & 0.0200 & 7 & late\_collapse & no & stayed dead & 28 &  &  & 11.8600 & 11.8600 & 10.2400 & no & 5.940e-05 & 0.0001 & 0.0001 & no & 1.0000 \\
+9df32fc66a4120fe & mnist & cfg2 & 128 & 0.0200 & 3 & late\_collapse & no & stayed dead & 25 &  &  & 10.2400 & 11.8600 & 10.4000 & no & 0.0322 & 0.0360 & 0.0657 & no & 1.0011 \\
+9f3fe560e6a12247 & mnist & cfg1 & 64 & 0.0200 & 15 & late\_collapse & no & stayed dead & 27 &  &  & 9.9600 & 11.8800 & 11.8800 & no & 9.198e-06 & 1.077e-05 & 5.186e-06 & no & 1.0000 \\
+9f8bbb96e39b6f57 & mnist & cfg2 & 128 & 0.0200 & 19 & late\_collapse & no & stayed dead & 30 &  &  & 10.4000 & 11.8600 & 8.6200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+9fca10d5f2abf483 & mnist & cfg2 & 256 & 0.0200 & 19 & late\_collapse & no & stayed dead & 29 &  &  & 9.5800 & 11.8600 & 8.6200 & no & 0.0005 & 0.0006 & 1.358e-05 & no & 1.0000 \\
+a305b697b66447bf & cifar10 & cfg1 & 256 & 0.0200 & 4 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 9.6000 & 35.6200 & 9.5600 & yes & 0.2048 & 0.3665 & 0.5525 & no & 1.0610 \\
+a3c214ad2f8b8d79 & cifar10 & cfg2 & 256 & 0.0200 & 25 & late\_collapse & no & revived, then died again & 7 & 13.0000 & 6.0000 & 9.2600 & 37.7400 & 10.5200 & yes & 0.0075 & 0.0081 & 0.0109 & no & 1.0315 \\
+a3d79d03e55f1ace & mnist & cfg2 & 256 & 0.0200 & 3 & late\_collapse & no & stayed dead & 29 &  &  & 9.3000 & 12.1000 & 10.4000 & no & 0.0201 & 0.0209 & 0.0323 & no & 1.0005 \\
+a3e43b71de65f8e9 & mnist & cfg1 & 128 & 0.0200 & 3 & late\_collapse & no & stayed dead & 30 &  &  & 11.8600 & 11.8600 & 10.4000 & no & 0.0922 & 0.3056 & 0.0101 & no & 0.9965 \\
+a4475d997be73fae & cifar10 & cfg1 & 128 & 0.0200 & 21 & late\_collapse & no & revived, then died again & 16 & 17.0000 & 1.0000 & 10.0400 & 36.1000 & 9.5800 & yes & 0.1369 & 0.2306 & 0.4941 & no & 1.0168 \\
+a4b8dba3f46a0b8e & cifar10 & cfg1 & 256 & 0.0200 & 7 & late\_collapse & no & revived, then died again & 17 & 19.0000 & 2.0000 & 10.6000 & 34.7200 & 9.2600 & yes & 0.1250 & 0.2044 & 0.4482 & no & 1.0405 \\
+a4dd2c7358ebb138 & mnist & cfg1 & 64 & 0.0200 & 7 & late\_collapse & no & stayed dead & 30 &  &  & 10.4000 & 11.8600 & 10.2400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+a5039bc8ab2baab9 & mnist & cfg1 & 128 & 0.0200 & 12 & late\_collapse & no & stayed dead & 27 &  &  & 9.8600 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+a63028b00e736917 & cifar10 & cfg1 & 64 & 0.0200 & 16 & late\_collapse & no & stayed dead & 3 &  &  & 10.0400 & 10.6800 & 10.1800 & no & 0.1190 & 0.2930 & 1.4791 & no & 1.0159 \\
+a7e629a1c9d3b574 & mnist & cfg1 & 256 & 0.0200 & 19 & late\_collapse & no & stayed dead & 31 &  &  & 10.3600 & 11.9800 & 8.6200 & no & 0.1017 & 0.0641 & 0.0332 & no & 0.9975 \\
+a82cd235bb02dd60 & cifar10 & cfg2 & 128 & 0.0100 & 21 & stable & yes & revived & 39 & 40.0000 & 1.0000 & 10.7000 & 40.9600 & 40.9600 & yes & 0.0988 & 0.1595 & 0.4058 & no & 1.0105 \\
+a89e517a1f7cb38b & mnist & cfg1 & 256 & 0.0200 & 1 & late\_collapse & no & stayed dead & 29 &  &  & 9.9800 & 11.8600 & 9.2400 & no & 0.0369 & 0.0513 & 0.0042 & no & 0.9996 \\
+a927375a824aa223 & mnist & cfg1 & 128 & 0.0200 & 14 & late\_collapse & no & stayed dead & 31 &  &  & 11.8600 & 11.8600 & 10.2400 & no & 2.139e-07 & 4.179e-07 & 3.570e-08 & no & 1.0000 \\
+a940d26652474530 & cifar10 & cfg2 & 256 & 0.0200 & 22 & late\_collapse & no & revived, then died again & 10 & 11.0000 & 1.0000 & 10.2400 & 38.0800 & 9.5800 & yes & 0.1603 & 0.3253 & 0.5236 & no & 1.0488 \\
+aa633d243db0becb & cifar10 & cfg1 & 64 & 0.0200 & 12 & late\_collapse & no & stayed dead & 14 &  &  & 10.5000 & 10.5400 & 9.2800 & no & 0.0186 & 0.0262 & 0.0845 & no & 1.0003 \\
+aab5300fc190b361 & cifar10 & cfg1 & 256 & 0.0100 & 5 & late\_collapse & no & stayed dead & 34 &  &  & 10.1600 & 10.5200 & 10.1200 & no & 0.0218 & 0.0200 & 0.1077 & no & 1.0000 \\
+aadf0955ebc76391 & cifar10 & cfg1 & 256 & 0.0100 & 23 & late\_degradation & yes & revived & 35 & 37.0000 & 2.0000 & 9.6200 & 40.9200 & 35.5800 & yes & 0.0729 & 0.1070 & 0.2649 & no & 1.0134 \\
+abe497926096db09 & mnist & cfg2 & 64 & 0.0200 & 30 & late\_collapse & no & stayed dead & 26 &  &  & 10.4000 & 11.8600 & 9.9400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+abf18e4287c93dec & cifar10 & cfg2 & 256 & 0.0100 & 14 & late\_collapse & no & stayed dead & 31 &  &  & 10.0800 & 10.6800 & 10.6800 & no & 0.0190 & 0.0137 & 0.0309 & no & 1.0004 \\
+ac7fb5058a54bbdd & cifar10 & cfg2 & 256 & 0.0100 & 26 & late\_collapse & no & stayed dead & 35 &  &  & 9.5000 & 10.7000 & 10.7000 & no & 0.0888 & 0.1694 & 0.3847 & no & 1.0135 \\
+ac90c2e4df4e68af & cifar10 & cfg2 & 256 & 0.0200 & 27 & late\_collapse & no & revived, then died again & 6 & 8.0000 & 2.0000 & 10.5200 & 38.5400 & 9.2600 & yes & 0.1899 & 0.3663 & 0.5689 & no & 1.1166 \\
+ad4d395d30605b9d & cifar10 & cfg2 & 256 & 0.0200 & 29 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 10.7000 & 36.8200 & 9.5400 & yes & 0.1768 & 0.3479 & 0.5465 & no & 1.0513 \\
+ad98e865063e0d3e & cifar10 & cfg2 & 128 & 0.0200 & 11 & late\_collapse & no & revived, then died again & 11 & 12.0000 & 1.0000 & 9.5600 & 36.7400 & 10.2000 & yes & 0.1322 & 0.2247 & 0.5367 & no & 1.0146 \\
+ae0d3d4e9d521906 & cifar10 & cfg2 & 256 & 0.0100 & 5 & stable & yes & revived & 35 & 37.0000 & 2.0000 & 9.6600 & 42.5400 & 42.5400 & yes & 0.1024 & 0.1747 & 0.4219 & no & 1.0297 \\
+af00ebd9a7ee5fda & mnist & cfg1 & 256 & 0.0200 & 2 & late\_collapse & no & stayed dead & 31 &  &  & 10.4200 & 11.8600 & 11.8600 & no & 0.0109 & 0.0163 & 0.0037 & no & 1.0000 \\
+b0f089ee37f24fdc & mnist & cfg1 & 256 & 0.0200 & 11 & late\_collapse & no & stayed dead & 29 &  &  & 10.2400 & 11.8600 & 10.4000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+b1843ade5fb31b94 & cifar10 & cfg2 & 128 & 0.0200 & 17 & late\_collapse & no & revived, then died again & 12 & 13.0000 & 1.0000 & 10.1400 & 36.0600 & 9.5600 & yes & 0.1208 & 0.1442 & 0.4514 & no & 1.0118 \\
+b1a7bbbe08fea74e & mnist & cfg2 & 128 & 0.0200 & 12 & late\_collapse & no & stayed dead & 22 &  &  & 9.5800 & 57.3200 & 11.8600 & yes & 0.2164 & 0.1903 & 0.2236 & no & 1.0088 \\
+b20cbf648bc3405a & cifar10 & cfg2 & 256 & 0.0200 & 6 & late\_collapse & no & stayed dead & 8 &  &  & 10.0400 & 10.5200 & 9.5600 & no & 0.0077 & 0.0133 & 0.0147 & no & 0.9998 \\
+b2403d1837dbaa28 & cifar10 & cfg2 & 256 & 0.0100 & 18 & stable & yes & revived & 32 & 33.0000 & 1.0000 & 10.1600 & 43.3800 & 42.0400 & yes & 0.1120 & 0.1946 & 0.4079 & no & 1.0184 \\
+b2a2980d1dbd7b70 & mnist & cfg1 & 128 & 0.0200 & 28 & late\_collapse & no & stayed dead & 24 &  &  & 10.4000 & 11.8600 & 9.9400 & no & 0.0330 & 0.0398 & 0.2306 & no & 1.0015 \\
+b2d1827238b4883a & cifar10 & cfg2 & 256 & 0.0100 & 1 & stable & yes & revived & 22 & 24.0000 & 2.0000 & 9.5800 & 45.4600 & 40.9600 & yes & 0.0626 & 0.0867 & 0.1936 & no & 1.0088 \\
+b58e5db2d6da8bf6 & cifar10 & cfg1 & 256 & 0.0200 & 29 & late\_collapse & no & revived, then died again & 15 & 16.0000 & 1.0000 & 9.5600 & 35.2800 & 9.5400 & yes & 0.1302 & 0.1620 & 0.3993 & no & 1.0127 \\
+b59cf09fd487972a & cifar10 & cfg2 & 64 & 0.0200 & 27 & late\_collapse & no & revived, then died again & 6 & 7.0000 & 1.0000 & 10.5200 & 36.6600 & 9.2600 & yes & 0.2152 & 0.4201 & 0.5563 & no & 1.0666 \\
+b5ef925e0d223133 & cifar10 & cfg1 & 128 & 0.0200 & 17 & late\_collapse & no & stayed dead & 13 &  &  & 10.5200 & 10.6800 & 9.5600 & no & 0.0013 & 0.0011 & 0.0020 & no & 1.0000 \\
+b679bed5f6c32d8e & cifar10 & cfg1 & 64 & 0.0200 & 26 & late\_collapse & no & stayed dead & 9 &  &  & 10.6800 & 10.6800 & 9.5800 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+b6afa0d997d4e92b & cifar10 & cfg1 & 256 & 0.0200 & 13 & late\_collapse & no & revived, then died again & 16 & 19.0000 & 3.0000 & 10.7000 & 35.6400 & 9.2600 & yes & 0.0287 & 0.0318 & 0.0832 & no & 1.0139 \\
+b7926a4cfd40cdb7 & cifar10 & cfg2 & 256 & 0.0200 & 9 & late\_collapse & no & revived, then died again & 20 & 21.0000 & 1.0000 & 10.5400 & 34.1000 & 9.2600 & yes & 0.1300 & 0.1796 & 0.4337 & no & 1.0146 \\
+b806d4cc1df5b53a & mnist & cfg2 & 128 & 0.0200 & 7 & late\_collapse & no & stayed dead & 25 &  &  & 10.3000 & 11.8600 & 10.2400 & no & 0.0871 & 0.1560 & 0.1222 & no & 1.0001 \\
+b94af137f0eab588 & mnist & cfg1 & 128 & 0.0200 & 19 & late\_collapse & no & stayed dead & 29 &  &  & 10.9000 & 11.9200 & 8.6800 & no & 0.0907 & 0.0938 & 0.1233 & no & 1.0052 \\
+b96dd75b9440852a & cifar10 & cfg1 & 256 & 0.0200 & 25 & late\_collapse & no & revived, then died again & 11 & 12.0000 & 1.0000 & 10.2600 & 37.1800 & 10.5200 & yes & 0.1698 & 0.3439 & 0.5378 & no & 1.0497 \\
+b9cb369b0b6f416a & cifar10 & cfg1 & 64 & 0.0200 & 22 & late\_collapse & no & revived, then died again & 11 & 12.0000 & 1.0000 & 9.5800 & 37.2800 & 9.5800 & yes & 0.1598 & 0.3018 & 0.5389 & no & 1.0283 \\
+b9fa69fdced76a95 & cifar10 & cfg2 & 256 & 0.0200 & 7 & late\_collapse & no & stayed dead & 11 &  &  & 10.6800 & 10.6800 & 9.2600 & no & 0.0056 & 0.0082 & 0.0114 & no & 0.9999 \\
+ba92cfd9a212b6c3 & cifar10 & cfg2 & 256 & 0.0100 & 2 & stable & yes & revived & 35 & 37.0000 & 2.0000 & 10.1800 & 42.7800 & 40.7200 & yes & 0.0644 & 0.0767 & 0.1981 & no & 1.0100 \\
+bcaf2bb9abd9118a & cifar10 & cfg2 & 256 & 0.0200 & 20 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 9.5400 & 36.2400 & 9.5600 & yes & 0.1375 & 0.1643 & 0.4152 & no & 1.0113 \\
+bce3da514e985599 & cifar10 & cfg1 & 64 & 0.0200 & 10 & late\_collapse & no & stayed dead & 6 &  &  & 9.2600 & 10.6800 & 10.1800 & no & 0.0009 & 0.0015 & 0.0007 & no & 1.0000 \\
+bd16cc53cbe946c6 & cifar10 & cfg1 & 256 & 0.0100 & 13 & stable & yes & revived & 33 & 40.0000 & 7.0000 & 9.5800 & 43.1800 & 43.1800 & yes & 0.0067 & 0.0040 & 0.0067 & no & 0.9997 \\
+bd609c33cc4da830 & cifar10 & cfg1 & 128 & 0.0200 & 1 & late\_collapse & no & stayed dead & 13 &  &  & 10.1600 & 10.6800 & 9.5800 & no & 0.0235 & 0.0200 & 0.0732 & no & 1.0005 \\
+bd98b4de7e7b28a8 & mnist & cfg2 & 64 & 0.0200 & 6 & late\_collapse & no & stayed dead & 26 &  &  & 9.9400 & 11.8600 & 10.4000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+be38ab2a42f18f34 & cifar10 & cfg1 & 128 & 0.0200 & 5 & late\_collapse & no & stayed dead & 13 &  &  & 10.0400 & 10.6800 & 10.1200 & no & 0.0002 & 0.0005 & 0.0006 & no & 1.0000 \\
+be8ddac95d19dad6 & mnist & cfg2 & 64 & 0.0200 & 8 & late\_collapse & no & stayed dead & 23 &  &  & 10.4000 & 11.8600 & 9.9400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+bfba67fc9755d00e & cifar10 & cfg2 & 256 & 0.0200 & 11 & late\_collapse & no & revived, then died again & 9 & 10.0000 & 1.0000 & 10.1800 & 37.2800 & 10.1800 & yes & 0.1732 & 0.3639 & 0.5605 & no & 1.0593 \\
+c044d3bd60d17c8f & cifar10 & cfg1 & 128 & 0.0200 & 13 & late\_collapse & no & revived, then died again & 12 & 13.0000 & 1.0000 & 9.2800 & 35.5000 & 9.2600 & yes & 0.1371 & 0.1806 & 0.4416 & no & 1.0071 \\
+c0a62ce552ae5e3f & cifar10 & cfg2 & 256 & 0.0200 & 12 & late\_collapse & no & revived, then died again & 9 & 12.0000 & 3.0000 & 10.6800 & 39.4600 & 9.2600 & yes & 0.0255 & 0.0303 & 0.0652 & no & 1.0250 \\
+c0a65db7ccbe2402 & mnist & cfg1 & 128 & 0.0200 & 22 & late\_collapse & no & stayed dead & 30 &  &  & 9.9000 & 11.9000 & 9.9000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+c0b07825091e1ced & mnist & cfg2 & 256 & 0.0200 & 17 & late\_collapse & no & stayed dead & 22 &  &  & 10.4600 & 11.9200 & 11.9200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+c1b42efa2b992fb5 & cifar10 & cfg2 & 128 & 0.0200 & 21 & late\_collapse & no & stayed dead & 9 &  &  & 10.0400 & 10.6800 & 9.5800 & no & 0.0054 & 0.0144 & 0.0105 & no & 0.9999 \\
+c1f9edb5768cdc2c & mnist & cfg2 & 128 & 0.0200 & 10 & late\_collapse & no & stayed dead & 25 &  &  & 9.7200 & 11.9000 & 10.2800 & no & 3.980e-08 & 6.633e-08 & 2.858e-09 & no & 1.0000 \\
+c46cba0bd04680fb & cifar10 & cfg1 & 64 & 0.0200 & 27 & late\_collapse & no & revived, then died again & 10 & 17.0000 & 7.0000 & 10.5000 & 36.4200 & 9.2600 & yes & 0.0002 & 0.0010 & 0.0115 & no & 1.0147 \\
+c4e334d66c196933 & cifar10 & cfg1 & 256 & 0.0100 & 7 & late\_collapse & no & stayed dead & 33 &  &  & 9.5600 & 10.6800 & 9.2600 & no & 0.0265 & 0.0284 & 0.0594 & no & 1.0002 \\
+c5b78ed70f325257 & cifar10 & cfg2 & 256 & 0.0200 & 30 & late\_collapse & no & stayed dead & 11 &  &  & 9.2800 & 10.6800 & 9.5600 & no & 0.0075 & 0.0206 & 0.0179 & no & 1.0003 \\
+c64d3b5a96e5fa13 & cifar10 & cfg1 & 64 & 0.0200 & 9 & late\_collapse & no & revived, then died again & 7 & 9.0000 & 2.0000 & 9.5600 & 37.2600 & 9.2600 & yes & 0.1735 & 0.3489 & 0.5785 & no & 1.0929 \\
+c6763856dc1b80e6 & cifar10 & cfg1 & 128 & 0.0100 & 13 & stable & yes & revived & 33 & 34.0000 & 1.0000 & 9.6000 & 44.0400 & 42.5200 & yes & 0.1109 & 0.1771 & 0.3896 & no & 1.0149 \\
+c6fb8431d2c7c289 & cifar10 & cfg1 & 256 & 0.0200 & 11 & late\_collapse & no & stayed dead & 11 &  &  & 9.5800 & 10.6800 & 10.1800 & no & 0.0091 & 0.0110 & 0.0148 & no & 0.9999 \\
+c7d4e6a68b22f9c1 & cifar10 & cfg1 & 256 & 0.0200 & 19 & late\_collapse & no & revived, then died again & 15 & 17.0000 & 2.0000 & 10.5200 & 35.7600 & 10.5200 & yes & 0.0771 & 0.1346 & 0.2942 & no & 1.0265 \\
+c897b5e4607cf032 & cifar10 & cfg2 & 256 & 0.0100 & 30 & late\_collapse & no & stayed dead & 33 &  &  & 9.5600 & 10.6800 & 9.5600 & no & 0.0065 & 0.0073 & 0.0246 & no & 1.0000 \\
+c9356754315d9245 & cifar10 & cfg2 & 128 & 0.0200 & 14 & late\_collapse & no & revived, then died again & 4 & 5.0000 & 1.0000 & 9.5600 & 35.3800 & 10.6800 & yes & 0.2727 & 0.5405 & 0.6044 & no & 1.1209 \\
+c9c68769dddee93c & mnist & cfg2 & 128 & 0.0200 & 29 & late\_collapse & no & stayed dead & 25 &  &  & 9.9400 & 12.0600 & 11.8800 & no & 0.1665 & 0.2033 & 0.4553 & no & 1.0194 \\
+ca22f46d91d6e102 & cifar10 & cfg2 & 64 & 0.0200 & 9 & late\_collapse & no & stayed dead & 8 &  &  & 10.5400 & 10.6800 & 9.2600 & no & 0.0161 & 0.0091 & 0.0436 & no & 1.0002 \\
+ca2652a121818a79 & cifar10 & cfg2 & 64 & 0.0200 & 15 & late\_collapse & no & stayed dead & 8 &  &  & 9.5800 & 10.6800 & 9.5800 & no & 0.0310 & 0.0182 & 0.0595 & no & 1.0004 \\
+cb2416c92bf6d465 & mnist & cfg2 & 128 & 0.0200 & 26 & late\_collapse & no & stayed dead & 22 &  &  & 10.6000 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+cbaecb0c1a75d8c9 & cifar10 & cfg2 & 128 & 0.0200 & 10 & late\_collapse & no & revived, then died again & 11 & 12.0000 & 1.0000 & 10.5400 & 37.8000 & 10.1800 & yes & 0.1770 & 0.3515 & 0.5671 & no & 1.0476 \\
+cd562aa85a190c18 & mnist & cfg1 & 128 & 0.0200 & 20 & late\_collapse & no & stayed dead & 27 &  &  & 9.2400 & 11.8600 & 10.4000 & no & 0.0004 & 0.0007 & 0.0002 & no & 1.0000 \\
+ce0304117e9964b5 & cifar10 & cfg1 & 64 & 0.0200 & 7 & late\_collapse & no & stayed dead & 6 &  &  & 9.5600 & 10.6800 & 9.2600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+ce3b3c6328be31dc & cifar10 & cfg1 & 64 & 0.0200 & 2 & late\_collapse & no & revived, then died again & 4 & 7.0000 & 3.0000 & 9.5800 & 38.4200 & 10.1200 & yes & 0.0301 & 0.0260 & 0.0630 & no & 1.0774 \\
+cf174090d1ba4b25 & mnist & cfg1 & 256 & 0.0200 & 27 & late\_collapse & no & stayed dead & 28 &  &  & 10.4000 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+cf9ed3117aefc97b & mnist & cfg2 & 128 & 0.0200 & 15 & late\_collapse & no & stayed dead & 24 &  &  & 10.2400 & 11.8600 & 11.8600 & no & 0.0170 & 0.0374 & 0.0393 & no & 0.9994 \\
+d21b43f45c29c9b8 & mnist & cfg2 & 128 & 0.0200 & 5 & late\_collapse & no & stayed dead & 23 &  &  & 10.4000 & 11.8600 & 11.8600 & no & 0.0244 & 0.0381 & 0.0585 & no & 1.0006 \\
+d26002ca6d4671aa & cifar10 & cfg2 & 256 & 0.0100 & 27 & late\_collapse & no & stayed dead & 38 &  &  & 9.2600 & 10.0400 & 9.2600 & no & 0.0002 & 0.0004 & 0.0004 & no & 1.0000 \\
+d2ad22b5d334c6f9 & mnist & cfg1 & 64 & 0.0200 & 2 & late\_collapse & no & stayed dead & 30 &  &  & 11.8600 & 12.3800 & 11.8600 & no & 0.0150 & 0.0205 & 0.0012 & no & 1.0007 \\
+d3e4dfaf95a40461 & mnist & cfg2 & 256 & 0.0200 & 2 & late\_collapse & no & stayed dead & 26 &  &  & 10.2400 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+d4769f0e0d266f67 & mnist & cfg2 & 128 & 0.0200 & 20 & late\_collapse & no & stayed dead & 25 &  &  & 10.6000 & 11.8600 & 10.4000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+d4a7f3767f1bd9e0 & mnist & cfg1 & 64 & 0.0200 & 27 & late\_collapse & no & stayed dead & 29 &  &  & 9.2600 & 11.8800 & 11.8800 & no & 1.080e-05 & 1.950e-05 & 3.272e-05 & no & 1.0000 \\
+d4e3e654f2fe99ab & cifar10 & cfg1 & 64 & 0.0100 & 6 & stable & yes & revived & 35 & 36.0000 & 1.0000 & 9.6400 & 44.9600 & 43.4600 & yes & 0.0982 & 0.1829 & 0.4127 & no & 1.0186 \\
+d4f3c2368d75dda6 & mnist & cfg2 & 64 & 0.0200 & 19 & late\_collapse & no & stayed dead & 24 &  &  & 10.2400 & 11.8600 & 8.6200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+d51bd50814a50841 & cifar10 & cfg2 & 256 & 0.0200 & 18 & late\_collapse & no & stayed dead & 11 &  &  & 10.1800 & 10.6800 & 10.0400 & no & 0.0110 & 0.0219 & 0.0099 & no & 0.9996 \\
+d54c30ad9abd8a04 & mnist & cfg1 & 256 & 0.0200 & 20 & late\_collapse & no & stayed dead & 28 &  &  & 9.9600 & 21.8000 & 10.4000 & yes & 0.1875 & 0.1509 & 0.7952 & no & 1.0066 \\
+d5a10a7be9f5765f & mnist & cfg1 & 64 & 0.0200 & 24 & late\_collapse & no & stayed dead & 31 &  &  & 11.8600 & 11.8600 & 8.6200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+d642d6fc3239cb0e & mnist & cfg1 & 64 & 0.0200 & 10 & late\_collapse & no & stayed dead & 24 &  &  & 10.2400 & 11.8600 & 10.2400 & no & 1.681e-07 & 3.874e-07 & 4.815e-08 & no & 1.0000 \\
+d693a6172e976248 & cifar10 & cfg1 & 64 & 0.0200 & 20 & late\_collapse & no & stayed dead & 15 &  &  & 10.5400 & 10.6800 & 9.5600 & no & 0.0104 & 0.0148 & 0.0302 & no & 1.0000 \\
+d87b41516da60bb8 & cifar10 & cfg1 & 128 & 0.0200 & 30 & late\_collapse & no & stayed dead & 14 &  &  & 10.6800 & 10.6800 & 9.5600 & no & 0.0231 & 0.0470 & 0.0224 & no & 1.0004 \\
+d8ea91c1136f99d3 & mnist & cfg1 & 64 & 0.0200 & 20 & late\_collapse & no & stayed dead & 30 &  &  & 11.9200 & 11.9200 & 10.4600 & no & 4.978e-06 & 1.061e-05 & 5.230e-06 & no & 1.0000 \\
+d97cfea5a23f787b & cifar10 & cfg2 & 256 & 0.0100 & 19 & stable & yes & revived & 33 & 34.0000 & 1.0000 & 10.7000 & 43.3000 & 42.1400 & yes & 0.1037 & 0.1883 & 0.4074 & no & 1.0188 \\
+d9b4d189e249c317 & cifar10 & cfg1 & 64 & 0.0200 & 5 & late\_collapse & no & revived, then died again & 6 & 7.0000 & 1.0000 & 9.5600 & 37.5600 & 10.1200 & yes & 0.2229 & 0.4271 & 0.5724 & no & 1.0737 \\
+da93142f54e47b3f & mnist & cfg2 & 64 & 0.0200 & 29 & late\_collapse & no & stayed dead & 23 &  &  & 11.8800 & 11.8600 & 11.8600 & no & 0.0229 & 0.0741 & 0.7079 & no & 0.9962 \\
+dabe90cf51eeb6ca & mnist & cfg2 & 128 & 0.0200 & 16 & late\_collapse & no & stayed dead & 22 &  &  & 9.2400 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+dc0c456553260b5b & cifar10 & cfg2 & 128 & 0.0200 & 9 & late\_collapse & no & revived, then died again & 15 & 16.0000 & 1.0000 & 10.2000 & 34.8800 & 9.2600 & yes & 0.1503 & 0.2814 & 0.5051 & no & 1.0265 \\
+dc765cae4d5b937a & cifar10 & cfg1 & 256 & 0.0200 & 10 & late\_collapse & no & revived, then died again & 10 & 11.0000 & 1.0000 & 10.5600 & 37.5000 & 10.1800 & yes & 0.1462 & 0.2386 & 0.4890 & no & 1.0208 \\
+ddd6f8541160aad0 & mnist & cfg2 & 256 & 0.0200 & 21 & late\_collapse & no & stayed dead & 27 &  &  & 11.8600 & 11.8600 & 11.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+dde7e5fe118718cb & cifar10 & cfg1 & 64 & 0.0200 & 1 & late\_collapse & no & stayed dead & 3 &  &  & 10.0400 & 10.6800 & 9.5800 & no & 0.0045 & 0.0079 & 0.0136 & no & 1.0000 \\
+de1ae795ad1f7c8f & cifar10 & cfg2 & 256 & 0.0100 & 20 & late\_collapse & no & stayed dead & 39 &  &  & 9.6000 & 9.5600 & 9.5600 & no & 0.0507 & 0.0260 & 0.0552 & no & 1.0009 \\
+de4063b6607fcd6c & cifar10 & cfg1 & 256 & 0.0200 & 1 & late\_collapse & no & stayed dead & 9 &  &  & 9.6000 & 10.6800 & 9.5800 & no & 0.1649 & 0.2749 & 1.5149 & no & 1.0342 \\
+deb6b2fc23fe5143 & cifar10 & cfg1 & 128 & 0.0100 & 3 & late\_collapse & no & stayed dead & 40 &  &  & 10.6800 &  & 10.6800 & no &  &  &  & yes & 1.0000 \\
+def15416449b8be3 & cifar10 & cfg1 & 256 & 0.0100 & 21 & late\_collapse & no & revived, then died again & 28 & 29.0000 & 1.0000 & 9.6000 & 44.8400 & 9.5800 & yes & 0.1212 & 0.1861 & 0.3869 & no & 1.0153 \\
+df418209cee0d3e3 & cifar10 & cfg1 & 256 & 0.0200 & 8 & late\_collapse & no & revived, then died again & 11 & 12.0000 & 1.0000 & 9.5600 & 37.3400 & 9.5400 & yes & 0.1271 & 0.1950 & 0.4203 & no & 1.0151 \\
+df4d74f75f2debec & cifar10 & cfg2 & 256 & 0.0100 & 7 & stable & yes & revived & 32 & 33.0000 & 1.0000 & 10.0400 & 43.5600 & 40.0600 & yes & 0.0859 & 0.1029 & 0.2931 & no & 1.0045 \\
+dfa3d46eaf9555c3 & mnist & cfg1 & 64 & 0.0200 & 19 & late\_collapse & no & stayed dead & 31 &  &  & 10.2400 & 11.8600 & 8.6200 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+e002377867f8dfed & cifar10 & cfg1 & 256 & 0.0100 & 12 & stable & yes & revived & 31 & 38.0000 & 7.0000 & 9.3600 & 41.6000 & 41.4600 & yes & 0.0512 & 0.0341 & 0.1349 & no & 1.0340 \\
+e03fad763274698f & cifar10 & cfg1 & 256 & 0.0100 & 3 & stable & yes & revived & 38 & 39.0000 & 1.0000 & 10.0400 & 40.5600 & 40.5600 & yes & 0.1175 & 0.1729 & 0.3993 & no & 1.0139 \\
+e0f4cf19dda2bb3e & cifar10 & cfg2 & 128 & 0.0200 & 2 & late\_collapse & no & revived, then died again & 3 & 4.0000 & 1.0000 & 10.1800 & 37.6200 & 10.0400 & yes & 0.1747 & 0.2237 & 0.4593 & no & 1.0169 \\
+e12dd7b3d9483086 & cifar10 & cfg1 & 64 & 0.0200 & 8 & late\_collapse & no & revived, then died again & 7 & 14.0000 & 7.0000 & 9.2600 & 36.9800 & 9.5400 & yes & 0.0623 & 0.0592 & 0.2666 & no & 1.0894 \\
+e3315c936c272479 & cifar10 & cfg2 & 64 & 0.0200 & 6 & late\_collapse & no & revived, then died again & 4 & 5.0000 & 1.0000 & 10.5200 & 36.3200 & 9.5600 & yes & 0.1636 & 0.1587 & 0.3482 & no & 1.0141 \\
+e36b940e17c3f117 & mnist & cfg1 & 128 & 0.0200 & 9 & late\_collapse & no & stayed dead & 27 &  &  & 9.9600 & 11.8600 & 9.5600 & no & 0.0007 & 0.0023 & 0.0002 & no & 1.0000 \\
+e38124bd2abdcd9d & cifar10 & cfg1 & 128 & 0.0200 & 20 & late\_collapse & no & stayed dead & 10 &  &  & 10.1800 & 10.6800 & 9.5600 & no & 0.0403 & 0.0291 & 0.1339 & no & 1.0006 \\
+e418d7d8717baad2 & mnist & cfg1 & 256 & 0.0200 & 22 & late\_collapse & no & stayed dead & 34 &  &  & 11.9800 & 11.8600 & 9.8600 & no & 0.1117 & 0.0629 & 0.0912 & no & 1.0003 \\
+e435d2320bbd1e7b & mnist & cfg1 & 64 & 0.0200 & 11 & late\_collapse & no & stayed dead & 28 &  &  & 10.4000 & 11.8600 & 10.4000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+e4622db855407400 & cifar10 & cfg2 & 256 & 0.0200 & 17 & late\_collapse & no & revived, then died again & 6 & 7.0000 & 1.0000 & 9.6400 & 37.8000 & 9.5600 & yes & 0.2217 & 0.4341 & 0.6063 & no & 1.0846 \\
+e4bccb5f82d613d4 & cifar10 & cfg2 & 256 & 0.0200 & 26 & late\_collapse & no & stayed dead & 7 &  &  & 10.6800 & 10.6800 & 9.5800 & no & 0.0087 & 0.0173 & 0.0114 & no & 0.9999 \\
+e4e021933717c994 & cifar10 & cfg2 & 128 & 0.0200 & 4 & late\_collapse & no & stayed dead & 11 &  &  & 9.5800 & 10.6800 & 9.5600 & no & 0.0067 & 0.0045 & 0.0159 & no & 1.0000 \\
+e51966f1df9dd6ce & cifar10 & cfg1 & 64 & 0.0100 & 29 & stable & yes & revived & 31 & 33.0000 & 2.0000 & 9.2600 & 43.8400 & 42.1200 & yes & 0.0865 & 0.0999 & 0.2700 & no & 1.0105 \\
+e51c03d610690389 & cifar10 & cfg1 & 128 & 0.0200 & 2 & late\_collapse & no & revived, then died again & 14 & 15.0000 & 1.0000 & 10.5800 & 37.2800 & 10.1200 & yes & 0.1533 & 0.2941 & 0.4844 & no & 1.0405 \\
+e5bc254711106180 & cifar10 & cfg1 & 256 & 0.0100 & 19 & late\_collapse & no & stayed dead & 28 &  &  & 9.3000 & 10.6800 & 10.5200 & no & 0.0188 & 0.0169 & 0.0495 & no & 0.9999 \\
+e6e3f15918801273 & mnist & cfg2 & 64 & 0.0200 & 5 & late\_collapse & no & stayed dead & 26 &  &  & 10.2600 & 11.8600 & 11.8600 & no & 0.1638 & 0.1542 & 0.1300 & no & 1.0063 \\
+e7961590ec8ec23e & cifar10 & cfg2 & 256 & 0.0200 & 24 & late\_collapse & no & revived, then died again & 9 & 11.0000 & 2.0000 & 9.5800 & 38.6200 & 10.0400 & yes & 0.1709 & 0.3245 & 0.5788 & no & 1.0810 \\
+e7a8064762c557b9 & mnist & cfg1 & 256 & 0.0200 & 12 & late\_collapse & no & stayed dead & 32 &  &  & 11.9600 & 11.8800 & 11.8800 & no & 0.0991 & 0.1298 & 0.4112 & no & 1.0068 \\
+e7aa634d01a8b715 & mnist & cfg1 & 64 & 0.0200 & 6 & late\_collapse & no & stayed dead & 32 &  &  & 11.8600 & 11.8600 & 10.4000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+e7f53563b8045d39 & mnist & cfg2 & 128 & 0.0200 & 22 & late\_collapse & no & stayed dead & 26 &  &  & 9.9400 & 11.8600 & 9.8600 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+e946ba44b9c7bc5d & cifar10 & cfg1 & 256 & 0.0100 & 27 & stable & yes & revived & 35 & 37.0000 & 2.0000 & 10.1600 & 43.5400 & 42.1600 & yes & 0.0546 & 0.0654 & 0.1833 & no & 1.0057 \\
+ea69e6cc9c517990 & mnist & cfg1 & 256 & 0.0200 & 15 & late\_collapse & no & stayed dead & 25 &  &  & 10.2600 & 11.8800 & 11.8800 & no & 0.0002 & 0.0004 & 7.477e-06 & no & 1.0000 \\
+eaee3339c124b42d & cifar10 & cfg2 & 256 & 0.0100 & 13 & late\_collapse & no & stayed dead & 37 &  &  & 10.1200 & 10.5200 & 9.2600 & no & 0.0027 & 0.0033 & 0.0146 & no & 1.0000 \\
+eec6e8297d8cc59d & cifar10 & cfg2 & 64 & 0.0200 & 19 & late\_collapse & no & stayed dead & 12 &  &  & 9.2600 & 10.6800 & 10.5200 & no & 0.0096 & 0.0110 & 0.0072 & no & 0.9997 \\
+eedea6249a6a13c5 & cifar10 & cfg2 & 256 & 0.0200 & 21 & late\_collapse & no & revived, then died again & 3 & 4.0000 & 1.0000 & 9.2800 & 38.0200 & 9.5800 & yes & 0.2794 & 0.5145 & 0.6593 & no & 1.1121 \\
+ef3290f31dc14f7d & mnist & cfg2 & 128 & 0.0200 & 6 & late\_collapse & no & stayed dead & 27 &  &  & 9.9400 & 11.8600 & 10.4000 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+efcd1a77aba5f3eb & mnist & cfg2 & 256 & 0.0200 & 11 & late\_collapse & no & stayed dead & 26 &  &  & 10.2400 & 11.8600 & 10.4000 & no & 8.928e-05 & 0.0002 & 0.0001 & no & 1.0000 \\
+f068832b226eaf99 & cifar10 & cfg1 & 64 & 0.0200 & 3 & late\_collapse & no & revived, then died again & 2 & 3.0000 & 1.0000 & 10.1200 & 34.3400 & 10.6800 & yes & 0.3285 & 0.5626 & 0.6424 & no & 1.1275 \\
+f0a1a6dba83e653f & cifar10 & cfg2 & 128 & 0.0200 & 16 & late\_collapse & no & stayed dead & 6 &  &  & 9.2600 & 10.6800 & 10.1800 & no & 0.0021 & 0.0025 & 0.0068 & no & 1.0000 \\
+f0a55bbe3b277eef & mnist & cfg1 & 256 & 0.0200 & 14 & late\_collapse & no & stayed dead & 30 &  &  & 10.8600 & 11.9000 & 10.2400 & no & 0.1257 & 0.1260 & 0.1602 & no & 1.0097 \\
+f155a4cfc144a587 & mnist & cfg2 & 256 & 0.0200 & 4 & late\_collapse & no & stayed dead & 24 &  &  & 10.6400 & 11.9000 & 9.9800 & no & 2.017e-05 & 2.105e-05 & 2.945e-06 & no & 1.0000 \\
+f2a5bc66c2f224c7 & cifar10 & cfg1 & 128 & 0.0100 & 7 & late\_collapse & no & stayed dead & 39 &  &  & 9.3000 & 9.2800 & 9.2800 & no & 0.0186 & 0.0232 & 0.0257 & no & 1.0006 \\
+f3164eb16eba7e0e & cifar10 & cfg2 & 256 & 0.0200 & 2 & late\_collapse & no & stayed dead & 15 &  &  & 10.1800 & 10.6800 & 10.1200 & no & 0.0339 & 0.0113 & 0.1968 & no & 1.0012 \\
+f3b7d88ddd0f4baa & mnist & cfg2 & 256 & 0.0200 & 30 & late\_collapse & no & stayed dead & 28 &  &  & 10.2400 & 11.8600 & 9.9400 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+f402139a2a130c3f & cifar10 & cfg2 & 256 & 0.0200 & 1 & late\_collapse & no & stayed dead & 9 &  &  & 9.5400 & 10.6800 & 9.5600 & no & 0.0031 & 0.0047 & 0.0451 & no & 0.9998 \\
+f42bca7846d34335 & mnist & cfg2 & 256 & 0.0200 & 26 & late\_collapse & no & stayed dead & 25 &  &  & 12.0200 & 11.8600 & 11.8600 & no & 0.0181 & 0.0325 & 0.0262 & no & 1.0007 \\
+f52c583b6c118b26 & cifar10 & cfg2 & 128 & 0.0100 & 16 & late\_collapse & no & stayed dead & 36 &  &  & 10.0200 & 10.1800 & 10.1800 & no & 0.0108 & 0.0150 & 0.0794 & no & 0.9998 \\
+f57c27e5b079187a & cifar10 & cfg1 & 64 & 0.0200 & 17 & late\_collapse & no & stayed dead & 18 &  &  & 9.2600 & 10.6800 & 9.5600 & no & 0.0007 & 0.0006 & 0.0025 & no & 1.0000 \\
+f5a44e39e8d5e269 & mnist & cfg1 & 256 & 0.0200 & 3 & late\_collapse & no & stayed dead & 27 &  &  & 10.4000 & 12.5000 & 10.4000 & no & 0.1930 & 0.1715 & 0.4066 & no & 0.9931 \\
+f62457e75b4b3626 & mnist & cfg1 & 128 & 0.0200 & 26 & late\_collapse & no & stayed dead & 30 &  &  & 9.2800 & 11.8600 & 11.8600 & no & 0.1035 & 0.1939 & 0.4559 & no & 1.0056 \\
+f65cbe3d6a0dffc8 & mnist & cfg1 & 64 & 0.0200 & 16 & late\_collapse & no & stayed dead & 27 &  &  & 10.2400 & 11.8600 & 11.8600 & no & 0.0004 & 0.0014 & 0.0003 & no & 1.0001 \\
+f6adddeb7823cd3a & cifar10 & cfg1 & 128 & 0.0200 & 10 & late\_collapse & no & stayed dead & 14 &  &  & 10.6800 & 10.6800 & 10.1800 & no & 0.0084 & 0.0170 & 0.0089 & no & 0.9999 \\
+f73fca5dabf1c3ed & cifar10 & cfg1 & 128 & 0.0200 & 15 & late\_collapse & no & stayed dead & 11 &  &  & 9.5600 & 10.6800 & 9.5800 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+f8176b3a00dc0658 & cifar10 & cfg1 & 64 & 0.0200 & 15 & late\_collapse & no & revived, then died again & 13 & 14.0000 & 1.0000 & 9.5800 & 37.1200 & 9.5800 & yes & 0.1560 & 0.2666 & 0.5087 & no & 1.0314 \\
+f8c8f4d04c6a10db & cifar10 & cfg2 & 256 & 0.0200 & 16 & late\_collapse & no & revived, then died again & 7 & 8.0000 & 1.0000 & 10.0600 & 37.8000 & 10.1800 & yes & 0.1901 & 0.4038 & 0.5980 & no & 1.0731 \\
+f95d63304e04b3e0 & cifar10 & cfg1 & 128 & 0.0200 & 27 & late\_collapse & no & revived, then died again & 6 & 7.0000 & 1.0000 & 10.5200 & 37.1600 & 9.2600 & yes & 0.1923 & 0.3702 & 0.9700 & no & 1.0582 \\
+f9954e13da00c1fa & cifar10 & cfg2 & 64 & 0.0200 & 12 & late\_collapse & no & stayed dead & 15 &  &  & 10.5200 & 10.5200 & 9.2600 & no & 0.0067 & 0.0151 & 0.0100 & no & 1.0001 \\
+fa2c8091f7b6c53e & mnist & cfg1 & 256 & 0.0200 & 17 & late\_collapse & no & stayed dead & 29 &  &  & 12.2000 & 12.7400 & 11.8600 & no & 0.0547 & 0.0695 & 0.1320 & no & 0.9976 \\
+fa54278c46db9528 & cifar10 & cfg2 & 64 & 0.0100 & 26 & stable & yes & revived & 34 & 35.0000 & 1.0000 & 10.6800 & 44.1800 & 43.5400 & yes & 0.0902 & 0.1133 & 0.3743 & no & 1.0032 \\
+faf858e6fd9e7a6b & mnist & cfg1 & 256 & 0.0200 & 29 & late\_collapse & no & stayed dead & 30 &  &  & 11.9000 & 11.8800 & 11.8800 & no & 0.0307 & 0.0274 & 0.1246 & no & 0.9994 \\
+fc309ac47d1865c2 & cifar10 & cfg1 & 128 & 0.0200 & 18 & late\_collapse & no & stayed dead & 13 &  &  & 10.1800 & 10.6800 & 10.0400 & no & 0.0013 & 0.0017 & 0.0020 & no & 1.0000 \\
+fc914e0908c24045 & cifar10 & cfg2 & 128 & 0.0200 & 7 & late\_collapse & no & revived, then died again & 3 & 4.0000 & 1.0000 & 9.6000 & 37.4000 & 9.2600 & yes & 0.2271 & 0.4073 & 0.5553 & no & 1.0496 \\
+fd3e5aff8e06c7be & mnist & cfg1 & 64 & 0.0200 & 1 & late\_collapse & no & stayed dead & 28 &  &  & 11.9400 & 11.8600 & 9.2400 & no & 0.1232 & 0.1395 & 0.0984 & no & 1.0061 \\
+fe5eb7ef1ff6ad30 & mnist & cfg2 & 256 & 0.0200 & 9 & late\_collapse & no & stayed dead & 25 &  &  & 12.2000 & 11.9400 & 9.9400 & no & 0.2094 & 0.1302 & 0.5668 & no & 1.0223 \\
+ff0ab1c0f1da86c9 & cifar10 & cfg2 & 128 & 0.0200 & 3 & late\_collapse & no & stayed dead & 11 &  &  & 9.5800 & 10.6800 & 10.6800 & no & 0.0357 & 0.0377 & 0.1141 & no & 0.9995 \\
+ff944179bd352320 & cifar10 & cfg1 & 256 & 0.0200 & 16 & late\_collapse & no & stayed dead & 16 &  &  & 9.5600 & 10.6800 & 10.1800 & no & 0.0000 & 0.0000 & 0.0000 & yes & 1.0000 \\
+\bottomrule
+\end{tabular}}
+\end{table}

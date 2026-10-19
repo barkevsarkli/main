@@ -1,0 +1,53 @@
+source,dataset,arch,model,n,n_late_collapse,n_never_learned,n_late_degradation,lrs_with_late_collapse
+v5 c10_calib_12,cifar10,mlp2,relu,48,0,18,0,
+v5 c10_calib_12,cifar10,mlp2,any,336,0,78,1,
+v5 c10_calib_128,cifar10,mlp2,relu,48,0,18,0,
+v5 c10_calib_128,cifar10,mlp2,any,336,3,92,7,0.03
+v5 c10_calib_256,cifar10,mlp2,relu,48,0,18,1,
+v5 c10_calib_256,cifar10,mlp2,any,336,4,93,14,0.03
+v5 c10_calib_32,cifar10,mlp2,relu,48,0,18,0,
+v5 c10_calib_32,cifar10,mlp2,any,336,1,78,1,0.03
+v5 c10_calib_512,cifar10,mlp2,relu,48,0,18,0,
+v5 c10_calib_512,cifar10,mlp2,any,336,21,92,14,0.01 0.03 0.1
+v5 c10_calib_64,cifar10,mlp2,relu,48,0,18,0,
+v5 c10_calib_64,cifar10,mlp2,any,336,4,82,1,0.03
+v5 c10_lrsweep_128,cifar10,mlp2,relu,240,0,90,0,
+v5 c10_lrsweep_128,cifar10,mlp2,any,1680,25,458,30,0.01 0.03
+v5 calib_12,mnist,mlp2,relu,48,0,12,6,
+v5 calib_12,mnist,mlp2,any,336,0,15,15,
+v5 calib_128,mnist,mlp2,relu,48,6,12,0,0.03
+v5 calib_128,mnist,mlp2,any,336,6,30,17,0.03
+v5 calib_256,mnist,mlp2,relu,48,6,12,0,0.03
+v5 calib_256,mnist,mlp2,any,336,10,27,16,0.03 0.1 0.3
+v5 calib_32,mnist,mlp2,relu,48,0,12,2,
+v5 calib_32,mnist,mlp2,any,336,0,25,4,
+v5 calib_512,mnist,mlp2,relu,48,6,12,0,0.03
+v5 calib_512,mnist,mlp2,any,336,7,33,21,0.03 0.3
+v5 calib_64,mnist,mlp2,relu,48,3,12,0,0.03
+v5 calib_64,mnist,mlp2,any,336,3,25,18,0.03
+v5 lrsweep_128,mnist,mlp2,relu,330,33,60,27,0.03 0.05
+v5 lrsweep_128,mnist,mlp2,any,2310,34,144,181,0.03 0.05 0.1
+v5 lrsweep_64,mnist,mlp2,relu,330,14,60,28,0.03 0.05
+v5 lrsweep_64,mnist,mlp2,any,2310,15,129,111,0.03 0.05 0.1
+v6 stage0,mnist,mlp2,relu,60,16,0,17,0.03 0.05
+v6 stage0,mnist,mlp2,any,240,16,0,50,0.03 0.05
+v6 stage1,cifar10,cnn,relu,720,46,45,4,0.01 0.03
+v6 stage1,cifar10,cnn,any,2232,52,159,4,0.01 0.03
+v6 stage1,cifar10,mlp1,relu,15,0,3,0,
+v6 stage1,cifar10,mlp1,any,45,0,6,0,
+v6 stage1,mnist,cnn,relu,720,73,76,9,0.03 0.1
+v6 stage1,mnist,cnn,any,2232,75,150,28,0.03 0.1
+v6 stage1,mnist,mlp1,relu,15,0,0,0,
+v6 stage1,mnist,mlp1,any,45,0,0,0,
+v6 stage2,cifar10,cnn,relu,780,209,122,15,0.01 0.02 0.03
+v6 stage2,cifar10,cnn,any,4420,303,533,255,0.01 0.02 0.03
+v6 stage2,cifar10,mlp1,relu,390,0,150,0,
+v6 stage2,cifar10,mlp1,any,1950,6,267,70,0.03 0.05
+v6 stage2,mnist,cnn,relu,760,297,63,0,0.02 0.03 0.05 0.1
+v6 stage2,mnist,cnn,any,4100,310,141,96,0.02 0.03 0.05 0.1
+v6 stage2,mnist,mlp1,relu,390,0,0,6,
+v6 stage2,mnist,mlp1,any,1910,0,0,6,
+v6 stage3,cifar10,cnn,relu,45,29,4,3,0.01 0.02 0.03
+v6 stage3,cifar10,cnn,any,225,40,26,6,0.01 0.02 0.03
+v6 stage3,mnist,cnn,relu,45,30,0,0,0.02 0.03
+v6 stage3,mnist,cnn,any,225,30,0,0,0.02 0.03
