@@ -139,6 +139,15 @@ def main():
               q.source, n=q.n)
         C.put(f"depth.{q.source.replace(' ', '_')}.{q.dataset}.{q.arch}.{q.model}.n_never_learned", q.n_never_learned,
               q.source, n=q.n)
+    # mlp1 runs (one hidden layer) that meet the late_collapse rule: which models, how close to 15%.
+    x = a[(a.arch == "mlp1") & (a.outcome == "late_collapse")]
+    C.put("depth.mlp1.n_late_collapse", len(x), "v6 stages 1-2 (all seeds)", n=int((a.arch == "mlp1").sum()))
+    C.put("depth.mlp1.late_collapse_models",
+          ", ".join(f"{m} {k}" for m, k in x.model.value_counts().sort_index().items()), "v6 stages 1-2 (all seeds)")
+    C.put("depth.mlp1.late_collapse_datasets", " ".join(sorted(x.dataset.unique())), "v6 stages 1-2 (all seeds)")
+    C.put("depth.mlp1.late_collapse_final_min", x.final_val.min(), "v6 stages 1-2 (all seeds)", n=len(x))
+    C.put("depth.mlp1.late_collapse_final_max", x.final_val.max(), "v6 stages 1-2 (all seeds)", n=len(x))
+    C.put("depth.mlp1.late_collapse_best_max", x.best_val.max(), "v6 stages 1-2 (all seeds)", n=len(x))
     C.save()
     print(f"outcomes: {len(a)} runs classified")
 
