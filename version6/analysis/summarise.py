@@ -39,7 +39,7 @@ from load import final_stat, load_rows, load_stats  # noqa: E402
 BOOT_N, BOOT_SEED = 10000, 20261018
 COMPARISONS = [("tanh+relu", "relu"), ("tanh+relu", "tanh"), ("tanh+relu@conv", "relu"),
                ("tanh+relu@hidden", "relu"), ("tanh+relu@0.25", "relu"), ("tanh+relu@0.75", "relu"),
-               ("leaky_relu", "relu")]
+               ("leaky_relu", "relu"), ("tanh+relu/offset1", "tanh+relu")]
 KEYS = ["dataset", "config", "hidden", "model", "lr"]
 
 

@@ -36,6 +36,9 @@ def model_label(r):
     hid = mask(r["hid_act1"], r["hid_act2"], r["hid_ratio"])
     if r["arch"] != "cnn":
         return hid.replace("@0.5", "")
+    off = int(float(r.get("conv_mask_offset", 0) or 0))
+    if off:                                  # Stage 1 mask control (DECISIONS 22)
+        return model_label({**r, "conv_mask_offset": 0}) + f"/offset{off}"
     conv = mask(r["conv_act1"], r["conv_act2"], r["conv_ratio"])
     if conv == hid:
         return hid.replace("@0.5", "")
