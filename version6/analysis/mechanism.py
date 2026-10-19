@@ -496,7 +496,41 @@ def q4(ev):
     C.put("q4.s2.n_spiked", int(s2.spiked.sum()), "S2 seeds 1-30", n=len(s2))
     C.put("q4.n_spike_at_epoch1", int((sp.spiked & (sp.spike_epoch == 1)).sum()), "S0 + S2", n=int(sp.spiked.sum()))
     clamp_check(sp)
+    spike_recovery(sp)
     return sp, cells, spread, pred
+
+
+def spike_recovery(sp):
+    """Validation and training accuracy at spike-1, at the spike and at epoch 40 (spike epoch >= 2)."""
+    rows = []
+    for stage in (0, 2):
+        k = sp[(sp.stage == stage) & sp.spiked & (sp.spike_epoch >= 2)]
+        s = series(stage).set_index(["run_id", "epoch"])
+        for _, r in k.iterrows():
+            e = int(r.spike_epoch)
+            g = s.loc[r.run_id]
+            rows.append(dict(stage=stage, dataset=r.dataset, arch_label=r.arch_label, lr=r.lr, seed=r.seed,
+                             spike_epoch=e, val_before=g.at[e - 1, "val"], val_at=g.at[e, "val"],
+                             val_final=g.at[EPOCHS, "val"], train_before=g.at[e - 1, "train_acc"],
+                             train_at=g.at[e, "train_acc"], train_final=g.at[EPOCHS, "train_acc"],
+                             lbs_at=g.at[e, "lbs"]))
+    d = pd.DataFrame(rows)
+    t = (d.groupby(["stage", "dataset", "arch_label", "lr"], sort=True)
+         .agg(n=("seed", "size"), spike_epoch_med=("spike_epoch", "median"), val_before=("val_before", "median"),
+              val_at=("val_at", "median"), val_final=("val_final", "median"), train_before=("train_before", "median"),
+              train_at=("train_at", "median"), train_final=("train_final", "median"),
+              logit_between_std_at=("lbs_at", "median"))
+         .reset_index())
+    t.insert(4, "seed_set", [seed_label(st, d[d.stage == st].seed) for st in t.stage])
+    write_table(t, TAB, "q4_spike_recovery",
+                "Q4. Spiking leaky-ReLU runs (spike epoch >= 2): validation and training accuracy (%) at the epoch "
+                "before the spike, at the spike and at epoch 40, and the between-input logit std at the spike. "
+                "Medians over runs. Stage 2 pools H 64/128/256 and seeds 1-30.")
+    for _, q in t.iterrows():
+        tag = f"q4.recovery.s{q.stage}_{q.dataset}_{q.arch_label}_lr{q.lr:g}"
+        for f in ("val_before", "val_at", "val_final", "train_at", "train_final", "spike_epoch_med"):
+            C.put(f"{tag}.{f}", q[f], q.seed_set, n=q.n)
+    return t
 
 
 def clamp_check(sp):
